@@ -10,4 +10,13 @@ export default class UserService extends Service {
       return this.return(false, 'Error getting all users', error)
     }
   }
+
+  static async byId(id) {
+    try {
+      const userData = await User.findByPk(id)
+      return this.return(true, 'User retrieve successfuly', userData)
+    } catch (error) {
+      return this.return(false, 'Error getting user by id', error)
+    }
+  }
 }
