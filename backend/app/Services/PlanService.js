@@ -10,4 +10,13 @@ export default class PlanService extends Service {
       return this.return(false, 'Error getting all plans', error)
     }
   }
+
+  static async byId(id) {
+    try {
+      const planData = await Plan.findByPk(id)
+      return this.return(true, 'Plan retrieved successfully', planData)
+    } catch (error) {
+      return this.return(false, 'Error getting plan by ID', error)
+    }
+  }
 }
