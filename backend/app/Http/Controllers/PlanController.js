@@ -77,6 +77,25 @@ class PlanController extends Controller {
       )
     }
   }
+
+  static async updatePlan(req, res) {
+    try {
+      const result = await PlanService.update(req.params.id, req.body)
+      return PlanController.returnResponse(
+        res,
+        result.success,
+        result.message,
+        result.data
+      )
+    } catch (error) {
+      return PlanController.returnResponse(
+        res,
+        false,
+        'Error in Update Plan Controller',
+        error
+      )
+    }
+  }
 }
 
 export default PlanController
