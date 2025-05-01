@@ -19,4 +19,14 @@ export default class PlanService extends Service {
       return this.return(false, 'Error getting plan by ID', error)
     }
   }
+
+  static async add(data) {
+    try {
+      const newPlan = await Plan.create(data)
+
+      return this.return(true, 'added plan data', newPlan)
+    } catch (error) {
+      return this.return(false, 'Error adding plan', error)
+    }
+  }
 }
