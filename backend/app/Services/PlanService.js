@@ -1,4 +1,4 @@
-import Service from './Service'
+import Service from './Service.js'
 import { Plan } from '../Models/index.js'
 
 export default class PlanService extends Service {
