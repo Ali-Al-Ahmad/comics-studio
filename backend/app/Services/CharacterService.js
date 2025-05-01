@@ -26,9 +26,9 @@ export default class CharacterService extends Service {
     }
   }
 
-  static async add(data) {
+  static async add(data, path) {
     try {
-      const newCharacter = await Character.create(data)
+      const newCharacter = await Character.create({ ...data, image_url: path })
 
       return this.return(true, 'added Character data', newCharacter)
     } catch (error) {
