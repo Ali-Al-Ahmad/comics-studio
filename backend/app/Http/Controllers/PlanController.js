@@ -58,6 +58,25 @@ class PlanController extends Controller {
       )
     }
   }
+
+  static async deletePlan(req, res) {
+    try {
+      const result = await PlanService.delete(req.params.id)
+      return PlanController.returnResponse(
+        res,
+        result.success,
+        result.message,
+        result.data
+      )
+    } catch (error) {
+      return PlanController.returnResponse(
+        res,
+        false,
+        'Error in Delete Plan Controller',
+        error
+      )
+    }
+  }
 }
 
 export default PlanController
