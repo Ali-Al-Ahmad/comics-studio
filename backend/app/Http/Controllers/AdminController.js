@@ -58,6 +58,25 @@ class AdminController extends Controller {
       )
     }
   }
+
+  static async updateAdmin(req, res) {
+    try {
+      const result = await AdminService.update(req.params.id, req.body)
+      return AdminController.returnResponse(
+        res,
+        result.success,
+        result.message,
+        result.data
+      )
+    } catch (error) {
+      return AdminController.returnResponse(
+        res,
+        false,
+        'Error in Update Admin Controller',
+        error
+      )
+    }
+  }
 }
 
 export default AdminController
