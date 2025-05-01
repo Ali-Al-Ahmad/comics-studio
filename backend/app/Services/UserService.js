@@ -29,4 +29,23 @@ export default class UserService extends Service {
       return this.return(false, 'Error deleting', error)
     }
   }
+
+  static async update(id, allUserData = {}) {
+    try {
+      const { password } = allUserData
+
+      if (password) {
+        const hashed = await UserService.hashPassword(password)
+        allUserData.password = hashed
+      }
+
+      await User.update(allUserData, { where: { id } })
+      const user = await User.findByPk(id)
+
+      return this.return(true, 'Updated user Data', user)
+    } catch (error) {
+      console.log(error)
+      this.return(false, 'Error updating user', error)
+    }
+  }
 }
