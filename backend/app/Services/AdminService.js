@@ -29,4 +29,23 @@ export default class AdminService extends Service {
       return this.return(false, 'Error deleting', error)
     }
   }
+
+  static async update(id, allAdminData = {}) {
+    try {
+      const { password } = allAdminData
+
+      if (password) {
+        const hashed = await AdminService.hashPassword(password)
+        allAdminData.password = hashed
+      }
+
+      await Admin.update(allAdminData, { where: { id } })
+      const admin = await Admin.findByPk(id)
+
+      return this.return(true, 'Updated admin Data', admin)
+    } catch (error) {
+      console.log(error)
+      this.return(false, 'Error updating admin', error)
+    }
+  }
 }
