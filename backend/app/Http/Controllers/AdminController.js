@@ -39,6 +39,25 @@ class AdminController extends Controller {
       )
     }
   }
+
+  static async deleteAdmin(req, res) {
+    try {
+      const result = await AdminService.delete(req.params.id)
+      return AdminController.returnResponse(
+        res,
+        result.success,
+        result.message,
+        result.data
+      )
+    } catch (error) {
+      return AdminController.returnResponse(
+        res,
+        false,
+        'Error in Delete Admin Controller',
+        error
+      )
+    }
+  }
 }
 
 export default AdminController
