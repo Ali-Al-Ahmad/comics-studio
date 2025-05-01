@@ -45,11 +45,16 @@ export default class CharacterService extends Service {
     }
   }
 
-  static async update(id, allCharacterData = {}, path = null) {
+  static async update(req) {
     try {
+      const id = req.params?.id
+      const allCharacterData = req.body || {}
+      const path = req.file?.path
+
       if (path) {
         allCharacterData.image_url = path
       }
+      
       await Character.update(allCharacterData, { where: { id } })
       const character = await Character.findByPk(id)
 

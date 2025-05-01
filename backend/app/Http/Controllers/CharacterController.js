@@ -80,7 +80,7 @@ class CharacterController extends Controller {
 
   static async updateCharacter(req, res) {
     try {
-      const result = await CharacterService.update(req.params.id, req.body,req.file?.path)
+      const result = await CharacterService.update(req)
       return CharacterController.returnResponse(
         res,
         result.success,
