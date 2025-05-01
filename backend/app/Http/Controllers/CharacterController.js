@@ -42,7 +42,7 @@ class CharacterController extends Controller {
 
   static async addCharacter(req, res) {
     try {
-      const result = await CharacterService.add(req.body,req.file.path)
+      const result = await CharacterService.add(req)
       return CharacterController.returnResponse(
         res,
         result.success,

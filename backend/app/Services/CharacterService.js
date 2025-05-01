@@ -26,9 +26,13 @@ export default class CharacterService extends Service {
     }
   }
 
-  static async add(data, path) {
+  static async add(req) {
     try {
-      const newCharacter = await Character.create({ ...data, image_url: path })
+      const newCharacter = await Character.create({
+        ...req.body,
+        image_url: req.file.path,
+        user_id: req.user?.id,
+      })
 
       return this.return(true, 'added Character data', newCharacter)
     } catch (error) {
@@ -54,7 +58,7 @@ export default class CharacterService extends Service {
       if (path) {
         allCharacterData.image_url = path
       }
-      
+
       await Character.update(allCharacterData, { where: { id } })
       const character = await Character.findByPk(id)
 

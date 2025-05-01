@@ -18,7 +18,7 @@ export const UpdateCharacterRequest = [
     .withMessage('Name cannot be empty')
     .bail()
     .custom(async (name, { req }) => {
-      const user_id = req.user?.id || req.body.user_id
+      const user_id = req.user?.id
       const characterId = parseInt(req.params.id)
 
       if (!user_id) {

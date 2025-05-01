@@ -7,7 +7,7 @@ export const AddCharacterRequest = [
     .withMessage('Invalid name')
     .bail()
     .custom(async (name, { req }) => {
-      const user_id = req.user?.id || req.body.user_id
+      const user_id = req.user?.id
       if (!user_id) {
         throw new Error('User ID is required to validate character name')
       }
