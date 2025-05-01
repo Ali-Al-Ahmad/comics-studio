@@ -21,6 +21,26 @@ class AuthController extends Controller {
       )
     }
   }
+
+  static async loginUser(req, res) {
+    try {
+      const result = await AuthService.login(req)
+
+      return AuthController.returnResponse(
+        res,
+        result.success,
+        result.message,
+        result.data
+      )
+    } catch (error) {
+      return AuthController.returnResponse(
+        res,
+        false,
+        'Error login user',
+        error
+      )
+    }
+  }
 }
 
 export default AuthController
