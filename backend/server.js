@@ -2,7 +2,11 @@ import express from 'express'
 import dotenv from 'dotenv'
 import cors from 'cors'
 
-import logReuestBodyData from './app/Middlewares/RequestBodyData'
+//sequelize db connection
+import { initDatabase } from './config/Connection.js'
+
+//middlewares imports
+import logReuestBodyData from './app/Middlewares/RequestBodyData.js'
 
 dotenv.config()
 
@@ -18,6 +22,13 @@ app.use(logReuestBodyData)
 
 //Start server
 const PORT = process.env.PORT || 4000
-app.listen(PORT, () => {
-  console.log(`Listening on port ${PORT}`)
-})
+const startServer = async () => {
+  try {
+    await initDatabase()
+    app.listen(PORT, () => console.log(`Listening on port ${PORT}`))
+  } catch (error) {
+    console.error('Failed to initialize database:', error)
+  }
+}
+
+startServer()
