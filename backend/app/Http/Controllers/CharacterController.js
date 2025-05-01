@@ -77,6 +77,25 @@ class CharacterController extends Controller {
       )
     }
   }
+
+  static async updateCharacter(req, res) {
+    try {
+      const result = await CharacterService.update(req.params.id, req.body)
+      return CharacterController.returnResponse(
+        res,
+        result.success,
+        result.message,
+        result.data
+      )
+    } catch (error) {
+      return CharacterController.returnResponse(
+        res,
+        false,
+        'Error in Update Character Controller',
+        error
+      )
+    }
+  }
 }
 
 export default CharacterController
