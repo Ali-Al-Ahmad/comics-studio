@@ -1,3 +1,4 @@
 import User from './UserModel.js'
+import Admin from './AdminModel.js'
 
-export { User }
+export { Admin, User }
