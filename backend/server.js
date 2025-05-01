@@ -11,6 +11,7 @@ import logReuestBodyData from './app/Middlewares/RequestBodyData.js'
 //routes imports
 import authRoutes from "./routes/AuthRoutes.js"
 import userRoutes from './routes/UserRoutes.js'
+import adminRoutes from './routes/AdminRoutes.js'
 
 dotenv.config()
 
@@ -27,6 +28,7 @@ app.use(logReuestBodyData)
 //routes api
 app.use('/api/v1/auth', authRoutes)
 app.use('/api/v1/users', userRoutes)
+app.use('/api/v1/admins', adminRoutes)
 
 
 //Start server
