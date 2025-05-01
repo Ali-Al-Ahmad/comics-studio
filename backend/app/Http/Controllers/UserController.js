@@ -20,6 +20,25 @@ class UserController extends Controller {
       )
     }
   }
+
+  static async getUserById(req, res) {
+    try {
+      const result = await UserService.byId(req.params.id)
+      return UserController.returnResponse(
+        res,
+        result.success,
+        result.message,
+        result.data
+      )
+    } catch (error) {
+      return UserController.returnResponse(
+        res,
+        false,
+        'Error in User By Id Controller',
+        error
+      )
+    }
+  }
 }
 
 export default UserController
