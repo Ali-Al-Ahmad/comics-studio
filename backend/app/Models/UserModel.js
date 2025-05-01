@@ -55,6 +55,14 @@ const User = sequelize.define(
 
     profile_picture: { type: DataTypes.STRING, allowNull: true },
     credits: { type: DataTypes.INTEGER, defaultValue: 0 },
+    plan_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'plans',
+        key: 'id',
+      },
+      allowNull: true,
+    },
   },
   {
     tableName: 'users',
