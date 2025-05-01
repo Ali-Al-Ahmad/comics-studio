@@ -39,6 +39,25 @@ class UserController extends Controller {
       )
     }
   }
+
+  static async deleteUser(req, res) {
+    try {
+      const result = await UserService.delete(req.params.id)
+      return UserController.returnResponse(
+        res,
+        result.success,
+        result.message,
+        result.data
+      )
+    } catch (error) {
+      return UserController.returnResponse(
+        res,
+        false,
+        'Error in Delete User Controller',
+        error
+      )
+    }
+  }
 }
 
 export default UserController
