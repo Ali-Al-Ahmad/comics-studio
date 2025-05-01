@@ -61,6 +61,26 @@ class AuthController extends Controller {
       )
     }
   }
+
+  static async loginAdmin(req, res) {
+    try {
+      const result = await AuthService.login(req, true)
+
+      return AuthController.returnResponse(
+        res,
+        result.success,
+        result.message,
+        result.data
+      )
+    } catch (error) {
+      return AuthController.returnResponse(
+        res,
+        false,
+        'Error login Admin',
+        error
+      )
+    }
+  }
 }
 
 export default AuthController
