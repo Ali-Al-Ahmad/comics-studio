@@ -16,9 +16,23 @@ export default class CharacterService extends Service {
   static async byId(id) {
     try {
       const characterData = await Character.findByPk(id)
-      return this.return(true, 'Character retrieved successfully', characterData)
+      return this.return(
+        true,
+        'Character retrieved successfully',
+        characterData
+      )
     } catch (error) {
       return this.return(false, 'Error getting Character by ID', error)
+    }
+  }
+
+  static async add(data) {
+    try {
+      const newCharacter = await Character.create(data)
+
+      return this.return(true, 'added Character data', newCharacter)
+    } catch (error) {
+      return this.return(false, 'Error adding Character', error)
     }
   }
 }
