@@ -44,4 +44,16 @@ export default class CharacterService extends Service {
       return this.return(false, 'Error deleting Character', error)
     }
   }
+
+  static async update(id, allCharacterData = {}) {
+    try {
+      await Character.update(allCharacterData, { where: { id } })
+      const character = await Character.findByPk(id)
+
+      return this.return(true, 'Updated Character data', character)
+    } catch (error) {
+      console.log(error)
+      return this.return(false, 'Error updating Character', error)
+    }
+  }
 }
