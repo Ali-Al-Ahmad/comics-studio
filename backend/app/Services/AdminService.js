@@ -19,4 +19,14 @@ export default class AdminService extends Service {
       return this.return(false, 'Error getting admin by id', error)
     }
   }
+
+  static async delete(id) {
+    try {
+      await Admin.destroy({ where: { id } })
+
+      return this.return(true, 'Admin deleted successfuly')
+    } catch (error) {
+      return this.return(false, 'Error deleting', error)
+    }
+  }
 }
