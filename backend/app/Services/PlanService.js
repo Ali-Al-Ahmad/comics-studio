@@ -38,4 +38,16 @@ export default class PlanService extends Service {
       return this.return(false, 'Error deleting plan', error)
     }
   }
+
+  static async update(id, allPlanData = {}) {
+    try {
+      await Plan.update(allPlanData, { where: { id } })
+      const plan = await Plan.findByPk(id)
+
+      return this.return(true, 'Updated plan data', plan)
+    } catch (error) {
+      console.log(error)
+      return this.return(false, 'Error updating plan', error)
+    }
+  }
 }
