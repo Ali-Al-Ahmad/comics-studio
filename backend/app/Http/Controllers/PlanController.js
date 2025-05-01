@@ -39,6 +39,25 @@ class PlanController extends Controller {
       )
     }
   }
+
+  static async addPlan(req, res) {
+    try {
+      const result = await PlanService.add(req.body)
+      return PlanController.returnResponse(
+        res,
+        result.success,
+        result.message,
+        result.data
+      )
+    } catch (error) {
+      return PlanController.returnResponse(
+        res,
+        false,
+        'Error in Add Plan Controller',
+        error
+      )
+    }
+  }
 }
 
 export default PlanController
