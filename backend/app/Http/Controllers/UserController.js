@@ -61,8 +61,8 @@ class UserController extends Controller {
 
   static async updateUser(req, res) {
     try {
-      console.log('reqbody::::', req.body)
-      const result = await UserService.update(req.params.id, req.body)
+
+      const result = await UserService.update(req)
       return UserController.returnResponse(
         res,
         result.success,
