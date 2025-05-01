@@ -19,4 +19,14 @@ export default class UserService extends Service {
       return this.return(false, 'Error getting user by id', error)
     }
   }
+
+  static async delete(id) {
+    try {
+      await User.destroy({ where: { id } })
+
+      return this.return(true, 'User deleted successfuly')
+    } catch (error) {
+      return this.return(false, 'Error deleting', error)
+    }
+  }
 }
