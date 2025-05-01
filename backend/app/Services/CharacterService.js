@@ -12,4 +12,13 @@ export default class CharacterService extends Service {
       return this.return(false, 'Error getting all characters', error)
     }
   }
+
+  static async byId(id) {
+    try {
+      const characterData = await Character.findByPk(id)
+      return this.return(true, 'Character retrieved successfully', characterData)
+    } catch (error) {
+      return this.return(false, 'Error getting Character by ID', error)
+    }
+  }
 }
