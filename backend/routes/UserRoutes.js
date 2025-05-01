@@ -3,7 +3,7 @@ import express from 'express'
 import UserController from '../app/Http/Controllers/UserController.js'
 import { validateRequest } from '../app/Middlewares/validateRequest.js'
 import { UserByIdRequest } from '../app/Http/Requests/User/UserByIdRequest.js'
-import { UpdateUserRequest } from '../app/Http/Requests/Admin/UserUpdateRequest.js'
+import { UpdateUserRequest } from '../app/Http/Requests/User/UserUpdateRequest.js'
 
 const router = express.Router()
 
