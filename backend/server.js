@@ -8,6 +8,9 @@ import { initDatabase } from './config/Connection.js'
 //middlewares imports
 import logReuestBodyData from './app/Middlewares/RequestBodyData.js'
 
+//routes imports
+import authRoutes from "./routes/AuthRoutes.js"
+
 dotenv.config()
 
 const app = express()
@@ -19,6 +22,9 @@ app.use(express.json())
 app.use(express.static('./'))
 
 app.use(logReuestBodyData)
+
+//routes api
+app.use('/api/v1/auth', authRoutes)
 
 //Start server
 const PORT = process.env.PORT || 4000
