@@ -58,6 +58,27 @@ class UserController extends Controller {
       )
     }
   }
+
+  static async updateUser(req, res) {
+    try {
+      console.log('reqbody::::', req.body)
+      const result = await UserService.update(req.params.id, req.body)
+      return UserController.returnResponse(
+        res,
+        result.success,
+        result.message,
+        result.data
+      )
+    } catch (error) {
+      console.log('ent', error)
+      return UserController.returnResponse(
+        res,
+        false,
+        'Error in Update User Controller',
+        error
+      )
+    }
+  }
 }
 
 export default UserController
