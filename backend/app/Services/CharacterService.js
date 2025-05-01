@@ -35,4 +35,13 @@ export default class CharacterService extends Service {
       return this.return(false, 'Error adding Character', error)
     }
   }
+
+  static async delete(id) {
+    try {
+      await Character.destroy({ where: { id } })
+      return this.return(true, 'Character deleted successfully')
+    } catch (error) {
+      return this.return(false, 'Error deleting Character', error)
+    }
+  }
 }
