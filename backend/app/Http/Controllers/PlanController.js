@@ -20,6 +20,25 @@ class PlanController extends Controller {
       )
     }
   }
+
+  static async getPlanById(req, res) {
+    try {
+      const result = await PlanService.byId(req.params.id)
+      return PlanController.returnResponse(
+        res,
+        result.success,
+        result.message,
+        result.data
+      )
+    } catch (error) {
+      return PlanController.returnResponse(
+        res,
+        false,
+        'Error in Plan By Id Controller',
+        error
+      )
+    }
+  }
 }
 
 export default PlanController
