@@ -29,4 +29,13 @@ export default class PlanService extends Service {
       return this.return(false, 'Error adding plan', error)
     }
   }
+
+  static async delete(id) {
+    try {
+      await Plan.destroy({ where: { id } })
+      return this.return(true, 'Plan deleted successfully')
+    } catch (error) {
+      return this.return(false, 'Error deleting plan', error)
+    }
+  }
 }
