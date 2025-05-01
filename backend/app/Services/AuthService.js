@@ -28,4 +28,28 @@ export default class AuthService extends Service {
       return this.return(false, 'Error registering user', error)
     }
   }
+
+  static async login(req) {
+    try {
+      const { password, email } = req.body
+
+      const user = await User.findOne({ where: { email } })
+
+      if (!user) {
+        return this.return(false, 'Wrong email or password')
+      }
+
+      const passwordMatch = await bcrypt.compare(password, user.password)
+
+      if (!passwordMatch) {
+        return this.return(false, 'Wrong email or password')
+      }
+
+      const token = createToken(user.id)
+
+      return this.return(true, 'User Login successfully', { token })
+    } catch (error) {
+      return this.return(false, 'Error login user', error)
+    }
+  }
 }
