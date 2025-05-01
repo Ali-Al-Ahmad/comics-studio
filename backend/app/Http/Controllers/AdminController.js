@@ -20,6 +20,25 @@ class AdminController extends Controller {
       )
     }
   }
+
+  static async getAdminById(req, res) {
+    try {
+      const result = await AdminService.byId(req.params.id)
+      return AdminController.returnResponse(
+        res,
+        result.success,
+        result.message,
+        result.data
+      )
+    } catch (error) {
+      return AdminController.returnResponse(
+        res,
+        false,
+        'Error in Admin By Id Controller',
+        error
+      )
+    }
+  }
 }
 
 export default AdminController
