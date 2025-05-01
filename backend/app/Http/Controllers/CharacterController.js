@@ -39,6 +39,25 @@ class CharacterController extends Controller {
       )
     }
   }
+
+  static async addCharacter(req, res) {
+    try {
+      const result = await CharacterService.add(req.body)
+      return CharacterController.returnResponse(
+        res,
+        result.success,
+        result.message,
+        result.data
+      )
+    } catch (error) {
+      return CharacterController.returnResponse(
+        res,
+        false,
+        'Error in Add Character Controller',
+        error
+      )
+    }
+  }
 }
 
 export default CharacterController
