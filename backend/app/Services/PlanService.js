@@ -1,0 +1,13 @@
+import Service from './Service'
+import { Plan } from '../Models/index.js'
+
+export default class PlanService extends Service {
+  static async all() {
+    try {
+      const all_plans = await Plan.findAll({ order: [['id', 'DESC']] })
+      return this.return(true, 'All plans', all_plans)
+    } catch (error) {
+      return this.return(false, 'Error getting all plans', error)
+    }
+  }
+}
