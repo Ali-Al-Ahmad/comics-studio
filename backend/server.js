@@ -10,6 +10,7 @@ import logReuestBodyData from './app/Middlewares/RequestBodyData.js'
 
 //routes imports
 import authRoutes from "./routes/AuthRoutes.js"
+import userRoutes from './routes/UserRoutes.js'
 
 dotenv.config()
 
@@ -25,6 +26,8 @@ app.use(logReuestBodyData)
 
 //routes api
 app.use('/api/v1/auth', authRoutes)
+app.use('/api/v1/users', userRoutes)
+
 
 //Start server
 const PORT = process.env.PORT || 4000
