@@ -20,6 +20,25 @@ class CharacterController extends Controller {
       )
     }
   }
+
+  static async getCharacterById(req, res) {
+    try {
+      const result = await CharacterService.byId(req.params.id)
+      return CharacterController.returnResponse(
+        res,
+        result.success,
+        result.message,
+        result.data
+      )
+    } catch (error) {
+      return CharacterController.returnResponse(
+        res,
+        false,
+        'Error in Character By Id Controller',
+        error
+      )
+    }
+  }
 }
 
 export default CharacterController
