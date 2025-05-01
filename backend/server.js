@@ -7,9 +7,10 @@ import { initDatabase } from './config/Connection.js'
 
 //middlewares imports
 import logReuestBodyData from './app/Middlewares/RequestBodyData.js'
+import { authenticateToken } from './app/Middlewares/AuthMiddleware.js'
 
 //routes imports
-import authRoutes from "./routes/AuthRoutes.js"
+import authRoutes from './routes/AuthRoutes.js'
 import userRoutes from './routes/UserRoutes.js'
 import adminRoutes from './routes/AdminRoutes.js'
 import planRoutes from './routes/PlanRoutes.js'
@@ -29,10 +30,12 @@ app.use(logReuestBodyData)
 
 //routes api
 app.use('/api/v1/auth', authRoutes)
-app.use('/api/v1/users', userRoutes)
-app.use('/api/v1/admins', adminRoutes)
-app.use('/api/v1/plans', planRoutes)
-app.use('/api/v1/characters', characterRoutes)
+
+//routes needs authentication
+app.use('/api/v1/users', authenticateToken, userRoutes)
+app.use('/api/v1/admins', authenticateToken, adminRoutes)
+app.use('/api/v1/plans', authenticateToken, planRoutes)
+app.use('/api/v1/characters', authenticateToken, characterRoutes)
 
 //Start server
 const PORT = process.env.PORT || 4000
