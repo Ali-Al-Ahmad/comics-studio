@@ -10,4 +10,13 @@ export default class AdminService extends Service {
       return this.return(false, 'Error getting all admins', error)
     }
   }
+
+  static async byId(id) {
+    try {
+      const adminData = await Admin.findByPk(id)
+      return this.return(true, 'Admin retrieve successfuly', adminData)
+    } catch (error) {
+      return this.return(false, 'Error getting admin by id', error)
+    }
+  }
 }
