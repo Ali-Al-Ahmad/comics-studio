@@ -1,39 +1,52 @@
-import { User } from '../Models/index.js'
+import { User, Admin } from '../Models/index.js'
 import Service from './Service.js'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
 
-const createToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET, {
+const createToken = (id, isAdmin) => {
+  return jwt.sign({ id, isAdmin }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRATION,
   })
 }
 
 export default class AuthService extends Service {
-  static async register(req) {
+  static async register(req, isAdmin = false) {
     try {
       const { password } = req.body
 
       const hashedPassword = await AuthService.hashPassword(password)
 
-      const savedUser = await User.create({
-        ...req.body,
-        password: hashedPassword,
-      })
+      let savedUser
+      if (isAdmin) {
+        savedUser = await Admin.create({
+          ...req.body,
+          password: hashedPassword,
+        })
+      } else {
+        savedUser = await User.create({
+          ...req.body,
+          password: hashedPassword,
+        })
+      }
 
-      const token = createToken(savedUser.id)
+      const token = createToken(savedUser.id, isAdmin)
 
-      return this.return(true, 'User registered successfully', { token })
+      return this.return(true, 'registered successfully', { token })
     } catch (error) {
-      return this.return(false, 'Error registering user', error)
+      return this.return(false, 'Error registering', error)
     }
   }
 
-  static async login(req) {
+  static async login(req, isAdmin = false) {
     try {
       const { password, email } = req.body
 
-      const user = await User.findOne({ where: { email } })
+      let user
+      if (isAdmin) {
+        user = await Admin.findOne({ where: { email } })
+      } else {
+        user = await User.findOne({ where: { email } })
+      }
 
       if (!user) {
         return this.return(false, 'Wrong email or password')
@@ -45,11 +58,11 @@ export default class AuthService extends Service {
         return this.return(false, 'Wrong email or password')
       }
 
-      const token = createToken(user.id)
+      const token = createToken(user.id, isAdmin)
 
-      return this.return(true, 'User Login successfully', { token })
+      return this.return(true, 'Login successfully', { token })
     } catch (error) {
-      return this.return(false, 'Error login user', error)
+      return this.return(false, 'Error login', error)
     }
   }
 }
