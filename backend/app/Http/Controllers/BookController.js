@@ -77,6 +77,25 @@ class BookController extends Controller {
       )
     }
   }
+
+  static async updateBook(req, res) {
+    try {
+      const result = await BookService.update(req)
+      return BookController.returnResponse(
+        res,
+        result.success,
+        result.message,
+        result.data
+      )
+    } catch (error) {
+      return BookController.returnResponse(
+        res,
+        false,
+        'Error in Update Book Controller',
+        error
+      )
+    }
+  }
 }
 
 export default BookController
