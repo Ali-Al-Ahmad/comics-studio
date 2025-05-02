@@ -40,4 +40,19 @@ export default class ComicService extends Service {
       return this.return(false, 'Error deleting Comic', error)
     }
   }
+
+  static async update(req) {
+    try {
+      const id = req.params?.id
+      const allComicData = req.body || {}
+
+      await Comic.update(allComicData, { where: { id } })
+      const comic = await Comic.findByPk(id)
+
+      return this.return(true, 'Updated comic data', comic)
+    } catch (error) {
+      console.log(error)
+      return this.return(false, 'Error updating comic', error)
+    }
+  }
 }
