@@ -3,8 +3,8 @@ import Service from './Service.js'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
 
-const createToken = (id, isAdmin) => {
-  return jwt.sign({ id, isAdmin }, process.env.JWT_SECRET, {
+const createToken = (data, isAdmin) => {
+  return jwt.sign({ ...data, isAdmin }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRATION,
   })
 }
@@ -29,7 +29,13 @@ export default class AuthService extends Service {
         })
       }
 
-      const token = createToken(savedUser.id, isAdmin)
+      const token = createToken(
+        {
+          id: savedUser.id,
+          plan_id: savedUser.plan_id,
+        },
+        isAdmin
+      )
 
       return this.return(true, 'registered successfully', { token })
     } catch (error) {
@@ -58,7 +64,7 @@ export default class AuthService extends Service {
         return this.return(false, 'Wrong email or password')
       }
 
-      const token = createToken(user.id, isAdmin)
+      const token = createToken({ id: user.id, plan_id: user.plan_id }, isAdmin)
 
       return this.return(true, 'Login successfully', { token })
     } catch (error) {
