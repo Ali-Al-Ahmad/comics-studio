@@ -39,6 +39,25 @@ class ComicController extends Controller {
       )
     }
   }
+
+  static async addComic(req, res) {
+    try {
+      const result = await ComicService.add(req)
+      return ComicController.returnResponse(
+        res,
+        result.success,
+        result.message,
+        result.data
+      )
+    } catch (error) {
+      return ComicController.returnResponse(
+        res,
+        false,
+        'Error in Add Comic Controller',
+        error
+      )
+    }
+  }
 }
 
 export default ComicController
