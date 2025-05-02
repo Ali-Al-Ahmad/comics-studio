@@ -66,13 +66,6 @@ const User = sequelize.define(
   },
   {
     tableName: 'users',
-    defaultScope: {
-      include: [
-        {
-          association: 'plan',
-        },
-      ],
-    },
   }
 )
 

@@ -45,17 +45,6 @@ const Book = sequelize.define(
   },
   {
     tableName: 'books',
-    defaultScope: {
-      include: [
-        {
-          association: 'user',
-          attributes: { exclude: ['password'] },
-        },
-        {
-          association: 'character',
-        },
-      ],
-    },
   }
 )
 

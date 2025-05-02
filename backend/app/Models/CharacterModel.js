@@ -46,7 +46,9 @@ const Character = sequelize.define(
       },
     },
   },
-  { tableName: 'characters' }
+  {
+    tableName: 'characters',
+  }
 )
 
 export default Character
