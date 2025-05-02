@@ -11,6 +11,8 @@ const router = express.Router()
 
 router.get('/', BookController.getAllBooks)
 
+router.get('/publicbooks', BookController.getAllPublicBooks)
+
 router.get('/:id', BookByIdRequest, validateRequest, BookController.getBookById)
 
 router.post(

@@ -45,8 +45,14 @@ const Character = sequelize.define(
         notEmpty: { msg: 'Image must not be empty' },
       },
     },
+    is_favorite: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
   },
-  { tableName: 'characters' }
+  {
+    tableName: 'characters',
+  }
 )
 
 export default Character

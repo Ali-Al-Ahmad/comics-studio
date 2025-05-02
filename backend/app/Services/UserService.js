@@ -1,4 +1,4 @@
-import { User } from '../Models/index.js'
+import { User, Book } from '../Models/index.js'
 import Service from './Service.js'
 
 export default class UserService extends Service {
@@ -54,6 +54,18 @@ export default class UserService extends Service {
     } catch (error) {
       console.log(error)
       this.return(false, 'Error updating user', error)
+    }
+  }
+
+  static async userAllBooks(req) {
+    try {
+      const all_books = await Book.findAll({
+        where: { user_id: req.user?.id },
+        order: [['id', 'DESC']],
+      })
+      return this.return(true, 'All User books', all_books)
+    } catch (error) {
+      return this.return(false, 'Error getting All User books', error)
     }
   }
 }

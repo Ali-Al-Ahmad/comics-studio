@@ -10,6 +10,8 @@ const router = express.Router()
 
 router.get('/', UserController.getAllUsers)
 
+router.get('/userbooks', UserController.getUserBooks)
+
 router.get('/:id', UserByIdRequest, validateRequest, UserController.getUserById)
 
 router.put(

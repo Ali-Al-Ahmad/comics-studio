@@ -8,6 +8,7 @@ import { initDatabase } from './config/Connection.js'
 //middlewares imports
 import logReuestBodyData from './app/Middlewares/RequestBodyData.js'
 import { authenticateToken } from './app/Middlewares/AuthMiddleware.js'
+import isAdmin from './app/Middlewares/checkIsAdmin.js'
 
 //routes imports
 import authRoutes from './routes/AuthRoutes.js'
@@ -36,7 +37,7 @@ app.use('/api/v1/auth', authRoutes)
 //routes needs authentication
 app.use('/api/v1/users', authenticateToken, userRoutes)
 app.use('/api/v1/admins', authenticateToken, adminRoutes)
-app.use('/api/v1/plans', authenticateToken, planRoutes)
+app.use('/api/v1/plans', authenticateToken, isAdmin, planRoutes)
 app.use('/api/v1/characters', authenticateToken, characterRoutes)
 app.use('/api/v1/books', authenticateToken, bookRoutes)
 app.use('/api/v1/comics', authenticateToken, comicRoutes)

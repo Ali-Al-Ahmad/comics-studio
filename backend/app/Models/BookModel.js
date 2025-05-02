@@ -42,8 +42,14 @@ const Book = sequelize.define(
         notEmpty: { msg: 'Image must not be empty' },
       },
     },
+    is_public: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
   },
-  { tableName: 'books' }
+  {
+    tableName: 'books',
+  }
 )
 
 export default Book
