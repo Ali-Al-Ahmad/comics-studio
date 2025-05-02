@@ -21,4 +21,18 @@ export default class BookService extends Service {
       return this.return(false, 'Error getting Book by ID', error)
     }
   }
+
+  static async add(req) {
+    try {
+      const newBook = await Book.create({
+        ...req.body,
+        image_url: req.file.path,
+        user_id: req.user?.id,
+      })
+
+      return this.return(true, 'added Book data', newBook)
+    } catch (error) {
+      return this.return(false, 'Error adding Book', error)
+    }
+  }
 }
