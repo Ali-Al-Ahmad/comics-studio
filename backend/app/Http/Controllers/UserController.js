@@ -61,7 +61,6 @@ class UserController extends Controller {
 
   static async updateUser(req, res) {
     try {
-
       const result = await UserService.update(req)
       return UserController.returnResponse(
         res,
@@ -70,11 +69,28 @@ class UserController extends Controller {
         result.data
       )
     } catch (error) {
-      console.log('ent', error)
       return UserController.returnResponse(
         res,
         false,
         'Error in Update User Controller',
+        error
+      )
+    }
+  }
+  static async getUserBooks(req, res) {
+    try {
+      const result = await UserService.userAllBooks(req)
+      return UserController.returnResponse(
+        res,
+        result.success,
+        result.message,
+        result.data
+      )
+    } catch (error) {
+      return UserController.returnResponse(
+        res,
+        false,
+        'Error in getUserBooks in User Controller',
         error
       )
     }
