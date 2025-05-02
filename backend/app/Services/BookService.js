@@ -35,4 +35,13 @@ export default class BookService extends Service {
       return this.return(false, 'Error adding Book', error)
     }
   }
+
+  static async delete(id) {
+    try {
+      await Book.destroy({ where: { id } })
+      return this.return(true, 'Book deleted successfully')
+    } catch (error) {
+      return this.return(false, 'Error deleting Book', error)
+    }
+  }
 }
