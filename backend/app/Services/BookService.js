@@ -12,4 +12,13 @@ export default class BookService extends Service {
       return this.return(false, 'Error getting all comic books', error)
     }
   }
+
+  static async byId(id) {
+    try {
+      const bookData = await Book.findByPk(id)
+      return this.return(true, 'Book retrieved successfully', bookData)
+    } catch (error) {
+      return this.return(false, 'Error getting Book by ID', error)
+    }
+  }
 }
