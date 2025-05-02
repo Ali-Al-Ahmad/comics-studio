@@ -58,6 +58,25 @@ class ComicController extends Controller {
       )
     }
   }
+
+  static async deleteComic(req, res) {
+    try {
+      const result = await ComicService.delete(req.params.id)
+      return ComicController.returnResponse(
+        res,
+        result.success,
+        result.message,
+        result.data
+      )
+    } catch (error) {
+      return ComicController.returnResponse(
+        res,
+        false,
+        'Error in Delete Comic Controller',
+        error
+      )
+    }
+  }
 }
 
 export default ComicController
