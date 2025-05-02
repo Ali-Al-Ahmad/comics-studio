@@ -43,7 +43,20 @@ const Book = sequelize.define(
       },
     },
   },
-  { tableName: 'books' }
+  {
+    tableName: 'books',
+    defaultScope: {
+      include: [
+        {
+          association: 'user',
+          attributes: { exclude: ['password'] },
+        },
+        {
+          association: 'character',
+        },
+      ],
+    },
+  }
 )
 
 export default Book

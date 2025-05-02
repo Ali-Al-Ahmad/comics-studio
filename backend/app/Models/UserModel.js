@@ -1,6 +1,5 @@
 import sequelize from '../../config/Connection.js'
 import { DataTypes } from 'sequelize'
-import Plan from './PlanModel.js'
 
 const User = sequelize.define(
   'User',
@@ -59,7 +58,7 @@ const User = sequelize.define(
     plan_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: Plan,
+        model: 'plans',
         key: 'id',
       },
       allowNull: true,
@@ -68,7 +67,11 @@ const User = sequelize.define(
   {
     tableName: 'users',
     defaultScope: {
-      include: [{ model: Plan, as: 'plan' }],
+      include: [
+        {
+          association: 'plan',
+        },
+      ],
     },
   }
 )
