@@ -12,4 +12,13 @@ export default class ComicService extends Service {
       return this.return(false, 'Error getting all comics', error)
     }
   }
+
+  static async byId(id) {
+    try {
+      const comicData = await Comic.findByPk(id)
+      return this.return(true, 'Comic retrieved successfully', comicData)
+    } catch (error) {
+      return this.return(false, 'Error getting Comic by ID', error)
+    }
+  }
 }
