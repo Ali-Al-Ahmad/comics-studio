@@ -44,4 +44,24 @@ export default class BookService extends Service {
       return this.return(false, 'Error deleting Book', error)
     }
   }
+
+  static async update(req) {
+    try {
+      const id = req.params?.id
+      const allBookData = req.body || {}
+      const path = req.file?.path
+
+      if (path) {
+        allBookData.image_url = path
+      }
+
+      await Book.update(allBookData, { where: { id } })
+      const book = await Book.findByPk(id)
+
+      return this.return(true, 'Updated book data', book)
+    } catch (error) {
+      console.log(error)
+      return this.return(false, 'Error updating book', error)
+    }
+  }
 }
