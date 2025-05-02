@@ -6,7 +6,7 @@ import Book from './BookModel.js'
 import Comic from './ComicModel.js'
 
 Plan.hasMany(User, { foreignKey: 'plan_id' })
-User.belongsTo(Plan, { foreignKey: 'plan_id' })
+User.belongsTo(Plan, { foreignKey: 'plan_id', as: 'plan' })
 
 User.hasMany(Character, { foreignKey: 'user_id' })
 Character.belongsTo(User, { foreignKey: 'user_id' })
