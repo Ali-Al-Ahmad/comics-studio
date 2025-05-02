@@ -13,4 +13,7 @@ Character.belongsTo(User, { foreignKey: 'user_id' })
 User.hasMany(Book, { foreignKey: 'user_id' })
 Book.belongsTo(User, { foreignKey: 'user_id' })
 
+Character.hasMany(Book, { foreignKey: 'character_id' })
+Book.belongsTo(Character, { foreignKey: 'character_id' })
+
 export { Admin, User, Plan, Character, Book }
