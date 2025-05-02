@@ -15,6 +15,7 @@ import userRoutes from './routes/UserRoutes.js'
 import adminRoutes from './routes/AdminRoutes.js'
 import planRoutes from './routes/PlanRoutes.js'
 import characterRoutes from './routes/CharacterRoutes.js'
+import bookRoutes from './routes/BookRoutes.js'
 
 dotenv.config()
 
@@ -36,6 +37,7 @@ app.use('/api/v1/users', authenticateToken, userRoutes)
 app.use('/api/v1/admins', authenticateToken, adminRoutes)
 app.use('/api/v1/plans', authenticateToken, planRoutes)
 app.use('/api/v1/characters', authenticateToken, characterRoutes)
+app.use('/api/v1/books', authenticateToken, bookRoutes)
 
 //Start server
 const PORT = process.env.PORT || 4000
