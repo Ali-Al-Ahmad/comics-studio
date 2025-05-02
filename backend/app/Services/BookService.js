@@ -68,7 +68,7 @@ export default class BookService extends Service {
   static async allPublicBooks() {
     try {
       const public_books = await Book.findAll({
-        where: { is_public },
+        where: { is_public: true },
         order: [['id', 'DESC']],
       })
       return this.return(true, 'All public comic books', public_books)
