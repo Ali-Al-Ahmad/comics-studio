@@ -30,13 +30,21 @@ export default class UserService extends Service {
     }
   }
 
-  static async update(id, allUserData = {}) {
+  static async update(req) {
     try {
+      const id = req.params?.id
+      const allUserData = req.body || {}
+      const path = req.file?.path
+
       const { password } = allUserData
 
       if (password) {
         const hashed = await UserService.hashPassword(password)
         allUserData.password = hashed
+      }
+
+      if (path) {
+        allUserData.profile_picture = path
       }
 
       await User.update(allUserData, { where: { id } })

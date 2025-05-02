@@ -43,4 +43,12 @@ export const UpdateUserRequest = [
     .optional()
     .isLength({ min: 8 })
     .withMessage('phone must be at least 8 characters long'),
+  body('profile_picture')
+    .optional()
+    .custom((value, { req }) => {
+      if (!req.file && !req.body.image_url) {
+        throw new Error('Image file or URL is required')
+      }
+      return true
+    }),
 ]
