@@ -31,4 +31,13 @@ export default class ComicService extends Service {
       return this.return(false, 'Error adding Comic', error)
     }
   }
+
+  static async delete(id) {
+    try {
+      await Comic.destroy({ where: { id } })
+      return this.return(true, 'Comic deleted successfully')
+    } catch (error) {
+      return this.return(false, 'Error deleting Comic', error)
+    }
+  }
 }
