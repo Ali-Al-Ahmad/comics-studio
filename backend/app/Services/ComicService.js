@@ -21,4 +21,14 @@ export default class ComicService extends Service {
       return this.return(false, 'Error getting Comic by ID', error)
     }
   }
+
+  static async add(req) {
+    try {
+      const newComic = await Comic.create(req.body)
+
+      return this.return(true, 'added Comic data', newComic)
+    } catch (error) {
+      return this.return(false, 'Error adding Comic', error)
+    }
+  }
 }
