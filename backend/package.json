@@ -9,21 +9,12 @@
     "migrate": "sequelize-cli db:migrate",
     "seed": "sequelize-cli db:seed:all"
   },
-  "jest": {
-    "testEnvironment": "node",
-    "moduleFileExtensions": [
-      "js",
-      "json"
-    ],
-    "testMatch": [
-      "**/tests/**/*.test.js"
-    ]
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "module",
   "devDependencies": {
+    "@babel/preset-env": "^7.27.1",
     "jest": "^29.7.0",
     "nodemon": "^3.1.10",
     "supertest": "^7.1.0"
