@@ -31,7 +31,7 @@ describe('Character Controller Tests (User)', () => {
     }
     await sequelize.query('SET FOREIGN_KEY_CHECKS = 1', { raw: true })
   }
-  
+
   beforeEach(async () => {
     await truncateAllTables()
     const user = await createAndLoginUser()
@@ -39,4 +39,8 @@ describe('Character Controller Tests (User)', () => {
     userId = user.userId
   })
 
+  afterAll(async () => {
+    await sequelize.close()
+    if (global.server) global.server.close()
+  })
 })
