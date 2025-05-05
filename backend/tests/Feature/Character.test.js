@@ -61,4 +61,22 @@ describe('Character Controller Tests (User)', () => {
     expect(res.body.success).toBe(true)
     expect(Array.isArray(res.body.data)).toBe(true)
   })
+
+  //Character getById test
+  it('should fetch a specific character by ID', async () => {
+    const character = await Character.create({
+      user_id: userId,
+      name: 'Batman',
+      description: 'Dark Knight',
+      image_url: faker.image.avatar(),
+    })
+
+    const res = await request(app)
+      .get(`/api/v1/characters/${character.id}`)
+      .set('Authorization', `Bearer ${userToken}`)
+      .expect(200)
+
+    expect(res.body.success).toBe(true)
+    expect(res.body.data.name).toBe('Batman')
+  })
 })
