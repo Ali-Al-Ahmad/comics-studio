@@ -127,4 +127,13 @@ describe('User Controller Tests', () => {
 
     expect(res.body.success).toBe(false)
   })
+
+  it('should return 422 for non-existent user ID', async () => {
+    const res = await request(app)
+      .get('/api/v1/users/-1')
+      .set('Authorization', `Bearer ${userToken}`)
+      .expect(422)
+
+    expect(res.body.success).toBe(false)
+  })
 })
