@@ -58,7 +58,7 @@ describe('Admin Controller Tests', () => {
       .expect(200)
     expect(res.body.success).toBe(true)
   })
-  
+
   it('should fetch admin by ID', async () => {
     const res = await request(app)
       .get(`/api/v1/admins/${adminId}`)
@@ -68,5 +68,22 @@ describe('Admin Controller Tests', () => {
 
     expect(res.body.success).toBe(true)
     expect(res.body.data.id).toBe(adminId)
+  })
+
+  it('should update an admin by ID', async () => {
+    const updatedData = {
+      email: faker.internet.email(),
+      password: 'newpassword123',
+    }
+
+    const res = await request(app)
+      .put(`/api/v1/admins/${adminId}`)
+      .set('Authorization', `Bearer ${adminToken}`)
+      .send(updatedData)
+      .expect('Content-Type', /json/)
+      .expect(200)
+
+    expect(res.body.success).toBe(true)
+    expect(res.body.data.email).toBe(updatedData.email)
   })
 })
