@@ -165,4 +165,14 @@ describe('Character Controller Tests (User)', () => {
 
     expect(res.body.success).toBe(false)
   })
+
+  //Character missing attributes validation test
+  it('should return validation error when missing attributes', async () => {
+    const res = await request(app)
+      .post('/api/v1/characters')
+      .set('Authorization', `Bearer ${userToken}`)
+      .expect(422)
+
+    expect(res.body.success).toBe(false)
+  })
 })
