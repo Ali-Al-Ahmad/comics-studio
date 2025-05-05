@@ -49,4 +49,13 @@ describe('User Controller Tests', () => {
     await sequelize.close()
     if (global.server) global.server.close()
   })
+  
+  it('should fetch all users', async () => {
+    const res = await request(app)
+      .get('/api/v1/users')
+      .set('Authorization', `Bearer ${userToken}`)
+      .expect('Content-Type', /json/)
+      .expect(200)
+    expect(res.body.success).toBe(true)
+  })
 })
