@@ -136,4 +136,14 @@ describe('Admin Controller Tests', () => {
 
     expect(res.body.success).toBe(false)
   })
+
+  it('should return 422 when trying to update a non-existent admin', async () => {
+    const res = await request(app)
+      .put('/api/v1/admins/-1')
+      .set('Authorization', `Bearer ${adminToken}`)
+      .send({ email: faker.internet.email() })
+      .expect(422)
+
+    expect(res.body.success).toBe(false)
+  })
 })
