@@ -43,4 +43,22 @@ describe('Character Controller Tests (User)', () => {
     await sequelize.close()
     if (global.server) global.server.close()
   })
+
+  //Character get all test
+  it('should fetch all characters', async () => {
+    await Character.create({
+      user_id: userId,
+      name: faker.person.firstName(),
+      description: faker.lorem.sentence(),
+      image_url: faker.image.avatar(),
+    })
+
+    const res = await request(app)
+      .get('/api/v1/characters')
+      .set('Authorization', `Bearer ${userToken}`)
+      .expect(200)
+
+    expect(res.body.success).toBe(true)
+    expect(Array.isArray(res.body.data)).toBe(true)
+  })
 })
