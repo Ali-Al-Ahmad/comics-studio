@@ -6,8 +6,7 @@ const { DB_USER, DB_HOST, DB_PASSWORD, DB_NAME, DB_NAME_TEST, NODE_ENV } =
   process.env
 
 const sequelize = new Sequelize(
-  NODE_ENV === 'test' ? DB_NAME : DB_NAME_TEST,
-  DB_NAME,
+  NODE_ENV === 'test' ? DB_NAME_TEST : DB_NAME,
   DB_USER,
   DB_PASSWORD,
   {
