@@ -106,4 +106,23 @@ describe('Character Controller Tests (User)', () => {
       console.error('Error deleting test image:', err)
     }
   })
+
+  //Character update test
+  it('should update a character', async () => {
+    const character = await Character.create({
+      user_id: userId,
+      name: 'Superman',
+      description: 'Man of Steel',
+      image_url: faker.image.avatar(),
+    })
+
+    const res = await request(app)
+      .put(`/api/v1/characters/${character.id}`)
+      .set('Authorization', `Bearer ${userToken}`)
+      .send({ name: 'Updated Superman' })
+      .expect(200)
+
+    expect(res.body.success).toBe(true)
+    expect(res.body.data.name).toBe('Updated Superman')
+  })
 })
