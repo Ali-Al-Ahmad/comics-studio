@@ -154,4 +154,15 @@ describe('Character Controller Tests (User)', () => {
 
     expect(res.body.success).toBe(false)
   })
+
+  //Character unauthenticated create test
+  it('should reject unauthenticated create attempt', async () => {
+    const res = await request(app)
+      .post('/api/v1/characters')
+      .field('name', 'Test')
+      .field('description', 'Unauthorized')
+      .expect(401)
+
+    expect(res.body.success).toBe(false)
+  })
 })
