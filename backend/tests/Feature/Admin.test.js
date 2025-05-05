@@ -127,4 +127,13 @@ describe('Admin Controller Tests', () => {
 
     expect(res.body.success).toBe(false)
   })
+
+  it('should return 422 for non-existent admin ID', async () => {
+    const res = await request(app)
+      .get('/api/v1/admins/-1')
+      .set('Authorization', `Bearer ${adminToken}`)
+      .expect(422)
+
+    expect(res.body.success).toBe(false)
+  })
 })
