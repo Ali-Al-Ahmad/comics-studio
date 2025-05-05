@@ -144,4 +144,14 @@ describe('Character Controller Tests (User)', () => {
     const deleted = await Character.findByPk(character.id)
     expect(deleted).toBeNull()
   })
+
+  //Character non-existent test
+  it('should return error for non-existent character', async () => {
+    const res = await request(app)
+      .get('/api/v1/characters/-1')
+      .set('Authorization', `Bearer ${userToken}`)
+      .expect(422)
+
+    expect(res.body.success).toBe(false)
+  })
 })
