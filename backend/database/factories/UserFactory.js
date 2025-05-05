@@ -9,8 +9,8 @@ export const createUser = async (override = {}) => {
   const userData = {
     email: faker.internet.email(),
     password: hashedPassword,
-    first_name: faker.name.firstName(),
-    last_name: faker.name.lastName(),
+    first_name: faker.person.firstName(),
+    last_name: faker.person.lastName(),
     phone: faker.phone.number('70#######'),
     profile_picture: faker.image.avatar(),
     plan_id: null,

@@ -12,8 +12,8 @@ export default {
         const hashedPassword = await HashPasswordTrait.hashPassword('password')
 
         users.push({
-          first_name: faker.name.firstName(),
-          last_name: faker.name.lastName(),
+          first_name: faker.person.firstName(),
+          last_name: faker.person.lastName(),
           email: faker.internet.email(),
           password: hashedPassword,
           createdAt: new Date(),
