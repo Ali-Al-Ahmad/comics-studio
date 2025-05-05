@@ -37,4 +37,11 @@ describe('Admin Controller Tests', () => {
       .query('SET FOREIGN_KEY_CHECKS = 1', { raw: true })
       .catch(() => {})
   }
+
+  beforeEach(async () => {
+    await truncateAllTables()
+    const auth = await createAndLoginAdmin()
+    adminToken = auth.token
+    adminId = auth.admin.id
+  })  
 })
