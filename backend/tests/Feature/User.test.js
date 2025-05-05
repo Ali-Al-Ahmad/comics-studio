@@ -58,4 +58,15 @@ describe('User Controller Tests', () => {
       .expect(200)
     expect(res.body.success).toBe(true)
   })
+
+  it('should fetch user by ID', async () => {
+    const res = await request(app)
+      .get(`/api/v1/users/${userId}`)
+      .set('Authorization', `Bearer ${userToken}`)
+      .expect('Content-Type', /json/)
+      .expect(200)
+
+    expect(res.body.success).toBe(true)
+    expect(res.body.data.id).toBe(userId)
+  })
 })
