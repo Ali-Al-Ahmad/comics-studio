@@ -37,4 +37,11 @@ describe('User Controller Tests', () => {
       .query('SET FOREIGN_KEY_CHECKS = 1', { raw: true })
       .catch(() => {})
   }
+
+  beforeEach(async () => {
+    await truncateAllTables()
+    const auth = await createAndLoginUser()
+    userToken = auth.token
+    userId = auth.user.id
+  })
 })
