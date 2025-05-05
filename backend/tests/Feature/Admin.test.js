@@ -58,4 +58,15 @@ describe('Admin Controller Tests', () => {
       .expect(200)
     expect(res.body.success).toBe(true)
   })
+  
+  it('should fetch admin by ID', async () => {
+    const res = await request(app)
+      .get(`/api/v1/admins/${adminId}`)
+      .set('Authorization', `Bearer ${adminToken}`)
+      .expect('Content-Type', /json/)
+      .expect(200)
+
+    expect(res.body.success).toBe(true)
+    expect(res.body.data.id).toBe(adminId)
+  })
 })
