@@ -86,4 +86,26 @@ describe('Admin Controller Tests', () => {
     expect(res.body.success).toBe(true)
     expect(res.body.data.email).toBe(updatedData.email)
   })
+
+  it('should delete an admin by ID', async () => {
+    const newAdmin = await createAdmin()
+
+    const loginRes = await request(app).post('/api/v1/auth/admin/login').send({
+      email: newAdmin.admin.email,
+      password: newAdmin.plainPassword,
+    })
+
+    const token = loginRes.body.data.token
+
+    const res = await request(app)
+      .delete(`/api/v1/admins/${newAdmin.admin.id}`)
+      .set('Authorization', `Bearer ${token}`)
+      .expect('Content-Type', /json/)
+      .expect(200)
+
+    expect(res.body.success).toBe(true)
+
+    const deleted = await Admin.findByPk(newAdmin.admin.id)
+    expect(deleted).toBeNull()
+  })
 })
