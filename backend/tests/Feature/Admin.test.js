@@ -118,4 +118,13 @@ describe('Admin Controller Tests', () => {
 
     expect(res.body.success).toBe(false)
   })
+
+  it('should reject unauthorized access to admin list', async () => {
+    const res = await request(app)
+      .get('/api/v1/admins')
+      .expect('Content-Type', /json/)
+      .expect(401)
+
+    expect(res.body.success).toBe(false)
+  })
 })
