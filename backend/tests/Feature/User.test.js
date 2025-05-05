@@ -108,4 +108,14 @@ describe('User Controller Tests', () => {
     const deleted = await User.findByPk(newUser.user.id)
     expect(deleted).toBeNull()
   })
+
+  it('should return error for invalid user ID during fetch', async () => {
+    const res = await request(app)
+      .get('/api/v1/users/-1')
+      .set('Authorization', `Bearer ${userToken}`)
+      .expect('Content-Type', /json/)
+      .expect(422)
+
+    expect(res.body.success).toBe(false)
+  })
 })
