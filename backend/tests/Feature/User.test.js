@@ -136,4 +136,14 @@ describe('User Controller Tests', () => {
 
     expect(res.body.success).toBe(false)
   })
+
+  it('should return 422 when trying to update a non-existent user', async () => {
+    const res = await request(app)
+      .put('/api/v1/users/-1')
+      .set('Authorization', `Bearer ${userToken}`)
+      .send({ email: faker.internet.email() })
+      .expect(422)
+
+    expect(res.body.success).toBe(false)
+  })
 })
