@@ -43,5 +43,10 @@ describe('Admin Controller Tests', () => {
     const auth = await createAndLoginAdmin()
     adminToken = auth.token
     adminId = auth.admin.id
-  })  
+  })
+
+  afterAll(async () => {
+    await sequelize.close()
+    if (global.server) global.server.close()
+  })
 })
