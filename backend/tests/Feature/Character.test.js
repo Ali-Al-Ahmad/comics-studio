@@ -79,4 +79,31 @@ describe('Character Controller Tests (User)', () => {
     expect(res.body.success).toBe(true)
     expect(res.body.data.name).toBe('Batman')
   })
+
+  //Character Add test
+  it('should create a character', async () => {
+    const payload = {
+      name: faker.person.firstName(),
+      description: faker.lorem.sentence(),
+    }
+    const sampleImagePath = path.resolve(
+      __dirname,
+      '../../public/uploads/sample.png'
+    )
+    const res = await request(app)
+      .post('/api/v1/characters')
+      .set('Authorization', `Bearer ${userToken}`)
+      .field('name', payload.name)
+      .field('description', payload.description)
+      .attach('image_url', sampleImagePath)
+      .expect(200)
+
+    expect(res.body.success).toBe(true)
+
+    try {
+      await fs.unlink(path.resolve(res.body.data.image_url))
+    } catch (err) {
+      console.error('Error deleting test image:', err)
+    }
+  })
 })
