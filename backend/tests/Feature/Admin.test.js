@@ -108,4 +108,14 @@ describe('Admin Controller Tests', () => {
     const deleted = await Admin.findByPk(newAdmin.admin.id)
     expect(deleted).toBeNull()
   })
+
+  it('should return error for invalid admin ID during fetch', async () => {
+    const res = await request(app)
+      .get('/api/v1/admins/-1')
+      .set('Authorization', `Bearer ${adminToken}`)
+      .expect('Content-Type', /json/)
+      .expect(422)
+
+    expect(res.body.success).toBe(false)
+  })
 })
