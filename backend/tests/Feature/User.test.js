@@ -44,4 +44,9 @@ describe('User Controller Tests', () => {
     userToken = auth.token
     userId = auth.user.id
   })
+
+  afterAll(async () => {
+    await sequelize.close()
+    if (global.server) global.server.close()
+  })
 })
