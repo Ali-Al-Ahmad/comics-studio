@@ -86,4 +86,26 @@ describe('User Controller Tests', () => {
     expect(res.body.success).toBe(true)
     expect(res.body.data.email).toBe(updatedData.email)
   })
+
+  it('should delete an user by ID', async () => {
+    const newUser = await createUser()
+
+    const loginRes = await request(app).post('/api/v1/auth/user/login').send({
+      email: newUser.user.email,
+      password: newUser.plainPassword,
+    })
+
+    const token = loginRes.body.data.token
+
+    const res = await request(app)
+      .delete(`/api/v1/users/${newUser.user.id}`)
+      .set('Authorization', `Bearer ${token}`)
+      .expect('Content-Type', /json/)
+      .expect(200)
+
+    expect(res.body.success).toBe(true)
+
+    const deleted = await User.findByPk(newUser.user.id)
+    expect(deleted).toBeNull()
+  })
 })
