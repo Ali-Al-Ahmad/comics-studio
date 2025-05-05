@@ -125,4 +125,23 @@ describe('Character Controller Tests (User)', () => {
     expect(res.body.success).toBe(true)
     expect(res.body.data.name).toBe('Updated Superman')
   })
+
+  //Character delete test
+  it('should delete a character', async () => {
+    const character = await Character.create({
+      user_id: userId,
+      name: 'DeleteMe',
+      description: 'Temporary character',
+      image_url: faker.image.avatar(),
+    })
+
+    const res = await request(app)
+      .delete(`/api/v1/characters/${character.id}`)
+      .set('Authorization', `Bearer ${userToken}`)
+      .expect(200)
+
+    expect(res.body.success).toBe(true)
+    const deleted = await Character.findByPk(character.id)
+    expect(deleted).toBeNull()
+  })
 })
