@@ -47,4 +47,17 @@ describe('Comic Controller Tests (User)', () => {
     await sequelize.close()
     if (global.server) global.server.close()
   })
+
+  // GET all comics
+  it('should fetch all comics', async () => {
+    await createComic()
+
+    const res = await request(app)
+      .get('/api/v1/comics')
+      .set('Authorization', `Bearer ${userToken}`)
+      .expect(200)
+
+    expect(res.body.success).toBe(true)
+    expect(Array.isArray(res.body.data)).toBe(true)
+  })
 })
