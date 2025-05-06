@@ -60,4 +60,17 @@ describe('Comic Controller Tests (User)', () => {
     expect(res.body.success).toBe(true)
     expect(Array.isArray(res.body.data)).toBe(true)
   })
+
+  // GET comic by ID
+  it('should fetch a specific comic by ID', async () => {
+    const comic = await createComic()
+
+    const res = await request(app)
+      .get(`/api/v1/comics/${comic.comic.id}`)
+      .set('Authorization', `Bearer ${userToken}`)
+      .expect(200)
+
+    expect(res.body.success).toBe(true)
+    expect(res.body.data.caption).toBe(comic.comic.caption)
+  })
 })
