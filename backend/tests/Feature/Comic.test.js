@@ -117,4 +117,14 @@ describe('Comic Controller Tests (User)', () => {
 
     expect(res.body.success).toBe(true)
   })
+
+  // GET invalid comic ID
+  it('should return error for non-existent comic', async () => {
+    const res = await request(app)
+      .get('/api/v1/comics/-1')
+      .set('Authorization', `Bearer ${userToken}`)
+      .expect(422)
+
+    expect(res.body.success).toBe(false)
+  })
 })
