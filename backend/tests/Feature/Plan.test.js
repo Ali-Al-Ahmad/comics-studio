@@ -109,4 +109,17 @@ describe('Plan Controller Tests', () => {
 
     expect(res.body.success).toBe(false)
   })
+
+  it('should reject unauthenticated plan creation', async () => {
+    const res = await request(app)
+      .post('/api/v1/plans')
+      .send({
+        name: 'Unauthorized Plan',
+        price: '19.99',
+        credits: '50.00',
+      })
+      .expect(401)
+
+    expect(res.body.success).toBe(false)
+  })
 })
