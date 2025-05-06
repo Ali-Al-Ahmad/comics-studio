@@ -76,4 +76,17 @@ describe('Plan Controller Tests', () => {
     expect(res.body.success).toBe(true)
     expect(res.body.data.name).toBe(payload.name)
   })
+
+  it('should update a plan', async () => {
+    const { plan } = await createPlan()
+
+    const res = await request(app)
+      .put(`/api/v1/plans/${plan.id}`)
+      .set('Authorization', `Bearer ${userToken}`)
+      .send({ name: 'Updated Plan Name' })
+      .expect(200)
+
+    expect(res.body.success).toBe(true)
+    expect(res.body.data.name).toBe('Updated Plan Name')
+  })
 })
