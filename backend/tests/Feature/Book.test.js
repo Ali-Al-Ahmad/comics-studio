@@ -133,4 +133,17 @@ describe('Book Controller Tests (User)', () => {
 
     expect(res.body.success).toBe(false)
   })
+
+  // POST unauthenticated attempt
+  it('should reject unauthenticated book creation', async () => {
+    const res = await request(app)
+      .post('/api/v1/books')
+      .send({
+        title: 'Unauth Book',
+        description: 'Unauthorized book',
+      })
+      .expect(401)
+
+    expect(res.body.success).toBe(false)
+  })
 })
