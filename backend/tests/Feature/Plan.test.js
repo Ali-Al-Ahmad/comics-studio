@@ -25,4 +25,9 @@ describe('Plan Controller Tests', () => {
     }
     await sequelize.query('SET FOREIGN_KEY_CHECKS = 1', { raw: true })
   }
+
+  beforeEach(async () => {
+    await truncateAllTables()
+    userToken = await createAndLoginUser()
+  })
 })
