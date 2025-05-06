@@ -97,4 +97,18 @@ describe('Book Controller Tests (User)', () => {
       console.error('Error deleting test image:', err)
     }
   })
+
+  // PUT update book
+  it('should update a book', async () => {
+    const book = await createBook()
+
+    const res = await request(app)
+      .put(`/api/v1/books/${book.book.id}`)
+      .set('Authorization', `Bearer ${userToken}`)
+      .send({ title: 'Updated Title' })
+      .expect(200)
+
+    expect(res.body.success).toBe(true)
+    expect(res.body.data.title).toBe('Updated Title')
+  })
 })
