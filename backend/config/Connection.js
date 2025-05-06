@@ -34,8 +34,8 @@ export const initDatabase = async () => {
     } catch (error) {
       attempts++
       if (attempts < maxRetries) {
-        console.log('Retrying in 2 seconds...')
-        await new Promise((resolve) => setTimeout(resolve, 2000))
+        console.log('Retrying in 5 seconds...')
+        await new Promise((resolve) => setTimeout(resolve, 5000))
       } else {
         console.error('Max retry attempts reached. Exiting.')
         console.error('Unable to connect to the database:', error)
