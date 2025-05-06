@@ -42,4 +42,9 @@ describe('Comic Controller Tests (User)', () => {
 
     bookId = book.book.id
   })
+
+  afterAll(async () => {
+    await sequelize.close()
+    if (global.server) global.server.close()
+  })
 })
