@@ -1,0 +1,20 @@
+import request from 'supertest'
+import app from '../../server.js'
+import { faker } from '@faker-js/faker'
+import sequelize from '../../config/Connection.js'
+import { createUser } from '../../database/factories/UserFactory.js'
+import { createPlan } from '../../database/factories/PlanFactory.js'
+
+describe('Plan Controller Tests', () => {
+  let userToken
+
+  const createAndLoginUser = async () => {
+    const data = await createUser()
+    const res = await request(app).post('/api/v1/auth/user/login').send({
+      email: data.user.email,
+      password: data.plainPassword,
+    })
+
+    return res.body.data.token
+  }
+})
