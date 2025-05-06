@@ -56,4 +56,17 @@ describe('Book Controller Tests (User)', () => {
     expect(res.body.success).toBe(true)
     expect(Array.isArray(res.body.data)).toBe(true)
   })
+
+  // GET book by ID
+  it('should fetch a specific book by ID', async () => {
+    const book = await createBook()
+
+    const res = await request(app)
+      .get(`/api/v1/books/${book.book.id}`)
+      .set('Authorization', `Bearer ${userToken}`)
+      .expect(200)
+
+    expect(res.body.success).toBe(true)
+    expect(res.body.data.title).toBe(book.book.title)
+  })
 })
