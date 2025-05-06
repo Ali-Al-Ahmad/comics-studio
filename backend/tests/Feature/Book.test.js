@@ -38,4 +38,9 @@ describe('Book Controller Tests (User)', () => {
     userToken = user.token
     userId = user.userId
   })
+
+  afterAll(async () => {
+    await sequelize.close()
+    if (global.server) global.server.close()
+  })
 })
