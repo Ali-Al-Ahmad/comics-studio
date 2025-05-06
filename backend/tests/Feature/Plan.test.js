@@ -47,4 +47,16 @@ describe('Plan Controller Tests', () => {
     expect(res.body.success).toBe(true)
     expect(Array.isArray(res.body.data)).toBe(true)
   })
+
+  it('should fetch a specific plan by ID', async () => {
+    const { plan } = await createPlan()
+
+    const res = await request(app)
+      .get(`/api/v1/plans/${plan.id}`)
+      .set('Authorization', `Bearer ${userToken}`)
+      .expect(200)
+
+    expect(res.body.success).toBe(true)
+    expect(res.body.data.name).toBe(plan.name)
+  })
 })
