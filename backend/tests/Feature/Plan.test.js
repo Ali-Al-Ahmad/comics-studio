@@ -30,4 +30,9 @@ describe('Plan Controller Tests', () => {
     await truncateAllTables()
     userToken = await createAndLoginUser()
   })
+
+  afterAll(async () => {
+    await sequelize.close()
+    if (global.server) global.server.close()
+  })
 })
