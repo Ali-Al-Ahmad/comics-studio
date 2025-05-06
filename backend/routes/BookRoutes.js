@@ -13,7 +13,7 @@ router.get('/', BookController.getAllBooks)
 
 router.get('/publicbooks', BookController.getAllPublicBooks)
 
-router.get('/bookcomics/:id', BookController.getBookComics)
+router.get('/bookcomics/:id', BookByIdRequest, BookController.getBookComics)
 
 router.get('/:id', BookByIdRequest, validateRequest, BookController.getBookById)
 
