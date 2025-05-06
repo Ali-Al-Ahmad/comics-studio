@@ -73,4 +73,22 @@ describe('Comic Controller Tests (User)', () => {
     expect(res.body.success).toBe(true)
     expect(res.body.data.caption).toBe(comic.comic.caption)
   })
+
+  // POST create comic
+  it('should create a comic', async () => {
+    const payload = {
+      caption: faker.lorem.sentence(),
+      image_url: faker.image.url(),
+      book_id: bookId,
+    }
+
+    const res = await request(app)
+      .post('/api/v1/comics')
+      .set('Authorization', `Bearer ${userToken}`)
+      .send(payload)
+      .expect(200)
+
+    expect(res.body.success).toBe(true)
+    expect(res.body.data.caption).toBe(payload.caption)
+  })
 })
