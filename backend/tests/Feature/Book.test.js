@@ -43,4 +43,17 @@ describe('Book Controller Tests (User)', () => {
     await sequelize.close()
     if (global.server) global.server.close()
   })
+
+  // GET all books
+  it('should fetch all books', async () => {
+    await createBook()
+
+    const res = await request(app)
+      .get('/api/v1/books')
+      .set('Authorization', `Bearer ${userToken}`)
+      .expect(200)
+
+    expect(res.body.success).toBe(true)
+    expect(Array.isArray(res.body.data)).toBe(true)
+  })
 })
