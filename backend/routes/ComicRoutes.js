@@ -16,6 +16,7 @@ router.get(
   validateRequest,
   ComicController.getComicById
 )
+router.post('/generatecomic', ComicController.generateComic)
 
 router.post('/', AddComicRequest, validateRequest, ComicController.addComic)
 
