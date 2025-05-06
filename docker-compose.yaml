@@ -1,0 +1,14 @@
+services:
+  server:
+    image: alialahmad/backendimage:latest
+    environment:
+      - DB_HOST=database
+      - DB_NAME=comics_database
+      - DB_USER=root
+      - DB_PASSWORD=1234
+      - DB_PORT=3306
+    restart: always
+    ports:
+      - 4000:4000
+    depends_on:
+      - database
