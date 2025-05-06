@@ -127,4 +127,18 @@ describe('Comic Controller Tests (User)', () => {
 
     expect(res.body.success).toBe(false)
   })
+
+  // POST unauthenticated attempt
+  it('should reject unauthenticated comic creation', async () => {
+    const res = await request(app)
+      .post('/api/v1/comics')
+      .send({
+        caption: 'Unauthorized Comic',
+        image_url: faker.image.url(),
+        book_id: bookId,
+      })
+      .expect(401)
+
+    expect(res.body.success).toBe(false)
+  })
 })
