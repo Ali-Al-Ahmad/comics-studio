@@ -111,4 +111,16 @@ describe('Book Controller Tests (User)', () => {
     expect(res.body.success).toBe(true)
     expect(res.body.data.title).toBe('Updated Title')
   })
+
+  // DELETE book
+  it('should delete a book', async () => {
+    const book = await createBook()
+
+    const res = await request(app)
+      .delete(`/api/v1/books/${book.book.id}`)
+      .set('Authorization', `Bearer ${userToken}`)
+      .expect(200)
+
+    expect(res.body.success).toBe(true)
+  })
 })
