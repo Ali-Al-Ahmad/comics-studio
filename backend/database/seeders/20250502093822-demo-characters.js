@@ -16,7 +16,7 @@ export default {
         const randomUser = users[Math.floor(Math.random() * users.length)]
 
         characters.push({
-          name: faker.name.firstName(),
+          name: faker.person.firstName(),
           description: faker.lorem.sentence(),
           image_url: faker.image.avatar(),
           user_id: randomUser.id,

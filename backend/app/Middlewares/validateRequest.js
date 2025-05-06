@@ -5,7 +5,7 @@ export function validateRequest(req, res, next) {
   const errors = validationResult(req)
 
   if (!errors.isEmpty()) {
-    
+    console.log("formRequest validator errors",errors);
     //errors.array().map to show only needed attributes and hide others
     return ResponseTrait.response(
       res,

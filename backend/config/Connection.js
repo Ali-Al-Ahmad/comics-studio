@@ -2,17 +2,23 @@ import dotenv from 'dotenv'
 import { Sequelize } from 'sequelize'
 dotenv.config()
 
-const { DB_USER, DB_HOST, DB_PASSWORD, DB_NAME } = process.env
+const { DB_USER, DB_HOST, DB_PASSWORD, DB_NAME, DB_NAME_TEST, NODE_ENV } =
+  process.env
 
-const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
-  host: DB_HOST,
-  dialect: 'mysql',
-  logging: false, //false/console.log to disable logging
-  define: {
-    freezeTableName: false,
-    timestamps: true,
-  },
-})
+const sequelize = new Sequelize(
+  NODE_ENV === 'test' ? DB_NAME_TEST : DB_NAME,
+  DB_USER,
+  DB_PASSWORD,
+  {
+    host: DB_HOST,
+    dialect: 'mysql',
+    logging: false, //false/console.log to disable logging
+    define: {
+      freezeTableName: false,
+      timestamps: true,
+    },
+  }
+)
 
 export const initDatabase = async () => {
   try {
