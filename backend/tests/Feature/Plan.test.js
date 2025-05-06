@@ -59,4 +59,21 @@ describe('Plan Controller Tests', () => {
     expect(res.body.success).toBe(true)
     expect(res.body.data.name).toBe(plan.name)
   })
+
+  it('should create a plan', async () => {
+    const payload = {
+      name: faker.commerce.productName(),
+      price: '29.99',
+      credits: '100.00',
+    }
+
+    const res = await request(app)
+      .post('/api/v1/plans')
+      .set('Authorization', `Bearer ${userToken}`)
+      .send(payload)
+      .expect(200)
+
+    expect(res.body.success).toBe(true)
+    expect(res.body.data.name).toBe(payload.name)
+  })
 })
