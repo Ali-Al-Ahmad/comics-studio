@@ -30,10 +30,11 @@ export const initDatabase = async () => {
       console.log('Connection has been established successfully.')
       await sequelize.sync()
       console.log('Database synchronized.')
+      break;
     } catch (error) {
       attempts++
       if (attempts < maxRetries) {
-        console.log('Retrying in 5 seconds...')
+        console.log('Retrying in 2 seconds...')
         await new Promise((resolve) => setTimeout(resolve, 2000))
       } else {
         console.error('Max retry attempts reached. Exiting.')
