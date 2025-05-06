@@ -35,4 +35,16 @@ describe('Plan Controller Tests', () => {
     await sequelize.close()
     if (global.server) global.server.close()
   })
+  
+  it('should fetch all plans', async () => {
+    await createPlan()
+
+    const res = await request(app)
+      .get('/api/v1/plans')
+      .set('Authorization', `Bearer ${userToken}`)
+      .expect(200)
+
+    expect(res.body.success).toBe(true)
+    expect(Array.isArray(res.body.data)).toBe(true)
+  })
 })
