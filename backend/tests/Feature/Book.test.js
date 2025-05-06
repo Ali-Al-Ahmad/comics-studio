@@ -69,4 +69,32 @@ describe('Book Controller Tests (User)', () => {
     expect(res.body.success).toBe(true)
     expect(res.body.data.title).toBe(book.book.title)
   })
+
+  // POST create book
+  it('should create a book', async () => {
+    const payload = {
+      title: faker.lorem.words(3),
+    }
+
+    const sampleImagePath = path.resolve(
+      __dirname,
+      '../../public/uploads/sample.png'
+    )
+
+    const res = await request(app)
+      .post('/api/v1/books')
+      .set('Authorization', `Bearer ${userToken}`)
+      .field('title', payload.title)
+      .attach('image_url', sampleImagePath)
+      .expect(200)
+
+    expect(res.body.success).toBe(true)
+    expect(res.body.data.title).toBe(payload.title)
+
+    try {
+      await fs.unlink(path.resolve(res.body.data.image_url))
+    } catch (err) {
+      console.error('Error deleting test image:', err)
+    }
+  })
 })
