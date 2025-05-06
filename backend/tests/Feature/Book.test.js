@@ -123,4 +123,14 @@ describe('Book Controller Tests (User)', () => {
 
     expect(res.body.success).toBe(true)
   })
+
+  // GET non-existent book
+  it('should return error for non-existent book', async () => {
+    const res = await request(app)
+      .get('/api/v1/books/-1')
+      .set('Authorization', `Bearer ${userToken}`)
+      .expect(422)
+
+    expect(res.body.success).toBe(false)
+  })
 })
