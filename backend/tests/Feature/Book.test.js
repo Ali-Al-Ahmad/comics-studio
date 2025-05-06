@@ -31,4 +31,11 @@ describe('Book Controller Tests (User)', () => {
     }
     await sequelize.query('SET FOREIGN_KEY_CHECKS = 1', { raw: true })
   }
+
+  beforeEach(async () => {
+    await truncateAllTables()
+    const user = await createAndLoginUser()
+    userToken = user.token
+    userId = user.userId
+  })
 })
