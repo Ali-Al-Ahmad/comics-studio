@@ -1,0 +1,26 @@
+import request from 'supertest'
+import app from '../../server.js'
+import { faker } from '@faker-js/faker'
+import { createUser } from '../../database/factories/UserFactory.js'
+import { createBook } from '../../database/factories/BookFactory.js'
+import { createComic } from '../../database/factories/ComicFactory.js'
+import sequelize from '../../config/Connection.js'
+
+describe('Comic Controller Tests (User)', () => {
+  let userToken
+  let userId
+  let bookId
+
+  const createAndLoginUser = async () => {
+    const data = await createUser()
+    const res = await request(app).post('/api/v1/auth/user/login').send({
+      email: data.user.email,
+      password: data.plainPassword,
+    })
+
+    return {
+      token: res.body.data.token,
+      userId: data.user.id,
+    }
+  }
+})
