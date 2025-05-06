@@ -122,4 +122,13 @@ describe('Plan Controller Tests', () => {
 
     expect(res.body.success).toBe(false)
   })
+
+  it('should return validation error when missing required fields', async () => {
+    const res = await request(app)
+      .post('/api/v1/plans')
+      .set('Authorization', `Bearer ${userToken}`)
+      .expect(422)
+
+    expect(res.body.success).toBe(false)
+  })
 })
