@@ -96,6 +96,25 @@ class ComicController extends Controller {
       )
     }
   }
+
+  static async generateComic(req, res) {
+    try {
+      const result = await ComicService.generateReplicateComics(req)
+      return ComicController.returnResponse(
+        res,
+        result.success,
+        result.message,
+        result.data
+      )
+    } catch (error) {
+      return ComicController.returnResponse(
+        res,
+        false,
+        'Error in Generate Comic Controller',
+        error
+      )
+    }
+  }
 }
 
 export default ComicController
