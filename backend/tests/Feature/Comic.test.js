@@ -141,4 +141,14 @@ describe('Comic Controller Tests (User)', () => {
 
     expect(res.body.success).toBe(false)
   })
+
+  // Validation error
+  it('should return validation error when missing required fields', async () => {
+    const res = await request(app)
+      .post('/api/v1/comics')
+      .set('Authorization', `Bearer ${userToken}`)
+      .expect(422)
+
+    expect(res.body.success).toBe(false)
+  })
 })
