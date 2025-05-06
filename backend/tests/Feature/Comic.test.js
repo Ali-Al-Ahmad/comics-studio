@@ -23,4 +23,12 @@ describe('Comic Controller Tests (User)', () => {
       userId: data.user.id,
     }
   }
+
+  const truncateAllTables = async () => {
+    await sequelize.query('SET FOREIGN_KEY_CHECKS = 0', { raw: true })
+    for (const model of Object.values(sequelize.models)) {
+      await model.destroy({ where: {}, truncate: true, force: true })
+    }
+    await sequelize.query('SET FOREIGN_KEY_CHECKS = 1', { raw: true })
+  }
 })
