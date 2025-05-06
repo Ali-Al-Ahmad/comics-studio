@@ -100,4 +100,13 @@ describe('Plan Controller Tests', () => {
 
     expect(res.body.success).toBe(true)
   })
+
+  it('should return error for non-existent plan', async () => {
+    const res = await request(app)
+      .get('/api/v1/plans/-1')
+      .set('Authorization', `Bearer ${userToken}`)
+      .expect(422)
+
+    expect(res.body.success).toBe(false)
+  })
 })
