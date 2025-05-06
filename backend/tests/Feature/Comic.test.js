@@ -105,4 +105,16 @@ describe('Comic Controller Tests (User)', () => {
     expect(res.body.success).toBe(true)
     expect(res.body.data.caption).toBe('New Caption')
   })
+
+  // DELETE comic
+  it('should delete a comic', async () => {
+    const comic = await createComic()
+
+    const res = await request(app)
+      .delete(`/api/v1/comics/${comic.comic.id}`)
+      .set('Authorization', `Bearer ${userToken}`)
+      .expect(200)
+
+    expect(res.body.success).toBe(true)
+  })
 })
