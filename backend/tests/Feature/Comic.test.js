@@ -91,4 +91,18 @@ describe('Comic Controller Tests (User)', () => {
     expect(res.body.success).toBe(true)
     expect(res.body.data.caption).toBe(payload.caption)
   })
+
+  // PUT update comic
+  it('should update a comic', async () => {
+    const comic = await createComic()
+
+    const res = await request(app)
+      .put(`/api/v1/comics/${comic.comic.id}`)
+      .set('Authorization', `Bearer ${userToken}`)
+      .send({ caption: 'New Caption' })
+      .expect(200)
+
+    expect(res.body.success).toBe(true)
+    expect(res.body.data.caption).toBe('New Caption')
+  })
 })
