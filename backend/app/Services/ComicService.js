@@ -129,7 +129,28 @@ Additional Guidelines:
   ],
   "general_prompt": "a woman img, wearing a white T-shirt, blue loose hair"
 }
-}   
+}
+
+---
+
+### Format Example 3 (Prompt: "A good parent spending the day with their children"):
+
+{
+  "prompt_array": "A kind father wakes his kids early for an adventure. #A joyful start to the day.\\nThey pack snacks and toys into a backpack together. #Everyone helps with excitement.\\nAt the park, they fly a kite under clear blue skies. #Laughter fills the air.\\nThey sit on a picnic blanket, sharing sandwiches and stories. #A peaceful midday break.\\nIn the woods, they build a small fort out of branches. #Imagination comes alive.\\nAs the sun sets, they walk home hand in hand. #A perfect family day.",
+  "captions": [
+    "A joyful start to the day.",
+    "Everyone helps with excitement.",
+    "Laughter fills the air.",
+    "A peaceful midday break.",
+    "Imagination comes alive.",
+    "A perfect family day."
+  ],
+  "general_prompt": "father img, wearing a casual hoodie and jeans, gentle smile, warm eyes, walking with his children outdoors"
+}
+
+---
+
+Respond only with valid JSON in this format.
 `
 
     } catch (error) {
