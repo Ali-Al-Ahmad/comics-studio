@@ -17,3 +17,56 @@
   background: white;
   overflow: hidden;
 }
+
+.register-design {
+  grid-area: design;
+  display: none;
+  position: relative;
+}
+
+.register-pill-triangle {
+  bottom: -450px;
+  left: 10px;
+  width: 200px;
+  height: 906px;
+  position: absolute;
+  background: linear-gradient(var(--primary-color), #6f63f179);
+  border-radius: 500px;
+  transform: rotate(-45deg);
+}
+
+.register-pill-main {
+  top: -250px;
+  left: -40px;
+  height: 960px;
+  width: 460px;
+  position: absolute;
+  background: linear-gradient(#6f63f179, var(--primary-color));
+  border-radius: 500px;
+  border: 50px solid var(--secondary-color);
+  transform: rotate(-45deg);
+}
+
+.register-pill-up {
+  top: -500px;
+  left: 500px;
+  position: absolute;
+  height: 906px;
+  width: 280px;
+  background: linear-gradient(#6f63f179, var(--primary-color));
+  border-radius: 500px;
+  transform: rotate(-45deg);
+}
+
+.register-pill-down {
+  bottom: -550px;
+  left: 800px;
+  position: absolute;
+  height: 906px;
+  width: 280px;
+  background: linear-gradient(var(--primary-color), #6f63f179);
+  border-radius: 500px;
+  margin-top: 50px;
+  margin-left: 10px;
+  transform: rotate(-45deg);
+}
