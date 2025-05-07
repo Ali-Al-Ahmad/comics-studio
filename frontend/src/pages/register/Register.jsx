@@ -39,6 +39,98 @@ const Register = () => {
           <div className='register-pill-up'></div>
           <div className='register-pill-down'></div>
         </div>
+
+        <div className='register'>
+          <form
+            className='register-form'
+            onSubmit={handleSubmit}
+          >
+            <h3 className='title'>Welcome</h3>
+
+            <div className='form-input'>
+              <label htmlFor='first_name'>First Name</label>
+              <div className='textInput'>
+                <img
+                  src='../../../src/assets/icons/user-black.svg'
+                  alt='user icon'
+                />
+                <input
+                  id='first_name'
+                  name='first_name'
+                  type='text'
+                  placeholder='Tony'
+                  value={formData.first_name}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            </div>
+
+            <div className='form-input'>
+              <label htmlFor='last_name'>Last Name</label>
+              <div className='textInput'>
+                <img
+                  src='../../../src/assets/icons/user-black.svg'
+                  alt='user icon'
+                />
+                <input
+                  id='last_name'
+                  name='last_name'
+                  type='text'
+                  placeholder='Stark'
+                  value={formData.last_name}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            </div>
+
+            <div className='form-input'>
+              <label htmlFor='email'>Email Address</label>
+              <div className='textInput'>
+                <img
+                  src='../../../src/assets/icons/email-address-black.svg'
+                  alt='email icon'
+                />
+                <input
+                  id='email'
+                  name='email'
+                  type='email'
+                  placeholder='tony.stark@gmail.com'
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            </div>
+
+            <div className='form-input'>
+              <label htmlFor='password'>Password</label>
+              <div className='textInput'>
+                <img
+                  src='../../../src/assets/icons/password-black.svg'
+                  alt='lock icon'
+                />
+                <input
+                  id='password'
+                  name='password'
+                  type='password'
+                  placeholder='Enter 6 characters at least'
+                  value={formData.password}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            </div>
+
+            <button
+              className='registerBtn'
+              type='submit'
+            >
+              Sign Up
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   )
