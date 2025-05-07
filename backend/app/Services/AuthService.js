@@ -29,9 +29,15 @@ export default class AuthService extends Service {
         })
       }
 
-      const token = createToken(savedUser, isAdmin)
+      const token = createToken(
+        {
+          id: savedUser.id,
+          plan_id: savedUser.plan_id,
+        },
+        isAdmin
+      )
 
-      return this.return(true, 'registered successfully', { token })
+      return this.return(true, 'registered successfully', { user: savedUser,token })
     } catch (error) {
       return this.return(false, 'Error registering', error)
     }
@@ -58,9 +64,9 @@ export default class AuthService extends Service {
         return this.return(false, 'Wrong email or password')
       }
 
-      const token = createToken(user, isAdmin)
+      const token = createToken({ id: user.id, plan_id: user.plan_id }, isAdmin)
 
-      return this.return(true, 'Login successfully', { token })
+      return this.return(true, 'Login successfully', { user, token })
     } catch (error) {
       return this.return(false, 'Error login', error)
     }
