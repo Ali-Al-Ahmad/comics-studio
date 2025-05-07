@@ -95,3 +95,24 @@
   align-items: stretch;
   min-width: 250px;
 }
+
+.register-form .title {
+  font-size: 28px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 10px;
+  color: black;
+}
+
+.register-form .form-input {
+  display: flex;
+  flex-direction: column;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.register-form .form-input label {
+  margin-bottom: 6px;
+  color: black;
+}
