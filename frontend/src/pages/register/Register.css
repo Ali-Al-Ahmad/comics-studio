@@ -161,3 +161,13 @@
   text-decoration: none;
   margin-top: -10px;
 }
+
+@media (min-width: 300px) {
+  .register-container {
+    grid-template-columns: 0 100%;
+    grid-template-areas: 'design register';
+  }
+  .register-design {
+    display: block;
+  }
+}
