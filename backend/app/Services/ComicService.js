@@ -1,5 +1,9 @@
 import Service from './Service.js'
 import { Comic } from '../Models/index.js'
+import OpenAI from 'openai'
+import Replicate from 'replicate'
+import fs from 'fs/promises'
+import path from 'path'
 
 export default class ComicService extends Service {
   static async all() {
@@ -53,6 +57,25 @@ export default class ComicService extends Service {
     } catch (error) {
       console.log(error)
       return this.return(false, 'Error updating comic', error)
+    }
+  }
+
+  static async generateReplicateComics(req) {
+    try {
+      const { userPrompt } = req.body
+      const image_path = req.file.path
+
+      const openai = new OpenAI({
+        apiKey: process.env.OPENAI_API_KEY,
+      })
+
+      const replicate = new Replicate({
+        auth: process.env.REPLICATE_API_TOKEN,
+      })
+      
+    } catch (error) {
+      console.log(error)
+      return this.return(false, 'Error generating comic', error)
     }
   }
 }
