@@ -85,7 +85,7 @@ When given a short user prompt, follow these exact steps:
 3. **Each scene must end with '#' followed by a short, dramatic caption** summarizing that scene in comic style.
    - Captions should be short (3–7 words), punchy, and emotionally resonant.
 
-   Return the following in **valid JSON format**:
+Return the following in **valid JSON format**:
 
 - **"prompt_array"**: A single string with all 6 scene descriptions, joined by '\\n'.
 - **"captions"**: A JSON array of the 6 captions, in order.
@@ -112,8 +112,9 @@ Additional Guidelines:
     "A hero’s silhouette."
   ],
   "general_prompt": "Spiderman img, red and blue suit, athletic build, bright eyes, confident and agile pose"
+}
 
-  ---
+---
 
 ### Format Example 2 (Prompt: "A female character living in a forest"):
 
@@ -128,7 +129,6 @@ Additional Guidelines:
     "Triumph and wonder."
   ],
   "general_prompt": "a woman img, wearing a white T-shirt, blue loose hair"
-}
 }
 
 ---
