@@ -1,7 +1,11 @@
 import { useState } from 'react'
-import axios from 'axios'
+import './Register.css'
+import axiosInstance from '../../utils/axiosInstance'
+import { useDispatch } from 'react-redux'
 
 const Register = () => {
+  const dispatch = useDispatch()
+  
   const [formData, setFormData] = useState({
     email: '',
     password: '',
