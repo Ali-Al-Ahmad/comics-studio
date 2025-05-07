@@ -152,6 +152,26 @@ Additional Guidelines:
 
 Respond only with valid JSON in this format.
 `
+      
+      const response = await openai.chat.completions.create({
+        model: 'gpt-4.1',
+        messages: [
+          { role: 'system', content: systemPrompt },
+          {
+            role: 'user',
+            content: `User Prompt: ${userPrompt}`,
+          },
+        ],
+        temperature: 0.7,
+      })
+
+      const contentString = response.choices[0].message.content
+      const content = JSON.parse(contentString)
+
+      console.log(content)
+      console.log('gen', content?.general_prompt)
+      console.log('arr', content?.prompt_array)
+      console.log('cap', content?.captions)
 
     } catch (error) {
       console.log(error)
