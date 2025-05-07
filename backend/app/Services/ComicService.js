@@ -97,7 +97,22 @@ Additional Guidelines:
 - If gender or appearance is unclear, make reasonable creative choices.
 - Stay within genre expectations (heroic, mysterious, magical, etc.).
 
-   
+---
+
+### Format Example 1 (Prompt: "Spiderman saves the city"):
+
+{
+  "prompt_array": "Spiderman swings through the sunset skyline. #He races to save the city.\\nExplosions erupt below as citizens flee. #Chaos in the streets.\\nSpiderman battles a giant robot atop a tower. #Hero versus machine.\\nThe tower crumbles as he pulls a child to safety. #A narrow escape.\\nHe webs up the villain in front of cheering crowds. #Justice served.\\nHe stands tall on a rooftop under the stars. #A hero’s silhouette.",
+  "captions": [
+    "He races to save the city.",
+    "Chaos in the streets.",
+    "Hero versus machine.",
+    "A narrow escape.",
+    "Justice served.",
+    "A hero’s silhouette."
+  ],
+  "general_prompt": "Spiderman img, red and blue suit, athletic build, bright eyes, confident and agile pose"
+}   
 `
 
     } catch (error) {
