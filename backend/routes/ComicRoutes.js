@@ -5,6 +5,7 @@ import { validateRequest } from '../app/Middlewares/validateRequest.js'
 import { AddComicRequest } from '../app/Http/Requests/Comic/AddComicRequest.js'
 import { ComicByIdRequest } from '../app/Http/Requests/Comic/GetComicByIdRequest.js'
 import { UpdateComicRequest } from '../app/Http/Requests/Comic/ComicUpdateRequest.js'
+import { GenerateComicRequest } from '../app/Http/Requests/Comic/generateComicRequest.js'
 import upload from '../app/Middlewares/uploadWithMulter.js'
 
 const router = express.Router()
@@ -20,6 +21,8 @@ router.get(
 router.post(
   '/generatecomic',
   upload.single('character_image'),
+  GenerateComicRequest,
+  validateRequest,
   ComicController.generateComic
 )
 
