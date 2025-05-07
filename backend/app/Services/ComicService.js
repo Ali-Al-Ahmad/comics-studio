@@ -173,6 +173,41 @@ Respond only with valid JSON in this format.
       console.log('arr', content?.prompt_array)
       console.log('cap', content?.captions)
 
+      const inputImage = await fs.readFile(image_path)
+
+      const output = await replicate.run(
+        'camenduru/story-diffusion:a43c7e0e4bce75ee98445b20b244240d1109e30a46bf7719958fd0a69ab29e8e',
+        {
+          input: {
+            sa32_: 0.5,
+            sa64_: 0.5,
+            seed_: 0,
+            G_width: 768,
+            G_height: 768,
+            num_steps: 35,
+            style: 'Comic book',
+            comic_type: 'Classic Comic Style',
+            model_type: 'Using Ref Images',
+            input_image: inputImage,
+            prompt_array: content?.prompt_array,
+            general_prompt: content?.general_prompt,
+            negative_prompt:
+              'bad anatomy, bad hands, missing fingers, extra fingers, three hands, three legs, bad arms, missing legs, missing arms, poorly drawn face, bad face, fused face, cloned face, three crus, fused feet, fused thigh, extra crus, ugly fingers, horn, cartoon, cg, 3d, unreal, animate, amputation, disconnected limbs',
+            id_length_: 2,
+            guidance_scale: 5,
+            Ip_Adapter_Strength: 0.5,
+            style_strength_ratio: 20,
+          },
+        }
+      )
+
+      const base64Images = output.map((buffer) => buffer.toString('base64'))
+
+      return this.return(true, 'Generated comic data', {
+        images: base64Images,
+        captions: content.captions,
+      })
+
     } catch (error) {
       console.log(error)
       return this.return(false, 'Error generating comic', error)
