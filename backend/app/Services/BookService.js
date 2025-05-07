@@ -1,5 +1,5 @@
 import Service from './Service.js'
-import { Book } from '../Models/index.js'
+import { Book, Comic } from '../Models/index.js'
 
 export default class BookService extends Service {
   static async all() {
@@ -74,6 +74,17 @@ export default class BookService extends Service {
       return this.return(true, 'All public comic books', public_books)
     } catch (error) {
       return this.return(false, 'Error getting all public comic books', error)
+    }
+  }
+
+  static async bookComics(book_id) {
+    try {
+      const book_comics = await Comic.findAll({
+        where: { book_id },
+      })
+      return this.return(true, 'All book comics', book_comics)
+    } catch (error) {
+      return this.return(false, 'Error getting All book comics', error)
     }
   }
 }

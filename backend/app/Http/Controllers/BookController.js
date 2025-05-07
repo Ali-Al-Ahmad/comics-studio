@@ -115,6 +115,25 @@ class BookController extends Controller {
       )
     }
   }
+
+  static async getBookComics(req, res) {
+    try {
+      const result = await BookService.bookComics(req.params.id)
+      return BookController.returnResponse(
+        res,
+        result.success,
+        result.message,
+        result.data
+      )
+    } catch (error) {
+      return BookController.returnResponse(
+        res,
+        false,
+        'Error in gettin all comics for a Book Controller',
+        error
+      )
+    }
+  }
 }
 
 export default BookController

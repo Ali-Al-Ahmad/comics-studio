@@ -21,13 +21,27 @@ const sequelize = new Sequelize(
 )
 
 export const initDatabase = async () => {
-  try {
-    await sequelize.authenticate()
-    console.log('Connection has been established successfully.')
-    await sequelize.sync()
-    console.log('Database synchronized.')
-  } catch (error) {
-    console.error('Unable to connect to the database:', error)
+  const maxRetries = 5
+  let attempts = 0
+
+  while (attempts < maxRetries) {
+    try {
+      await sequelize.authenticate()
+      console.log('Connection has been established successfully.')
+      await sequelize.sync()
+      console.log('Database synchronized.')
+      break;
+    } catch (error) {
+      attempts++
+      if (attempts < maxRetries) {
+        console.log('Retrying in 5 seconds...')
+        await new Promise((resolve) => setTimeout(resolve, 5000))
+      } else {
+        console.error('Max retry attempts reached. Exiting.')
+        console.error('Unable to connect to the database:', error)
+        process.exit(1)
+      }
+    }
   }
 }
 
