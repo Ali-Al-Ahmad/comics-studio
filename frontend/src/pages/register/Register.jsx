@@ -3,6 +3,7 @@ import './Register.css'
 import axiosInstance from '../../utils/axiosInstance'
 import { useDispatch } from 'react-redux'
 import { login } from '../../redux/slices/userSlice'
+import { Link } from 'react-router-dom'
 
 const Register = () => {
   const dispatch = useDispatch()
@@ -129,6 +130,12 @@ const Register = () => {
             >
               Sign Up
             </button>
+            <Link
+              to={'/login'}
+              className='forgot'
+            >
+              Already have an account? Sign In
+            </Link>
           </form>
         </div>
       </div>
