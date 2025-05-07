@@ -31,26 +31,15 @@ const Register = () => {
     }
   }
   return (
-    <div>
-      <h2>Register Admin</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          name='email'
-          type='email'
-          placeholder='Email'
-          onChange={handleChange}
-          required
-        />
-        <input
-          name='password'
-          type='password'
-          placeholder='Password'
-          onChange={handleChange}
-          required
-        />
-        <button type='submit'>Register</button>
-      </form>
-      <p>{message}</p>
+    <div className='register-page'>
+      <div className='register-container'>
+        <div className='register-design'>
+          <div className='register-pill-triangle'></div>
+          <div className='register-pill-main'></div>
+          <div className='register-pill-up'></div>
+          <div className='register-pill-down'></div>
+        </div>
+      </div>
     </div>
   )
 }
