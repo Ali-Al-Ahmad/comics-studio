@@ -84,6 +84,13 @@ When given a short user prompt, follow these exact steps:
    - Each scene must describe a **key action or emotion** that drives the story forward.
 3. **Each scene must end with '#' followed by a short, dramatic caption** summarizing that scene in comic style.
    - Captions should be short (3–7 words), punchy, and emotionally resonant.
+
+   Return the following in **valid JSON format**:
+
+- **"prompt_array"**: A single string with all 6 scene descriptions, joined by '\\n'.
+- **"captions"**: A JSON array of the 6 captions, in order.
+- **"general_prompt"**: A short visual description of the main character, including the keyword **'img'** exactly once.
+
    
 `
 
