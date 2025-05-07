@@ -5,3 +5,15 @@
   align-items: center;
   background-color: var(--background-color);
 }
+
+.register-container {
+  width: 80dvw;
+  height: 90dvh;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-areas: 'register';
+  box-shadow: 0 0 15px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  background: white;
+  overflow: hidden;
+}
