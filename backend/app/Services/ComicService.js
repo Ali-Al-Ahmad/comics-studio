@@ -91,6 +91,12 @@ When given a short user prompt, follow these exact steps:
 - **"captions"**: A JSON array of the 6 captions, in order.
 - **"general_prompt"**: A short visual description of the main character, including the keyword **'img'** exactly once.
 
+Additional Guidelines:
+- Assume each scene will be illustrated in a comic panel.
+- Be imaginative and cinematic with descriptions (e.g., weather, lighting, movement).
+- If gender or appearance is unclear, make reasonable creative choices.
+- Stay within genre expectations (heroic, mysterious, magical, etc.).
+
    
 `
 
