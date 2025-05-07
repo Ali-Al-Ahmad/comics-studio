@@ -2,16 +2,17 @@ import { useState } from 'react'
 import './Register.css'
 import axiosInstance from '../../utils/axiosInstance'
 import { useDispatch } from 'react-redux'
+import { login } from '../../redux/slices/userSlice'
 
 const Register = () => {
   const dispatch = useDispatch()
-  
+
   const [formData, setFormData] = useState({
+    first_name: '',
+    last_name: '',
     email: '',
     password: '',
   })
-
-  const [message, setMessage] = useState('')
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -21,15 +22,12 @@ const Register = () => {
     e.preventDefault()
 
     try {
-      const res = await axios.post(
-        'http://localhost:4000/api/v1/auth/admin/register',
-        formData
-      )
-      setMessage('Admin registered successfully!')
-      console.log(res.data)
+      const res = await axiosInstance.post('/auth/user/register', formData)
+      const { token, user } = res.data.data
+      localStorage.setItem('token', token)
+      dispatch(login(user))
     } catch (err) {
       console.error(err.response?.data || err.message)
-      setMessage('Registration failed.')
     }
   }
   return (
