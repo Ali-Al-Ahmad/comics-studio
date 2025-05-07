@@ -112,6 +112,23 @@ Additional Guidelines:
     "A hero’s silhouette."
   ],
   "general_prompt": "Spiderman img, red and blue suit, athletic build, bright eyes, confident and agile pose"
+
+  ---
+
+### Format Example 2 (Prompt: "A female character living in a forest"):
+
+{
+  "prompt_array": "At home, she reads a newspaper article about a hidden treasure deep in the forest. #The forest hides a secret.\\nWith determination, she packs a bag and sets off down a dirt road. #She begins her quest.\\nDriving toward the forest, her eyes gleam with excitement. #Treasure awaits.\\nAlone in the dark woods, she gasps as eerie sounds echo. #Fear creeps in.\\nSuddenly, an ancient wooden house appears through the trees. #The treasure house revealed.\\nInside, gold glitters as she bursts into joyous laughter. #Triumph and wonder.",
+  "captions": [
+    "The forest hides a secret.",
+    "She begins her quest.",
+    "Treasure awaits.",
+    "Fear creeps in.",
+    "The treasure house revealed.",
+    "Triumph and wonder."
+  ],
+  "general_prompt": "a woman img, wearing a white T-shirt, blue loose hair"
+}
 }   
 `
 
