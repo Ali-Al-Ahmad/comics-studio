@@ -137,3 +137,27 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+
+.registerBtn {
+  padding: 12px;
+  background-color: var(--primary-color);
+  border: none;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.registerBtn:hover {
+  background-color: var(--primary-color-hover);
+}
+
+.register-forgot {
+  text-align: left;
+  font-size: 0.85rem;
+  color: #666;
+  text-decoration: none;
+  margin-top: -10px;
+}
