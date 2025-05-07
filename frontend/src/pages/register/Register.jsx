@@ -132,7 +132,7 @@ const Register = () => {
             </button>
             <Link
               to={'/login'}
-              className='forgot'
+              className='register-forgot'
             >
               Already have an account? Sign In
             </Link>
