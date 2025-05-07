@@ -3,3 +3,11 @@
   margin: 0;
   box-sizing: border-box;
 }
+
+:root {
+     --primary-color: rgb(112, 99, 241);
+     --primary-color-hover: rgb(92, 79, 221);
+    --secondary-color: rgb(238, 238, 238);
+    --secondary-color-hover: rgb(132, 120, 255);
+    --background-color: rgb(227, 233, 246);
+}
