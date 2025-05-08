@@ -39,7 +39,33 @@ const Toast = () => {
     }
   }
 
-  return <div className='toast-container'></div>
+  return (
+    <div className='toast-container'>
+      <div className={`toast ${type}`}>
+        <div className='toast-icon-container'>
+          <i className='toast-icon'>
+            <img
+              src={getToastIcon()}
+              alt={`${type} icon`}
+            />
+          </i>
+        </div>
+        <div className='toast-content'>
+          <p className='toast-title'>
+            {type.charAt(0).toUpperCase() + type.slice(1)}
+          </p>
+          <p className='toast-message'>{message}</p>
+        </div>
+        <button
+          className='toast-close-btn'
+          onClick={handleClose}
+          aria-label='Close toast'
+        >
+          &times;
+        </button>
+      </div>
+    </div>
+  )
 }
 
 export default Toast
