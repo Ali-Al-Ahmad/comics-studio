@@ -221,6 +221,20 @@
 @media (max-width: 400px) {
   .register-form {
     padding: 30px 20px;
+    width: 98%;
+    min-width: 0;
+    margin-top: 10px;
+    margin-bottom: 30px;
+  }
+  
+  .register-container {
+    width: 98%;
+    height: 100dvh;
+  }
+  
+  .register-page {
+    align-items: flex-start;
+    padding: 20px 0;
   }
 }
 
@@ -233,7 +247,26 @@
     display: block;
   }
 
-.register-form {
-  min-width: 220px;
+  .register-form {
+    min-width: 220px;
+  }
 }
+
+@media (max-width: 320px) {
+  .register-container {
+    width: 98%;
+    height: auto;
+    min-height: 90dvh;
+    padding: 0;
+  }
+  
+  .register {
+    margin-top: 5px;
+    margin-bottom: 25px;
+  }
+  
+  .register-form {
+    width: 100%;
+    padding: 20px 15px;
+  }
 }
