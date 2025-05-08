@@ -13,13 +13,16 @@ import storage from 'redux-persist/lib/storage'
 import { combineReducers } from 'redux'
 
 import userReducer from './slices/userSlice'
+import toastReducer from './slices/toastSlice'
 
 const persistConfig = {
   key: 'root',
   storage,
+  blacklist: ['toast'],
 }
 const rootReducer = combineReducers({
   user: userReducer,
+  toast: toastReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
