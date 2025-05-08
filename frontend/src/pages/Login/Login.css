@@ -95,3 +95,129 @@
   align-items: stretch;
   min-width: 250px;
 }
+
+.login-form .title {
+  font-size: 28px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 10px;
+  color: black;
+}
+
+.login-form .subtitle {
+  text-align: center;
+  color: #666;
+  margin-top: -15px;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+}
+
+.login-form .form-input {
+  display: flex;
+  flex-direction: column;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.login-form .form-input label {
+  margin-bottom: 6px;
+  color: black;
+}
+
+.login-form .textInput {
+  display: flex;
+  align-items: center;
+  background-color: var(--secondary-color);
+  border-radius: 8px;
+  padding: 10px 14px;
+  gap: 10px;
+  height: 48px;
+}
+
+.login-form .textInput input {
+  width: 100%;
+  flex: 1;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 1rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.textInput.password-input {
+  position: relative;
+}
+
+.textInput.password-input input {
+  padding-right: 25px;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.eye-icon {
+  width: 18px;
+  height: 18px;
+  opacity: 0.7;
+  transition: all 0.2s;
+}
+
+.toggle-password:hover .eye-icon {
+  opacity: 1;
+}
+
+.login-form .textInput:focus-within {
+  box-shadow: 0 0 0 2px rgba(111, 99, 241, 0.2);
+}
+
+.loginBtn {
+  padding: 12px;
+  background-color: var(--primary-color);
+  border: none;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.loginBtn:hover {
+  background-color: var(--primary-color-hover);
+}
+
+.login-forgot {
+  text-align: left;
+  font-size: 0.85rem;
+  color: #666;
+  text-decoration: none;
+  margin-top: -10px;
+  transition: 0.2s ease;
+}
+
+.login-forgot:hover {
+  color: var(--primary-color);
+}
+
+.error-message {
+  color: #e74c3c;
+  font-size: 0.8rem;
+  margin-top: 5px;
+  padding-left: 5px;
+}
+
+.textInput.error-input {
+  border: 1px solid #e74c3c;
+  box-shadow: 0 0 0 1px rgba(231, 76, 60, 0.2);
+}
