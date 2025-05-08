@@ -3,10 +3,11 @@ import './Register.css'
 import axiosInstance from '../../utils/axiosInstance'
 import { useDispatch } from 'react-redux'
 import { login } from '../../redux/slices/userSlice'
-import { Link } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 
 const Register = () => {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const [formData, setFormData] = useState({
     first_name: '',
@@ -24,11 +25,15 @@ const Register = () => {
 
     try {
       const res = await axiosInstance.post('/auth/user/register', formData)
-      const { token, user } = res.data.data
-      localStorage.setItem('token', token)
-      dispatch(login(user))
+      if (res.data.success) {
+        const { token, user } = res.data.data
+        localStorage.setItem('token', token)
+        dispatch(login(user))
+        navigate('/home')
+        return
+      }
     } catch (err) {
-      console.error(err.response?.data || err.message)
+      console.error(err.response?.data?.error[0]?.msg)
     }
   }
   return (
