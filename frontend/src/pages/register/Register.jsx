@@ -6,6 +6,11 @@ import { login } from '../../redux/slices/userSlice'
 import { showToast } from '../../redux/slices/toastSlice'
 import { Link, useNavigate } from 'react-router-dom'
 import Spinner from '../../components/Spinner/Spinner'
+import userIcon from '../../assets/icons/user-black.svg'
+import emailIcon from '../../assets/icons/email-address-black.svg'
+import passwordIcon from '../../assets/icons/password-black.svg'
+import eyeOpenIcon from '../../assets/icons/eye-open.svg'
+import eyeClosedIcon from '../../assets/icons/eye-closed.svg'
 
 const Register = () => {
   const dispatch = useDispatch()
@@ -18,9 +23,14 @@ const Register = () => {
     password: '',
   })
   const [loading, setLoading] = useState(false)
+  const [showPassword, setShowPassword] = useState(false)
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
+  }
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword)
   }
 
   const handleSubmit = async (e) => {
@@ -87,12 +97,13 @@ const Register = () => {
             onSubmit={handleSubmit}
           >
             <h3 className='title'>Welcome</h3>
+            <p className='subtitle'>Create a new account</p>
 
             <div className='form-input'>
               <label htmlFor='first_name'>First Name</label>
               <div className='textInput'>
                 <img
-                  src='../../../src/assets/icons/user-black.svg'
+                  src={userIcon}
                   alt='user icon'
                 />
                 <input
@@ -111,7 +122,7 @@ const Register = () => {
               <label htmlFor='last_name'>Last Name</label>
               <div className='textInput'>
                 <img
-                  src='../../../src/assets/icons/user-black.svg'
+                  src={userIcon}
                   alt='user icon'
                 />
                 <input
@@ -130,7 +141,7 @@ const Register = () => {
               <label htmlFor='email'>Email Address</label>
               <div className='textInput'>
                 <img
-                  src='../../../src/assets/icons/email-address-black.svg'
+                  src={emailIcon}
                   alt='email icon'
                 />
                 <input
@@ -147,20 +158,31 @@ const Register = () => {
 
             <div className='form-input'>
               <label htmlFor='password'>Password</label>
-              <div className='textInput'>
+              <div className='textInput password-input'>
                 <img
-                  src='../../../src/assets/icons/password-black.svg'
+                  src={passwordIcon}
                   alt='lock icon'
                 />
                 <input
                   id='password'
                   name='password'
-                  type='password'
+                  type={showPassword ? 'text' : 'password'}
                   placeholder='Enter 6 characters at least'
                   value={formData.password}
                   onChange={handleChange}
                   required
                 />
+                <button 
+                  type="button" 
+                  className="toggle-password" 
+                  onClick={togglePasswordVisibility}
+                >
+                  <img 
+                    src={showPassword ? eyeClosedIcon : eyeOpenIcon} 
+                    alt={showPassword ? 'Hide password' : 'Show password'}
+                    className="eye-icon"
+                  />
+                </button>
               </div>
             </div>
 
@@ -172,7 +194,7 @@ const Register = () => {
               {loading ? (
                 <>
                   <Spinner />
-                  <span>Signing Up...</span>
+                  <span>Signing Up</span>
                 </>
               ) : (
                 'Sign Up'
