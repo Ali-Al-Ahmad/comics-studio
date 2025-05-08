@@ -28,6 +28,17 @@ const Toast = () => {
     dispatch(hideToast())
   }
 
+  const getToastIcon = () => {
+    switch (type) {
+      case 'success':
+        return SuccessIcon
+      case 'error':
+        return ErrorIcon
+      default:
+        return InfoIcon
+    }
+  }
+
   return <div className='toast-container'></div>
 }
 
