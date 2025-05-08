@@ -204,6 +204,11 @@
   color: #666;
   text-decoration: none;
   margin-top: -10px;
+  transition: 0.2s ease;
+}
+
+.register-forgot:hover {
+  color: var(--primary-color);
 }
 
 .error-message {
