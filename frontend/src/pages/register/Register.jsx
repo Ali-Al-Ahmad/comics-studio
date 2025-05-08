@@ -3,6 +3,7 @@ import './Register.css'
 import axiosInstance from '../../utils/axiosInstance'
 import { useDispatch } from 'react-redux'
 import { login } from '../../redux/slices/userSlice'
+import { showToast } from '../../redux/slices/toastSlice'
 import { Link, useNavigate } from 'react-router-dom'
 
 const Register = () => {
@@ -34,14 +35,26 @@ const Register = () => {
         const { token, user } = res.data.data
         localStorage.setItem('token', token)
         dispatch(login(user))
+        dispatch(
+          showToast({
+            type: 'success',
+            message: 'Registration successful! Welcome to Comics Studio.',
+          })
+        )
         navigate('/home')
         return
       }
     } catch (err) {
       console.error(err.response?.data?.error[0]?.msg)
-      setError(
+      const errorMessage =
         err.response?.data?.error[0]?.msg ||
-          'Registration failed. Please try again.'
+        'Registration failed. Please try again.'
+      setError(errorMessage)
+      dispatch(
+        showToast({
+          type: 'error',
+          message: errorMessage,
+        })
       )
     } finally {
       setLoading(false)
