@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux'
 import { login } from '../../redux/slices/userSlice'
 import { showToast } from '../../redux/slices/toastSlice'
 import { Link, useNavigate } from 'react-router-dom'
+import Spinner from '../../components/Spinner/Spinner'
 
 const Register = () => {
   const dispatch = useDispatch()
@@ -24,12 +25,14 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    
+
     if (formData.password.length < 6) {
-      dispatch(showToast({
-        type: 'error',
-        message: 'Password must be at least 6 characters'
-      }))
+      dispatch(
+        showToast({
+          type: 'error',
+          message: 'Password must be at least 6 characters',
+        })
+      )
       return
     }
 
@@ -162,11 +165,18 @@ const Register = () => {
             </div>
 
             <button
-              className='registerBtn'
+              className='registerBtn button-with-spinner'
               type='submit'
               disabled={loading}
             >
-              {loading ? 'Signing Up...' : 'Sign Up'}
+              {loading ? (
+                <>
+                  <Spinner />
+                  <span>Signing Up...</span>
+                </>
+              ) : (
+                'Sign Up'
+              )}
             </button>
             <Link
               to={'/login'}
