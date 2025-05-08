@@ -21,3 +21,16 @@
   animation: toastFadeIn 0.3s ease forwards;
   pointer-events: auto;
 }
+
+.toast-icon-container {
+  flex-shrink: 0;
+}
+
+.toast-icon img {
+  width: 30px;
+}
+
+.toast-content {
+  flex: 1;
+  min-width: 0;
+}
