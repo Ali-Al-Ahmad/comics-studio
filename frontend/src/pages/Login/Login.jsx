@@ -1,41 +1,34 @@
 import { useState } from 'react'
-import './Register.css'
+import './Login.css'
 import axiosInstance from '../../utils/axiosInstance'
 import { useDispatch } from 'react-redux'
 import { login } from '../../redux/slices/userSlice'
 import { showToast } from '../../redux/slices/toastSlice'
 import { Link, useNavigate } from 'react-router-dom'
 import Spinner from '../../components/Spinner/Spinner'
-import userIcon from '../../assets/icons/user-black.svg'
 import emailIcon from '../../assets/icons/email-address-black.svg'
 import passwordIcon from '../../assets/icons/password-black.svg'
 import eyeOpenIcon from '../../assets/icons/eye-open.svg'
 import eyeClosedIcon from '../../assets/icons/eye-closed.svg'
 
-const Register = () => {
+const Login = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
   const [formData, setFormData] = useState({
-    first_name: '',
-    last_name: '',
     email: '',
     password: '',
   })
   const [loading, setLoading] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
-  const [passwordError, setPasswordError] = useState('')
   const [emailError, setEmailError] = useState('')
+  const [passwordError, setPasswordError] = useState('')
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
-    
-    if (e.target.name === 'password') {
-      setPasswordError('')
-    }
-    if (e.target.name === 'email') {
-      setEmailError('')
-    }
+
+    setEmailError('')
+    setPasswordError('')
   }
 
   const togglePasswordVisibility = () => {
@@ -59,7 +52,7 @@ const Register = () => {
     setLoading(true)
 
     try {
-      const res = await axiosInstance.post('/auth/user/register', formData)
+      const res = await axiosInstance.post('/auth/user/login', formData)
       if (res.data.success) {
         const { token, user } = res.data.data
         localStorage.setItem('token', token)
@@ -67,26 +60,29 @@ const Register = () => {
         dispatch(
           showToast({
             type: 'success',
-            message: 'Registration successful! Welcome to Comics Studio.',
+            message: 'Login successful! Welcome back.',
           })
         )
         navigate('/home')
         return
       }
     } catch (err) {
-      console.error(err.response?.data?.error[0]?.msg)
+      console.error(err.response?.data?.message || err.message)
       const errorMessage =
-        err.response?.data?.error[0]?.msg ||
-        'Registration failed. Please try again.'
-      
+        err.response?.data?.message ||
+        'Login failed. Please check your credentials and try again.'
+
       if (errorMessage.toLowerCase().includes('password')) {
         setPasswordError(errorMessage)
       }
-      
-      if (errorMessage.toLowerCase().includes('email') || errorMessage.toLowerCase().includes('already in use')) {
+
+      if (
+        errorMessage.toLowerCase().includes('email') ||
+        errorMessage.toLowerCase().includes('not found')
+      ) {
         setEmailError(errorMessage)
       }
-      
+
       dispatch(
         showToast({
           type: 'error',
@@ -97,62 +93,23 @@ const Register = () => {
       setLoading(false)
     }
   }
-
   return (
-    <div className='register-page'>
-      <div className='register-container'>
-        <div className='register-design'>
-          <div className='register-pill-triangle'></div>
-          <div className='register-pill-main'></div>
-          <div className='register-pill-up'></div>
-          <div className='register-pill-down'></div>
+    <div className='login-page'>
+      <div className='login-container'>
+        <div className='login-design'>
+          <div className='login-pill-triangle'></div>
+          <div className='login-pill-main'></div>
+          <div className='login-pill-up'></div>
+          <div className='login-pill-down'></div>
         </div>
 
-        <div className='register'>
+        <div className='login'>
           <form
-            className='register-form'
+            className='login-form'
             onSubmit={handleSubmit}
           >
-            <h3 className='title'>Welcome</h3>
-            <p className='subtitle'>Create a new account</p>
-
-            <div className='form-input'>
-              <label htmlFor='first_name'>First Name</label>
-              <div className='textInput'>
-                <img
-                  src={userIcon}
-                  alt='user icon'
-                />
-                <input
-                  id='first_name'
-                  name='first_name'
-                  type='text'
-                  placeholder='Tony'
-                  value={formData.first_name}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-            </div>
-
-            <div className='form-input'>
-              <label htmlFor='last_name'>Last Name</label>
-              <div className='textInput'>
-                <img
-                  src={userIcon}
-                  alt='user icon'
-                />
-                <input
-                  id='last_name'
-                  name='last_name'
-                  type='text'
-                  placeholder='Stark'
-                  value={formData.last_name}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-            </div>
+            <h3 className='title'>Welcome Back</h3>
+            <p className='subtitle'>Sign in to your account</p>
 
             <div className='form-input'>
               <label htmlFor='email'>Email Address</label>
@@ -171,12 +128,16 @@ const Register = () => {
                   required
                 />
               </div>
-              {emailError && <div className="error-message">{emailError}</div>}
+              {emailError && <div className='error-message'>{emailError}</div>}
             </div>
 
             <div className='form-input'>
               <label htmlFor='password'>Password</label>
-              <div className={`textInput password-input ${passwordError ? 'error-input' : ''}`}>
+              <div
+                className={`textInput password-input ${
+                  passwordError ? 'error-input' : ''
+                }`}
+              >
                 <img
                   src={passwordIcon}
                   alt='lock icon'
@@ -190,40 +151,42 @@ const Register = () => {
                   onChange={handleChange}
                   required
                 />
-                <button 
-                  type="button" 
-                  className="toggle-password" 
+                <button
+                  type='button'
+                  className='toggle-password'
                   onClick={togglePasswordVisibility}
                 >
-                  <img 
-                    src={showPassword ? eyeClosedIcon : eyeOpenIcon} 
+                  <img
+                    src={showPassword ? eyeClosedIcon : eyeOpenIcon}
                     alt={showPassword ? 'Hide password' : 'Show password'}
-                    className="eye-icon"
+                    className='eye-icon'
                   />
                 </button>
               </div>
-              {passwordError && <div className="error-message">{passwordError}</div>}
+              {passwordError && (
+                <div className='error-message'>{passwordError}</div>
+              )}
             </div>
 
             <button
-              className='registerBtn button-with-spinner'
+              className='loginBtn button-with-spinner'
               type='submit'
               disabled={loading}
             >
               {loading ? (
                 <>
                   <Spinner />
-                  <span>Signing Up</span>
+                  <span>Signing In</span>
                 </>
               ) : (
-                'Sign Up'
+                'Sign In'
               )}
             </button>
             <Link
-              to={'/login'}
-              className='register-forgot'
+              to={'/register'}
+              className='login-forgot'
             >
-              Already have an account? Sign In
+              Don't have an account? Sign Up
             </Link>
           </form>
         </div>
@@ -232,4 +195,4 @@ const Register = () => {
   )
 }
 
-export default Register
+export default Login
