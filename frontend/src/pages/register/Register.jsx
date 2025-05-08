@@ -24,9 +24,18 @@ const Register = () => {
   })
   const [loading, setLoading] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
+  const [passwordError, setPasswordError] = useState('')
+  const [emailError, setEmailError] = useState('')
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
+    
+    if (e.target.name === 'password') {
+      setPasswordError('')
+    }
+    if (e.target.name === 'email') {
+      setEmailError('')
+    }
   }
 
   const togglePasswordVisibility = () => {
@@ -37,6 +46,7 @@ const Register = () => {
     e.preventDefault()
 
     if (formData.password.length < 6) {
+      setPasswordError('Password must be at least 6 characters')
       dispatch(
         showToast({
           type: 'error',
@@ -60,9 +70,7 @@ const Register = () => {
             message: 'Registration successful! Welcome to Comics Studio.',
           })
         )
-        setTimeout(() => {
-          navigate('/home')
-        }, 10)
+        navigate('/home')
         return
       }
     } catch (err) {
@@ -70,6 +78,15 @@ const Register = () => {
       const errorMessage =
         err.response?.data?.error[0]?.msg ||
         'Registration failed. Please try again.'
+      
+      if (errorMessage.toLowerCase().includes('password')) {
+        setPasswordError(errorMessage)
+      }
+      
+      if (errorMessage.toLowerCase().includes('email') || errorMessage.toLowerCase().includes('already in use')) {
+        setEmailError(errorMessage)
+      }
+      
       dispatch(
         showToast({
           type: 'error',
@@ -139,7 +156,7 @@ const Register = () => {
 
             <div className='form-input'>
               <label htmlFor='email'>Email Address</label>
-              <div className='textInput'>
+              <div className={`textInput ${emailError ? 'error-input' : ''}`}>
                 <img
                   src={emailIcon}
                   alt='email icon'
@@ -154,11 +171,12 @@ const Register = () => {
                   required
                 />
               </div>
+              {emailError && <div className="error-message">{emailError}</div>}
             </div>
 
             <div className='form-input'>
               <label htmlFor='password'>Password</label>
-              <div className='textInput password-input'>
+              <div className={`textInput password-input ${passwordError ? 'error-input' : ''}`}>
                 <img
                   src={passwordIcon}
                   alt='lock icon'
@@ -184,6 +202,7 @@ const Register = () => {
                   />
                 </button>
               </div>
+              {passwordError && <div className="error-message">{passwordError}</div>}
             </div>
 
             <button
