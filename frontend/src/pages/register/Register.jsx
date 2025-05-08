@@ -3,7 +3,7 @@ import './Register.css'
 import axiosInstance from '../../utils/axiosInstance'
 import { useDispatch } from 'react-redux'
 import { login } from '../../redux/slices/userSlice'
-import { Link, Navigate, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Register = () => {
   const dispatch = useDispatch()
@@ -15,13 +15,18 @@ const Register = () => {
     email: '',
     password: '',
   })
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
+    if (error) setError('')
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setLoading(true)
+    setError('')
 
     try {
       const res = await axiosInstance.post('/auth/user/register', formData)
@@ -34,8 +39,15 @@ const Register = () => {
       }
     } catch (err) {
       console.error(err.response?.data?.error[0]?.msg)
+      setError(
+        err.response?.data?.error[0]?.msg ||
+          'Registration failed. Please try again.'
+      )
+    } finally {
+      setLoading(false)
     }
   }
+
   return (
     <div className='register-page'>
       <div className='register-container'>
@@ -52,6 +64,8 @@ const Register = () => {
             onSubmit={handleSubmit}
           >
             <h3 className='title'>Welcome</h3>
+
+            {error && <div className='error-message'>{error}</div>}
 
             <div className='form-input'>
               <label htmlFor='first_name'>First Name</label>
@@ -132,8 +146,9 @@ const Register = () => {
             <button
               className='registerBtn'
               type='submit'
+              disabled={loading}
             >
-              Sign Up
+              {loading ? 'Signing Up...' : 'Sign Up'}
             </button>
             <Link
               to={'/login'}
