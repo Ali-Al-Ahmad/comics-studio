@@ -16,18 +16,24 @@ const Register = () => {
     email: '',
     password: '',
   })
-  const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
-    if (error) setError('')
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    
+    if (formData.password.length < 6) {
+      dispatch(showToast({
+        type: 'error',
+        message: 'Password must be at least 6 characters'
+      }))
+      return
+    }
+
     setLoading(true)
-    setError('')
 
     try {
       const res = await axiosInstance.post('/auth/user/register', formData)
@@ -41,7 +47,9 @@ const Register = () => {
             message: 'Registration successful! Welcome to Comics Studio.',
           })
         )
-        navigate('/home')
+        setTimeout(() => {
+          navigate('/home')
+        }, 10)
         return
       }
     } catch (err) {
@@ -49,7 +57,6 @@ const Register = () => {
       const errorMessage =
         err.response?.data?.error[0]?.msg ||
         'Registration failed. Please try again.'
-      setError(errorMessage)
       dispatch(
         showToast({
           type: 'error',
@@ -77,8 +84,6 @@ const Register = () => {
             onSubmit={handleSubmit}
           >
             <h3 className='title'>Welcome</h3>
-
-            {error && <div className='error-message'>{error}</div>}
 
             <div className='form-input'>
               <label htmlFor='first_name'>First Name</label>
