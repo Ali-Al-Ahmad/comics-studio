@@ -5,6 +5,10 @@
   transform: translateX(-50%);
   z-index: 9999;
   pointer-events: none;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 0 10px;
 }
 
 .toast {
@@ -94,7 +98,28 @@
 
 @media (max-width: 480px) {
   .toast {
-    width: calc(100% - 40px);
-    max-width: 350px;
+    width: 95%;
+    max-width: none;
+    margin: 0 auto;
+  }
+  
+  .toast-content {
+    flex: 1;
+  }
+  
+  .toast-message {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+}
+
+@media (max-width: 320px) {
+  .toast-container {
+    padding: 0 5px;
+  }
+  
+  .toast {
+    width: 98%;
+    padding: 12px;
   }
 }
