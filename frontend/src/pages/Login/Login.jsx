@@ -38,4 +38,64 @@ const Login = () => {
   return <div className='login-page'></div>
 }
 
+const handleSubmit = async (e) => {
+  e.preventDefault()
+
+  if (formData.password.length < 6) {
+    setPasswordError('Password must be at least 6 characters')
+    dispatch(
+      showToast({
+        type: 'error',
+        message: 'Password must be at least 6 characters',
+      })
+    )
+    return
+  }
+
+  setLoading(true)
+
+  try {
+    const res = await axiosInstance.post('/auth/user/login', formData)
+    if (res.data.success) {
+      const { token, user } = res.data.data
+      localStorage.setItem('token', token)
+      dispatch(login(user))
+      dispatch(
+        showToast({
+          type: 'success',
+          message: 'Login successful! Welcome back.',
+        })
+      )
+      navigate('/home')
+      return
+    }
+  } catch (err) {
+    console.error(err.response?.data?.message || err.message)
+    const errorMessage =
+      err.response?.data?.message ||
+      'Login failed. Please check your credentials and try again.'
+
+    if (errorMessage.toLowerCase().includes('password')) {
+      setPasswordError(errorMessage)
+    }
+
+    if (
+      errorMessage.toLowerCase().includes('email') ||
+      errorMessage.toLowerCase().includes('not found')
+    ) {
+      setEmailError(errorMessage)
+    }
+
+    dispatch(
+      showToast({
+        type: 'error',
+        message: errorMessage,
+      })
+    )
+  } finally {
+    setLoading(false)
+  }
+}
+
+
 export default Login
