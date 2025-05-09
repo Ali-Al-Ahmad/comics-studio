@@ -7,9 +7,27 @@ const LayoutWithSidebar = () => {
     window.innerWidth < 768
   )
 
+  const toggleSidebar = () => {
+    setIsSidebarCollapsed(!isSidebarCollapsed)
+  }
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setIsSidebarCollapsed(true)
+      }
+    }
+
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
   return (
     <div style={{ display: 'flex' }}>
-      <Sidebar isCollapsed={isSidebarCollapsed} />
+      <Sidebar
+        isCollapsed={isSidebarCollapsed}
+        toggleSidebar={toggleSidebar}
+      />
       <main
         style={{
           flexGrow: 1,
