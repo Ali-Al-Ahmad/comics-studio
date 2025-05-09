@@ -2,9 +2,9 @@ import { Outlet } from 'react-router-dom'
 
 const LayoutWithoutSidebar = () => {
   return (
-    <div>
+    <main>
       <Outlet />
-    </div>
+    </main>
   )
 }
 
