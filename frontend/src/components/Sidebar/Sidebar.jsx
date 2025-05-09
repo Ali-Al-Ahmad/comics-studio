@@ -142,3 +142,46 @@ UserProfileSection.propTypes = {
   isCollapsed: PropTypes.bool.isRequired,
   onLogoutRequest: PropTypes.func.isRequired,
 }
+
+const Sidebar = ({ isCollapsed, toggleSidebar }) => {
+  const user = useSelector((state) => state.user)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const handleLogoutRequest = () => {
+    dispatch(logout())
+    navigate('/login')
+  }
+
+  const navItems = [
+    {
+      to: '/gallery',
+      text: 'Gallery',
+      icon: 'mdi:image-multiple',
+    },
+    {
+      to: '/mycomics',
+      text: 'My Comics',
+      icon: 'mdi:book-open-page-variant-outline',
+    },
+    {
+      to: '/createcomic',
+      text: 'Create Comic',
+      icon: 'mdi:plus-box-outline',
+    },
+    {
+      to: '/characters',
+      text: 'Characters',
+      icon: 'fluent-emoji-high-contrast:person-superhero',
+    },
+    {
+      to: '/profile',
+      text: 'Profile',
+      icon: 'pajamas:profile',
+    },
+  ]
+
+  return <div className={`sidebar ${isCollapsed ? 'collapsed' : ''}`}></div>
+}
+
+export default Sidebar
