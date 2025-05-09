@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 
-import LayoutWithSidebar from '../layouts/LayoutWithSidebar'
-import LayoutWithoutSidebar from '../layouts/LayoutWithoutSidebar'
+import LayoutWithSidebar from '../layouts/LayoutWithSidebar/LayoutWithSidebar'
+import LayoutWithoutSidebar from '../layouts/LayoutWithoutSidebar/LayoutWithoutSidebar'
 
 import ProtectedRoute from './ProtectedRoute'
 
