@@ -181,7 +181,99 @@ const Sidebar = ({ isCollapsed, toggleSidebar }) => {
     },
   ]
 
-  return <div className={`sidebar ${isCollapsed ? 'collapsed' : ''}`}></div>
+  return (
+    <div className={`sidebar ${isCollapsed ? 'collapsed' : ''}`}>
+      <div className='sidebar-header'>
+        {' '}
+        {isCollapsed ? (
+          <Link
+            to='/gallery'
+            className='collapsed-logo-container'
+          >
+            <img
+              src={PlanetLogoPath}
+              alt='Planet Logo'
+              className='sidebar-collapsed-logo'
+            />
+          </Link>
+        ) : (
+          <Link
+            to='/gallery'
+            className='logo-container'
+          >
+            <img
+              src={CsMainLogoPath}
+              alt='Comics Studio Logo'
+              className='sidebar-logo-icon'
+            />
+          </Link>
+        )}
+        <button
+          onClick={toggleSidebar}
+          className='sidebar-toggle'
+          aria-label={isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+        >
+          {isCollapsed ? (
+            <Icon
+              icon='mdi:chevron-right'
+              className='sidebar-icon sidebar-toggle-arrow-icon'
+            />
+          ) : (
+            <Icon
+              icon='mdi:chevron-left'
+              className='sidebar-icon sidebar-toggle-arrow-icon'
+            />
+          )}
+        </button>
+      </div>
+
+      <nav className='sidebar-nav'>
+        <ul>
+          {navItems.map((item) => (
+            <li
+              key={item.to}
+              title={isCollapsed ? item.text : ''}
+            >
+              <NavLink
+                to={item.to}
+                className={({ isActive }) =>
+                  isActive ? 'nav-item active' : 'nav-item'
+                }
+              >
+                {({ isActive }) => {
+                  const iconColor = isActive
+                    ? 'var(--sidebar-nav-icon-active)'
+                    : 'var(--sidebar-nav-icon-inactive)'
+                  return (
+                    <>
+                      <span className='nav-icon-wrapper'>
+                        <Icon
+                          icon={item.icon}
+                          className='sidebar-icon nav-item-icon'
+                          style={{ color: iconColor }}
+                        />
+                      </span>
+                      {!isCollapsed && (
+                        <span className='nav-text'>{item.text}</span>
+                      )}
+                    </>
+                  )
+                }}
+              </NavLink>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      {user && Object.keys(user).length > 0 && (
+        <UserProfileSection
+          user={user}
+          isCollapsed={isCollapsed}
+          onLogoutRequest={handleLogoutRequest}
+        />
+      )}
+    </div>
+  )
 }
 
 export default Sidebar
