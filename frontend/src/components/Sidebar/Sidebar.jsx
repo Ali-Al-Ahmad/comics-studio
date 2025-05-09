@@ -276,4 +276,9 @@ const Sidebar = ({ isCollapsed, toggleSidebar }) => {
   )
 }
 
+Sidebar.propTypes = {
+  isCollapsed: PropTypes.bool.isRequired,
+  toggleSidebar: PropTypes.func.isRequired,
+}
+
 export default Sidebar
