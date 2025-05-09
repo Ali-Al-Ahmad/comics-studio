@@ -204,3 +204,30 @@
   display: none;
 }
 
+.sidebar-user-profile-section {
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 50px;
+  background-color: #000000;
+  color: #ffffff;
+  margin: 25px 20px;
+  padding-left: 10px;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.sidebar.collapsed .sidebar-user-profile-section {
+  margin: 15px auto;
+  padding: 0 10px;
+  width: auto;
+  height: 45px;
+  background-color: #000000;
+  color: #ffffff;
+  border-radius: 8px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
