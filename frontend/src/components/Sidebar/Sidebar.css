@@ -144,3 +144,31 @@
   padding: 12px;
 }
 
+.nav-icon-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+  color: #333;
+  transition: color 0.2s ease;
+  height: 100%;
+}
+
+.sidebar.collapsed .nav-icon-wrapper {
+  margin-right: 0;
+}
+
+.sidebar-icon {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.sidebar-toggle-arrow-icon {
+  font-size: 24px;
+  color: var(--text-primary);
+}
+
+.nav-item-icon {
+  font-size: 24px;
+}
+
