@@ -136,3 +136,9 @@ const UserProfileSection = ({ user, isCollapsed, onLogoutRequest }) => {
     </div>
   )
 }
+
+UserProfileSection.propTypes = {
+  user: PropTypes.object.isRequired,
+  isCollapsed: PropTypes.bool.isRequired,
+  onLogoutRequest: PropTypes.func.isRequired,
+}
