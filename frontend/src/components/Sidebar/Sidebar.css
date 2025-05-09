@@ -40,3 +40,40 @@
   position: relative;
 }
 
+.collapsed-logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 15px;
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+.sidebar-collapsed-logo {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
+.logo-container {
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  cursor: pointer;
+}
+
+.sidebar-logo-icon {
+  display: block;
+  margin: 0 auto;
+  max-width: 90%;
+  object-fit: contain;
+  margin: 10px;
+}
+
+.sidebar.collapsed .logo-container {
+  display: none;
+}
+
