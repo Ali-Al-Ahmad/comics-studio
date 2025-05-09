@@ -70,7 +70,7 @@ const Register = () => {
             message: 'Registration successful! Welcome to Comics Studio.',
           })
         )
-        navigate('/home')
+        navigate('/gallery')
         return
       }
     } catch (err) {
