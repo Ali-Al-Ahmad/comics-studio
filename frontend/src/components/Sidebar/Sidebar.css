@@ -77,3 +77,27 @@
   display: none;
 }
 
+.sidebar-toggle {
+  background-color: var(--background-color, #e3e9f6);
+  border: 1px solid #dde1e7;
+  color: var(--primary-color, rgb(112, 99, 241));
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 33px;
+  height: 33px;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 0;
+  right: -11px;
+  transform: translateY(50%);
+  z-index: 1001;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: right 0.3s ease, background-color 0.3s ease;
+}
+
+.sidebar-toggle:hover {
+  background-color: #d6dce9;
+}
+
