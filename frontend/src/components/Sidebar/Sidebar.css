@@ -406,3 +406,46 @@
   transform: translateX(2px);
 }
 
+@media (max-width: 768px) {
+  .sidebar {
+    width: 250px;
+  }
+
+  .sidebar:not(.collapsed) {
+    width: 80%;
+  }
+
+  .sidebar.collapsed {
+    width: 70px;
+  }
+  .sidebar-header {
+    min-height: 150px;
+  }
+
+  .sidebar:not(.collapsed) .sidebar-logo-icon {
+    max-width: 95%;
+    max-height: 140px;
+  }
+
+  .sidebar:not(.collapsed) .logo-container {
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
+  .sidebar-toggle {
+    right: -11px;
+  }
+
+  .sidebar:not(.collapsed) .sidebar-toggle {
+    right: -11px;
+  }
+
+  .sidebar.collapsed .sidebar-toggle {
+    right: -11px;
+  }
+
+  .sidebar-user-profile-section {
+    margin: 15px 10px;
+  }
+}
+
