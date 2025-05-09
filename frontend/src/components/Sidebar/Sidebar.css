@@ -368,3 +368,41 @@
   border-bottom: 1px solid #dde1e7;
 }
 
+.user-profile-menu.collapsed-menu .user-profile-menu-item {
+  justify-content: center;
+  padding: 11px 12px;
+  align-items: center;
+  display: flex;
+}
+
+.user-profile-menu.collapsed-menu .user-profile-menu-item span {
+  display: none;
+}
+
+.sidebar-icon.menu-icon {
+  margin-right: 10px;
+  fill: currentColor;
+}
+
+.user-menu-item-icon {
+  font-size: 20px;
+  margin-right: 10px;
+  color: currentColor;
+}
+
+.user-profile-menu.collapsed-menu .user-profile-menu-item .user-menu-item-icon {
+  margin-right: 0;
+}
+
+.user-profile-menu.collapsed-menu
+  .user-profile-menu-item
+  .sidebar-icon.menu-icon {
+  margin-right: 0;
+}
+
+.user-profile-menu-item:hover {
+  background-color: var(--secondary-color, #f0f0f0);
+  color: var(--primary-color, rgb(112, 99, 241));
+  transform: translateX(2px);
+}
+
