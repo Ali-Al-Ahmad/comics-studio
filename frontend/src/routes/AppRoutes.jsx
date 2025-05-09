@@ -10,6 +10,7 @@ import Login from '../pages/Login/Login'
 import Register from '../pages/Register/Register'
 import Gallery from '../pages/Gallery/Gallery'
 import Profile from '../pages/Profile/Profile'
+import MyComics from '../pages/MyComics/MyComics'
 
 const AppRoutes = () => {
   return (
@@ -38,6 +39,11 @@ const AppRoutes = () => {
             path='/gallery'
             element={<Gallery />}
           />
+          <Route
+            path='/mycomics'
+            element={<MyComics />}
+          />
+          v
         </Route>
       </Route>
     </Routes>
