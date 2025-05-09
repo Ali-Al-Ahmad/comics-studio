@@ -1,11 +1,11 @@
 import { useState, useEffect, useRef } from 'react'
 import CsMainLogoPath from '../../assets/images/csmainlogo.png'
 import PlanetLogoPath from '../../assets/images/csmainlogoplanet.png'
-import { NavLink, Link, useNavigate } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
+import { NavLink, Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import PropTypes from 'prop-types'
 import { Icon } from '@iconify-icon/react'
-import { logout } from '../../redux/slices/userSlice'
+import { useLogout } from '../../hooks/useLogout'
 import './Sidebar.css'
 
 const UserProfileSection = ({ user, isCollapsed, onLogoutRequest }) => {
@@ -145,12 +145,10 @@ UserProfileSection.propTypes = {
 
 const Sidebar = ({ isCollapsed, toggleSidebar }) => {
   const user = useSelector((state) => state.user)
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
+  const performLogout = useLogout()
 
-  const handleLogoutRequest = () => {
-    dispatch(logout())
-    navigate('/login')
+  const handleLogoutRequest = async () => {
+    await performLogout()
   }
 
   const navItems = [
