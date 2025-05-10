@@ -4,6 +4,7 @@ import UserController from '../app/Http/Controllers/UserController.js'
 import { validateRequest } from '../app/Middlewares/validateRequest.js'
 import { UserByIdRequest } from '../app/Http/Requests/User/UserByIdRequest.js'
 import { UpdateUserRequest } from '../app/Http/Requests/User/UserUpdateRequest.js'
+import { ChangeUserPasswordRequest } from '../app/Http/Requests/User/UserChangePassword.js'
 import upload from '../app/Middlewares/uploadWithMulter.js'
 
 const router = express.Router()
@@ -11,6 +12,13 @@ const router = express.Router()
 router.get('/', UserController.getAllUsers)
 
 router.get('/userbooks', UserController.getUserBooks)
+
+router.put(
+  '/changepassword',
+  ChangeUserPasswordRequest,
+  validateRequest,
+  UserController.changeUserPassword
+)
 
 router.get('/:id', UserByIdRequest, validateRequest, UserController.getUserById)
 
