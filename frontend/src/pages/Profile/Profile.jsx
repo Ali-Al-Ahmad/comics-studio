@@ -164,7 +164,65 @@ const Profile = () => {
     })
   }
 
+  const handleProfileUpdate = async (e) => {
+    e.preventDefault()
 
+    if (!formValid) {
+      dispatch(
+        showToast({
+          type: 'error',
+          message: 'Please complete all required fields correctly.',
+        })
+      )
+      return
+    }
+
+    setIsLoading(true)
+
+    try {
+      const userData = {
+        first_name: formData.first_name,
+        last_name: formData.last_name,
+        ...(formData.phone ? { phone: formData.phone } : {}),
+      }
+      const response = await axiosInstance.put(`/users/${user?.id}`, userData)
+
+      if (response.data?.success) {
+        dispatch(updateProfile(userData))
+
+        dispatch(
+          showToast({
+            type: 'success',
+            message: 'Profile updated successfully!',
+          })
+        )
+
+        setOriginalUserData({ ...formData })
+        setHasChanges(false)
+      } else {
+        dispatch(
+          showToast({
+            type: 'error',
+            message: response.data?.message || 'Failed to update profile.',
+          })
+        )
+      }
+    } catch (error) {
+      console.error('Profile update error:', error)
+
+      dispatch(
+        showToast({
+          type: 'error',
+          message:
+            error.response?.data?.error?.[0]?.msg ||
+            error.response?.data?.message ||
+            'Failed to update profile.',
+        })
+      )
+    } finally {
+      setIsLoading(false)
+    }
+  }
 
 
 
