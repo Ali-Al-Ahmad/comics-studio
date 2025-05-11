@@ -24,13 +24,9 @@ const LayoutWithSidebar = () => {
   const handleToggleSidebar = () => {
     dispatch(toggleSidebar())
   }
-
   useIsomorphicLayoutEffect(() => {
-    if (isMobileViewport()) {
-      dispatch(setSidebarCollapsed(true))
-    }
+    dispatch(setSidebarCollapsed(isMobileViewport()))
   }, [dispatch])
-
   useEffect(() => {
     function handleResize() {
       requestAnimationFrame(handleSidebarState)
@@ -41,8 +37,11 @@ const LayoutWithSidebar = () => {
 
       if (windowWidth <= SIDEBAR_COLLAPSE_BREAKPOINT) {
         dispatch(setSidebarCollapsed(true))
+      } else {
+        dispatch(setSidebarCollapsed(false))
       }
     }
+
     if (document.readyState === 'complete') {
       handleSidebarState()
     } else {
