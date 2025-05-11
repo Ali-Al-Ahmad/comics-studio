@@ -121,6 +121,53 @@ const Profile = () => {
     })
   }
 
+  const handlePasswordChange = (e) => {
+    const { name, value } = e.target
+    setPasswordData((prev) => {
+      const updatedData = { ...prev, [name]: value }
+
+      const hasMinLength = updatedData.new_password?.length >= 8
+      const hasUpperCase = /[A-Z]/.test(updatedData.new_password)
+      const hasLowerCase = /[a-z]/.test(updatedData.new_password)
+      const hasNumber = /\d/.test(updatedData.new_password)
+      const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(
+        updatedData.new_password
+      )
+      const passwordsMatch =
+        updatedData.new_password === updatedData.confirm_new_password
+
+      const isStrongPassword =
+        hasMinLength &&
+        hasUpperCase &&
+        hasLowerCase &&
+        hasNumber &&
+        hasSpecialChar
+
+      setPasswordStrength({
+        hasMinLength,
+        hasUpperCase,
+        hasLowerCase,
+        hasNumber,
+        hasSpecialChar,
+        passwordsMatch,
+      })
+
+      const isValid =
+        updatedData.current_password?.trim() !== '' &&
+        updatedData.new_password?.trim() !== '' &&
+        updatedData.confirm_new_password?.trim() !== '' &&
+        passwordsMatch &&
+        isStrongPassword
+
+      setPasswordsValid(isValid)
+      return updatedData
+    })
+  }
+
+
+
+
+
   const handleImageUpdateSuccess = (responseData) => {
     const profileData = responseData?.data || responseData
 
