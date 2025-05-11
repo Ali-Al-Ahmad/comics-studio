@@ -557,7 +557,7 @@
   border-color: var(--secondary-color, #d1d9e6);
 }
 .button-tertiary:hover {
-  background-color: rgba(112, 99, 241, 0.05);
+  background-color: rgba(112, 99, 241, 0.05); 
   border-color: var(--primary-color);
   color: var(--primary-color);
 }
@@ -616,3 +616,180 @@
     right: 8px;
   }
 }
+
+@media (max-width: 600px) {
+  .profile-page-wrapper {
+    padding: 10px;
+    background-color: var(--background-color);
+  }
+  .profile-page-container {
+    width: 100%;
+    padding: 20px 15px;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    margin: 0 auto;
+  }
+  
+  .profile-image-edit-overlay span {
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 0 5px;
+    text-align: center;
+  }
+  
+  .profile-image-edit-overlay .icon {
+    font-size: 24px;
+    margin-bottom: 8px;
+  }
+
+  .form-section-title {
+    font-size: 1.1rem;
+  }
+
+  .toggle-switch-label {
+    flex-direction: row;
+    flex-wrap: wrap;
+    font-size: 0.9rem;
+  }
+  
+  .profile-image-wrapper {
+    width: 120px;
+    height: 120px;
+    border-width: 3px;
+  }
+  
+  .form-group label {
+    font-size: 0.85rem;
+  }
+  
+  .form-group input[type="text"],
+  .form-group input[type="email"],
+  .form-group input[type="tel"],
+  .form-group input[type="password"] {
+    font-size: 0.95rem;
+  }
+  
+  h2 {
+    font-size: 1.3rem;
+    margin-top: 5px;
+  }
+}
+
+@media (max-width: 480px) {  .profile-details-form .form-row:first-child {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 15px;
+    width: 100%;
+  }
+  
+  .profile-details-form .form-row:first-child .form-group {
+    width: calc(50% - 7.5px);
+    max-width: none;
+    min-width: unset;
+  }  .button-primary, .button-secondary, .button-tertiary {
+    padding: 12px 20px;
+    width: 100%;
+    min-width: unset;
+    margin: 0;
+    align-self: stretch;
+  }
+  
+  .form-row:not(:first-child) {
+    flex-direction: column;
+    align-items: stretch;
+    margin-bottom: 10px;
+    width: 100%;
+  }
+  
+  .form-group:not(.profile-details-form .form-row:first-child .form-group) {
+    width: 100%;
+  }
+  
+  .form-section-title {
+    text-align: left;
+  }
+  
+  .profile-full-name {
+    text-align: center;
+    width: 100%;
+    font-size: 1.2rem;
+    margin-top: 8px;
+    padding: 0;
+    word-break: break-word;
+  }  .form-submit-button {
+    align-self: stretch;
+    margin-top: 20px;
+    width: 100%;
+    max-width: none;
+  }
+  
+  .profile-identity-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .profile-details-form,
+  .password-management-section {
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+  }
+  
+  .toggle-switch-label {
+    justify-content: flex-start;
+  }  .profile-image-edit-overlay {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    opacity: 1;
+  }
+  
+  .profile-image-edit-overlay span {
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1.2;
+    margin-top: 4px;
+    width: 100%;
+    text-align: center;
+    white-space: normal;
+    overflow: visible;
+  }
+  
+  .profile-image-edit-overlay .icon {
+    font-size: 22px;
+  }  .form-group input[type="text"],
+  .form-group input[type="email"],
+  .form-group input[type="tel"],
+  .form-group input[type="password"] {
+    font-size: 15px;
+    padding: 12px 0;
+  }
+  
+  .input-container {
+    height: 45px;
+    min-height: 45px;
+    padding: 0 12px;
+  }
+  
+  .form-group label {
+    font-size: 0.85rem;
+    margin-bottom: 5px;
+  }  .toggle-password-btn {
+    width: 42px;
+    height: 42px;
+    right: 8px;
+  }
+  
+  .input-container .input-icon {
+    font-size: 20px;
+    margin-right: 10px;
+  }
+  
+  .profile-page-container {
+    overflow-x: hidden;
+  }
+}
+
