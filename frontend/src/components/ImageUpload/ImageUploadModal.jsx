@@ -190,7 +190,121 @@ const ImageUploadModal = ({
         className={overlayClassNames}
         open
         data-modal='image-upload'
-      ></dialog>
+      >
+        <div
+          className='image-upload-modal-content'
+          tabIndex={-1}
+          ref={modalContentRef}
+        >
+          <div className='image-upload-modal-header'>
+            {' '}
+            <h2 className='image-upload-modal-title'>{modalTitle}</h2>
+            <button
+              type='button'
+              className='close-button'
+              onClick={handleClose}
+              ref={closeButtonRef}
+            >
+              <Icon
+                icon='material-symbols:close'
+                width='22'
+                height='22'
+              />
+            </button>
+          </div>
+          <div className='image-upload-modal-body'>
+            <div className='image-upload-modal-preview-wrapper'>
+              {previewImage ? (
+                <img
+                  src={previewImage}
+                  alt='Preview'
+                  className='image-upload-modal-preview'
+                />
+              ) : (
+                <div className='image-upload-modal-placeholder'>
+                  <Icon
+                    icon={imagePreviewPlaceholderIcon}
+                    className='iconify'
+                    width='24'
+                    height='24'
+                  />
+                  <p>No image selected</p>
+                </div>
+              )}
+            </div>
+            <input
+              type='file'
+              accept='image/*'
+              ref={fileInputRef}
+              style={{ display: 'none' }}
+              onChange={handleFileChange}
+            />
+            <button
+              type='button'
+              className='image-upload-choose-file-button'
+              onClick={() => fileInputRef.current.click()}
+            >
+              <Icon
+                icon={
+                  imageFile
+                    ? 'mdi:file-replace-outline'
+                    : 'mdi:file-image-plus-outline'
+                }
+                className='cloud-upload-icon'
+                width='24'
+                height='24'
+              />
+              {imageFile ? 'Change Image' : chooseButtonText}
+            </button>
+          </div>
+          <div className='image-upload-modal-actions'>
+            <button
+              type='button'
+              className='image-upload-modal-button-tertiary'
+              onClick={handleClose}
+              disabled={isLoading}
+            >
+              <Icon
+                icon='mdi:close-circle-outline'
+                width='24'
+                height='24'
+              />
+              <span>Cancel</span>
+            </button>
+            <button
+              type='button'
+              className='image-upload-modal-button-primary'
+              onClick={handleImageUpload}
+              disabled={isLoading || !imageFile}
+            >
+              {isLoading ? (
+                <>
+                  <span className='spinner-icon' />
+                  <span>Uploading...</span>
+                </>
+              ) : imageFile ? (
+                <>
+                  <Icon
+                    icon='mdi:cloud-upload'
+                    width='24'
+                    height='24'
+                  />
+                  <span>{submitButtonText}</span>
+                </>
+              ) : (
+                <>
+                  <Icon
+                    icon='mdi:image-off-outline'
+                    width='24'
+                    height='24'
+                  />
+                  <span>{submitButtonText}</span>
+                </>
+              )}
+            </button>
+          </div>
+        </div>
+      </dialog>
     )
   )
 }
