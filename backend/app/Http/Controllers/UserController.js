@@ -95,6 +95,25 @@ class UserController extends Controller {
       )
     }
   }
+
+  static async changeUserPassword(req, res) {
+    try {
+      const result = await UserService.changePassword(req)
+      return UserController.returnResponse(
+        res,
+        result.success,
+        result.message,
+        result.data
+      )
+    } catch (error) {
+      return UserController.returnResponse(
+        res,
+        false,
+        'Error changing password in User Controller',
+        error
+      )
+    }
+  }
 }
 
 export default UserController

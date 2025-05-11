@@ -63,7 +63,7 @@ const Login = () => {
             message: 'Login successful! Welcome back.',
           })
         )
-        navigate('/home')
+        navigate('/gallery')
         return
       }
     } catch (err) {

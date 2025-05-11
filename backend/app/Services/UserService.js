@@ -1,5 +1,6 @@
 import { User, Book } from '../Models/index.js'
 import Service from './Service.js'
+import bcrypt from 'bcrypt'
 
 export default class UserService extends Service {
   static async all() {
@@ -66,6 +67,30 @@ export default class UserService extends Service {
       return this.return(true, 'All User books', all_books)
     } catch (error) {
       return this.return(false, 'Error getting All User books', error)
+    }
+  }
+
+  static async changePassword(req) {
+    try {
+      const { current_password, new_password } = req.body
+
+      const user = await User.findByPk(req.user.id)
+
+      const passwordMatch = await bcrypt.compare(
+        current_password,
+        user.password
+      )
+
+      if (!passwordMatch) {
+        return this.return(false, 'Current password is incorrect')
+      }
+
+      user.password = await this.hashPassword(new_password)
+      await user.save()
+
+      return this.return(true, 'Password changed successfully')
+    } catch (error) {
+      return this.return(false, 'Error changing the password', error)
     }
   }
 }

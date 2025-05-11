@@ -8,11 +8,35 @@
 }
 
 :root {
-     --primary-color: rgb(112, 99, 241);
-     --primary-color-hover: rgb(92, 79, 221);
+    /* Theme Colors */
+    --primary-color: rgb(112, 99, 241);
+    --primary-color-hover: rgb(92, 79, 221);
     --secondary-color: rgb(238, 238, 238);
-    --secondary-color-hover: rgb(132, 120, 255);
+    --secondary-color-hover: rgb(201, 201, 201);
     --background-color: rgb(227, 233, 246);
+    --border-color: #dde1e7;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --text-color: #333;
+    
+    /* Breakpoints */
+    --breakpoint-mobile: 480px;
+    --breakpoint-tablet: 768px;
+    
+    /* Sidebar Widths */
+    --sidebar-width-desktop: 290px;
+    --sidebar-width-tablet: 80%;
+    --sidebar-width-mobile: 80%;
+    
+    /* Collapsed Sidebar Widths */
+    --sidebar-collapsed-width-desktop: 80px;
+    --sidebar-collapsed-width-tablet: 70px;
+    --sidebar-collapsed-width-mobile: 60px;
+    
+    /* Content Padding */
+    --content-padding-desktop: 20px;
+    --content-padding-tablet: 12px;
+    --content-padding-mobile: 8px;
+    
 }
 
 body {

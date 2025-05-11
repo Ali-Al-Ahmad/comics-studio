@@ -14,6 +14,7 @@ import { combineReducers } from 'redux'
 
 import userReducer from './slices/userSlice'
 import toastReducer from './slices/toastSlice'
+import sidebarReducer from './slices/sidebarSlice'
 
 const persistConfig = {
   key: 'root',
@@ -23,6 +24,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   user: userReducer,
   toast: toastReducer,
+  sidebar: sidebarReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
