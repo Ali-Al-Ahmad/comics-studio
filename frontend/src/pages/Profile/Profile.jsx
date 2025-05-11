@@ -224,7 +224,85 @@ const Profile = () => {
     }
   }
 
+  const handlePasswordUpdate = async (e) => {
+    e.preventDefault()
 
+    if (passwordData.new_password !== passwordData.confirm_new_password) {
+      dispatch(
+        showToast({ type: 'error', message: 'New passwords do not match.' })
+      )
+      return
+    }
+
+    if (
+      !passwordStrength.hasMinLength ||
+      !passwordStrength.hasUpperCase ||
+      !passwordStrength.hasLowerCase ||
+      !passwordStrength.hasNumber ||
+      !passwordStrength.hasSpecialChar
+    ) {
+      dispatch(
+        showToast({
+          type: 'error',
+          message: 'Your password must meet all security requirements.',
+        })
+      )
+      return
+    }
+
+    setIsLoading(true)
+
+    try {
+      const response = await axiosInstance.put(`/users/changepassword`, {
+        current_password: passwordData.current_password,
+        new_password: passwordData.new_password,
+      })
+
+      if (response.data?.success) {
+        dispatch(
+          showToast({
+            type: 'success',
+            message: 'Password changed successfully!',
+          })
+        )
+
+        setPasswordData({
+          current_password: '',
+          new_password: '',
+          confirm_new_password: '',
+        })
+        setPasswordsValid(false)
+        setShowChangePassword(false)
+        setPasswordStrength({
+          hasMinLength: false,
+          hasUpperCase: false,
+          hasLowerCase: false,
+          hasNumber: false,
+          hasSpecialChar: false,
+          passwordsMatch: false,
+        })
+      } else {
+        dispatch(
+          showToast({
+            type: 'error',
+            message: response.data?.message || 'Failed to change password.',
+          })
+        )
+      }
+    } catch (error) {
+      console.error('Password update error:', error)
+
+      dispatch(
+        showToast({
+          type: 'error',
+          message:
+            error?.response?.data?.message || 'Failed to update password.',
+        })
+      )
+    } finally {
+      setIsLoading(false)
+    }
+  }
 
   const handleImageUpdateSuccess = (responseData) => {
     const profileData = responseData?.data || responseData
