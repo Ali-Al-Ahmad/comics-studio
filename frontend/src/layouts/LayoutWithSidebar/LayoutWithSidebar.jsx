@@ -1,56 +1,72 @@
-import { useState, useEffect } from 'react'
 import { Outlet } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { useEffect, useLayoutEffect } from 'react'
 import Sidebar from '../../components/Sidebar/Sidebar'
+import {
+  toggleSidebar,
+  setSidebarCollapsed,
+} from '../../redux/slices/sidebarSlice'
 import './LayoutWithSidebar.css'
 
-const MOBILE_BREAKPOINT = 768
+const SIDEBAR_COLLAPSE_BREAKPOINT = 768
+
+const isMobileViewport = () => {
+  return window.innerWidth <= SIDEBAR_COLLAPSE_BREAKPOINT
+}
+
+const useIsomorphicLayoutEffect =
+  typeof window !== 'undefined' ? useLayoutEffect : useEffect
 
 const LayoutWithSidebar = () => {
-  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(
-    window.innerWidth < MOBILE_BREAKPOINT
-  )
+  const dispatch = useDispatch()
+  const { isCollapsed } = useSelector((state) => state.sidebar)
 
-  const toggleSidebar = () => {
-    setIsSidebarCollapsed(!isSidebarCollapsed)
+  const handleToggleSidebar = () => {
+    dispatch(toggleSidebar())
   }
 
-  const [isMobile, setIsMobile] = useState(
-    window.innerWidth <= MOBILE_BREAKPOINT
-  )
+  useIsomorphicLayoutEffect(() => {
+    if (isMobileViewport()) {
+      dispatch(setSidebarCollapsed(true))
+    }
+  }, [dispatch])
 
   useEffect(() => {
-    const handleResize = () => {
-      const screenWidth = window.innerWidth
-      if (screenWidth < MOBILE_BREAKPOINT) {
-        setIsSidebarCollapsed(true)
-      }
-      setIsMobile(screenWidth <= MOBILE_BREAKPOINT)
+    function handleResize() {
+      requestAnimationFrame(handleSidebarState)
     }
 
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
-  }, [])
+    function handleSidebarState() {
+      const windowWidth = window.innerWidth
 
-  const mainContentClasses = ['main-content']
-  mainContentClasses.push(isMobile ? 'padding-mobile' : 'padding-desktop')
+      if (windowWidth <= SIDEBAR_COLLAPSE_BREAKPOINT) {
+        dispatch(setSidebarCollapsed(true))
+      }
+    }
+    if (document.readyState === 'complete') {
+      handleSidebarState()
+    } else {
+      window.addEventListener('load', handleSidebarState, { once: true })
+    }
 
-  if (isSidebarCollapsed) {
-    mainContentClasses.push(
-      isMobile ? 'margin-collapsed-mobile' : 'margin-collapsed-desktop'
-    )
-  } else {
-    mainContentClasses.push(
-      isMobile ? 'margin-expanded-mobile' : 'margin-expanded-desktop'
-    )
-  }
+    window.addEventListener('resize', handleResize, { passive: true })
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [dispatch])
+
+  const mainContentClassNames = `main-content ${
+    isCollapsed ? 'sidebar-collapsed' : 'sidebar-expanded'
+  }`
 
   return (
     <div className='layout-with-sidebar'>
       <Sidebar
-        isCollapsed={isSidebarCollapsed}
-        toggleSidebar={toggleSidebar}
-      />{' '}
-      <main className={mainContentClasses.join(' ')}>
+        isCollapsed={isCollapsed}
+        toggleSidebar={handleToggleSidebar}
+      />
+      <main className={mainContentClassNames}>
         <Outlet />
       </main>
     </div>
