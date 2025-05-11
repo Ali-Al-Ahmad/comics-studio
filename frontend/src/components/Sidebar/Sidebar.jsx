@@ -85,8 +85,8 @@ const UserProfileSection = ({ user, isCollapsed, onLogoutRequest }) => {
               {user.email || 'user@example.com'}
             </span>
           </div>
-        )}
-      </div>{' '}
+        )}{' '}
+      </div>
       <button
         ref={userMenuToggleRef}
         className='user-menu-toggle-button'
@@ -119,7 +119,7 @@ const UserProfileSection = ({ user, isCollapsed, onLogoutRequest }) => {
               className='sidebar-icon user-menu-item-icon'
             />
             <span>Settings</span>
-          </Link>{' '}
+          </Link>
           <button
             onClick={handleLogoutClick}
             className='user-profile-menu-item logout-button'
@@ -179,10 +179,24 @@ const Sidebar = ({ isCollapsed, toggleSidebar }) => {
     },
   ]
 
+  const [loaded, setLoaded] = useState(false)
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoaded(true)
+    }, 20)
+
+    return () => clearTimeout(timer)
+  }, [])
+
   return (
-    <div className={`sidebar ${isCollapsed ? 'collapsed' : ''}`}>
+    <div
+      className={`sidebar ${isCollapsed ? 'collapsed' : ''} ${
+        loaded ? 'loaded' : ''
+      }`}
+    >
+      {' '}
       <div className='sidebar-header'>
-        {' '}
         {isCollapsed ? (
           <Link
             to='/gallery'
@@ -224,7 +238,6 @@ const Sidebar = ({ isCollapsed, toggleSidebar }) => {
           )}
         </button>
       </div>
-
       <nav className='sidebar-nav'>
         <ul>
           {navItems.map((item) => (
@@ -262,7 +275,6 @@ const Sidebar = ({ isCollapsed, toggleSidebar }) => {
           ))}
         </ul>
       </nav>
-
       {user && Object.keys(user).length > 0 && (
         <UserProfileSection
           user={user}
