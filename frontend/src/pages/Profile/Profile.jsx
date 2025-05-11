@@ -338,7 +338,339 @@ const Profile = () => {
     )
   }
 
-  return <div className='profile-page-container'></div>
+  return (
+    <div className='profile-page-container'>
+      <section className='profile-main-content'>
+        <div className='profile-identity-section'>
+          <button
+            type='button'
+            className='profile-image-wrapper'
+            onClick={() => setShowImageUploadModal(true)}
+          >
+            {profileImage ? (
+              <img
+                src={profileImage}
+                alt='Profile'
+                className='profile-image'
+              />
+            ) : (
+              <div className='profile-image-placeholder'>
+                <Icon
+                  icon='mdi:account-circle'
+                  style={{ fontSize: '160px' }}
+                />
+              </div>
+            )}
+            <div className='profile-image-edit-overlay'>
+              <Icon
+                icon='mdi:camera-plus'
+                className='icon'
+              />
+              <span>Change Photo</span>
+            </div>
+          </button>
+          <h2 className='profile-full-name'>{`${user.first_name || ''} ${
+            user.last_name || ''
+          }`}</h2>
+        </div>
+
+        <ImageUploadModal
+          isOpen={showImageUploadModal}
+          onClose={() => {
+            setShowImageUploadModal(false)
+          }}
+          modalTitle='Update Profile Picture'
+          currentImageSrc={user?.profile_picture}
+          uploadEndpointUrl={`/users/${user?.id}`}
+          imageFieldName='profile_picture'
+          onUploadSuccess={handleImageUpdateSuccess}
+          chooseButtonText='Choose Image'
+          submitButtonText='Save Image'
+        />
+
+        <form
+          onSubmit={handleProfileUpdate}
+          className='profile-details-form'
+        >
+          <h3 className='form-section-title'>Account Details</h3>
+          <div className='form-row'>
+            <div className='form-group'>
+              <label htmlFor='first_name'>
+                First Name <span className='required-mark'>*</span>
+              </label>
+              <div className='input-container'>
+                <Icon
+                  icon='mdi:user'
+                  className='input-icon'
+                />
+                <input
+                  type='text'
+                  id='first_name'
+                  name='first_name'
+                  value={formData.first_name}
+                  onChange={handleChange}
+                  placeholder='Enter your first name'
+                  required
+                  autoComplete='given-name'
+                />
+              </div>
+            </div>
+            <div className='form-group'>
+              <label htmlFor='last_name'>
+                Last Name <span className='required-mark'>*</span>
+              </label>
+              <div className='input-container'>
+                <Icon
+                  icon='mdi:user'
+                  className='input-icon'
+                />
+                <input
+                  type='text'
+                  id='last_name'
+                  name='last_name'
+                  value={formData.last_name}
+                  onChange={handleChange}
+                  placeholder='Enter your last name'
+                  required
+                  autoComplete='family-name'
+                />
+              </div>
+            </div>
+          </div>
+          <div className='form-row'>
+            <div className='form-group'>
+              <label htmlFor='email'>
+                Email <span className='required-mark'>*</span>
+              </label>
+              <div className='input-container disabled'>
+                <Icon
+                  icon='mdi:email'
+                  className='input-icon'
+                />
+                <input
+                  type='email'
+                  id='email'
+                  name='email'
+                  value={formData.email}
+                  readOnly
+                  disabled
+                  placeholder='Your email address'
+                  autoComplete='email'
+                />
+              </div>
+            </div>
+            <div className='form-group'>
+              <label htmlFor='phone'>Phone</label>
+              <div className='input-container'>
+                <Icon
+                  icon='mdi:phone'
+                  className='input-icon'
+                />
+                <input
+                  type='tel'
+                  id='phone'
+                  name='phone'
+                  value={formData.phone}
+                  onChange={handleChange}
+                  placeholder='e.g., +1234567890'
+                  autoComplete='tel'
+                />
+              </div>
+              {validationErrors.phone && (
+                <div className='input-error-message'>
+                  {validationErrors.phone}
+                </div>
+              )}
+            </div>
+          </div>
+          <button
+            type='submit'
+            className='button-primary form-submit-button'
+            disabled={!hasChanges || !formValid || isLoading}
+            title={getSaveButtonTitle()}
+          >
+            {isLoading ? (
+              <>
+                <span className='spinner-icon'></span> Saving...
+              </>
+            ) : (
+              'Save Changes'
+            )}
+          </button>
+        </form>
+
+        <div className='password-management-section'>
+          <h3 className='form-section-title'>Password Management</h3>
+          <label
+            htmlFor='change-password-toggle'
+            className='toggle-switch-label'
+          >
+            <input
+              type='checkbox'
+              id='change-password-toggle'
+              checked={showChangePassword}
+              onChange={() => {
+                setShowChangePassword(!showChangePassword)
+
+                if (showChangePassword) {
+                  setPasswordsValid(false)
+                  setPasswordData({
+                    current_password: '',
+                    new_password: '',
+                    confirm_new_password: '',
+                  })
+                  setPasswordStrength({
+                    hasMinLength: false,
+                    hasUpperCase: false,
+                    hasLowerCase: false,
+                    hasNumber: false,
+                    hasSpecialChar: false,
+                    passwordsMatch: false,
+                  })
+                }
+              }}
+              className='toggle-switch-checkbox'
+            />
+            <span className='slider round'></span>
+            <span className='toggle-label-text'>
+              {showChangePassword
+                ? 'Cancel Password Change'
+                : 'Change My Password'}
+            </span>
+          </label>
+
+          {showChangePassword && (
+            <form
+              onSubmit={handlePasswordUpdate}
+              className='password-change-form'
+            >
+              <div className='form-group full-width-group'>
+                <label htmlFor='current_password'>
+                  Current Password <span className='required-mark'>*</span>
+                </label>
+                <div className='input-container'>
+                  <Icon
+                    icon='mdi:lock'
+                    className='input-icon'
+                  />
+                  <input
+                    type={showCurrentPassword ? 'text' : 'password'}
+                    id='current_password'
+                    name='current_password'
+                    value={passwordData.current_password}
+                    onChange={handlePasswordChange}
+                    placeholder='Enter your current password'
+                    required
+                    autoComplete='current-password'
+                  />
+                  <button
+                    type='button'
+                    className='toggle-password-btn'
+                    onClick={() => setShowCurrentPassword(!showCurrentPassword)}
+                  >
+                    <Icon
+                      icon={showCurrentPassword ? 'mdi:eye-off' : 'mdi:eye'}
+                      style={{ fontSize: '24px' }}
+                    />
+                  </button>
+                </div>
+              </div>
+              <div className='form-row'>
+                <div className='form-group'>
+                  <label htmlFor='new_password'>
+                    New Password <span className='required-mark'>*</span>
+                  </label>
+                  <div className='input-container'>
+                    <Icon
+                      icon='mdi:lock'
+                      className='input-icon'
+                    />
+                    <input
+                      type={showNewPassword ? 'text' : 'password'}
+                      id='new_password'
+                      name='new_password'
+                      value={passwordData.new_password}
+                      onChange={handlePasswordChange}
+                      placeholder='Enter new password'
+                      required
+                      autoComplete='new-password'
+                    />
+                    <button
+                      type='button'
+                      className='toggle-password-btn'
+                      onClick={() => setShowNewPassword(!showNewPassword)}
+                    >
+                      <Icon
+                        icon={showNewPassword ? 'mdi:eye-off' : 'mdi:eye'}
+                        style={{ fontSize: '24px' }}
+                      />
+                    </button>
+                  </div>
+                  <PasswordStrength
+                    password={passwordData.new_password}
+                    strengthState={passwordStrength}
+                  />
+                </div>
+                <div className='form-group'>
+                  <label htmlFor='confirm_new_password'>
+                    Confirm New Password{' '}
+                    <span className='required-mark'>*</span>
+                  </label>
+                  <div className='input-container'>
+                    <Icon
+                      icon='mdi:lock'
+                      className='input-icon'
+                    />
+                    <input
+                      type={showConfirmPassword ? 'text' : 'password'}
+                      id='confirm_new_password'
+                      name='confirm_new_password'
+                      value={passwordData.confirm_new_password}
+                      onChange={handlePasswordChange}
+                      placeholder='Confirm new password'
+                      required
+                      autoComplete='new-password'
+                    />
+                    <button
+                      type='button'
+                      className='toggle-password-btn'
+                      onClick={() =>
+                        setShowConfirmPassword(!showConfirmPassword)
+                      }
+                    >
+                      <Icon
+                        icon={showConfirmPassword ? 'mdi:eye-off' : 'mdi:eye'}
+                        style={{ fontSize: '24px' }}
+                      />
+                    </button>
+                  </div>
+                  {passwordData.confirm_new_password &&
+                    !passwordStrength.passwordsMatch && (
+                      <div className='input-error-message'>
+                        Passwords do not match
+                      </div>
+                    )}
+                </div>
+              </div>
+              <button
+                type='submit'
+                className='button-primary form-submit-button'
+                disabled={!passwordsValid || isLoading}
+              >
+                {isLoading ? (
+                  <>
+                    <span className='spinner-icon'></span> Updating...
+                  </>
+                ) : (
+                  'Update Password'
+                )}
+              </button>
+            </form>
+          )}
+        </div>
+      </section>
+    </div>
+  )
 }
 
 export default Profile
