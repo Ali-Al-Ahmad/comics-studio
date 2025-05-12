@@ -1,5 +1,3 @@
-// Fake comics data for UI development and testing
-
 const fakeComics = [
   {
     id: 1001,
