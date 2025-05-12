@@ -76,3 +76,26 @@ jobs:
           source: 'docker-compose.yaml'
           target: '/home/${{ secrets.EC2_USER }}/'
 
+  Deploy-Node-Docker:
+    needs:
+      [
+        Build-Backend-Image,
+        Build-Frontend-And-Deploy-On-S3,
+        Copy-docker-compose-To-EC2,
+      ]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Deploy on EC2
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_KEY }}
+          script: |
+            docker compose down
+            docker rmi ${{ secrets.DOCKER_USERNAME }}/backendimage:latest
+            docker compose up -d
