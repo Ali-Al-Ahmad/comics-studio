@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import './Register.css'
+import './RegisterPage.css'
 import axiosInstance from '../../utils/axiosInstance'
 import { useDispatch } from 'react-redux'
 import { login } from '../../redux/slices/userSlice'
@@ -29,7 +29,7 @@ const Register = () => {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
-    
+
     if (e.target.name === 'password') {
       setPasswordError('')
     }
@@ -78,15 +78,18 @@ const Register = () => {
       const errorMessage =
         err.response?.data?.error[0]?.msg ||
         'Registration failed. Please try again.'
-      
+
       if (errorMessage.toLowerCase().includes('password')) {
         setPasswordError(errorMessage)
       }
-      
-      if (errorMessage.toLowerCase().includes('email') || errorMessage.toLowerCase().includes('already in use')) {
+
+      if (
+        errorMessage.toLowerCase().includes('email') ||
+        errorMessage.toLowerCase().includes('already in use')
+      ) {
         setEmailError(errorMessage)
       }
-      
+
       dispatch(
         showToast({
           type: 'error',
@@ -171,12 +174,16 @@ const Register = () => {
                   required
                 />
               </div>
-              {emailError && <div className="error-message">{emailError}</div>}
+              {emailError && <div className='error-message'>{emailError}</div>}
             </div>
 
             <div className='form-input'>
               <label htmlFor='password'>Password</label>
-              <div className={`textInput password-input ${passwordError ? 'error-input' : ''}`}>
+              <div
+                className={`textInput password-input ${
+                  passwordError ? 'error-input' : ''
+                }`}
+              >
                 <img
                   src={passwordIcon}
                   alt='lock icon'
@@ -190,19 +197,21 @@ const Register = () => {
                   onChange={handleChange}
                   required
                 />
-                <button 
-                  type="button" 
-                  className="toggle-password" 
+                <button
+                  type='button'
+                  className='toggle-password'
                   onClick={togglePasswordVisibility}
                 >
-                  <img 
-                    src={showPassword ? eyeClosedIcon : eyeOpenIcon} 
+                  <img
+                    src={showPassword ? eyeClosedIcon : eyeOpenIcon}
                     alt={showPassword ? 'Hide password' : 'Show password'}
-                    className="eye-icon"
+                    className='eye-icon'
                   />
                 </button>
               </div>
-              {passwordError && <div className="error-message">{passwordError}</div>}
+              {passwordError && (
+                <div className='error-message'>{passwordError}</div>
+              )}
             </div>
 
             <button

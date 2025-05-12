@@ -12,7 +12,7 @@ import Profile from '../pages/Profile/Profile'
 import MyComics from '../pages/MyComics/MyComics'
 import Characters from '../pages/Characters/Characters'
 import CreateComic from '../pages/CreateComic/CreateComic'
-import Register from '../pages/Register/Register'
+import Register from '../pages/RegisterPage/RegisterPage'
 
 const AppRoutes = () => {
   return (
