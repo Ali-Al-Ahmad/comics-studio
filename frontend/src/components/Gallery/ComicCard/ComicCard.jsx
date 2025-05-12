@@ -36,8 +36,32 @@ const ComicCard = ({ comic }) => {
       tabIndex='0'
       role='button'
       aria-label={`View comic: ${comic.title}`}
-    ></div>
+    >
+      <div className='comic-image'>
+        <img
+          src={`${import.meta.env.VITE_API_BASE_URL}/${comic.image_url}`}
+          alt={comic.title}
+          onError={(e) => {
+            e.target.onerror = null
+            e.target.src = fallbackImageDataURI
+          }}
+        />
+      </div>
+      <div className='comic-details'>
+        <div>
+          <h3 title={comic.title}>{comic.title}</h3>
+          <p className='comic-author'>{userDisplayName}</p>
+        </div>
+        <div className='comic-meta'>
+          <span className='comic-date'>
+            {new Date(comic.updatedAt).toLocaleDateString()}
+          </span>
+        </div>
+      </div>
+    </div>
   )
 }
+
+
 
 export default ComicCard
