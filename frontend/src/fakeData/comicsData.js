@@ -1,0 +1,68 @@
+const fakeComics = [
+  {
+    id: 1001,
+    title: 'The Cosmic Adventure',
+    user_id: 101,
+    character_id: 201,
+    image_url: 'public/uploads/comic-images/comic-cover-1.jpg',
+    is_public: true,
+    createdAt: '2025-04-15T10:30:00Z',
+    updatedAt: '2025-05-01T14:20:00Z',
+    user: {
+      id: 101,
+      first_name: 'John',
+      last_name: 'Doe',
+      email: 'john.doe@example.com',
+    },
+  },
+  {
+    id: 1002,
+    title: 'Mystery of the Dark Forest',
+    user_id: 102,
+    character_id: 202,
+    image_url: 'public/uploads/comic-images/comic-cover-2.jpg',
+    is_public: true,
+    createdAt: '2025-03-22T08:15:00Z',
+    updatedAt: '2025-04-18T11:45:00Z',
+    user: {
+      id: 102,
+      first_name: 'Jane',
+      last_name: 'Smith',
+      email: 'jane.smith@example.com',
+    },
+  },
+  {
+    id: 1003,
+    title: 'Heroes of Tomorrow',
+    user_id: 103,
+    character_id: 203,
+    image_url: 'public/uploads/comic-images/comic-cover-3.jpg',
+    is_public: true,
+    createdAt: '2025-05-05T16:20:00Z',
+    updatedAt: '2025-05-10T09:30:00Z',
+    user: {
+      id: 103,
+      first_name: 'Michael',
+      last_name: 'Johnson',
+      email: 'michael.johnson@example.com',
+    },
+  },
+  {
+    id: 1004,
+    title: 'Robot Rebellion',
+    user_id: 104,
+    character_id: 204,
+    image_url: 'public/uploads/comic-images/comic-cover-4.jpg',
+    is_public: true,
+    createdAt: '2025-02-18T13:10:00Z',
+    updatedAt: '2025-04-30T15:25:00Z',
+    user: {
+      id: 104,
+      first_name: 'Sarah',
+      last_name: 'Brown',
+      email: 'sarah.brown@example.com',
+    },
+  },
+]
+
+export { fakeComics }
