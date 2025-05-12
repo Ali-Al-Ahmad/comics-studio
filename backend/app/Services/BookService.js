@@ -1,5 +1,5 @@
 import Service from './Service.js'
-import { Book, Comic } from '../Models/index.js'
+import { Book, Comic, User } from '../Models/index.js'
 
 export default class BookService extends Service {
   static async all() {
@@ -70,6 +70,13 @@ export default class BookService extends Service {
       const public_books = await Book.findAll({
         where: { is_public: true },
         order: [['id', 'DESC']],
+        include: [
+          {
+            model: User,
+            as: 'user',
+            attributes: ['id', 'first_name', 'last_name', 'email'],
+          },
+        ],
       })
       return this.return(true, 'All public comic books', public_books)
     } catch (error) {
