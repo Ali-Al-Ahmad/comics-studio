@@ -377,7 +377,63 @@ const Home = () => {
           </div>
         </div>
       </section>
-  
+      <section
+        id='feature-details'
+        className='feature-section'
+      >
+        <div className='feature-container'>
+          <div className='feature-text'>
+            <h2 className='section-title'>
+              Consistent Characters Across Every Frame
+            </h2>
+            <p className='section-description'>
+              Harness the power of AI to maintain character consistency
+              throughout your stories. Enhance your narrative with visuals that
+              keep true to your characters&apos; essence, ensuring a coherent
+              visual experience from start to finish.
+            </p>
+            <Link
+              to='/register'
+              className='btn btn-primary'
+            >
+              Try Comics Studio for Free
+            </Link>
+          </div>
+          <div className='feature-image'>
+            <img
+              src='https://imgc.cc/2024/05/05/6637517f61c22.jpg'
+              alt='Consistent character'
+            />
+          </div>
+        </div>
+      </section>
+      <section className='feature-section alt'>
+        <div className='feature-container reverse'>
+          <div className='feature-image'>
+            <img
+              src='https://imgc.cc/2024/05/05/66375076e1110.png'
+              alt='Reference'
+            />
+          </div>
+          <div className='feature-text'>
+            <h2 className='section-title'>
+              Upload Your Images, Personalize Your Story
+            </h2>
+            <p className='section-description'>
+              Personalize your visual stories by uploading reference images.
+              Integrate your own characters and settings into the narrative,
+              creating unique and compelling stories with visuals that speak
+              directly to your audience.
+            </p>
+            <Link
+              to='/register'
+              className='btn btn-primary'
+            >
+              Try Comics Studio for Free
+            </Link>
+          </div>
+        </div>
+      </section>
 
 
 
