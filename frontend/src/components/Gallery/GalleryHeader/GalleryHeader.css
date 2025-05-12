@@ -61,3 +61,55 @@
   font-size: 1rem;
   font-weight: 600;
 }
+
+@media screen and (min-width: 768px) {
+  .gallery-header-container {
+    grid-template-areas: 'filters credits';
+    grid-template-columns: auto auto;
+    align-items: center;
+  }
+
+  .filter-buttons {
+    width: auto;
+    justify-content: flex-start;
+  }
+
+  .filter-btn {
+    flex: 0 1 auto;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .filter-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .filter-btn {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+}
+
+@media screen and (min-width: 968px) {
+  .gallery-header-container {
+    gap: 1.5rem;
+  }
+
+  .filter-buttons {
+    gap: 1rem;
+  }
+
+  .filter-btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+  }
+
+  .credits-display {
+    padding: 0.6rem 1.4rem;
+  }
+
+  .credits-value {
+    font-size: 1.1rem;
+  }
+}
