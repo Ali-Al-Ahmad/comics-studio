@@ -117,7 +117,46 @@ const Gallery = () => {
       className={`gallery-container ${
         isCollapsed ? 'sidebar-collapsed' : 'sidebar-expanded'
       }`}
-    ></div>
+    >
+      <div className='gallery-header'>
+        <GalleryHeader
+          activeFilter={activeFilter}
+          handleFilterClick={handleFilterClick}
+        />
+
+        <SearchBox
+          searchTerm={searchTerm}
+          handleSearch={handleSearch}
+        />
+      </div>
+      {loading ? (
+        <div className='comics-loading'>
+          <Spinner />
+          <p>Loading comics...</p>
+        </div>
+      ) : (
+        <>
+          {filteredComics.length === 0 ? (
+            <div className='no-comics'>
+              <p>
+                {searchTerm
+                  ? `No comics found matching "${searchTerm}". Try a different search term.`
+                  : 'No comics found.'}
+              </p>
+            </div>
+          ) : (
+            <div className='gallery-comics-grid'>
+              {filteredComics.map((comic, index) => (
+                <ComicCard
+                  key={index}
+                  comic={comic}
+                />
+              ))}
+            </div>
+          )}
+        </>
+      )}
+    </div>
   )
 }
 
