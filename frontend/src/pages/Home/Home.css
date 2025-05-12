@@ -1732,4 +1732,109 @@ input:checked + .toggle-slider:before {
   }
 }
 
+.btn {
+  padding: 1rem 2.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  font-size: 1.1rem;
+  box-shadow: 0 4px 12px rgba(50, 50, 93, 0.15), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-color-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 7px 14px rgba(50, 50, 93, 0.15), 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-secondary {
+  background-color: white;
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+}
+
+.btn-secondary:hover {
+  background-color: rgba(112, 99, 241, 0.05);
+  transform: translateY(-3px);
+  box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
+}
+
+.cta-section {
+  background: linear-gradient(135deg, #7063f1 0%, #9f59ff 100%);
+  padding: 5rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-section::before {
+  content: '';
+  position: absolute;
+  top: -10%;
+  right: -10%;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  z-index: 0;
+}
+
+.cta-section::after {
+  content: '';
+  position: absolute;
+  bottom: -20%;
+  left: -5%;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  z-index: 0;
+}
+
+.cta-container {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.cta-title {
+  color: white;
+  font-size: 2.75rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+}
+
+.cta-text {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.25rem;
+  margin-bottom: 2.5rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-button {
+  background-color: white;
+  color: var(--primary-color);
+  font-size: 1.1rem;
+  padding: 1.2rem 3rem;
+}
+
+.cta-button:hover {
+  background-color: #f8f9fa;
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
 
