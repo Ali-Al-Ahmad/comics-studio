@@ -62,6 +62,19 @@ const ComicCard = ({ comic }) => {
   )
 }
 
-
+ComicCard.propTypes = {
+  comic: PropTypes.shape({
+    id: PropTypes.number,
+    title: PropTypes.string.isRequired,
+    image_url: PropTypes.string,
+    updatedAt: PropTypes.string,
+    user: PropTypes.shape({
+      id: PropTypes.number,
+      first_name: PropTypes.string,
+      last_name: PropTypes.string,
+      email: PropTypes.string,
+    }),
+  }).isRequired,
+}
 
 export default ComicCard
