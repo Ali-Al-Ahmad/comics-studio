@@ -461,7 +461,86 @@ const Home = () => {
           </div>
         </div>
       </section>
+      <section
+        id='gallery'
+        className='gallery-section'
+      >
+        <h2 className='gallery-title'>
+          Explore Comics Created with Comics Studio
+        </h2>
 
+        <div className='comics-categories'>
+          <div className='comics-grid'>
+            <div className='comic-card'>
+              <img
+                src='https://cdn-uploads.huggingface.co/production/uploads/noauth/MKjLZDJumVcjrK0HcjKOc.jpeg'
+                alt='Captain America comic'
+                className='comic-image'
+              />
+              <div className='comic-info'>
+                <p className='comic-caption'>
+                  Captain America punching a giant octopus
+                </p>
+              </div>
+            </div>
+            <div className='comic-card'>
+              <img
+                src='https://cdn-uploads.huggingface.co/production/uploads/noauth/PeK-MtQwvltH-OlnXtwwe.jpeg'
+                alt='Iron Man comic'
+                className='comic-image'
+              />
+              <div className='comic-info'>
+                <p className='comic-caption'>Iron Man vs Monkey King</p>
+              </div>
+            </div>
+            <div className='comic-card'>
+              <img
+                src='https://cdn-uploads.huggingface.co/production/uploads/noauth/FhRd_Gast7omVXwtikfoq.jpeg'
+                alt='Batman comic'
+                className='comic-image'
+              />
+              <div className='comic-info'>
+                <p className='comic-caption'>Batman as a computer hacker</p>
+              </div>
+            </div>
+          </div>
+
+          <div className='comics-grid'>
+            <div className='comic-card'>
+              <img
+                src='https://cdn-uploads.huggingface.co/production/uploads/noauth/N-Azz6mApVS3eMMSmTu-h.jpeg'
+                alt='Zeus fights Hades'
+                className='comic-image'
+              />
+              <div className='comic-info'>
+                <p className='comic-caption'>Zeus fights Hades</p>
+              </div>
+            </div>
+            <div className='comic-card'>
+              <img
+                src='https://cdn-uploads.huggingface.co/production/uploads/noauth/tkLJQj5NnD4P9idfw03IS.jpeg'
+                alt='Llama discovering Paris'
+                className='comic-image'
+              />
+              <div className='comic-info'>
+                <p className='comic-caption'>A llama discovering Paris</p>
+              </div>
+            </div>
+            <div className='comic-card'>
+              <img
+                src='https://cdn-uploads.huggingface.co/production/uploads/noauth/Bobl3XtiJcrrRLWmTJUGX.jpeg'
+                alt='Dinosaur comic'
+                className='comic-image'
+              />
+              <div className='comic-info'>
+                <p className='comic-caption'>
+                  Mystery City: Mark and Jane hide in a cave from a dinosaur
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
 
     </div>
