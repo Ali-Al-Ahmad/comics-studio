@@ -541,6 +541,42 @@ const Home = () => {
           </div>
         </div>
       </section>
+      <section
+        id='testimonials'
+        className='testimonials-section'
+      >
+        <div className='section-header'>
+          <h2 className='section-title'>User Love and Appreciation</h2>
+          <h3 className='section-subtitle'>
+            Hear What Our Users Adore About AI Comics Studio
+          </h3>
+        </div>
+        <div className='testimonials-container'>
+          {testimonials.map((testimonial) => (
+            <div
+              className='testimonial-card'
+              key={testimonial.id}
+            >
+              <div className='testimonial-quote'>❝</div>
+              <p className='testimonial-text'>{testimonial.text}</p>
+              <div className='testimonial-user'>
+                <img
+                  src={`https://ui-avatars.com/api/?name=${testimonial.author.replace(
+                    /\s+/g,
+                    '+'
+                  )}&background=7063F1&color=fff`}
+                  alt={testimonial.author}
+                  className='testimonial-avatar'
+                />
+                <div className='testimonial-info'>
+                  <p className='testimonial-author'>{testimonial.author}</p>
+                  <p className='testimonial-handle'>{testimonial.handle}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
 
 
     </div>
