@@ -1,0 +1,63 @@
+.gallery-header-container {
+  display: grid;
+  grid-template-areas:
+    'credits'
+    'filters';
+  margin-bottom: 1.5rem;
+  gap: 1rem;
+  width: 100%;
+  padding: 0 0.25rem;
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  grid-area: filters;
+  width: 100%;
+  margin-top: 0.25rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.filter-btn {
+  padding: 0.5rem 0.8rem;
+  background-color: var(--secondary-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  color: var(--text-color);
+  font-size: 0.9rem;
+  flex: 1;
+  text-align: center;
+}
+
+.filter-btn:hover {
+  background-color: var(--secondary-color-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.filter-btn.active {
+  background-color: #333;
+  color: white;
+  border-color: #333;
+}
+
+.credits-display {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background-color: var(--primary-color);
+  border-radius: 8px;
+  color: white;
+  grid-area: credits;
+  justify-self: end;
+}
+
+.credits-value {
+  font-size: 1rem;
+  font-weight: 600;
+}
