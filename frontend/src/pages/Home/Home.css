@@ -709,6 +709,133 @@
   color: var(--primary-color-hover);
 }
 
+.gallery-section {
+  padding: 8rem 2rem;
+  background-color: #f9fafb;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gallery-title {
+  font-size: 2.75rem;
+  font-weight: 800;
+  color: #333;
+  margin-bottom: 3rem;
+  position: relative;
+  display: inline-block;
+}
+
+.gallery-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-color) 0%, #9f59ff 100%);
+  border-radius: 2px;
+}
+
+.comics-categories {
+  margin-top: 4rem;
+  max-width: 1400px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.category-title {
+  font-size: 1.8rem;
+  color: #333;
+  margin: 3rem 0 1.5rem;
+  text-align: center;
+  font-weight: 700;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.5rem;
+}
+
+.category-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary-color) 0%, #9f59ff 100%);
+  border-radius: 2px;
+}
+
+.comics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+  margin: 2rem auto;
+  width: 100%;
+  max-width: 1400px;
+  justify-content: center;
+}
+
+.comic-card {
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  background: white;
+  width: 100%;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.comic-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--primary-color);
+  box-shadow: 0 10px 25px rgba(112, 99, 241, 0.15);
+}
+
+.comic-image {
+  width: 100%;
+  height: 320px;
+  object-fit: fill;
+  transition: all 0.5s ease;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.comic-card:hover .comic-image {
+  transform: scale(1.03);
+  filter: brightness(1.03);
+}
+
+.comic-info {
+  padding: 1.5rem;
+  background: white;
+  position: relative;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.comic-caption {
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
 
 
 
