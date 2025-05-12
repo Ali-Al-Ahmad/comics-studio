@@ -16,4 +16,9 @@ const SearchBox = ({ searchTerm, handleSearch }) => {
   )
 }
 
+SearchBox.propTypes = {
+  searchTerm: PropTypes.string.isRequired,
+  handleSearch: PropTypes.func.isRequired,
+}
+
 export default SearchBox
