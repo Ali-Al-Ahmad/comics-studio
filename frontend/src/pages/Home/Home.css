@@ -1,0 +1,266 @@
+.home-page {
+  font-family: 'Poppins', sans-serif;
+  color: var(--text-color);
+  overflow-x: hidden;
+  background-color: var(--background-color);
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--background-color);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  z-index: 1000;
+  padding: 0.75rem 0;
+  transition: all 0.3s ease;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.navbar-logo img {
+  height: 100px;
+  margin-right: 0.75rem;
+  transform: scale(1.2);
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  gap: 25px;
+}
+
+.navbar-links li {
+  margin-left: 2rem;
+}
+
+.navbar-links a {
+  text-decoration: none;
+  color: #000;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.navbar-links a:hover {
+  color: var(--primary-color);
+}
+
+.nav-login-btn {
+  padding: 0.5rem 1.5rem;
+  border-radius: 6px;
+  background-color: #000;
+  color: white;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.nav-login-btn:hover {
+  background-color: #333;
+  transform: translateY(-2px);
+}
+
+.nav-signup-btn {
+  padding: 0.5rem 1.5rem;
+  border-radius: 6px;
+  background-color: var(--primary-color);
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.nav-signup-btn:hover {
+  background-color: var(--primary-color-hover);
+  transform: translateY(-2px);
+}
+
+.navbar-menu-toggle {
+  position: relative;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 50%;
+  z-index: 1001;
+}
+
+.navbar-menu-toggle:hover {
+  background-color: rgba(112, 99, 241, 0.1);
+}
+
+.navbar-menu-toggle:focus {
+  outline: none;
+}
+
+.navbar-menu-toggle:active {
+  transform: scale(0.95);
+}
+
+@media (max-width: 992px) {
+  .navbar-links {
+    gap: 15px;
+  }
+
+  .navbar-links li {
+    margin-left: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar-menu-toggle {
+    display: flex;
+  }
+
+  .navbar {
+    padding: 0.5rem 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  }
+
+  .navbar-logo img {
+    height: 60px;
+    margin-right: 0;
+    transform: none;
+  }
+
+  .navbar-links {
+    position: fixed;
+    top: 75px;
+    left: 0;
+    flex-direction: column;
+    background-color: white;
+    width: 100%;
+    transform: translateY(-150%);
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    padding: 0;
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    border-top: 1px solid #eee;
+  }
+
+  .navbar-links.active {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .navbar-links li {
+    margin: 0;
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .navbar-links li:last-child {
+    border-bottom: none;
+  }
+
+  .navbar-links a {
+    display: block;
+    padding: 1rem 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+
+  .navbar-links a:hover,
+  .navbar-links a:focus {
+    background-color: rgba(112, 99, 241, 0.05);
+    color: var(--primary-color);
+  }
+
+  .navbar-container {
+    padding: 0 1.2rem;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .navbar-logo {
+    margin-left: 0;
+    order: 1;
+  }
+
+  .navbar-logo img {
+    height: 60px;
+    margin-right: 0;
+    transform: none;
+  }
+
+  .nav-login-btn {
+    order: 3;
+    padding: 0.5rem 1.2rem;
+    font-size: 0.9rem;
+  }
+
+  .navbar-menu-toggle {
+    order: 2;
+    margin-left: 0.5rem;
+  }
+
+  .navbar-container {
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .navbar-logo {
+    margin-left: auto;
+    order: -1;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar-logo img {
+    height: 50px;
+  }
+
+  .navbar-links {
+    top: 70px;
+  }
+
+  .navbar-menu-toggle {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
