@@ -297,7 +297,87 @@ const Home = () => {
           </div>
         </div>
       </section>
+      <section
+        id='features-overview'
+        className='features-overview-section'
+      >
+        <h2 className='features-overview-title'>
+          Everything You Need For Comic Creation
+        </h2>
+        <p className='features-overview-subtitle'>
+          Powerful AI tools to bring your comic ideas to life
+        </p>
 
+        <div className='features-overview-grid'>
+          <div className='feature-overview-card'>
+            <div className='feature-overview-icon'>
+              <Icon icon='mdi:magic-wand' />
+            </div>
+            <h3>Effortless Comic Generation</h3>
+            <p>
+              Generate comics with ease by simply describing the characters,
+              styles and scenes. No drawing skills required!
+            </p>
+          </div>
+
+          <div className='feature-overview-card'>
+            <div className='feature-overview-icon'>
+              <Icon icon='mdi:palette' />
+            </div>
+            <h3>Diverse Comic Styles</h3>
+            <p>
+              Choose from a wide range of comic styles, including American,
+              Japanese, Nihonga, and more, to give your comics a unique look and
+              feel.
+            </p>
+          </div>
+
+          <div className='feature-overview-card'>
+            <div className='feature-overview-icon'>
+              <Icon icon='mdi:view-grid' />
+            </div>
+            <h3>Varied Layout Options</h3>
+            <p>
+              Select from a range of layouts for your generated images, with
+              more options coming soon.
+            </p>
+          </div>
+
+          <div className='feature-overview-card'>
+            <div className='feature-overview-icon'>
+              <Icon icon='mdi:text' />
+            </div>
+            <h3>Captivating Captions</h3>
+            <p>
+              Enhance your comics with captions that add context to each panel.
+              Control the narrative with descriptive text.
+            </p>
+          </div>
+
+          <div className='feature-overview-card'>
+            <div className='feature-overview-icon'>
+              <Icon icon='mdi:refresh' />
+            </div>
+            <h3>Redraw Image</h3>
+            <p>
+              If you&apos;re not satisfied with the initial result, this feature
+              allows you to start over and create a new version from scratch.
+            </p>
+          </div>
+
+          <div className='feature-overview-card'>
+            <div className='feature-overview-icon'>
+              <Icon icon='mdi:pencil' />
+            </div>
+            <h3>Edit Prompt</h3>
+            <p>
+              You can easily modify or refine prompt, allowing you to fine-tune
+              the AI&apos;s response to better match your creative vision.
+            </p>
+          </div>
+        </div>
+      </section>
+  
 
 
 
