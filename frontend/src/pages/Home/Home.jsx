@@ -198,7 +198,68 @@ const Home = () => {
     setIsMenuOpen(!isMenuOpen)
   }
 
-  return <div className='home-page'></div>
+  return (
+    <div className='home-page'>
+      <nav className='navbar'>
+        <div className='navbar-container'>
+          <Link
+            to='/'
+            className='navbar-logo'
+            onClick={() => {
+              window.scrollTo({ top: 0, behavior: 'smooth' })
+            }}
+          >
+            <img
+              src={ComoicStudioMainLogo}
+              alt='Comics Studio Logo'
+            />
+          </Link>
+          <ul className={`navbar-links ${isMenuOpen ? 'active' : ''}`}>
+            <li>
+              <Link
+                to='/'
+                onClick={() => {
+                  window.scrollTo({ top: 0, behavior: 'smooth' })
+                }}
+              >
+                Home
+              </Link>
+            </li>
+            <li>
+              <a href='#features-overview'>About</a>
+            </li>
+            <li>
+              <a href='#gallery'>Explore</a>
+            </li>
+            <li>
+              <a href='#pricing'>Pricing</a>
+            </li>
+          </ul>
+          <Link
+            to='/login'
+            className='nav-login-btn black-btn'
+          >
+            Sign In
+          </Link>
+          <button
+            className='navbar-menu-toggle'
+            onClick={toggleMenu}
+            onKeyDown={(e) => handleKeyPress(e, toggleMenu)}
+            aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={isMenuOpen}
+          >
+            <Icon icon={isMenuOpen ? 'mdi:close' : 'mdi:menu'} />
+          </button>
+        </div>
+      </nav>
+ 
+
+
+
+
+
+    </div>
+  )
 }
 
 export default Home
