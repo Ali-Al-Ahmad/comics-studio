@@ -142,6 +142,62 @@ const Home = () => {
     },
   ]
 
+  const toggleQuestion = (id) => {
+    if (activeQuestion === id) {
+      setActiveQuestion(null)
+    } else {
+      setActiveQuestion(id)
+    }
+  }
+
+  const handleKeyPress = (e, callback) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      callback()
+    }
+  }
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+
+    document.title =
+      'Comics Studio - Create Stunning Comics without Drawing Skills'
+
+    const handleScroll = () => {
+      const heroSection = document.querySelector('.hero-section')
+      if (heroSection) {
+        const heroBottom =
+          heroSection.offsetTop + heroSection.offsetHeight - 200
+        setShowBackToTop(window.scrollY > heroBottom)
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    handleScroll()
+
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault()
+        const targetId = this.getAttribute('href')
+        if (targetId === '#') return
+        const targetElement = document.querySelector(targetId)
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 100,
+            behavior: 'smooth',
+          })
+        }
+      })
+    })
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen)
+  }
+
   return <div className='home-page'></div>
 }
 
