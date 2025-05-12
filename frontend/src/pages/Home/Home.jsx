@@ -577,6 +577,56 @@ const Home = () => {
           ))}
         </div>
       </section>
+      <section
+        id='pricing'
+        className='pricing-section'
+      >
+        <h2 className='pricing-title'>Pricing</h2>
+        <p className='pricing-subtitle'>
+          Choose your bundle size. Pay as you want. Generating one image panel
+          will consume 1 credit. Change or cancel your plan anytime. Start using
+          our service for 100% free.
+        </p>
+
+        <div className='pricing-cards'>
+          {pricingPlans.map((plan) => (
+            <div
+              className={`pricing-card ${plan.popular ? 'popular' : ''}`}
+              key={plan.id}
+            >
+              {plan.popular && <span className='popular-badge'>Popular</span>}
+              <h3 className='plan-name'>{plan.name} plan</h3>
+              <p className='plan-credits'>{plan.credits} Credits</p>
+              <p className='plan-price'>
+                ${plan.price}
+                <span>/month</span>
+              </p>
+              <Link
+                to='/register'
+                className={`btn ${
+                  plan.popular ? 'btn-primary' : 'btn-secondary'
+                }`}
+              >
+                Buy Plan
+              </Link>
+              <div className='plan-features'>
+                {plan.features.map((feature, i) => (
+                  <div
+                    className='plan-feature'
+                    key={`${plan.id}-feature-${i}`}
+                  >
+                    <Icon
+                      icon='mdi:check-circle'
+                      className='feature-icon'
+                    />
+                    <span>{feature}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
 
 
     </div>
