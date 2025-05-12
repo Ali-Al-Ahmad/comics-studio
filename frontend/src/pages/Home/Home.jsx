@@ -627,7 +627,67 @@ const Home = () => {
           ))}
         </div>
       </section>
+      <section
+        id='faq'
+        className='faq-section'
+      >
+        <div className='faq-shape'></div>
+        <h2 className='faq-title'>Frequently Asked Questions</h2>
+        <p className='faq-subtitle'>
+          Everything you need to know about Comics Studio.
+        </p>
 
+        <div className='faq-container'>
+          <div className='faq-grid'>
+            {faqItems.map((item) => (
+              <div
+                className={`faq-item ${
+                  activeQuestion === item.id ? 'active' : ''
+                }`}
+                key={item.id}
+              >
+                <button
+                  className='faq-question'
+                  onClick={() => toggleQuestion(item.id)}
+                  onKeyDown={(e) =>
+                    handleKeyPress(e, () => toggleQuestion(item.id))
+                  }
+                  aria-expanded={activeQuestion === item.id}
+                  aria-controls={`faq-answer-${item.id}`}
+                >
+                  <div className='faq-question-content'>
+                    <Icon
+                      icon='mdi:help-circle-outline'
+                      className='faq-icon'
+                      aria-hidden='true'
+                    />
+                    <span>{item.question}</span>
+                  </div>
+                  <Icon
+                    icon={
+                      activeQuestion === item.id
+                        ? 'mdi:minus-circle-outline'
+                        : 'mdi:plus-circle-outline'
+                    }
+                    className='faq-toggle'
+                    aria-hidden='true'
+                  />
+                </button>
+                <div
+                  className='faq-answer'
+                  id={`faq-answer-${item.id}`}
+                  style={{
+                    maxHeight: activeQuestion === item.id ? '1000px' : '0',
+                    opacity: activeQuestion === item.id ? 1 : 0,
+                  }}
+                >
+                  {item.answer}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
     </div>
   )
