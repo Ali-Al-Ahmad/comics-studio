@@ -434,7 +434,33 @@ const Home = () => {
           </div>
         </div>
       </section>
-
+      <section className='feature-section'>
+        <div className='feature-container'>
+          <div className='feature-text'>
+            <h2 className='section-title'>
+              Create Stunning Single-Panel Comics Instantly
+            </h2>
+            <p className='section-description'>
+              Comics Studio empowers you to design high-quality single-panel
+              comics with ease. Whether for storytelling, branding, or
+              entertainment, create visuals that captivate and communicate your
+              ideas effectively.
+            </p>
+            <Link
+              to='/comics-gallery'
+              className='btn btn-primary'
+            >
+              Learn More About Comics Studio
+            </Link>
+          </div>
+          <div className='feature-image'>
+            <img
+              src='https://imagedelivery.net/X26-mmRvk4CuiCyo9bU9tw/76d58fc1-09d6-4c75-6f83-9f6f84dd0100/public'
+              alt='Single-panel creation'
+            />
+          </div>
+        </div>
+      </section>
 
 
 
