@@ -836,6 +836,128 @@
   line-height: 1.4;
 }
 
+.testimonials-section {
+  padding: 8rem 2rem;
+  text-align: center;
+  background-color: #fafbff;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid #eaeaea;
+}
+
+.testimonials-section .section-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #222;
+  margin-bottom: 1rem;
+}
+
+.testimonials-section .section-subtitle {
+  font-size: 1.1rem;
+  color: #444;
+  margin-bottom: 4rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.testimonials-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.testimonial-card {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: left;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 250px;
+  max-width: none;
+  flex-basis: calc(25% - 1.5rem);
+}
+
+.testimonial-card:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+
+.testimonial-quote {
+  font-size: 3rem;
+  color: var(--primary-color);
+  line-height: 1;
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+
+.testimonial-text {
+  color: #333;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  flex-grow: 1;
+}
+
+.testimonial-user {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.testimonial-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.testimonial-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.testimonial-author {
+  font-weight: 600;
+  color: #222;
+  margin: 0;
+}
+
+.testimonial-handle {
+  color: #666;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .testimonials-section .section-title {
+    font-size: 2rem;
+  }
+
+  .testimonials-section .section-subtitle {
+    font-size: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .testimonial-card {
+    padding: 1.5rem;
+  }
+}
+
+.pricing-section {
+  padding: 8rem 2rem;
+  background: linear-gradient(180deg, #fff 0%, #f9fafb 100%);
+  text-align: center;
+  position: relative;
+}
 
 
 
