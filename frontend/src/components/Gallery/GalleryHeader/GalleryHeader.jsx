@@ -30,5 +30,9 @@ const GalleryHeader = ({ activeFilter, handleFilterClick }) => {
   )
 }
 
+GalleryHeader.propTypes = {
+  activeFilter: PropTypes.string.isRequired,
+  handleFilterClick: PropTypes.func.isRequired,
+}
 
 export default GalleryHeader
