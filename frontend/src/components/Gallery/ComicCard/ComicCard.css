@@ -1,0 +1,90 @@
+.comic-card-component {
+  background-color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px var(--shadow-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border-color);
+  width: 100%;
+  min-width: initial;
+  max-width: 300px;
+}
+
+.comic-card-component:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(112, 99, 241, 0.2);
+  border-color: var(--primary-color);
+}
+
+.comic-image {
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.comic-image img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  object-position: center top;
+}
+
+.comic-details {
+  padding: 0.6rem;
+  flex-grow: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #fff;
+}
+
+.comic-details h3 {
+  font-size: 0.95rem;
+  margin-bottom: 0.2rem;
+  color: var(--text-color);
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.comic-author {
+  font-size: 0.8rem;
+  color: #666;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.comic-author::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background-color: var(--primary-color);
+  border-radius: 50%;
+  margin-right: 6px;
+}
+
+.comic-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 4px;
+  padding-top: 4px;
+  border-top: 1px solid var(--border-color);
+}
+
+.comic-date {
+  font-size: 0.75rem;
+  color: #888;
+}
