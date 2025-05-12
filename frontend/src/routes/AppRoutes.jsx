@@ -7,12 +7,12 @@ import ProtectedRoute from './ProtectedRoute'
 
 import Home from '../pages/Home/Home'
 import Login from '../pages/Login/Login'
-import Register from '../pages/Register/Register'
 import Gallery from '../pages/Gallery/Gallery'
 import Profile from '../pages/Profile/Profile'
 import MyComics from '../pages/MyComics/MyComics'
 import Characters from '../pages/Characters/Characters'
 import CreateComic from '../pages/CreateComic/CreateComic'
+import Register from '../pages/Register/Register'
 
 const AppRoutes = () => {
   return (
