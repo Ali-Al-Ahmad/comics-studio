@@ -23,8 +23,6 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=value
       - MYSQL_DATABASE=value
-      - MYSQL_USER=value
-      - MYSQL_PASSWORD=value
     volumes:
       - db-data:/var/lib/mysql
 

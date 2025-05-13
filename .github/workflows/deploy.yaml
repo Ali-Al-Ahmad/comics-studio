@@ -80,8 +80,7 @@ jobs:
           sed -i "s|REPLICATE_API_TOKEN=.*|REPLICATE_API_TOKEN=${{ secrets.REPLICATE_API_TOKEN }}|g" docker-compose.yaml
           sed -i "s|MYSQL_ROOT_PASSWORD=.*|MYSQL_ROOT_PASSWORD=${{ secrets.DB_PASSWORD }}|g" docker-compose.yaml
           sed -i "s|MYSQL_DATABASE=.*|MYSQL_DATABASE=${{ secrets.DB_NAME }}|g" docker-compose.yaml
-          sed -i "s|MYSQL_USER=.*|MYSQL_USER=${{ secrets.DB_USER }}|g" docker-compose.yaml
-          sed -i "s|MYSQL_PASSWORD=.*|MYSQL_PASSWORD=${{ secrets.DB_PASSWORD }}|g" docker-compose.yaml
+          
 
       - name: debugging file
         run: cat docker-compose.yaml
