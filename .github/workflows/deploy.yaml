@@ -23,6 +23,42 @@ jobs:
         working-directory: backend
         run: docker build -t ${{ secrets.DOCKER_USERNAME }}/backendimage:latest .
 
+      - name: Start MySQL container
+        run: |
+          docker run -d \
+            --name test-mysql \
+            -e MYSQL_ROOT_PASSWORD=root \
+            -e MYSQL_DATABASE=${{ secrets.DB_NAME }} \
+            -e MYSQL_USER=${{ secrets.DB_USER }} \
+            -e MYSQL_PASSWORD=${{ secrets.DB_PASSWORD }} \
+            -p 3306:3306 \
+            mysql:8.0 
+
+      - name: Wait for MySQL to be ready
+        run: |
+          echo "Waiting for MySQL to be ready..."
+          for i in {1..30}; do
+            if docker exec test-mysql mysqladmin ping -h"localhost" --silent; then
+              echo "MySQL is up!"
+              break
+            fi
+            echo "Waiting..."
+            sleep 2
+          done
+      - name: Run tests inside container
+        run: |
+          docker run --rm \
+            --network="host" \
+            -e DB_HOST=127.0.0.1 \
+            -e DB_PORT=3306 \
+            -e DB_USER=${{ secrets.DB_USER }} \
+            -e DB_PASSWORD=${{ secrets.DB_PASSWORD }} \
+            -e DB_NAME=${{ secrets.DB_NAME }} \
+            -e JWT_SECRET=${{ secrets.JWT_SECRET }} \
+            -e NODE_ENV=testing \
+            ${{ secrets.DOCKER_USERNAME }}/backendimage:latest \
+            npm run test
+
       - name: Push Docker image
         run: docker push ${{ secrets.DOCKER_USERNAME }}/backendimage:latest
 
