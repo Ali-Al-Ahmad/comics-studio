@@ -1,6 +1,8 @@
 import dotenv from 'dotenv'
-import { Sequelize } from 'sequelize'
 dotenv.config()
+
+import { Sequelize } from 'sequelize'
+console.log('process in conn:', process.env.PORT)
 
 const { DB_USER, DB_HOST, DB_PASSWORD, DB_NAME, DB_NAME_TEST, NODE_ENV } =
   process.env
@@ -30,7 +32,7 @@ export const initDatabase = async () => {
       console.log('Connection has been established successfully.')
       await sequelize.sync()
       console.log('Database synchronized.')
-      break;
+      break
     } catch (error) {
       attempts++
       if (attempts < maxRetries) {

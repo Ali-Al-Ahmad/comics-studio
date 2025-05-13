@@ -3,9 +3,9 @@ services:
     image: alialahmad/backendimage:latest
     environment:
       - DB_HOST=database
-      - DB_NAME=comics_database
-      - DB_USER=root
-      - DB_PASSWORD=1234
+      - DB_NAME=value
+      - DB_USER=value
+      - DB_PASSWORD=value
       - DB_PORT=3306
     restart: always
     ports:
@@ -15,8 +15,8 @@ services:
   database:
     image: mysql:8.0
     environment:
-      - MYSQL_ROOT_PASSWORD=1234
-      - MYSQL_DATABASE=comics_database
+      - MYSQL_ROOT_PASSWORD=value
+      - MYSQL_DATABASE=value
     volumes:
       - db-data:/var/lib/mysql
 

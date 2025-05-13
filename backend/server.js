@@ -1,5 +1,4 @@
 import express from 'express'
-import dotenv from 'dotenv'
 import cors from 'cors'
 
 //sequelize db connection
@@ -18,8 +17,6 @@ import planRoutes from './routes/PlanRoutes.js'
 import characterRoutes from './routes/CharacterRoutes.js'
 import bookRoutes from './routes/BookRoutes.js'
 import comicRoutes from './routes/ComicRoutes.js'
-
-dotenv.config()
 
 const app = express()
 
@@ -42,9 +39,10 @@ app.use('/api/v1/characters', authenticateToken, characterRoutes)
 app.use('/api/v1/books', authenticateToken, bookRoutes)
 app.use('/api/v1/comics', authenticateToken, comicRoutes)
 
-
 //Start server
-const PORT = process.env.PORT || 4000
+const PORT = process.env.PORT || 5000
+
+console.log('Server running on port:', PORT)
 const startServer = async () => {
   try {
     await initDatabase()
