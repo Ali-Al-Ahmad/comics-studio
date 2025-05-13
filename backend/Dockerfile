@@ -8,8 +8,6 @@ RUN npm i
 
 COPY  . .
 
-COPY .env.example .env
-
 EXPOSE 4000
 
 CMD [ "node","server.js" ]

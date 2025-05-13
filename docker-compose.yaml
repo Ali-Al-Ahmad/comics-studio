@@ -7,6 +7,10 @@ services:
       - DB_USER=value
       - DB_PASSWORD=value
       - DB_PORT=3306
+      - OPENAI_API_KEY=value
+      - REPLICATE_API_TOKEN=value
+      - JWT_SECRET=value
+      - JWT_EXPIRATION=1d
     restart: always
     ports:
       - 4000:4000
@@ -17,6 +21,8 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=value
       - MYSQL_DATABASE=value
+      - MYSQL_USER=value
+      - MYSQL_PASSWORD=value
     volumes:
       - db-data:/var/lib/mysql
 
