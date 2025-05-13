@@ -55,7 +55,6 @@ export default class ComicService extends Service {
 
       return this.return(true, 'Updated comic data', comic)
     } catch (error) {
-      console.log(error)
       return this.return(false, 'Error updating comic', error)
     }
   }
@@ -168,10 +167,7 @@ Respond only with valid JSON in this format.
       const contentString = response.choices[0].message.content
       const content = JSON.parse(contentString)
 
-      console.log(content)
-      console.log('gen', content?.general_prompt)
-      console.log('arr', content?.prompt_array)
-      console.log('cap', content?.captions)
+
 
       const inputImage = await fs.readFile(image_path)
 
@@ -209,7 +205,6 @@ Respond only with valid JSON in this format.
       })
 
     } catch (error) {
-      console.log(error)
       return this.return(false, 'Error generating comic', error)
     }
   }

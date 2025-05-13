@@ -1,7 +1,7 @@
 import request from 'supertest'
 import app from '../../server.js'
 import { faker } from '@faker-js/faker'
-import sequelize from '../../config/Connection.js'
+import sequelize, { initDatabase } from '../../config/Connection.js'
 import { createUser } from '../../database/factories/UserFactory.js'
 import { createPlan } from '../../database/factories/PlanFactory.js'
 
@@ -27,6 +27,7 @@ describe('Plan Controller Tests', () => {
   }
 
   beforeEach(async () => {
+    await initDatabase()
     await truncateAllTables()
     userToken = await createAndLoginUser()
   })
@@ -35,7 +36,7 @@ describe('Plan Controller Tests', () => {
     await sequelize.close()
     if (global.server) global.server.close()
   })
-  
+
   it('should fetch all plans', async () => {
     await createPlan()
 

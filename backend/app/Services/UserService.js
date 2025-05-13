@@ -53,7 +53,6 @@ export default class UserService extends Service {
 
       return this.return(true, 'Updated user Data', user)
     } catch (error) {
-      console.log(error)
       this.return(false, 'Error updating user', error)
     }
   }

@@ -46,7 +46,6 @@ export default class AuthService extends Service {
 
       return this.return(true, 'registered successfully', { user: savedUser,token })
     } catch (error) {
-      console.log(error);
       return this.return(false, 'Error registering', error)
     }
   }
@@ -76,7 +75,6 @@ export default class AuthService extends Service {
 
       return this.return(true, 'Login successfully', { user, token })
     } catch (error) {
-      console.log(error)
       return this.return(false, 'Error login', error)
     }
   }

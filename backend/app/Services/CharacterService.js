@@ -64,7 +64,6 @@ export default class CharacterService extends Service {
 
       return this.return(true, 'Updated Character data', character)
     } catch (error) {
-      console.log(error)
       return this.return(false, 'Error updating Character', error)
     }
   }

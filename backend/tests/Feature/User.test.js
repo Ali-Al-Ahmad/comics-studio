@@ -3,7 +3,7 @@ import app from '../../server.js'
 import { faker } from '@faker-js/faker'
 import { createUser } from '../../database/factories/UserFactory.js'
 import { User } from '../../app/Models/index.js'
-import sequelize from '../../config/Connection.js'
+import sequelize, { initDatabase } from '../../config/Connection.js'
 
 describe('User Controller Tests', () => {
   let userToken
@@ -39,6 +39,7 @@ describe('User Controller Tests', () => {
   }
 
   beforeEach(async () => {
+    await initDatabase()
     await truncateAllTables()
     const auth = await createAndLoginUser()
     userToken = auth.token

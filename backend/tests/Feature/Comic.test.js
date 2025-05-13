@@ -4,7 +4,7 @@ import { faker } from '@faker-js/faker'
 import { createUser } from '../../database/factories/UserFactory.js'
 import { createBook } from '../../database/factories/BookFactory.js'
 import { createComic } from '../../database/factories/ComicFactory.js'
-import sequelize from '../../config/Connection.js'
+import sequelize, { initDatabase } from '../../config/Connection.js'
 
 describe('Comic Controller Tests (User)', () => {
   let userToken
@@ -33,6 +33,7 @@ describe('Comic Controller Tests (User)', () => {
   }
 
   beforeEach(async () => {
+    await initDatabase()
     await truncateAllTables()
     const user = await createAndLoginUser()
     userToken = user.token
