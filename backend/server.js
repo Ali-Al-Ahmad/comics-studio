@@ -40,9 +40,9 @@ app.use('/api/v1/books', authenticateToken, bookRoutes)
 app.use('/api/v1/comics', authenticateToken, comicRoutes)
 
 //Start server
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 4000
 
-console.log('Server running on port:', process.env)
+console.log('Server running on port:', process.env.DB_NAME)
 const startServer = async () => {
   try {
     await initDatabase()
