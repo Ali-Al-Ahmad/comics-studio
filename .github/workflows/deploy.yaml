@@ -27,10 +27,10 @@ jobs:
         run: |
           docker run -d \
             --name test-mysql \
-            -e MYSQL_ROOT_PASSWORD=root \
-            -e MYSQL_DATABASE=test_db \
-            -e MYSQL_USER=test_user \
-            -e MYSQL_PASSWORD=test_pass \
+            -e MYSQL_ROOT_PASSWORD=${{ secrets.DB_PASSWORD }} \
+            -e MYSQL_DATABASE=${{ secrets.DB_NAME }} \
+            -e MYSQL_USER=${{ secrets.DB_USER }} \
+            -e MYSQL_PASSWORD=${{ secrets.DB_PASSWORD }} \
             -p 3306:3306 \
             mysql:8.0
 
