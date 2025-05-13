@@ -7,6 +7,12 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 const createToken = (data, isAdmin) => {
+  console.log(
+    'secret',
+    process.env.JWT_SECRET,
+    'expiration',
+    process.env.JWT_EXPIRATION
+  )
   return jwt.sign({ ...data, isAdmin }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRATION,
   })
