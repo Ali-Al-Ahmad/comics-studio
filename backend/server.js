@@ -42,7 +42,7 @@ app.use('/api/v1/comics', authenticateToken, comicRoutes)
 //Start server
 const PORT = process.env.PORT || 5000
 
-console.log('Server running on port:', process.env.JWT_SECRET)
+console.log('Server running on port:', process.env)
 const startServer = async () => {
   try {
     await initDatabase()
