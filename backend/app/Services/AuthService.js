@@ -4,8 +4,8 @@ import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
 
 const createToken = (data, isAdmin) => {
-  return jwt.sign({ ...data, isAdmin }, process.env.JWT_SECRET, {
-    expiresIn: process.env.JWT_EXPIRATION,
+  return jwt.sign({ ...data, isAdmin }, process.env.JWT_SECRET || 'secret', {
+    expiresIn: process.env.JWT_EXPIRATION || '1h',
   })
 }
 
