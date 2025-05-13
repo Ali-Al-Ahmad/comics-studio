@@ -2,7 +2,7 @@ import request from 'supertest'
 import app from '../../server.js'
 import { faker } from '@faker-js/faker'
 import { createUser } from '../../database/factories/UserFactory.js'
-import sequelize from '../../config/Connection.js'
+import sequelize, { initDatabase } from '../../config/Connection.js'
 import path from 'path'
 import fs from 'fs/promises'
 import { createBook } from '../../database/factories/BookFactory.js'
@@ -33,6 +33,7 @@ describe('Book Controller Tests (User)', () => {
   }
 
   beforeEach(async () => {
+    await initDatabase()
     await truncateAllTables()
     const user = await createAndLoginUser()
     userToken = user.token

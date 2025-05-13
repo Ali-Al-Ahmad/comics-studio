@@ -46,7 +46,6 @@ export default class PlanService extends Service {
 
       return this.return(true, 'Updated plan data', plan)
     } catch (error) {
-      console.log(error)
       return this.return(false, 'Error updating plan', error)
     }
   }

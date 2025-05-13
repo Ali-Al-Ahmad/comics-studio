@@ -60,7 +60,6 @@ export default class BookService extends Service {
 
       return this.return(true, 'Updated book data', book)
     } catch (error) {
-      console.log(error)
       return this.return(false, 'Error updating book', error)
     }
   }
