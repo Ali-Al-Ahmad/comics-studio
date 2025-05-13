@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken'
 import ResponseTrait from '../Traits/ResponseTrait.js'
-import dotenv from 'dotenv'
-dotenv.config()
+
+console.log('process in authMidllewware:', process.env.PORT)
 
 export const authenticateToken = async (req, res, next) => {
   const authHeader = req.headers.authorization

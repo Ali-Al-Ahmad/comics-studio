@@ -2,9 +2,7 @@ import { User, Admin } from '../Models/index.js'
 import Service from './Service.js'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
-
-import dotenv from 'dotenv'
-dotenv.config()
+console.log('process in authServ:', process.env.PORT)
 
 const createToken = (data, isAdmin) => {
   console.log(

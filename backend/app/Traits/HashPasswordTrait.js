@@ -1,6 +1,4 @@
 import bcrypt from 'bcrypt'
-import dotenv from 'dotenv'
-dotenv.config()
 
 class HashPasswordTrait {
   static async hashPassword(pass) {
