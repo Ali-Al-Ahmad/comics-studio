@@ -23,7 +23,7 @@ const sequelize = new Sequelize(
 )
 
 export const initDatabase = async () => {
-  const maxRetries = 5
+  const maxRetries = 10
   let attempts = 0
 
   while (attempts < maxRetries) {
