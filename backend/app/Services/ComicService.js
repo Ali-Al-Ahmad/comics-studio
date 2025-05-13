@@ -4,6 +4,8 @@ import OpenAI from 'openai'
 import Replicate from 'replicate'
 import fs from 'fs/promises'
 import path from 'path'
+import dotenv from 'dotenv'
+dotenv.config()
 
 export default class ComicService extends Service {
   static async all() {
