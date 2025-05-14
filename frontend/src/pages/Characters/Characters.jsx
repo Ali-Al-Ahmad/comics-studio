@@ -1,7 +1,39 @@
+import { useState, useEffect, useMemo } from 'react'
 import './Characters.css'
+import axiosInstance from '../../utils/axiosInstance'
+import Spinner from '../../components/Spinner/Spinner'
+import { useDispatch, useSelector } from 'react-redux'
+import { showToast } from '../../redux/slices/toastSlice'
+
+import CharacterFormModal from '../../components/CharacterFormModal/CharacterFormModal'
+import CharacterCard from '../../components/CharacterCard/CharacterCard'
+import ConfirmDialog from '../../components/ConfirmDialog/ConfirmDialog'
+import charactersData from '../../fakeData/charactersData'
+import { Icon } from '@iconify-icon/react'
 
 const Characters = () => {
-  return <div>Characters</div>
+  const [characters, setCharacters] = useState([])
+  const [filteredCharacters, setFilteredCharacters] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [searchTerm, setSearchTerm] = useState('')
+  const [showCharacterModal, setShowCharacterModal] = useState(false)
+  const [currentCharacter, setCurrentCharacter] = useState(null)
+  const [activeFilter, setActiveFilter] = useState('all')
+  const [favoriteCharacters, setFavoriteCharacters] = useState([])
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false)
+  const [characterToDelete, setCharacterToDelete] = useState(null)
+  const dispatch = useDispatch()
+  const { isCollapsed } = useSelector((state) => state.sidebar)
+  const user = useSelector((state) => state.user)
+  const credits = user?.credits || 0
+
+  return (
+    <div
+      className={`characters-container ${
+        isCollapsed ? 'sidebar-collapsed' : 'sidebar-expanded'
+      }`}
+    ></div>
+  )
 }
 
 export default Characters
