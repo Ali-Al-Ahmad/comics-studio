@@ -1,6 +1,7 @@
 import './GalleryHeader.css'
 import PropTypes from 'prop-types'
 import { useSelector } from 'react-redux'
+import { Icon } from '@iconify-icon/react'
 
 const GalleryHeader = ({ activeFilter, handleFilterClick }) => {
   const user = useSelector((state) => state.user)
@@ -13,13 +14,27 @@ const GalleryHeader = ({ activeFilter, handleFilterClick }) => {
           className={`filter-btn ${activeFilter === 'all' ? 'active' : ''}`}
           onClick={() => handleFilterClick('all')}
         >
-          All Projects
+          {' '}
+          <Icon
+            icon='mdi:view-grid'
+            width='18'
+            height='18'
+            className='filter-btn-icon'
+          />
+          <span className='filter-btn-text'>All Projects</span>
         </button>
         <button
           className={`filter-btn ${activeFilter === 'recent' ? 'active' : ''}`}
           onClick={() => handleFilterClick('recent')}
         >
-          Recently Viewed
+          {' '}
+          <Icon
+            icon='mdi:history'
+            width='18'
+            height='18'
+            className='filter-btn-icon'
+          />
+          <span className='filter-btn-text'>Recently Viewed</span>
         </button>
       </div>
 
