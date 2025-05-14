@@ -136,7 +136,35 @@ const BookFormModal = ({
     }
   }, [isOpen, handleCancel])
 
+  useEffect(() => {
+    if (isOpen && modalContentRef.current) {
+      modalContentRef.current.focus()
+    }
+  }, [isOpen])
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768)
+    }
+
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
+  useEffect(() => {
+    if (isOpen) {
+      const originalOverflow = document.body.style.overflow
+      document.body.style.overflow = 'hidden'
+      document.body.classList.add('modal-open')
+      document.body.classList.add(isMobile ? 'mobile-screen' : 'desktop-screen')
+
+      return () => {
+        document.body.style.overflow = originalOverflow
+        document.body.classList.remove('modal-open')
+        document.body.classList.remove('mobile-screen', 'desktop-screen')
+      }
+    }
+  }, [isOpen, isMobile])
 
 
 
