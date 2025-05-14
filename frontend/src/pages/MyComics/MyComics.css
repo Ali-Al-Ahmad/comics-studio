@@ -1,0 +1,30 @@
+.mycomics-container {
+  padding: 1rem;
+  width: 100%;
+  background-color: white;
+  min-height: 100vh;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.mycomics-header {
+  margin-bottom: 2rem;
+}
+
+.mycomics-search-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+
+
+
+
+
+
+
