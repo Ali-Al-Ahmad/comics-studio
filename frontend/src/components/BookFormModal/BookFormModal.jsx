@@ -40,6 +40,58 @@ const BookFormModal = ({
     onClose()
   }, [onClose])
 
+  const handleFileChange = (e) => {
+    const file = e.target.files[0]
+    if (!file) return
+    if (!file.type.match('image/jpeg') && !file.type.match('image/png')) {
+      dispatch(
+        showToast({
+          message: 'Please select a JPG or PNG image file',
+          type: 'error',
+        })
+      )
+      return
+    }
+
+    if (file.size > 5 * 1024 * 1024) {
+      dispatch(
+        showToast({
+          message: 'File size should not exceed 5MB',
+          type: 'error',
+        })
+      )
+      return
+    }
+
+    setSelectedFile(file)
+    const reader = new FileReader()
+    reader.onloadend = () => {
+      setImagePreviewUrl(reader.result)
+    }
+    reader.readAsDataURL(file)
+  }
+
+  const validateForm = () => {
+    const errors = {}
+
+    if (!comicName.trim()) {
+      errors.name = 'Comic name is required'
+    }
+
+    if (!imagePreviewUrl && !isEditing) {
+      errors.image = 'Comic image is required'
+    }
+
+    setFormErrors(errors)
+    return Object.keys(errors).length === 0
+  }
+
+
+
+
+
+
+
   return (
     <dialog
       className={overlayClassNames}
