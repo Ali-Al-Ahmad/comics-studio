@@ -527,7 +527,14 @@ const Characters = () => {
           )}
         </>
       )}{' '}
-
+      <CharacterFormModal
+        isOpen={showCharacterModal}
+        onClose={handleCloseCharacterModal}
+        onSave={handleSaveCharacter}
+        character={currentCharacter}
+        title={currentCharacter ? 'Edit Character' : 'Create Character'}
+        isSidebarCollapsed={isCollapsed}
+      />{' '}
 
     </div>
   )
