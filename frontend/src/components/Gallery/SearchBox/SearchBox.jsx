@@ -4,10 +4,10 @@ import PropTypes from 'prop-types'
 const SearchBox = ({ searchTerm, handleSearch }) => {
   return (
     <div className='search-container'>
-      <label htmlFor='search'>Search Comics:</label>{' '}
       <input
         type='text'
         id='search'
+        className='search-input'
         placeholder='Search by title or author...'
         value={searchTerm}
         onChange={handleSearch}
