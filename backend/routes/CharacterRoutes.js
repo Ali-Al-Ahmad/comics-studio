@@ -11,6 +11,9 @@ const router = express.Router()
 
 router.get('/', CharacterController.getAllCharacters)
 
+router.get('/usercharacters', CharacterController.getUserCharacters)
+
+
 router.get(
   '/:id',
   CharacterByIdRequest,
