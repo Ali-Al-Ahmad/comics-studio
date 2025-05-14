@@ -119,7 +119,53 @@ const Characters = () => {
       container.classList.add('characters-grid-appear')
     }
   }, [activeFilter])
+  const handleFilterClick = (filter) => {
+    if (filter === activeFilter) return
 
+    const contentContainer =
+      document.querySelector('.characters-grid') ||
+      document.querySelector('.no-characters')
+
+    if (contentContainer) {
+      contentContainer.classList.add('content-transitioning-out')
+
+      contentContainer.style.opacity = '0'
+      contentContainer.style.transform = 'translateY(15px) scale(0.98)'
+      contentContainer.style.filter = 'blur(2px)'
+
+      setTimeout(() => {
+        setActiveFilter(filter)
+
+        requestAnimationFrame(() => {
+          const updatedContainer =
+            document.querySelector('.characters-grid') ||
+            document.querySelector('.no-characters')
+          if (updatedContainer) {
+            updatedContainer.classList.remove('content-transitioning-out')
+            updatedContainer.classList.add('content-transitioning-in')
+
+            updatedContainer.style.opacity = '0'
+            updatedContainer.style.transform = 'translateY(15px) scale(0.98)'
+            updatedContainer.style.filter = 'blur(2px)'
+
+            void updatedContainer.offsetWidth
+
+            requestAnimationFrame(() => {
+              updatedContainer.style.opacity = '1'
+              updatedContainer.style.transform = 'translateY(0) scale(1)'
+              updatedContainer.style.filter = 'blur(0)'
+
+              setTimeout(() => {
+                updatedContainer.classList.remove('content-transitioning-in')
+              }, 400)
+            })
+          }
+        })
+      }, 200)
+    } else {
+      setActiveFilter(filter)
+    }
+  }
 
 
 
