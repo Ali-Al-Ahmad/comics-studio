@@ -31,6 +31,45 @@ const MyComics = () => {
     (state) => state.recentlyViewed
   )
 
+  useEffect(() => {
+    const fetchComics = async () => {
+      try {
+        setLoading(true)
+
+        const response = await axiosInstance.get('/users/userbooks')
+        const comicsData = response.data.data || []
+
+        const finalComics = comicsData.length > 0 ? comicsData : fakeComics
+
+        setComics(finalComics)
+        setFilteredComics(finalComics)
+
+        setLoading(false)
+      } catch (error) {
+        console.error('Error fetching comics:', error)
+
+        setComics(fakeComics)
+        setFilteredComics(fakeComics)
+
+        dispatch(
+          showToast({
+            type: 'warning',
+            message: 'Failed to load comics. Using demo data instead.',
+          })
+        )
+        setLoading(false)
+      }
+    }
+
+    fetchComics()
+  }, [dispatch])
+
+
+
+
+
+
+
   return (
     <div
       className={`mycomics-container ${
