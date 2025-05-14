@@ -256,7 +256,116 @@
   animation: pulse 2s infinite ease-in-out alternate;
 }
 
+@keyframes pulse {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.1); }
+}
 
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.comics-grid-appear {
+  animation: fadeInGrid 0.5s ease-out forwards;
+}
+
+@keyframes fadeInGrid {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .gallery-header-container {
+    grid-template-areas: 'filters credits';
+    grid-template-columns: auto auto;
+    align-items: center;
+  }
+
+  .filter-buttons {
+    width: auto;
+    justify-content: flex-start;
+  }
+
+  .filter-btn {
+    flex: 0 1 auto;
+  }
+  
+  .mycomics-container {
+    padding: 1.5rem 2rem;
+  }
+  
+  .mycomics-search-controls {
+    flex-direction: row;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .filter-btn {
+    padding: 0.6rem;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .filter-btn-text {
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+    max-width: 0;
+  }
+  
+  .filter-btn-icon {
+    margin-right: 0;
+  }
+  
+  .gallery-header-container {
+    grid-template-areas: 'filters credits';
+    grid-template-columns: 1fr auto;
+    align-items: center;
+  }
+  
+  .filter-buttons {
+    justify-content: flex-start;
+    gap: 0.5rem;
+    flex-direction: row !important;
+    flex-wrap: nowrap;
+  }
+  
+  .credits-display {
+    justify-self: flex-end;
+  }
+  
+  .create-comic-btn {
+    padding: 0.7rem;
+    width: 44px;
+  }
+  
+  .create-text {
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+    max-width: 0;
+  }
+  
+  .create-icon {
+    margin-right: 0;
+  }
+}
 
 
 
