@@ -193,3 +193,36 @@
   transform: rotate(45deg);
 }
 
+@media (max-width: 768px) {
+  .character-card-name {
+    font-size: 1rem;
+  }
+
+  .character-card-favorite-btn,
+  .character-card-action-btn {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  .character-card-favorite-btn,
+  .character-card-action-btn {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .character-card {
+    height: 300px;
+    max-width: 220px;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .character-card {
+    height: 320px;
+    max-width: 270px;
+  }
+}
