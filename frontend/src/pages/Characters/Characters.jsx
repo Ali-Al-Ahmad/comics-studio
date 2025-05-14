@@ -218,6 +218,62 @@ const Characters = () => {
           }
         )
 
+        const updatedCharacter = response.data.data || {
+          ...currentCharacter,
+          name: characterData.name,
+          description: characterData.description,
+          image_url: characterData.image_url,
+          updated_at: new Date().toISOString(),
+        }
+
+        setCharacters((prev) =>
+          prev.map((char) =>
+            char.id === currentCharacter.id ? updatedCharacter : char
+          )
+        )
+
+        dispatch(
+          showToast({
+            message: 'Character updated successfully!',
+            type: 'success',
+          })
+        )
+      } else {
+        const response = await axiosInstance.post('/characters', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        })
+
+        const newCharacter = response.data.data
+
+        if (newCharacter) {
+          setCharacters((prev) => [newCharacter, ...prev])
+
+          dispatch(
+            showToast({
+              message: 'Character created successfully!',
+              type: 'success',
+            })
+          )
+        } else {
+          throw new Error('Failed to create character, API returned no data')
+        }
+      }
+
+      setShowCharacterModal(false)
+    } catch (error) {
+      console.error('Failed to process character:', error)
+      dispatch(
+        showToast({
+          message: `Failed to ${
+            currentCharacter ? 'update' : 'create'
+          } character. Please try again.`,
+          type: 'error',
+        })
+      )
+    }
+  }
 
 
 
