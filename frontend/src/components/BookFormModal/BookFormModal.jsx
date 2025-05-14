@@ -86,7 +86,55 @@ const BookFormModal = ({
     return Object.keys(errors).length === 0
   }
 
+  const handleSubmit = async (e) => {
+    e.preventDefault()
 
+    if (!validateForm()) {
+      return
+    }
+
+    setIsUploading(true)
+
+    try {
+      const comicData = {
+        title: comicName.trim(),
+        image: selectedFile,
+      }
+
+      await onSave(comicData)
+      handleCancel()
+    } catch (error) {
+      console.error('Error saving comic:', error)
+      dispatch(
+        showToast({
+          message: `Failed to ${
+            isEditing ? 'update' : 'create'
+          } comic. Please try again.`,
+          type: 'error',
+        })
+      )
+    } finally {
+      setIsUploading(false)
+    }
+  }
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        isOpen &&
+        modalContentRef.current &&
+        !modalContentRef.current.contains(event.target)
+      ) {
+        handleCancel()
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [isOpen, handleCancel])
 
 
 
