@@ -40,8 +40,75 @@ const CharacterCard = ({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onClick={() => onEdit(character)}
-    ></div>
+    >
+      <div className='character-card-image-container'>
+        {' '}
+        <img
+          src={character.image_url}
+          alt={character.name}
+          className='character-card-image'
+          onError={(e) => {
+            e.target.onerror = null
+            e.target.src = `https://placehold.co/300x400/3498db/FFFFFF?text=${encodeURIComponent(
+              character.name
+            )}`
+          }}
+        />
+        <div className='character-card-overlay-bottom'>
+          <h3 className='character-card-name'>{character.name}</h3>
+        </div>
+        {isHovered && (
+          <>
+            {' '}
+            <button
+              className='character-card-favorite-btn'
+              onClick={handleFavorite}
+              aria-label={
+                isFavorite ? 'Remove from favorites' : 'Add to favorites'
+              }
+            >
+              {' '}
+              <Icon
+                icon={isFavorite ? 'mdi:star' : 'mdi:star-outline'}
+                width='24'
+                height='24'
+                className={
+                  isFavorite ? 'favorite-icon active' : 'favorite-icon'
+                }
+              />
+            </button>
+            <div className='character-card-actions'>
+              <button
+                className='character-card-action-btn edit-btn'
+                onClick={handleEdit}
+                aria-label='Edit'
+              >
+                <Icon
+                  icon='mdi:pencil'
+                  width='20'
+                  height='20'
+                />
+              </button>
+
+              <button
+                className='character-card-action-btn delete-btn'
+                onClick={handleDelete}
+                aria-label='Delete'
+              >
+                <Icon
+                  icon='mdi:delete'
+                  width='20'
+                  height='20'
+                />
+              </button>
+            </div>
+          </>
+        )}
+      </div>
+    </div>
   )
 }
+
+
 
 export default CharacterCard
