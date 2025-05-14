@@ -1,0 +1,47 @@
+.confirm-dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease;
+  transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (min-width: 769px) {
+  .confirm-dialog-overlay.sidebar-collapsed {
+    left: var(--sidebar-collapsed-width-desktop);
+  }
+
+  .confirm-dialog-overlay.sidebar-expanded {
+    left: var(--sidebar-width-desktop);
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .confirm-dialog-overlay.sidebar-collapsed {
+    left: var(--sidebar-collapsed-width-tablet);
+  }
+
+  .confirm-dialog-overlay.sidebar-expanded {
+    left: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .confirm-dialog-overlay.sidebar-collapsed {
+    left: var(--sidebar-collapsed-width-mobile);
+  }
+
+  .confirm-dialog-overlay.sidebar-expanded {
+    left: 0;
+  }
+}
+
+
+
