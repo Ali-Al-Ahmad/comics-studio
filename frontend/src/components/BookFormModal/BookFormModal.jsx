@@ -429,6 +429,13 @@ const BookFormModal = ({
   )
 }
 
-
+BookFormModal.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  onSave: PropTypes.func.isRequired,
+  comic: PropTypes.object,
+  title: PropTypes.string,
+  isSidebarCollapsed: PropTypes.bool,
+}
 
 export default BookFormModal
