@@ -122,6 +122,15 @@ const ConfirmDialog = ({
   )
 }
 
-
+ConfirmDialog.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  onConfirm: PropTypes.func.isRequired,
+  title: PropTypes.string,
+  message: PropTypes.string,
+  confirmText: PropTypes.string,
+  cancelText: PropTypes.string,
+  type: PropTypes.oneOf(['danger', 'warning', 'info']),
+}
 
 export default ConfirmDialog
