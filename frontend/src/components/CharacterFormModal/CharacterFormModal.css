@@ -424,6 +424,30 @@
   box-shadow: none;
 }
 
+.character-modal-body {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 4px;
+  height: calc(100% - 120px);
+  display: flex;
+  flex-direction: column;
+  min-height: 340px;
+}
 
+.character-info-tab {
+  animation: fadeInTab 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.character-image-tab {
+  animation: fadeInTab 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;
+  margin-bottom: 0;
+}
 
 
