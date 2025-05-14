@@ -142,7 +142,82 @@ const MyComics = () => {
     setCurrentComic(null)
   }
 
+  const handleSaveComic = async (comicData) => {
+    try {
+      const formData = new FormData()
 
+      Object.keys(comicData).forEach((key) => {
+        if (key === 'image' && comicData[key]) {
+          formData.append('image_url', comicData[key])
+        } else if (comicData[key] !== null && comicData[key] !== undefined) {
+          formData.append(key, comicData[key])
+        }
+      })
+
+      let response
+
+      if (currentComic) {
+        response = await axiosInstance.put(
+          `/books/${currentComic.id}`,
+          formData,
+          {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+          }
+        )
+
+        setComics((prevComics) =>
+          prevComics.map((c) =>
+            c.id === currentComic.id ? response.data.data : c
+          )
+        )
+
+        dispatch(
+          showToast({
+            message: 'Comic updated successfully!',
+            type: 'success',
+          })
+        )
+      } else {
+        response = await axiosInstance.post('/books', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        })
+
+        setComics((prevComics) => [response.data.data, ...prevComics])
+
+        dispatch(
+          showToast({
+            message: 'Comic created successfully!',
+            type: 'success',
+          })
+        )
+      }
+
+      handleCloseComicModal()
+    } catch (error) {
+      console.error('Failed to save comic:', error)
+
+      dispatch(
+        showToast({
+          message: 'Failed to save comic. Please try again.',
+          type: 'error',
+        })
+      )
+    }
+  }
+
+  const handleDeleteClick = (comic) => {
+    setComicToDelete(comic)
+    setShowDeleteConfirm(true)
+  }
+
+  const handleCancelDelete = () => {
+    setShowDeleteConfirm(false)
+    setComicToDelete(null)
+  }
 
 
 
