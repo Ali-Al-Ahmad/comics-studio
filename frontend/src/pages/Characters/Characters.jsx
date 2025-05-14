@@ -75,7 +75,50 @@ const Characters = () => {
 
     fetchCharacters()
   }, [dispatch])
+  const memoizedFilteredCharacters = useMemo(() => {
+    let results = [...characters]
 
+    if (searchTerm) {
+      const searchTermLower = searchTerm.toLowerCase()
+
+      results = results.filter((character) => {
+        if (!character || !character.name) return false
+
+        const nameMatch = character.name.toLowerCase().includes(searchTermLower)
+        const descriptionMatch = character.description
+          ? character.description.toLowerCase().includes(searchTermLower)
+          : false
+
+        return nameMatch || descriptionMatch
+      })
+    }
+
+    if (activeFilter === 'favorites') {
+      results = results.filter(
+        (character) =>
+          character.is_favorite || favoriteCharacters.includes(character.id)
+      )
+    }
+
+    return results
+  }, [characters, searchTerm, activeFilter, favoriteCharacters])
+
+  useEffect(() => {
+    setFilteredCharacters(memoizedFilteredCharacters)
+  }, [memoizedFilteredCharacters])
+  useEffect(() => {
+    const container =
+      document.querySelector('.characters-grid') ||
+      document.querySelector('.no-characters')
+
+    if (container) {
+      container.classList.remove('characters-grid-appear')
+
+      void container.offsetWidth
+
+      container.classList.add('characters-grid-appear')
+    }
+  }, [activeFilter])
 
 
 
