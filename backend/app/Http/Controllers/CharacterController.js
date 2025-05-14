@@ -96,6 +96,25 @@ class CharacterController extends Controller {
       )
     }
   }
+
+  static async getUserCharacters(req, res) {
+    try {
+      const result = await CharacterService.userCharacters(req)
+      return CharacterController.returnResponse(
+        res,
+        result.success,
+        result.message,
+        result.data
+      )
+    } catch (error) {
+      return CharacterController.returnResponse(
+        res,
+        false,
+        'Error in All user Characters Controller',
+        error
+      )
+    }
+  }
 }
 
 export default CharacterController
