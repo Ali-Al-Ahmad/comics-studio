@@ -274,7 +274,53 @@ const Characters = () => {
       )
     }
   }
+  const confirmDeleteCharacter = (character) => {
+    setCharacterToDelete(character)
+    setShowDeleteConfirm(true)
+  }
+  const handleDeleteCharacter = async () => {
+    if (!characterToDelete) return
 
+    setShowDeleteConfirm(false)
+
+    try {
+      const characterId = characterToDelete.id
+
+      await axiosInstance.delete(`/characters/${characterId}`)
+
+      setCharacters((prev) =>
+        prev.filter((character) => character.id !== characterId)
+      )
+
+      if (favoriteCharacters.includes(characterId)) {
+        const updatedFavorites = favoriteCharacters.filter(
+          (id) => id !== characterId
+        )
+        setFavoriteCharacters(updatedFavorites)
+        localStorage.setItem(
+          'favoriteCharacters',
+          JSON.stringify(updatedFavorites)
+        )
+      }
+
+      dispatch(
+        showToast({
+          message: 'Character deleted successfully!',
+          type: 'success',
+        })
+      )
+
+      setCharacterToDelete(null)
+    } catch (error) {
+      console.error('Failed to delete character:', error)
+      dispatch(
+        showToast({
+          message: 'Failed to delete character from API. Please try again.',
+          type: 'error',
+        })
+      )
+    }
+  }
 
 
   return (
