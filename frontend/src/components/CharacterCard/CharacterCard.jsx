@@ -109,6 +109,17 @@ const CharacterCard = ({
   )
 }
 
-
+CharacterCard.propTypes = {
+  character: PropTypes.shape({
+    id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+    name: PropTypes.string.isRequired,
+    description: PropTypes.string,
+    image_url: PropTypes.string.isRequired,
+  }).isRequired,
+  onEdit: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
+  onFavorite: PropTypes.func.isRequired,
+  isFavorite: PropTypes.bool,
+}
 
 export default CharacterCard
