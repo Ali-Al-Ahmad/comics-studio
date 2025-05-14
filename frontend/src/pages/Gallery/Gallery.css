@@ -9,6 +9,17 @@
 
 .gallery-header {
   margin-bottom: 2rem;
+  
+}
+
+.gallery-search-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .gallery-comics-grid {
@@ -18,7 +29,8 @@
   width: 100%;
   max-width: max(100%, 1400px);
   transition: max-width 0.3s ease;
-  justify-items: center ;
+  justify-items: center;
+  animation: fade-in 0.4s ease-out;
 }
 
 .comics-loading {
@@ -48,11 +60,28 @@
   margin-bottom: 1rem;
 }
 
+@media screen and (max-width: 479px) {
+  .gallery-container {
+    padding: 0.75rem;
+  }
+  
+  .gallery-search-controls {
+    gap: 0.75rem;
+  }
+  
+  .gallery-comics-grid {
+    gap: 30px;
+  }
+
+  .gallery-header{
+    padding: 0 0.5rem;
+  }
+}
+
 @media screen and (min-width: 576px) {
   .gallery-container {
     padding: 1.2rem;
   }
-  
 }
 
 @media screen and (min-width: 768px) {
@@ -60,4 +89,7 @@
     padding: 1.5rem 2rem;
   }
   
+  .gallery-search-controls {
+    flex-direction: row;
+  }
 }

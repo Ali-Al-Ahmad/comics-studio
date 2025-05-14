@@ -67,4 +67,18 @@ export default class CharacterService extends Service {
       return this.return(false, 'Error updating Character', error)
     }
   }
+
+  static async userCharacters(req) {
+    try {
+      const all_characters = await Character.findAll({
+        order: [['id', 'DESC']],
+        where: {
+          user_id: req.user.id,
+        },
+      })
+      return this.return(true, 'All user characters', all_characters)
+    } catch (error) {
+      return this.return(false, 'Error getting all user characters', error)
+    }
+  }
 }
