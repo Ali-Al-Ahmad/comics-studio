@@ -64,7 +64,45 @@ const MyComics = () => {
     fetchComics()
   }, [dispatch])
 
+  const memoizedFilteredComics = useMemo(() => {
+    let results = [...comics]
 
+    if (searchTerm) {
+      const searchTermLower = searchTerm.toLowerCase().trim()
+
+      results = results.filter((comic) => {
+        const titleMatch = comic.title
+          ? comic.title.toLowerCase().includes(searchTermLower)
+          : false
+
+        const descriptionMatch = comic.description
+          ? comic.description.toLowerCase().includes(searchTermLower)
+          : false
+
+        return titleMatch || descriptionMatch
+      })
+    }
+
+    if (activeFilter === 'recent') {
+      if (recentlyViewedIds && recentlyViewedIds.length > 0) {
+        results = results.filter((comic) => {
+          const comicId = Number(comic.id)
+          return recentlyViewedIds.includes(comicId)
+        })
+
+        results.sort((a, b) => {
+          return (
+            recentlyViewedIds.indexOf(Number(a.id)) -
+            recentlyViewedIds.indexOf(Number(b.id))
+          )
+        })
+      } else {
+        results = []
+      }
+    }
+
+    return results
+  }, [comics, searchTerm, activeFilter, recentlyViewedIds])
 
 
 
