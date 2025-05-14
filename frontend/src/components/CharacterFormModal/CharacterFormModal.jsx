@@ -17,7 +17,7 @@ const CharacterFormModal = ({
   const [characterName, setCharacterName] = useState('')
   const [characterDescription, setCharacterDescription] = useState('')
 
-  const [selectedFile, setSelectedFile] = useState(null)
+  const [selectedFile, setSelectedFile] = useState(null) 
   const [imagePreviewUrl, setImagePreviewUrl] = useState('')
   const [isUploading, setIsUploading] = useState(false)
   const [activeTab, setActiveTab] = useState('info')
@@ -222,8 +222,249 @@ const CharacterFormModal = ({
       role='dialog'
       aria-modal='true'
       aria-labelledby='character-modal-title'
-    ></dialog>
+    >
+      <div
+        className='character-modal-content'
+        ref={modalContentRef}
+        tabIndex='-1'
+        role='dialog'
+        onKeyDown={(e) => {
+          if (e.key === 'Escape') handleCancel()
+        }}
+      >
+        <div className='character-modal-header'>
+          <h2 id='character-modal-title'>
+            {isEditing ? `Edit ${characterName}` : title}
+          </h2>
+          <button
+            type='button'
+            className='character-modal-close'
+            onClick={handleCancel}
+            aria-label='Close modal'
+          >
+            <Icon
+              icon='mdi:close'
+              width='24'
+              height='24'
+              aria-hidden='true'
+            />
+          </button>
+        </div>
+        <div className='character-modal-tabs'>
+          <button
+            className={`character-tab ${activeTab === 'info' ? 'active' : ''}`}
+            onClick={() => handleTabChange('info')}
+          >
+            <Icon
+              icon='mdi:account-details'
+              className='tab-icon'
+              aria-hidden='true'
+            />
+            Character Info
+          </button>
+          <button
+            className={`character-tab ${activeTab === 'image' ? 'active' : ''}`}
+            onClick={() => handleTabChange('image')}
+          >
+            <Icon
+              icon='mdi:image-outline'
+              className='tab-icon'
+              aria-hidden='true'
+            />
+            Character Image
+          </button>{' '}
+        </div>
+        <div className='character-modal-body'>
+          <form
+            className='character-form-container'
+            onSubmit={handleSubmit}
+          >
+            {activeTab === 'info' && (
+              <div className='character-info-tab'>
+                <div className='character-form-group'>
+                  <label htmlFor='character-name'>Character Name</label>
+                  <input
+                    id='character-name'
+                    type='text'
+                    value={characterName}
+                    onChange={(e) => setCharacterName(e.target.value)}
+                    placeholder='Enter a name for your character'
+                    className={formErrors.name ? 'input-error' : ''}
+                  />
+                  {formErrors.name && (
+                    <div className='error-message'>{formErrors.name}</div>
+                  )}
+                </div>
+
+                <div className='character-form-group'>
+                  <label htmlFor='character-description'>
+                    Character Description
+                  </label>
+                  <textarea
+                    id='character-description'
+                    value={characterDescription}
+                    onChange={(e) => setCharacterDescription(e.target.value)}
+                    placeholder="Describe your character's personality, abilities, and backstory"
+                    rows={6}
+                    className={formErrors.description ? 'input-error' : ''}
+                  />
+                  {formErrors.description && (
+                    <div className='error-message'>
+                      {formErrors.description}
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+
+            {activeTab === 'image' && (
+              <div className='character-image-tab'>
+                <div className='image-upload-container'>
+                  {imagePreviewUrl ? (
+                    <div className='image-preview-container'>
+                      <img
+                        src={imagePreviewUrl}
+                        alt='Character Preview'
+                        className='character-image-preview'
+                      />
+                      <button
+                        type='button'
+                        className='change-image-btn'
+                        onClick={() =>
+                          document
+                            .getElementById('character-image-upload')
+                            .click()
+                        }
+                      >
+                        <Icon
+                          icon='mdi:camera-flip-outline'
+                          width='18'
+                          height='18'
+                        />
+                        Change Image
+                      </button>
+                    </div>
+                  ) : (
+                    <div className='image-upload-placeholder'>
+                      <Icon
+                        icon='mdi:cloud-upload-outline'
+                        className='upload-icon'
+                        width='48'
+                        height='48'
+                      />
+                      <p>Drag and drop or click to select an image</p>
+                      <button
+                        type='button'
+                        className='browse-image-btn'
+                        onClick={() =>
+                          document
+                            .getElementById('character-image-upload')
+                            .click()
+                        }
+                      >
+                        <Icon
+                          icon='mdi:file-image-outline'
+                          width='18'
+                          height='18'
+                        />
+                        Select Image
+                      </button>
+                      {formErrors.image && (
+                        <div className='error-message'>{formErrors.image}</div>
+                      )}
+                    </div>
+                  )}
+                  <input
+                    type='file'
+                    id='character-image-upload'
+                    accept='image/jpeg,image/png'
+                    onChange={handleFileChange}
+                    className='hidden-file-input'
+                  />
+                </div>
+              </div>
+            )}
+
+            <div className='character-modal-actions'>
+              {activeTab === 'info' ? (
+                <div className='button-group'>
+                  <button
+                    type='button'
+                    className='secondary-btn'
+                    onClick={handleCancel}
+                  >
+                    <Icon
+                      icon='mdi:close'
+                      width='18'
+                      height='18'
+                    />
+                    Cancel
+                  </button>
+                  <button
+                    type='button'
+                    className='primary-btn'
+                    onClick={() => handleTabChange('image')}
+                  >
+                    Next
+                    <Icon
+                      icon='mdi:arrow-right'
+                      width='18'
+                      height='18'
+                    />
+                  </button>
+                </div>
+              ) : (
+                <div className='button-group'>
+                  <button
+                    type='button'
+                    className='secondary-btn'
+                    onClick={() => handleTabChange('info')}
+                  >
+                    <Icon
+                      icon='mdi:arrow-left'
+                      width='18'
+                      height='18'
+                    />
+                    Back
+                  </button>
+                  <button
+                    type='button'
+                    className='submit-btn'
+                    onClick={handleSubmit}
+                    disabled={
+                      isUploading ||
+                      !characterName.trim() ||
+                      !characterDescription.trim() ||
+                      !imagePreviewUrl
+                    }
+                  >
+                    {isUploading ? (
+                      <>
+                        <Spinner size='small' />
+                        {isEditing ? 'Updating...' : 'Creating...'}
+                      </>
+                    ) : (
+                      <>
+                        <Icon
+                          icon={
+                            isEditing ? 'mdi:content-save' : 'mdi:plus-circle'
+                          }
+                          width='18'
+                          height='18'
+                        />
+                        {isEditing ? 'Update Character' : 'Create Character'}
+                      </>
+                    )}
+                  </button>
+                </div>
+              )}
+            </div>
+          </form>
+        </div>
+      </div>
+    </dialog>
   )
 }
+
 
 export default CharacterFormModal
