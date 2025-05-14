@@ -321,7 +321,63 @@ const Characters = () => {
       )
     }
   }
+  const toggleFavorite = async (characterId) => {
+    try {
+      const characterToUpdate = characters.find(
+        (char) => char.id === characterId
+      )
+      if (!characterToUpdate) return
 
+      const newFavoriteStatus = !favoriteCharacters.includes(characterId)
+
+      const formData = new FormData()
+      formData.append('is_favorite', newFavoriteStatus)
+
+      await axiosInstance.put(`/characters/${characterId}`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
+
+      let updatedFavorites
+      if (favoriteCharacters.includes(characterId)) {
+        updatedFavorites = favoriteCharacters.filter((id) => id !== characterId)
+      } else {
+        updatedFavorites = [...favoriteCharacters, characterId]
+      }
+
+      setFavoriteCharacters(updatedFavorites)
+      localStorage.setItem(
+        'favoriteCharacters',
+        JSON.stringify(updatedFavorites)
+      )
+
+      setCharacters((prev) =>
+        prev.map((char) =>
+          char.id === characterId
+            ? { ...char, is_favorite: newFavoriteStatus }
+            : char
+        )
+      )
+
+      dispatch(
+        showToast({
+          message: newFavoriteStatus
+            ? 'Character added to favorites!'
+            : 'Character removed from favorites!',
+          type: 'success',
+        })
+      )
+    } catch (error) {
+      console.error('Failed to update favorite status:', error)
+      dispatch(
+        showToast({
+          message: 'Failed to update favorite status. Please try again.',
+          type: 'error',
+        })
+      )
+    }
+  }
 
   return (
     <div
