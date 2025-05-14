@@ -185,7 +185,38 @@ const Characters = () => {
     setCurrentCharacter(character)
     setShowCharacterModal(true)
   }
+  const handleSaveCharacter = async (characterData) => {
+    try {
+      const isEditing = !!currentCharacter
 
+      const formData = new FormData()
+      formData.append('name', characterData.name)
+      formData.append('description', characterData.description)
+
+      if (
+        characterData.image_url &&
+        characterData.image_url.startsWith('data:')
+      ) {
+        const response = await fetch(characterData.image_url)
+        const blob = await response.blob()
+        const file = new File([blob], 'character-image.jpg', {
+          type: 'image/jpeg',
+        })
+        formData.append('image_url', file)
+      } else if (characterData.image_file) {
+        formData.append('image_url', characterData.image_file)
+      }
+
+      if (isEditing) {
+        const response = await axiosInstance.put(
+          `/characters/${currentCharacter.id}`,
+          formData,
+          {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+          }
+        )
 
 
 
