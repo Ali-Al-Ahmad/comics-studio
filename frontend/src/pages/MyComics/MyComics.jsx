@@ -388,7 +388,18 @@ const MyComics = () => {
           title={currentComic ? 'Edit Comic' : 'Create Comic'}
         />
       )}{' '}
-
+      {showDeleteConfirm && comicToDelete && (
+        <ConfirmDialog
+          isOpen={showDeleteConfirm}
+          onClose={handleCancelDelete}
+          onConfirm={handleConfirmDelete}
+          title='Delete Comic'
+          message={`Are you sure you want to delete "${comicToDelete.title}"? This action cannot be undone.`}
+          confirmText='Delete'
+          cancelText='Cancel'
+          type='danger'
+        />
+      )}
     </div>
   )
 }
