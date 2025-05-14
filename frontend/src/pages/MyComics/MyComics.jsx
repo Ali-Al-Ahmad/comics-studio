@@ -378,7 +378,16 @@ const MyComics = () => {
           )}
         </>
       )}{' '}
-
+      {showComicModal && (
+        <BookFormModal
+          isOpen={showComicModal}
+          comic={currentComic}
+          onSave={handleSaveComic}
+          onClose={handleCloseComicModal}
+          isSidebarCollapsed={isCollapsed}
+          title={currentComic ? 'Edit Comic' : 'Create Comic'}
+        />
+      )}{' '}
 
     </div>
   )
