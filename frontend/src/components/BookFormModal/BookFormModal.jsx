@@ -212,8 +212,223 @@ const BookFormModal = ({
       role='dialog'
       aria-modal='true'
       aria-labelledby='comic-modal-title'
-    ></dialog>
+    >
+      <div
+        className='character-modal-content'
+        ref={modalContentRef}
+        tabIndex='-1'
+        role='dialog'
+        onKeyDown={(e) => {
+          if (e.key === 'Escape') handleCancel()
+        }}
+      >
+        <div className='character-modal-header'>
+          <h2 id='comic-modal-title'>
+            {isEditing ? `Edit ${comicName}` : title}
+          </h2>
+          <button
+            type='button'
+            className='character-modal-close'
+            onClick={handleCancel}
+            aria-label='Close modal'
+          >
+            <Icon
+              icon='mdi:close'
+              width='24'
+              height='24'
+              aria-hidden='true'
+            />
+          </button>
+        </div>
+        <div className='character-modal-tabs'>
+          <button
+            className={`character-tab ${activeTab === 'info' ? 'active' : ''}`}
+            onClick={() => handleTabChange('info')}
+          >
+            <Icon
+              icon='mdi:information-outline'
+              className='tab-icon'
+              aria-hidden='true'
+            />
+            Comic Info
+          </button>
+          <button
+            className={`character-tab ${activeTab === 'image' ? 'active' : ''}`}
+            onClick={() => handleTabChange('image')}
+          >
+            <Icon
+              icon='mdi:image-outline'
+              className='tab-icon'
+              aria-hidden='true'
+            />
+            Comic Image
+          </button>
+        </div>
+        <div className='character-modal-body'>
+          <form
+            className='character-form-container'
+            onSubmit={handleSubmit}
+          >
+            {activeTab === 'info' && (
+              <div className='character-info-tab'>
+                <div className='character-form-group'>
+                  <label htmlFor='comic-name'>Comic Name</label>
+                  <input
+                    id='comic-name'
+                    type='text'
+                    value={comicName}
+                    onChange={(e) => setComicName(e.target.value)}
+                    placeholder='Enter a name for your comic'
+                    className={formErrors.name ? 'input-error' : ''}
+                  />
+                  {formErrors.name && (
+                    <div className='error-message'>{formErrors.name}</div>
+                  )}
+                </div>
+              </div>
+            )}
+
+            {activeTab === 'image' && (
+              <div className='character-image-tab'>
+                <div className='image-upload-container'>
+                  {imagePreviewUrl ? (
+                    <div className='image-preview-container'>
+                      <img
+                        src={imagePreviewUrl}
+                        alt='Comic Preview'
+                        className='character-image-preview'
+                      />
+                      <button
+                        type='button'
+                        className='change-image-btn'
+                        onClick={() =>
+                          document.getElementById('comic-image-upload').click()
+                        }
+                      >
+                        <Icon
+                          icon='mdi:camera-flip-outline'
+                          width='18'
+                          height='18'
+                        />
+                        Change Image
+                      </button>
+                    </div>
+                  ) : (
+                    <div className='image-upload-placeholder'>
+                      <Icon
+                        icon='mdi:cloud-upload-outline'
+                        className='upload-icon'
+                        width='48'
+                        height='48'
+                      />
+                      <p>Drag and drop or click to select an image</p>
+                      <button
+                        type='button'
+                        className='browse-image-btn'
+                        onClick={() =>
+                          document.getElementById('comic-image-upload').click()
+                        }
+                      >
+                        <Icon
+                          icon='mdi:file-image-outline'
+                          width='18'
+                          height='18'
+                        />
+                        Select Image
+                      </button>
+                      {formErrors.image && (
+                        <div className='error-message'>{formErrors.image}</div>
+                      )}
+                    </div>
+                  )}
+                  <input
+                    type='file'
+                    id='comic-image-upload'
+                    accept='image/jpeg,image/png'
+                    onChange={handleFileChange}
+                    className='hidden-file-input'
+                  />
+                </div>
+              </div>
+            )}
+
+            <div className='character-modal-actions'>
+              {activeTab === 'info' ? (
+                <div className='button-group'>
+                  <button
+                    type='button'
+                    className='secondary-btn'
+                    onClick={handleCancel}
+                  >
+                    <Icon
+                      icon='mdi:close'
+                      width='18'
+                      height='18'
+                    />
+                    Cancel
+                  </button>
+                  <button
+                    type='button'
+                    className='primary-btn'
+                    onClick={() => handleTabChange('image')}
+                  >
+                    <Icon
+                      icon='mdi:content-save'
+                      width='18'
+                      height='18'
+                    />
+                    Save
+                  </button>
+                </div>
+              ) : (
+                <div className='button-group'>
+                  <button
+                    type='button'
+                    className='secondary-btn'
+                    onClick={() => handleTabChange('info')}
+                  >
+                    <Icon
+                      icon='mdi:arrow-left'
+                      width='18'
+                      height='18'
+                    />
+                    Back
+                  </button>
+                  <button
+                    type='submit'
+                    className='submit-btn'
+                    disabled={
+                      isUploading || !comicName.trim() || !imagePreviewUrl
+                    }
+                  >
+                    {isUploading ? (
+                      <>
+                        <Spinner size='small' />
+                        {isEditing ? 'Updating...' : 'Creating...'}
+                      </>
+                    ) : (
+                      <>
+                        <Icon
+                          icon={
+                            isEditing ? 'mdi:content-save' : 'mdi:plus-circle'
+                          }
+                          width='18'
+                          height='18'
+                        />
+                        {isEditing ? 'Update Comic' : 'Create Comic'}
+                      </>
+                    )}
+                  </button>
+                </div>
+              )}
+            </div>
+          </form>
+        </div>
+      </div>
+    </dialog>
   )
 }
+
+
 
 export default BookFormModal
