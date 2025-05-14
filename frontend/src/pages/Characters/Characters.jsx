@@ -535,7 +535,19 @@ const Characters = () => {
         title={currentCharacter ? 'Edit Character' : 'Create Character'}
         isSidebarCollapsed={isCollapsed}
       />{' '}
-
+      <ConfirmDialog
+        isOpen={showDeleteConfirm}
+        onClose={() => setShowDeleteConfirm(false)}
+        onConfirm={handleDeleteCharacter}
+        title='Delete Character'
+        message={
+          characterToDelete
+            ? `Are you sure you want to delete ${characterToDelete.name}? This action cannot be undone.`
+            : 'Are you sure you want to delete this character? This action cannot be undone.'
+        }
+        confirmText='Delete'
+        type='danger'
+      />
     </div>
   )
 }
