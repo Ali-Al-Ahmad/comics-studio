@@ -104,6 +104,44 @@ const MyComics = () => {
     return results
   }, [comics, searchTerm, activeFilter, recentlyViewedIds])
 
+  useEffect(() => {
+    setFilteredComics(memoizedFilteredComics)
+  }, [memoizedFilteredComics])
+
+  useEffect(() => {
+    const container =
+      document.querySelector('.mycomics-comics-grid') ||
+      document.querySelector('.no-comics')
+
+    if (container) {
+      container.classList.remove('comics-grid-appear')
+
+      void container.offsetWidth
+
+      container.classList.add('comics-grid-appear')
+    }
+  }, [activeFilter])
+
+  const handleFilterClick = (filter) => {
+    if (filter === activeFilter) return
+    setActiveFilter(filter)
+  }
+
+  const handleSearch = (e) => {
+    const value = e.target.value
+    setSearchTerm(value)
+  }
+
+  const handleOpenComicModal = (comic = null) => {
+    setCurrentComic(comic)
+    setShowComicModal(true)
+  }
+
+  const handleCloseComicModal = () => {
+    setShowComicModal(false)
+    setCurrentComic(null)
+  }
+
 
 
 
