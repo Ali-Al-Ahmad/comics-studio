@@ -166,7 +166,43 @@ const BookFormModal = ({
     }
   }, [isOpen, isMobile])
 
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape' && isOpen) {
+        handleCancel()
+      }
+    }
 
+    document.addEventListener('keydown', handleKeyDown)
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [isOpen, handleCancel])
+  useEffect(() => {
+    if (comic) {
+      setComicName(comic.title || '')
+      if (comic.image_url) {
+        if (comic.image_url.startsWith('http')) {
+          setImagePreviewUrl(comic.image_url)
+        } else {
+          setImagePreviewUrl(
+            `${import.meta.env.VITE_API_BASE_URL}/${comic.image_url}`
+          )
+        }
+      }
+    } else {
+      setComicName('')
+      setSelectedFile(null)
+      setImagePreviewUrl('')
+      setFormErrors({})
+    }
+  }, [comic])
+
+  if (!isOpen) return null
+
+  const overlayClassNames = `character-modal-overlay ${
+    isSidebarCollapsed ? 'sidebar-collapsed' : ''
+  } ${isMobile ? 'mobile-screen' : 'desktop-screen'}`
 
   return (
     <dialog
