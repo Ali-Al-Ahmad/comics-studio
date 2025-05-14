@@ -384,7 +384,152 @@ const Characters = () => {
       className={`characters-container ${
         isCollapsed ? 'sidebar-collapsed' : 'sidebar-expanded'
       }`}
-    ></div>
+    >
+      <div className='gallery-header-container'>
+        <div className='filter-buttons'>
+          <button
+            className={`filter-btn ${activeFilter === 'all' ? 'active' : ''}`}
+            onClick={() => handleFilterClick('all')}
+          >
+            <Icon
+              icon='mdi:view-grid'
+              width='18'
+              height='18'
+              className='filter-btn-icon'
+            />
+            <span className='filter-btn-text'>All Characters</span>
+          </button>
+          <button
+            className={`filter-btn ${
+              activeFilter === 'favorites' ? 'active' : ''
+            }`}
+            onClick={() => handleFilterClick('favorites')}
+          >
+            <Icon
+              icon='mdi:star'
+              width='18'
+              height='18'
+              className='filter-btn-icon'
+            />
+            <span className='filter-btn-text'>Favorites</span>
+          </button>
+        </div>
+
+        <div className='credits-display'>
+          <span className='credits-value'>{credits} Credits</span>
+        </div>
+      </div>
+      <div className='characters-controls'>
+        <div className='search-container'>
+          <input
+            type='text'
+            placeholder='Search characters...'
+            value={searchTerm}
+            onChange={handleSearch}
+            className='search-input'
+          />
+        </div>{' '}
+        <button
+          onClick={handleOpenCharacterModal}
+          className='create-character-btn'
+        >
+          {' '}
+          <Icon
+            icon='mdi:plus'
+            width='20'
+            height='20'
+            className='create-icon'
+          />
+          <span className='create-text'>Create Character</span>
+        </button>
+      </div>
+      {loading ? (
+        <div className='characters-loading'>
+          <Spinner />
+          <p>Loading characters...</p>
+        </div>
+      ) : (
+        <>
+          {' '}
+          {filteredCharacters.length === 0 ? (
+            <div className='no-characters characters-grid-appear'>
+              {' '}
+              <div className='empty-state-content'>
+                <div className='icon-container'>
+                  <Icon
+                    icon={
+                      activeFilter === 'favorites'
+                        ? 'mdi:star'
+                        : 'mdi:view-grid'
+                    }
+                    width='48'
+                    height='48'
+                    className='empty-state-icon'
+                  />
+                </div>
+                <p>
+                  {searchTerm
+                    ? `No characters found matching "${searchTerm}". Try a different search term.`
+                    : activeFilter === 'favorites'
+                    ? 'No favorite characters yet. Click the star icon on any character to mark it as favorite.'
+                    : 'No characters found. Create your first character!'}
+                </p>
+              </div>
+            </div>
+          ) : (
+            <div className='characters-grid characters-grid-appear'>
+              {filteredCharacters.map((character, index) => {
+                let imageUrl = character.image_url
+
+                if (
+                  imageUrl &&
+                  !imageUrl.startsWith('data:') &&
+                  !imageUrl.includes('placehold.co')
+                ) {
+                  imageUrl = `${import.meta.env.VITE_API_BASE_URL}/${imageUrl}`
+                } else if (!imageUrl) {
+                  imageUrl = `https://placehold.co/300x400/3498db/FFFFFF?text=${encodeURIComponent(
+                    character.name
+                  )}`
+                }
+
+                const animationDelay = {
+                  animationDelay: `${Math.min(index * 0.05, 0.5)}s`,
+                  opacity: 0,
+                  animation: 'fadeInGrid 0.3s forwards',
+                }
+                return (
+                  <div
+                    key={character.id}
+                    style={animationDelay}
+                    className='character-card-wrapper'
+                    tabIndex={0}
+                    role='article'
+                    aria-label={`Character: ${character.name}`}
+                  >
+                    <CharacterCard
+                      character={{
+                        ...character,
+                        image_url: imageUrl,
+                      }}
+                      onEdit={handleEditCharacter}
+                      onDelete={() => confirmDeleteCharacter(character)}
+                      onFavorite={() => toggleFavorite(character.id)}
+                      isFavorite={
+                        character.is_favorite ||
+                        favoriteCharacters.includes(character.id)
+                      }
+                    />
+                  </div>
+                )
+              })}
+            </div>
+          )}
+        </>
+      )}{' '}
+
+
+    </div>
   )
 }
 
