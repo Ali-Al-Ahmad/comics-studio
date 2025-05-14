@@ -466,5 +466,13 @@ const CharacterFormModal = ({
   )
 }
 
+CharacterFormModal.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  onSave: PropTypes.func.isRequired,
+  character: PropTypes.object,
+  title: PropTypes.string,
+  isSidebarCollapsed: PropTypes.bool,
+}
 
 export default CharacterFormModal
