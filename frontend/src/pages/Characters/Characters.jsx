@@ -167,6 +167,24 @@ const Characters = () => {
     }
   }
 
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value)
+  }
+
+  const handleOpenCharacterModal = () => {
+    setShowCharacterModal(true)
+    setCurrentCharacter(null)
+  }
+
+  const handleCloseCharacterModal = () => {
+    setShowCharacterModal(false)
+    setCurrentCharacter(null)
+  }
+
+  const handleEditCharacter = (character) => {
+    setCurrentCharacter(character)
+    setShowCharacterModal(true)
+  }
 
 
 
