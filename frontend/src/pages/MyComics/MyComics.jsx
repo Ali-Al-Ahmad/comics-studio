@@ -219,7 +219,36 @@ const MyComics = () => {
     setComicToDelete(null)
   }
 
+  const handleConfirmDelete = async () => {
+    if (!comicToDelete) return
 
+    try {
+      await axiosInstance.delete(`/books/${comicToDelete.id}`)
+
+      setComics((prevComics) =>
+        prevComics.filter((c) => c.id !== comicToDelete.id)
+      )
+
+      dispatch(
+        showToast({
+          message: 'Comic deleted successfully!',
+          type: 'success',
+        })
+      )
+
+      setShowDeleteConfirm(false)
+      setComicToDelete(null)
+    } catch (error) {
+      console.error('Failed to delete comic:', error)
+
+      dispatch(
+        showToast({
+          message: 'Failed to delete comic. Please try again.',
+          type: 'error',
+        })
+      )
+    }
+  }
 
   return (
     <div
