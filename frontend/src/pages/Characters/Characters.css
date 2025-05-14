@@ -549,3 +549,244 @@
   box-shadow: none;
 }
 
+@media screen and (max-width: 479px) {
+  .filter-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .filter-btn {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+  
+  .characters-controls {
+    flex-direction: column;
+  }
+  
+  .search-container {
+    max-width: 100%;
+  }
+  
+  .create-character-btn {
+    width: 100%;
+  }
+
+  .characters-container {
+    padding: 0.8rem;
+  }
+  
+  .characters-grid {
+    gap: 30px;
+  }
+  
+  
+  .icon-container {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .empty-state-content {
+    padding: 1.5rem;
+  }
+  
+  .empty-state-content p {
+    font-size: 1rem;
+    max-width: 100%;
+  }
+    .no-characters {
+    padding: 2rem 1rem;
+    margin: 1rem auto;
+    min-height: 250px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .characters-container {
+    padding: 1.5rem 2rem;
+    max-width: 100%;
+  }
+  
+  
+  .gallery-header-container {
+    grid-template-areas: "filters credits";
+    grid-template-columns: auto auto;
+    align-items: center;
+  }
+  
+  .filter-buttons {
+    width: auto;
+    justify-content: flex-start;
+  }
+  
+  .filter-btn {
+    flex: 0 1 auto;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .credits-display {
+    justify-self: end;
+  }
+  
+  .characters-controls {
+    flex-direction: row;
+    gap: 1rem;
+  }
+  
+  .empty-state-content {
+    max-width: 500px;
+    padding: 2.5rem;
+  }
+  
+  .icon-container {
+    width: 90px;
+    height: 90px;
+    margin-bottom: 25px;
+  }
+  
+  .no-characters {
+    margin: 2rem auto;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .filter-btn {
+    padding: 0.6rem;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .filter-btn-text {
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+    max-width: 0;
+  }
+  
+  .filter-btn-icon {
+    margin-right: 0;
+  }
+  
+  .characters-controls {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .search-container {
+    flex: 1;
+    margin-right: 10px;
+  }
+  
+  .create-character-btn {
+    padding: 0.6rem;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  
+  .create-text {
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+    max-width: 0;
+  }
+  
+  .create-icon {
+    margin-right: 0;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .credits-display {
+    justify-self: flex-end;
+  }
+  
+  .gallery-header-container {
+    grid-template-areas: 'filters credits';
+    grid-template-columns: 1fr auto;
+    align-items: center;
+  }
+  
+  .filter-buttons {
+    justify-content: flex-start;
+    flex-direction: row !important;
+    flex-wrap: nowrap;
+    gap: 0.5rem;
+  }
+  
+  .filter-btn {
+    flex: 0 0 auto !important;
+  }
+  
+  .characters-controls .search-container {
+    max-width: calc(100% - 50px);
+  }
+  
+  .characters-controls {
+    align-items: center;
+    padding: 0 0.5rem;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .filter-btn {
+    width: 36px;
+    height: 36px;
+    padding: 0.45rem;
+    min-width: auto;
+  }
+  
+  .filter-buttons {
+    gap: 0.3rem;
+  }
+  
+  .credits-display {
+    padding: 0.5rem 0.9rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  
+  .gallery-header-container {
+    gap: 1.5rem;
+  }
+  
+  .filter-buttons {
+    gap: 1rem;
+  }
+
+  .filter-btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+  }
+  
+  .credits-display {
+    padding: 0.6rem 1.4rem;
+  }
+  
+  .credits-value {
+    font-size: 1.1rem;
+  }
+}
+
+.content-transitioning-out {
+  transition: opacity 0.2s cubic-bezier(0.4, 0.0, 1, 1), 
+              transform 0.2s cubic-bezier(0.4, 0.0, 1, 1),
+              filter 0.2s cubic-bezier(0.4, 0.0, 1, 1) !important;
+}
+
+.content-transitioning-in {
+  transition: opacity 0.3s cubic-bezier(0.0, 0.0, 0.2, 1),
+              transform 0.3s cubic-bezier(0.0, 0.0, 0.2, 1),
+              filter 0.3s cubic-bezier(0.0, 0.0, 0.2, 1) !important;
+}
