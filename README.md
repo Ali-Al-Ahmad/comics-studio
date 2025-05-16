@@ -18,9 +18,10 @@
 <!-- System Design -->
 <img src="./readme/title3.svg"/>
 
-### Add Title Here
+### ER Diagram
 
-- To be decided on later on.
+<img src="./readme/demo/comics_studio_erdiagram.png" style="border-radius: 10px;"/>
+
 
 <br><br>
 
