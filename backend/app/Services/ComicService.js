@@ -1,9 +1,10 @@
 import Service from './Service.js'
-import { Comic } from '../Models/index.js'
+import { Book, Comic } from '../Models/index.js'
 import OpenAI from 'openai'
 import Replicate from 'replicate'
 import fs from 'fs/promises'
 import path from 'path'
+import sharp from 'sharp'
 
 export default class ComicService extends Service {
   static async all() {
@@ -58,11 +59,15 @@ export default class ComicService extends Service {
       return this.return(false, 'Error updating comic', error)
     }
   }
-
   static async generateReplicateComics(req) {
     try {
-      const { userPrompt } = req.body
-      const image_path = req.file.path
+      const {
+        user_prompt,
+        given_character_id,
+        character_image_path,
+        comic_style,
+      } = req.body
+      const given_image = req.file?.path || character_image_path
 
       const openai = new OpenAI({
         apiKey: process.env.OPENAI_API_KEY,
@@ -151,60 +156,202 @@ Additional Guidelines:
 
 Respond only with valid JSON in this format.
 `
-      
+
+      console.log('user_prompt', user_prompt)
       const response = await openai.chat.completions.create({
         model: 'gpt-4.1',
         messages: [
           { role: 'system', content: systemPrompt },
           {
             role: 'user',
-            content: `User Prompt: ${userPrompt}`,
+            content: user_prompt,
           },
         ],
         temperature: 0.7,
       })
-
       const contentString = response.choices[0].message.content
-      const content = JSON.parse(contentString)
+      let content
+      try {
+        content = JSON.parse(contentString)
+        console.log('content', content)
 
-
-
-      const inputImage = await fs.readFile(image_path)
-
-      const output = await replicate.run(
-        'camenduru/story-diffusion:a43c7e0e4bce75ee98445b20b244240d1109e30a46bf7719958fd0a69ab29e8e',
-        {
-          input: {
-            sa32_: 0.5,
-            sa64_: 0.5,
-            seed_: 0,
-            G_width: 768,
-            G_height: 768,
-            num_steps: 35,
-            style: 'Comic book',
-            comic_type: 'Classic Comic Style',
-            model_type: 'Using Ref Images',
-            input_image: inputImage,
-            prompt_array: content?.prompt_array,
-            general_prompt: content?.general_prompt,
-            negative_prompt:
-              'bad anatomy, bad hands, missing fingers, extra fingers, three hands, three legs, bad arms, missing legs, missing arms, poorly drawn face, bad face, fused face, cloned face, three crus, fused feet, fused thigh, extra crus, ugly fingers, horn, cartoon, cg, 3d, unreal, animate, amputation, disconnected limbs',
-            id_length_: 2,
-            guidance_scale: 5,
-            Ip_Adapter_Strength: 0.5,
-            style_strength_ratio: 20,
-          },
+        if (!content.prompt_array) {
+          console.warn('Warning: Generated content is missing prompt_array')
         }
-      )
+        if (!content.captions || !Array.isArray(content.captions)) {
+          console.warn('Warning: Generated content has invalid captions')
+        }
 
-      const base64Images = output.map((buffer) => buffer.toString('base64'))
+        if (given_character_id) {
+          console.log(
+            `Generated content for character ID: ${given_character_id}`
+          )
+        }
+      } catch (parseError) {
+        console.error('Error parsing OpenAI response:', parseError)
+        content = {
+          prompt_array: user_prompt,
+          captions: [`Comic based on: ${user_prompt}`],
+          general_prompt: user_prompt,
+        }
+      }
+
+      let encodedImage
+
+      if (given_image) {
+        try {
+          console.log(`Processing image from: ${given_image}`)
+
+          const isCharacterImage =
+            character_image_path && given_image === character_image_path
+          if (isCharacterImage) {
+            console.log(`Using character image for generation`)
+          }
+
+          const inputImageBuffer = await fs.readFile(given_image)
+
+          const processedImageBuffer = await sharp(inputImageBuffer)
+            .resize({
+              width: 512,
+              height: 512,
+              fit: 'inside',
+              withoutEnlargement: true,
+            })
+            .jpeg({ quality: 90 })
+            .toBuffer()
+
+          const base64Image = processedImageBuffer.toString('base64')
+          encodedImage = `data:image/jpeg;base64,${base64Image}`
+        } catch (fileError) {
+          console.error(
+            `Error processing image from ${given_image}:`,
+            fileError
+          )
+          encodedImage =
+            'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAAKAAoDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD3+iiigD//2Q=='
+        }
+      } else {
+
+        encodedImage =
+          'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAAKAAoDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIHMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD3+iiigD//2Q=='
+      }
+      let output
+      try {
+        if (character_image_path) {
+          console.log(
+            `Using character image for generation: ${character_image_path}`
+          )
+        } else if (given_character_id) {
+          console.log(
+            `Using character ID for generation: ${given_character_id}`
+          )
+        }
+
+        console.log(
+          `Using comic style: ${comic_style || 'Comic book (default)'}`
+        )
+
+        output = await replicate.run(
+          'camenduru/story-diffusion:a43c7e0e4bce75ee98445b20b244240d1109e30a46bf7719958fd0a69ab29e8e',
+          {
+            input: {
+              sa32_: 0.5,
+              sa64_: 0.5,
+              seed_: 0,
+              G_width: 512,
+              G_height: 512,
+              num_steps: 35,
+              style: comic_style || 'Comic book',
+              comic_type: 'Classic Comic Style',
+              model_type: given_image
+                ? 'Using Ref Images'
+                : 'Only Using Textual Description',
+              input_image: encodedImage,
+              prompt_array: content?.prompt_array,
+              general_prompt: content?.general_prompt,
+              negative_prompt:
+                'bad anatomy, bad hands, missing fingers, extra fingers, three hands, three legs, bad arms, missing legs, missing arms, poorly drawn face, bad face, fused face, cloned face, three crus, fused feet, fused thigh, extra crus, ugly fingers, horn, cartoon, cg, 3d, unreal, animate, amputation, disconnected limbs',
+              id_length_: 2,
+              guidance_scale: 5,
+              Ip_Adapter_Strength: 0.5,
+              style_strength_ratio: 20,
+            },
+          }
+        )
+
+        if (!output || output.length === 0) {
+          throw new Error('Replicate API returned empty results')
+        }
+      } catch (replicateError) {
+        console.error('Error during Replicate API call:', replicateError)
+        throw new Error(`Failed to generate images: ${replicateError.message}`)
+      }
+
+      console.log('out', output)
+      const urls_images = output.map((buffer) => buffer.toString('base64'))
+      console.log('base64', urls_images)
+
+      if (!urls_images || urls_images.length === 0) {
+        throw new Error('No images were generated')
+      }
+
+      const savedComics = []
+      let new_book
+
+      try {
+        const characterId = given_character_id || null
+
+        if (characterId) {
+          console.log(`Using character ID: ${characterId} for the new book`)
+          if (character_image_path) {
+            console.log(`Character image path: ${character_image_path}`)
+          }
+        }
+
+        new_book = await Book.create({
+          title: user_prompt.slice(0, 100),
+          user_id: req.user.id,
+          image_url: urls_images[urls_images.length - 1],
+          character_id: characterId,
+          created_at: new Date(),
+          updated_at: new Date(),
+        })
+
+        console.log(`Created new book with ID: ${new_book.id}`)
+
+        for (let i = 0; i < urls_images.length - 1; i++) {
+          const caption =
+            content.captions && i < content.captions.length
+              ? content.captions[i]
+              : `Panel ${i + 1}`
+          const comicData = {
+            caption: caption,
+            image_url: urls_images[i],
+            book_id: new_book.id,
+            created_at: new Date(),
+            updated_at: new Date(),
+          }
+
+          try {
+            const newComic = await Comic.create(comicData)
+            savedComics.push(newComic)
+            console.log(`Saved comic panel ${i + 1} with ID: ${newComic.id}`)
+          } catch (saveError) {
+            console.error(`Error saving comic panel ${i + 1}:`, saveError)
+          }
+        }
+      } catch (dbError) {
+        console.error('Database error during comic creation:', dbError)
+        throw dbError
+      }
 
       return this.return(true, 'Generated comic data', {
-        images: base64Images,
-        captions: content.captions,
+        user_id: req.user.id,
+        book: new_book,
+        comics: savedComics,
       })
-
     } catch (error) {
+      console.log(error)
       return this.return(false, 'Error generating comic', error)
     }
   }

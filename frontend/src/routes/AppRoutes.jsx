@@ -12,6 +12,7 @@ import Profile from '../pages/Profile/Profile'
 import MyComics from '../pages/MyComics/MyComics'
 import Characters from '../pages/Characters/Characters'
 import CreateComic from '../pages/CreateComic/CreateComic'
+import ViewComicBook from '../pages/ViewComicBook/ViewComicBook'
 import Register from '../pages/RegisterPage/RegisterPage'
 
 const AppRoutes = () => {
@@ -48,10 +49,14 @@ const AppRoutes = () => {
           <Route
             path='/characters'
             element={<Characters />}
-          />
+          />{' '}
           <Route
             path='/createcomic'
             element={<CreateComic />}
+          />
+          <Route
+            path='/comic/:bookId'
+            element={<ViewComicBook />}
           />
         </Route>
       </Route>
