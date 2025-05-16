@@ -82,15 +82,33 @@ export default class BookService extends Service {
       return this.return(false, 'Error getting all public comic books', error)
     }
   }
-
   static async bookComics(book_id) {
     try {
+      const book = await Book.findByPk(book_id, {
+        include: [
+          {
+            model: User,
+            as: 'user',
+            attributes: ['id', 'first_name', 'last_name', 'email'],
+          },
+        ],
+      })
+
+      if (!book) {
+        return this.return(false, 'Book not found', null)
+      }
+
       const book_comics = await Comic.findAll({
         where: { book_id },
+        order: [['id', 'ASC']],
       })
-      return this.return(true, 'All book comics', book_comics)
+
+      return this.return(true, 'Book and comics data', {
+        book: book,
+        comics: book_comics,
+      })
     } catch (error) {
-      return this.return(false, 'Error getting All book comics', error)
+      return this.return(false, 'Error getting book comics', error)
     }
   }
 }
