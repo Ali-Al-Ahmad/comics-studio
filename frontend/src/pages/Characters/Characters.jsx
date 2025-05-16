@@ -8,7 +8,6 @@ import { showToast } from '../../redux/slices/toastSlice'
 import CharacterFormModal from '../../components/CharacterFormModal/CharacterFormModal'
 import CharacterCard from '../../components/CharacterCard/CharacterCard'
 import ConfirmDialog from '../../components/ConfirmDialog/ConfirmDialog'
-import charactersData from '../../fakeData/charactersData'
 import { Icon } from '@iconify-icon/react'
 
 const Characters = () => {
@@ -35,8 +34,7 @@ const Characters = () => {
         const apiCharactersData = response.data.data || []
 
         const finalCharacters =
-          apiCharactersData.length > 0 ? apiCharactersData : charactersData
-
+          apiCharactersData.length > 0 ? apiCharactersData : []
         setCharacters(finalCharacters)
         setFilteredCharacters(finalCharacters)
         const apiFavorites = finalCharacters
@@ -57,9 +55,6 @@ const Characters = () => {
         )
       } catch (error) {
         console.error('Failed to fetch characters:', error)
-
-        setCharacters(charactersData)
-        setFilteredCharacters(charactersData)
 
         dispatch(
           showToast({
