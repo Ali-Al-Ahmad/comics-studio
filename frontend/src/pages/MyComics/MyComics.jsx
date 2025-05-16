@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { showToast } from '../../redux/slices/toastSlice'
 import { Icon } from '@iconify-icon/react'
 import ComicCard from '../../components/Gallery/ComicCard/ComicCard'
-import { fakeComics } from '../../fakeData/comicsData'
 import { useNavigate } from 'react-router-dom'
 import BookFormModal from '../../components/BookFormModal/BookFormModal'
 import ConfirmDialog from '../../components/ConfirmDialog/ConfirmDialog'
@@ -39,17 +38,13 @@ const MyComics = () => {
         const response = await axiosInstance.get('/users/userbooks')
         const comicsData = response.data.data || []
 
-        const finalComics = comicsData.length > 0 ? comicsData : fakeComics
-
+        const finalComics = comicsData.length > 0 ? comicsData : []
         setComics(finalComics)
         setFilteredComics(finalComics)
 
         setLoading(false)
       } catch (error) {
         console.error('Error fetching comics:', error)
-
-        setComics(fakeComics)
-        setFilteredComics(fakeComics)
 
         dispatch(
           showToast({

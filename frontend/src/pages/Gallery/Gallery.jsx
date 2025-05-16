@@ -7,7 +7,6 @@ import { showToast } from '../../redux/slices/toastSlice'
 import GalleryHeader from '../../components/Gallery/GalleryHeader/GalleryHeader'
 import SearchBox from '../../components/Gallery/SearchBox/SearchBox'
 import ComicCard from '../../components/Gallery/ComicCard/ComicCard'
-import { fakeComics } from '../../fakeData/comicsData'
 
 const Gallery = () => {
   const [comics, setComics] = useState([])
@@ -47,7 +46,7 @@ const Gallery = () => {
     fetchComics()
   }, [dispatch])
   useEffect(() => {
-    let results = [...fakeComics, ...comics]
+    let results = comics
 
     console.log(
       'All comics:',
