@@ -105,24 +105,24 @@ jobs:
       - name: Copy build to EC2
         uses: appleboy/scp-action@v1
         with:
-        host: ${{ secrets.EC2_HOST_STAGING }}
-        username: ${{ secrets.EC2_USER }}
-        key: ${{ secrets.EC2_KEY }}
-        source: "frontend/dist"
-        target: "/home/${{ secrets.EC2_USER }}/" 
+          host: ${{ secrets.EC2_HOST_STAGING }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_KEY }}
+          source: "frontend/dist"
+          target: "/home/${{ secrets.EC2_USER }}/" 
 
       - name: Deploy to S3
         uses: appleboy/ssh-action@v1
         with:
-        host: ${{ secrets.EC2_HOST_STAGING }}
-        username: ${{ secrets.EC2_USER }}
-        key: ${{ secrets.EC2_KEY }}
-        script: |
-          mkdir -p ~/.aws
-          echo "[default]" > ~/.aws/config
-          echo "region = ${{ secrets.AWS_DEFAULT_REGION }}" >> ~/.aws/config
-          aws s3 cp frontend/dist/ s3://bucket-name --recursive
-          rm -r frontend/
+          host: ${{ secrets.EC2_HOST_STAGING }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_KEY }}
+          script: |
+            mkdir -p ~/.aws
+            echo "[default]" > ~/.aws/config
+            echo "region = ${{ secrets.AWS_DEFAULT_REGION }}" >> ~/.aws/config
+            aws s3 cp frontend/dist/ s3://bucket-name --recursive
+            rm -r frontend/
 
   Copy-docker-compose-To-EC2:
     runs-on: ubuntu-latest
