@@ -107,7 +107,7 @@ jobs:
         with:
           host: ${{ secrets.EC2_HOST_OLD }}
           username: ${{ secrets.EC2_USER }}
-          key: ${{ secrets.EC2_KEY }}
+          key: ${{ secrets.KEY_OLD }}
           source: "frontend/dist"
           target: "/home/${{ secrets.EC2_USER }}/" 
 
@@ -116,7 +116,7 @@ jobs:
         with:
           host: ${{ secrets.EC2_HOST_OLD }}
           username: ${{ secrets.EC2_USER }}
-          key: ${{ secrets.EC2_KEY }}
+          key: ${{ secrets.KEY_OLD }}
           script: |
             mkdir -p ~/.aws
             echo "[default]" > ~/.aws/config
@@ -154,7 +154,7 @@ jobs:
         with:
           host: ${{ secrets.EC2_HOST_OLD }}
           username: ${{ secrets.EC2_USER }}
-          key: ${{ secrets.EC2_KEY }}
+          key: ${{ secrets.KEY_OLD }}
           source: 'docker-compose.yaml'
           target: '/home/${{ secrets.EC2_USER }}/'
 
@@ -176,7 +176,7 @@ jobs:
         with:
           host: ${{ secrets.EC2_HOST_OLD }}
           username: ${{ secrets.EC2_USER }}
-          key: ${{ secrets.EC2_KEY }}
+          key: ${{ secrets.KEY_OLD }}
           script: |
             docker compose down
             docker rmi ${{ secrets.DOCKER_USERNAME }}/backendimage:latest
