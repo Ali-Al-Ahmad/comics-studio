@@ -19,6 +19,15 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_TOKEN }}
 
+      - name: Inject GitHub Secrets into .env.example
+        run: |
+          sed -i "s|DB_NAME=.*|DB_NAME=${{ secrets.DB_NAME }}|g" .env.example
+          sed -i "s|DB_USER=.*|DB_USER=${{ secrets.DB_USER }}|g" .env.example
+          sed -i "s|DB_PASSWORD=.*|DB_PASSWORD=${{ secrets.DB_PASSWORD }}|g" .env.example
+          sed -i "s|JWT_SECRET=.*|JWT_SECRET=${{ secrets.JWT_SECRET }}|g" .env.example
+          sed -i "s|OPENAI_API_KEY=.*|OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}|g" .env.example
+          sed -i "s|REPLICATE_API_TOKEN=.*|REPLICATE_API_TOKEN=${{ secrets.REPLICATE_API_TOKEN }}|g" .env.example
+
       - name: Build Docker image
         working-directory: backend
         run: docker build -t ${{ secrets.DOCKER_USERNAME }}/backendimage:latest .
@@ -143,6 +152,8 @@ jobs:
           sed -i "s|REPLICATE_API_TOKEN=.*|REPLICATE_API_TOKEN=${{ secrets.REPLICATE_API_TOKEN }}|g" docker-compose.yaml
           sed -i "s|MYSQL_ROOT_PASSWORD=.*|MYSQL_ROOT_PASSWORD=${{ secrets.DB_PASSWORD }}|g" docker-compose.yaml
           sed -i "s|MYSQL_DATABASE=.*|MYSQL_DATABASE=${{ secrets.DB_NAME }}|g" docker-compose.yaml
+
+          
 
       - name: debugging file
         run: cat docker-compose.yaml
