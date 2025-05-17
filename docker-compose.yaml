@@ -12,12 +12,13 @@ services:
       - JWT_SECRET=value
       - JWT_EXPIRATION=1d
       - PORT=4000
-      - NODE_ENV=production
+      - NODE_ENV=''
     restart: always
     ports:
       - 4000:4000
     depends_on:
       - database
+    command: sh -c "cp .env.example .env && node server.js"
   database:
     image: mysql:8.0
     environment:

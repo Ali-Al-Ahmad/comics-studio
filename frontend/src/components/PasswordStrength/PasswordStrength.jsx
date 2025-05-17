@@ -1,9 +1,13 @@
-import React, { useMemo } from 'react'
+﻿import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
 import { Icon } from '@iconify-icon/react'
+import { evaluatePasswordStrength } from '../../utils/passwordUtils'
 import './PasswordStrength.css'
 
-const PasswordStrength = ({ password, strengthState }) => {
+const PasswordStrength = ({ password, strengthState = null }) => {
+  const actualStrengthState =
+    strengthState || evaluatePasswordStrength(password)
+
   const { strengthLabel, strengthPercentage, strengthColor } = useMemo(() => {
     if (!password) {
       return {
@@ -15,31 +19,42 @@ const PasswordStrength = ({ password, strengthState }) => {
 
     const getStrengthLabel = () => {
       if (
-        strengthState.hasMinLength &&
-        strengthState.hasUpperCase &&
-        strengthState.hasLowerCase &&
-        strengthState.hasNumber &&
-        strengthState.hasSpecialChar
-      )
+        actualStrengthState.hasMinLength &&
+        actualStrengthState.hasUpperCase &&
+        actualStrengthState.hasLowerCase &&
+        actualStrengthState.hasNumber &&
+        actualStrengthState.hasSpecialChar
+      ) {
         return 'Very Strong'
+      }
+
       if (
-        strengthState.hasMinLength &&
-        ((strengthState.hasUpperCase && strengthState.hasLowerCase) ||
-          (strengthState.hasNumber && strengthState.hasSpecialChar))
-      )
+        actualStrengthState.hasMinLength &&
+        ((actualStrengthState.hasUpperCase &&
+          actualStrengthState.hasLowerCase) ||
+          (actualStrengthState.hasNumber && actualStrengthState.hasSpecialChar))
+      ) {
         return 'Strong'
-      if (strengthState.hasMinLength) return 'Medium'
-      if (password.length > 3) return 'Weak'
+      }
+
+      if (actualStrengthState.hasMinLength) {
+        return 'Medium'
+      }
+
+      if (password.length > 3) {
+        return 'Weak'
+      }
+
       return 'Very Weak'
     }
 
     const getStrengthPercentage = () => {
       let score = 0
-      if (strengthState.hasMinLength) score += 20
-      if (strengthState.hasUpperCase) score += 20
-      if (strengthState.hasLowerCase) score += 20
-      if (strengthState.hasNumber) score += 20
-      if (strengthState.hasSpecialChar) score += 20
+      if (actualStrengthState.hasMinLength) score += 20
+      if (actualStrengthState.hasUpperCase) score += 20
+      if (actualStrengthState.hasLowerCase) score += 20
+      if (actualStrengthState.hasNumber) score += 20
+      if (actualStrengthState.hasSpecialChar) score += 20
       return score
     }
 
@@ -57,7 +72,7 @@ const PasswordStrength = ({ password, strengthState }) => {
       strengthPercentage: getStrengthPercentage(),
       strengthColor: getStrengthColor(),
     }
-  }, [password, strengthState])
+  }, [password, actualStrengthState])
 
   if (!password) {
     return null
@@ -82,11 +97,13 @@ const PasswordStrength = ({ password, strengthState }) => {
 
       <div className='password-strength-requirements'>
         <div
-          className={`requirement ${strengthState.hasMinLength ? 'met' : ''}`}
+          className={`requirement ${
+            actualStrengthState.hasMinLength ? 'met' : ''
+          }`}
         >
           <Icon
             icon={
-              strengthState.hasMinLength
+              actualStrengthState.hasMinLength
                 ? 'mdi:check-circle'
                 : 'mdi:close-circle'
             }
@@ -96,11 +113,13 @@ const PasswordStrength = ({ password, strengthState }) => {
         </div>
 
         <div
-          className={`requirement ${strengthState.hasUpperCase ? 'met' : ''}`}
+          className={`requirement ${
+            actualStrengthState.hasUpperCase ? 'met' : ''
+          }`}
         >
           <Icon
             icon={
-              strengthState.hasUpperCase
+              actualStrengthState.hasUpperCase
                 ? 'mdi:check-circle'
                 : 'mdi:close-circle'
             }
@@ -110,11 +129,13 @@ const PasswordStrength = ({ password, strengthState }) => {
         </div>
 
         <div
-          className={`requirement ${strengthState.hasLowerCase ? 'met' : ''}`}
+          className={`requirement ${
+            actualStrengthState.hasLowerCase ? 'met' : ''
+          }`}
         >
           <Icon
             icon={
-              strengthState.hasLowerCase
+              actualStrengthState.hasLowerCase
                 ? 'mdi:check-circle'
                 : 'mdi:close-circle'
             }
@@ -123,10 +144,16 @@ const PasswordStrength = ({ password, strengthState }) => {
           <span>Lowercase letter</span>
         </div>
 
-        <div className={`requirement ${strengthState.hasNumber ? 'met' : ''}`}>
+        <div
+          className={`requirement ${
+            actualStrengthState.hasNumber ? 'met' : ''
+          }`}
+        >
           <Icon
             icon={
-              strengthState.hasNumber ? 'mdi:check-circle' : 'mdi:close-circle'
+              actualStrengthState.hasNumber
+                ? 'mdi:check-circle'
+                : 'mdi:close-circle'
             }
             className='requirement-icon'
           />
@@ -134,11 +161,13 @@ const PasswordStrength = ({ password, strengthState }) => {
         </div>
 
         <div
-          className={`requirement ${strengthState.hasSpecialChar ? 'met' : ''}`}
+          className={`requirement ${
+            actualStrengthState.hasSpecialChar ? 'met' : ''
+          }`}
         >
           <Icon
             icon={
-              strengthState.hasSpecialChar
+              actualStrengthState.hasSpecialChar
                 ? 'mdi:check-circle'
                 : 'mdi:close-circle'
             }
@@ -154,13 +183,13 @@ const PasswordStrength = ({ password, strengthState }) => {
 PasswordStrength.propTypes = {
   password: PropTypes.string,
   strengthState: PropTypes.shape({
-    hasMinLength: PropTypes.bool.isRequired,
-    hasUpperCase: PropTypes.bool.isRequired,
-    hasLowerCase: PropTypes.bool.isRequired,
-    hasNumber: PropTypes.bool.isRequired,
-    hasSpecialChar: PropTypes.bool.isRequired,
+    hasMinLength: PropTypes.bool,
+    hasUpperCase: PropTypes.bool,
+    hasLowerCase: PropTypes.bool,
+    hasNumber: PropTypes.bool,
+    hasSpecialChar: PropTypes.bool,
     passwordsMatch: PropTypes.bool,
-  }).isRequired,
+  }),
 }
 
 export default PasswordStrength

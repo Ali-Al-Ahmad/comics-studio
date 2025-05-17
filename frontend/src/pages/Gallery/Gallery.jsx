@@ -15,7 +15,6 @@ const Gallery = () => {
   const [activeFilter, setActiveFilter] = useState('all')
   const [searchTerm, setSearchTerm] = useState('')
   const dispatch = useDispatch()
-  const { isCollapsed } = useSelector((state) => state.sidebar)
   const { comicIds: recentlyViewedIds } = useSelector(
     (state) => state.recentlyViewed
   )
@@ -112,11 +111,7 @@ const Gallery = () => {
     setSearchTerm(value)
   }
   return (
-    <div
-      className={`gallery-container ${
-        isCollapsed ? 'sidebar-collapsed' : 'sidebar-expanded'
-      }`}
-    >
+    <div className={`gallery-container`}>
       <div className='gallery-header'>
         <GalleryHeader
           activeFilter={activeFilter}
@@ -145,9 +140,9 @@ const Gallery = () => {
             </div>
           ) : (
             <div className='gallery-comics-grid'>
-              {filteredComics.map((comic, index) => (
+              {filteredComics.map((comic) => (
                 <ComicCard
-                  key={index}
+                  key={comic.id}
                   comic={comic}
                 />
               ))}
