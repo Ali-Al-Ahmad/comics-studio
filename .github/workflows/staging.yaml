@@ -98,7 +98,7 @@ jobs:
 
       - name: Inject GitHub Secrets into .env.example
         working-directory: ./frontend
-        run: sed -i "s|VITE_API_BASE_URL=.*|VITE_API_BASE_URL=http://${{ secrets.EC2_HOST_OLD }}:4000|g" .env.example
+        run: sed -i "s|VITE_API_BASE_URL=.*|VITE_API_BASE_URL=http://3.79.238.220:4000|g" .env.example
                   
       - name: Copy .env.example to .env
         working-directory: ./frontend
@@ -115,7 +115,7 @@ jobs:
       - name: Copy build to EC2
         uses: appleboy/scp-action@v1
         with:
-          host: ${{ secrets.EC2_HOST_OLD }}
+          host: 3.79.238.220
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.KEY_OLD }}
           source: "frontend/dist"
@@ -124,7 +124,7 @@ jobs:
       - name: Deploy to S3
         uses: appleboy/ssh-action@v1
         with:
-          host: ${{ secrets.EC2_HOST_OLD }}
+          host: 3.79.238.220
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.KEY_OLD }}
           script: |
@@ -163,7 +163,7 @@ jobs:
       - name: Copy docker-compose to EC2
         uses: appleboy/scp-action@v1
         with:
-          host: ${{ secrets.EC2_HOST_OLD }}
+          host: 3.79.238.220
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.KEY_OLD }}
           source: 'docker-compose.yaml'
@@ -185,7 +185,7 @@ jobs:
       - name: Deploy on EC2
         uses: appleboy/ssh-action@v0.1.10
         with:
-          host: ${{ secrets.EC2_HOST_OLD }}
+          host: 3.79.238.220
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.KEY_OLD }}
           script: |
