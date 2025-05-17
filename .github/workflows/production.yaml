@@ -121,7 +121,7 @@ jobs:
             mkdir -p ~/.aws
             echo "[default]" > ~/.aws/config
             echo "region = ${{ secrets.AWS_DEFAULT_REGION }}" >> ~/.aws/config
-            aws s3 cp frontend/dist/ s3://fse-final-ali-ah --recursive
+            aws s3 cp frontend/dist/ s3://fse-final-ali-ah --recursive --no-sign-request
             rm -r frontend/
 
   Copy-docker-compose-To-EC2:
