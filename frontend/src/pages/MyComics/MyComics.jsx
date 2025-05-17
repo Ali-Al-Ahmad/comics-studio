@@ -246,11 +246,7 @@ const MyComics = () => {
   }
 
   return (
-    <div
-      className={`mycomics-container ${
-        isCollapsed ? 'sidebar-collapsed' : 'sidebar-expanded'
-      }`}
-    >
+    <div className='mycomics-container'>
       <div className='mycomics-header'>
         <div className='gallery-header-container'>
           <div className='filter-buttons'>
@@ -372,7 +368,8 @@ const MyComics = () => {
             </div>
           )}
         </>
-      )}{' '}
+      )}
+
       {showComicModal && (
         <BookFormModal
           isOpen={showComicModal}
@@ -382,7 +379,8 @@ const MyComics = () => {
           isSidebarCollapsed={isCollapsed}
           title={currentComic ? 'Edit Comic' : 'Create Comic'}
         />
-      )}{' '}
+      )}
+
       {showDeleteConfirm && comicToDelete && (
         <ConfirmDialog
           isOpen={showDeleteConfirm}

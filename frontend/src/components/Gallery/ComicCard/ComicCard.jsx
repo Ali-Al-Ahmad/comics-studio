@@ -38,7 +38,7 @@ const ComicCard = ({
     if (comic.id) {
       console.log('Adding comic to recently viewed:', comic.id, comic.title)
       dispatch(addToRecentlyViewed(comic.id))
-      // Navigate to the view comic page when card is clicked
+
       navigate(`/comic/${comic.id}`)
     } else {
       console.warn('Comic clicked has no ID:', comic)

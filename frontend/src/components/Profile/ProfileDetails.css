@@ -1,0 +1,238 @@
+.profile-details-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: stretch;
+  width: 100%;
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  position: relative;
+  width: 100%;
+  min-width: 280px;
+}
+
+.form-group:last-child {
+  margin-bottom: 0;
+}
+
+.form-group.full-width-group {
+  flex-basis: 100%;
+}
+
+.form-group label {
+  margin-bottom: 8px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: var(--profile-text-secondary);
+}
+
+.input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background-color: #EEEEEE;
+  border-radius: 6px;
+  border: 1px solid var(--secondary-color);
+  padding: 0 15px;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+  min-height: 50px;
+  height: 50px;
+  overflow: hidden;
+}
+
+.input-container:hover {
+  border-color: var(--primary-color);
+  background-color: #f0f0f0;
+}
+
+.input-container:hover .input-icon {
+  color: var(--primary-color);
+}
+
+.input-container:focus-within {
+  border-color: var(--primary-color);
+  background-color: #ffffff !important;
+  outline: none;
+}
+
+.input-container:focus-within .input-icon {
+  color: var(--primary-color) !important;
+}
+
+.input-container .input-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 15px;
+  color: #666;
+  transition: color 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 24px;
+  position: relative;
+  top: 1px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"] {
+  padding: 15px 0;
+  font-size: 1rem;
+  background-color: transparent;
+  color: var(--profile-text-primary);
+  border: none;
+  width: 100%;
+  outline: none;
+  line-height: 1.5;
+  height: 100%;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.input-container.disabled {
+  background-color: #e9ecef;
+  opacity: 0.9;
+  cursor: not-allowed;
+}
+
+.input-container.disabled input {
+  color: #6c757d;
+  cursor: not-allowed;
+}
+
+.form-group input::placeholder {
+  color: #999;
+  font-size: 0.9rem;
+}
+
+.form-group input:hover {
+  border-color: var(--primary-color);
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.form-group input[readonly],
+.form-group input[disabled] {
+  background-color: var(--secondary-color, #e9ecef);
+  color: #6c757d;
+  cursor: not-allowed;
+  opacity: 0.9;
+}
+
+.form-submit-button {
+  margin-top: 15px;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+  width: fit-content;
+  min-width: 150px;
+  align-self: flex-start;
+}
+
+.form-submit-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.input-error-message {
+  color: #e53935;
+  font-size: 0.85rem;
+  margin-top: 5px;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .form-row {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .form-group {
+    width: 100%;
+    min-width: unset;
+  }
+
+  .form-submit-button {
+    width: auto;
+    min-width: 150px;
+    align-self: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-details-form .form-row:first-child {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 15px;
+    width: 100%;
+  }
+
+  .profile-details-form .form-row:first-child .form-group {
+    width: calc(50% - 7.5px);
+    max-width: none;
+    min-width: unset;
+  }
+
+  .form-row:not(:first-child) {
+    flex-direction: column;
+    align-items: stretch;
+    margin-bottom: 10px;
+    width: 100%;
+  }
+
+  .form-group:not(.profile-details-form .form-row:first-child .form-group) {
+    width: 100%;
+  }
+
+  .form-submit-button {
+    align-self: stretch;
+    margin-top: 20px;
+    width: 100%;
+    max-width: none;
+  }
+
+  .form-group input[type="text"],
+  .form-group input[type="email"],
+  .form-group input[type="tel"] {
+    font-size: 15px;
+    padding: 12px 0;
+  }
+
+  .input-container {
+    height: 45px;
+    min-height: 45px;
+    padding: 0 12px;
+  }
+
+  .form-group label {
+    font-size: 0.85rem;
+    margin-bottom: 5px;
+  }
+
+  .input-container .input-icon {
+    font-size: 20px;
+    margin-right: 10px;
+  }
+}

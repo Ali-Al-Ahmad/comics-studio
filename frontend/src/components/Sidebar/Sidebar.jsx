@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef } from 'react'
-import CsMainLogoPath from '../../assets/images/csmainlogo.png'
-import PlanetLogoPath from '../../assets/images/csmainlogoplanet.png'
 import { NavLink, Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import PropTypes from 'prop-types'
 import { Icon } from '@iconify-icon/react'
+import CsMainLogoPath from '../../assets/images/csmainlogo.png'
+import PlanetLogoPath from '../../assets/images/csmainlogoplanet.png'
 import { useLogout } from '../../hooks/useLogout'
 import './Sidebar.css'
 
@@ -53,7 +53,6 @@ const UserProfileSection = ({ user, isCollapsed, onLogoutRequest }) => {
     <div className='sidebar-user-profile-section'>
       <div className='user-avatar-details'>
         <div className='user-avatar'>
-          {' '}
           {user.profile_picture ? (
             <img
               src={`${import.meta.env.VITE_API_BASE_URL}/${
@@ -68,6 +67,7 @@ const UserProfileSection = ({ user, isCollapsed, onLogoutRequest }) => {
             />
           )}
         </div>
+
         {!isCollapsed && (
           <div className='user-text-info'>
             <span
@@ -85,8 +85,9 @@ const UserProfileSection = ({ user, isCollapsed, onLogoutRequest }) => {
               {user.email || 'user@example.com'}
             </span>
           </div>
-        )}{' '}
+        )}
       </div>
+
       <button
         ref={userMenuToggleRef}
         className='user-menu-toggle-button'
@@ -101,13 +102,13 @@ const UserProfileSection = ({ user, isCollapsed, onLogoutRequest }) => {
           }`}
         />
       </button>
+
       {isUserMenuOpen && (
         <div
           ref={userMenuRef}
           className={`user-profile-menu ${isCollapsed ? 'collapsed-menu' : ''}`}
           role='menu'
         >
-          {' '}
           <Link
             to='/profile'
             onClick={handleProfileLinkClick}
@@ -146,10 +147,7 @@ UserProfileSection.propTypes = {
 const Sidebar = ({ isCollapsed, toggleSidebar }) => {
   const user = useSelector((state) => state.user)
   const performLogout = useLogout()
-
-  const handleLogoutRequest = async () => {
-    await performLogout()
-  }
+  const [loaded, setLoaded] = useState(false)
 
   const navItems = [
     {
@@ -179,7 +177,9 @@ const Sidebar = ({ isCollapsed, toggleSidebar }) => {
     },
   ]
 
-  const [loaded, setLoaded] = useState(false)
+  const handleLogoutRequest = async () => {
+    await performLogout()
+  }
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -195,7 +195,6 @@ const Sidebar = ({ isCollapsed, toggleSidebar }) => {
         loaded ? 'loaded' : ''
       }`}
     >
-      {' '}
       <div className='sidebar-header'>
         {isCollapsed ? (
           <Link
@@ -220,6 +219,7 @@ const Sidebar = ({ isCollapsed, toggleSidebar }) => {
             />
           </Link>
         )}
+
         <button
           onClick={toggleSidebar}
           className='sidebar-toggle'
@@ -238,6 +238,7 @@ const Sidebar = ({ isCollapsed, toggleSidebar }) => {
           )}
         </button>
       </div>
+
       <nav className='sidebar-nav'>
         <ul>
           {navItems.map((item) => (
@@ -275,6 +276,7 @@ const Sidebar = ({ isCollapsed, toggleSidebar }) => {
           ))}
         </ul>
       </nav>
+
       {user && Object.keys(user).length > 0 && (
         <UserProfileSection
           user={user}

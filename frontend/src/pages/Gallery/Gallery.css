@@ -1,9 +1,7 @@
 .gallery-container {
   padding: 1rem;
-  width: 100%;
   background-color:white;
   min-height: 100vh;
-  max-width: 100%;
   box-sizing: border-box;
 }
 

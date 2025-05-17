@@ -1,14 +1,15 @@
 import { useState, useEffect, useMemo } from 'react'
 import './Characters.css'
 import axiosInstance from '../../utils/axiosInstance'
-import Spinner from '../../components/Spinner/Spinner'
 import { useDispatch, useSelector } from 'react-redux'
 import { showToast } from '../../redux/slices/toastSlice'
 
-import CharacterFormModal from '../../components/CharacterFormModal/CharacterFormModal'
-import CharacterCard from '../../components/CharacterCard/CharacterCard'
-import ConfirmDialog from '../../components/ConfirmDialog/ConfirmDialog'
-import { Icon } from '@iconify-icon/react'
+import CharactersHeader from '../../components/Characters/CharactersHeader'
+import CharactersControls from '../../components/Characters/CharactersControls'
+import CharactersGrid from '../../components/Characters/CharactersGrid'
+import EmptyState from '../../components/Characters/EmptyState'
+import LoadingState from '../../components/Characters/LoadingState'
+import CharacterModals from '../../components/Characters/CharacterModals'
 
 const Characters = () => {
   const [characters, setCharacters] = useState([])
@@ -25,6 +26,7 @@ const Characters = () => {
   const { isCollapsed } = useSelector((state) => state.sidebar)
   const user = useSelector((state) => state.user)
   const credits = user?.credits || 0
+
   useEffect(() => {
     const fetchCharacters = async () => {
       try {
@@ -70,6 +72,7 @@ const Characters = () => {
 
     fetchCharacters()
   }, [dispatch])
+
   const memoizedFilteredCharacters = useMemo(() => {
     let results = [...characters]
 
@@ -101,6 +104,7 @@ const Characters = () => {
   useEffect(() => {
     setFilteredCharacters(memoizedFilteredCharacters)
   }, [memoizedFilteredCharacters])
+
   useEffect(() => {
     const container =
       document.querySelector('.characters-grid') ||
@@ -114,6 +118,7 @@ const Characters = () => {
       container.classList.add('characters-grid-appear')
     }
   }, [activeFilter])
+
   const handleFilterClick = (filter) => {
     if (filter === activeFilter) return
 
@@ -180,6 +185,7 @@ const Characters = () => {
     setCurrentCharacter(character)
     setShowCharacterModal(true)
   }
+
   const handleSaveCharacter = async (characterData) => {
     try {
       const isEditing = !!currentCharacter
@@ -251,52 +257,46 @@ const Characters = () => {
               type: 'success',
             })
           )
-        } else {
-          throw new Error('Failed to create character, API returned no data')
         }
       }
 
-      setShowCharacterModal(false)
+      handleCloseCharacterModal()
     } catch (error) {
-      console.error('Failed to process character:', error)
+      console.error('Failed to save character:', error)
       dispatch(
         showToast({
-          message: `Failed to ${
-            currentCharacter ? 'update' : 'create'
-          } character. Please try again.`,
+          message: 'Failed to save character. Please try again.',
           type: 'error',
         })
       )
     }
   }
+
   const confirmDeleteCharacter = (character) => {
     setCharacterToDelete(character)
     setShowDeleteConfirm(true)
   }
+
   const handleDeleteCharacter = async () => {
     if (!characterToDelete) return
 
-    setShowDeleteConfirm(false)
-
     try {
-      const characterId = characterToDelete.id
-
-      await axiosInstance.delete(`/characters/${characterId}`)
+      await axiosInstance.delete(`/characters/${characterToDelete.id}`)
 
       setCharacters((prev) =>
-        prev.filter((character) => character.id !== characterId)
+        prev.filter((char) => char.id !== characterToDelete.id)
       )
 
-      if (favoriteCharacters.includes(characterId)) {
-        const updatedFavorites = favoriteCharacters.filter(
-          (id) => id !== characterId
+      setFavoriteCharacters((prev) =>
+        prev.filter((id) => id !== characterToDelete.id)
+      )
+
+      localStorage.setItem(
+        'favoriteCharacters',
+        JSON.stringify(
+          favoriteCharacters.filter((id) => id !== characterToDelete.id)
         )
-        setFavoriteCharacters(updatedFavorites)
-        localStorage.setItem(
-          'favoriteCharacters',
-          JSON.stringify(updatedFavorites)
-        )
-      }
+      )
 
       dispatch(
         showToast({
@@ -304,47 +304,50 @@ const Characters = () => {
           type: 'success',
         })
       )
-
-      setCharacterToDelete(null)
     } catch (error) {
       console.error('Failed to delete character:', error)
       dispatch(
         showToast({
-          message: 'Failed to delete character from API. Please try again.',
+          message: 'Failed to delete character. Please try again.',
           type: 'error',
         })
       )
+    } finally {
+      setShowDeleteConfirm(false)
+      setCharacterToDelete(null)
     }
   }
+
   const toggleFavorite = async (characterId) => {
     try {
-      const characterToUpdate = characters.find(
+      const characterToToggle = characters.find(
         (char) => char.id === characterId
       )
-      if (!characterToUpdate) return
+      if (!characterToToggle) return
 
-      const newFavoriteStatus = !favoriteCharacters.includes(characterId)
+      const isCurrentlyFavorite =
+        characterToToggle.is_favorite ||
+        favoriteCharacters.includes(characterToToggle.id)
 
-      const formData = new FormData()
-      formData.append('is_favorite', newFavoriteStatus)
+      const newFavoriteStatus = !isCurrentlyFavorite
 
-      await axiosInstance.put(`/characters/${characterId}`, formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      })
-
-      let updatedFavorites
-      if (favoriteCharacters.includes(characterId)) {
-        updatedFavorites = favoriteCharacters.filter((id) => id !== characterId)
+      if (newFavoriteStatus) {
+        setFavoriteCharacters((prev) => [...prev, characterId])
       } else {
-        updatedFavorites = [...favoriteCharacters, characterId]
+        setFavoriteCharacters((prev) => prev.filter((id) => id !== characterId))
       }
 
-      setFavoriteCharacters(updatedFavorites)
+      await axiosInstance.put(`/characters/${characterId}/favorite`, {
+        is_favorite: newFavoriteStatus,
+      })
+
       localStorage.setItem(
         'favoriteCharacters',
-        JSON.stringify(updatedFavorites)
+        JSON.stringify(
+          newFavoriteStatus
+            ? [...favoriteCharacters, characterId]
+            : favoriteCharacters.filter((id) => id !== characterId)
+        )
       )
 
       setCharacters((prev) =>
@@ -373,175 +376,52 @@ const Characters = () => {
       )
     }
   }
-
   return (
-    <div
-      className={`characters-container ${
-        isCollapsed ? 'sidebar-collapsed' : 'sidebar-expanded'
-      }`}
-    >
-      <div className='gallery-header-container'>
-        <div className='filter-buttons'>
-          <button
-            className={`filter-btn ${activeFilter === 'all' ? 'active' : ''}`}
-            onClick={() => handleFilterClick('all')}
-          >
-            <Icon
-              icon='mdi:view-grid'
-              width='18'
-              height='18'
-              className='filter-btn-icon'
-            />
-            <span className='filter-btn-text'>All Characters</span>
-          </button>
-          <button
-            className={`filter-btn ${
-              activeFilter === 'favorites' ? 'active' : ''
-            }`}
-            onClick={() => handleFilterClick('favorites')}
-          >
-            <Icon
-              icon='mdi:star'
-              width='18'
-              height='18'
-              className='filter-btn-icon'
-            />
-            <span className='filter-btn-text'>Favorites</span>
-          </button>
-        </div>
+    <div className='characters-container'>
+      <CharactersHeader
+        activeFilter={activeFilter}
+        handleFilterClick={handleFilterClick}
+        credits={credits}
+      />
 
-        <div className='credits-display'>
-          <span className='credits-value'>{credits} Credits</span>
-        </div>
-      </div>
-      <div className='characters-controls'>
-        <div className='search-container'>
-          <input
-            type='text'
-            placeholder='Search characters...'
-            value={searchTerm}
-            onChange={handleSearch}
-            className='search-input'
-          />
-        </div>{' '}
-        <button
-          onClick={handleOpenCharacterModal}
-          className='create-character-btn'
-        >
-          {' '}
-          <Icon
-            icon='mdi:plus'
-            width='20'
-            height='20'
-            className='create-icon'
-          />
-          <span className='create-text'>Create Character</span>
-        </button>
-      </div>
+      <CharactersControls
+        searchTerm={searchTerm}
+        handleSearch={handleSearch}
+        handleOpenCharacterModal={handleOpenCharacterModal}
+      />
+
       {loading ? (
-        <div className='characters-loading'>
-          <Spinner />
-          <p>Loading characters...</p>
-        </div>
+        <LoadingState />
       ) : (
         <>
-          {' '}
           {filteredCharacters.length === 0 ? (
-            <div className='no-characters characters-grid-appear'>
-              {' '}
-              <div className='empty-state-content'>
-                <div className='icon-container'>
-                  <Icon
-                    icon={
-                      activeFilter === 'favorites'
-                        ? 'mdi:star'
-                        : 'mdi:view-grid'
-                    }
-                    width='48'
-                    height='48'
-                    className='empty-state-icon'
-                  />
-                </div>
-                <p>
-                  {searchTerm
-                    ? `No characters found matching "${searchTerm}". Try a different search term.`
-                    : activeFilter === 'favorites'
-                    ? 'No favorite characters yet. Click the star icon on any character to mark it as favorite.'
-                    : 'No characters found. Create your first character!'}
-                </p>
-              </div>
-            </div>
+            <EmptyState
+              searchTerm={searchTerm}
+              activeFilter={activeFilter}
+            />
           ) : (
-            <div className='characters-grid characters-grid-appear'>
-              {filteredCharacters.map((character, index) => {
-                let imageUrl = character.image_url
-
-                if (
-                  imageUrl &&
-                  !imageUrl.startsWith('data:') &&
-                  !imageUrl.includes('placehold.co')
-                ) {
-                  imageUrl = `${import.meta.env.VITE_API_BASE_URL}/${imageUrl}`
-                } else if (!imageUrl) {
-                  imageUrl = `https://placehold.co/300x400/3498db/FFFFFF?text=${encodeURIComponent(
-                    character.name
-                  )}`
-                }
-
-                const animationDelay = {
-                  animationDelay: `${Math.min(index * 0.05, 0.5)}s`,
-                  opacity: 0,
-                  animation: 'fadeInGrid 0.3s forwards',
-                }
-                return (
-                  <div
-                    key={character.id}
-                    style={animationDelay}
-                    className='character-card-wrapper'
-                    tabIndex={0}
-                    role='article'
-                    aria-label={`Character: ${character.name}`}
-                  >
-                    <CharacterCard
-                      character={{
-                        ...character,
-                        image_url: imageUrl,
-                      }}
-                      onEdit={handleEditCharacter}
-                      onDelete={() => confirmDeleteCharacter(character)}
-                      onFavorite={() => toggleFavorite(character.id)}
-                      isFavorite={
-                        character.is_favorite ||
-                        favoriteCharacters.includes(character.id)
-                      }
-                    />
-                  </div>
-                )
-              })}
-            </div>
+            <CharactersGrid
+              characters={filteredCharacters}
+              favoriteCharacters={favoriteCharacters}
+              handleEditCharacter={handleEditCharacter}
+              confirmDeleteCharacter={confirmDeleteCharacter}
+              toggleFavorite={toggleFavorite}
+              apiBaseUrl={import.meta.env.VITE_API_BASE_URL}
+            />
           )}
         </>
-      )}{' '}
-      <CharacterFormModal
-        isOpen={showCharacterModal}
-        onClose={handleCloseCharacterModal}
-        onSave={handleSaveCharacter}
-        character={currentCharacter}
-        title={currentCharacter ? 'Edit Character' : 'Create Character'}
-        isSidebarCollapsed={isCollapsed}
-      />{' '}
-      <ConfirmDialog
-        isOpen={showDeleteConfirm}
-        onClose={() => setShowDeleteConfirm(false)}
-        onConfirm={handleDeleteCharacter}
-        title='Delete Character'
-        message={
-          characterToDelete
-            ? `Are you sure you want to delete ${characterToDelete.name}? This action cannot be undone.`
-            : 'Are you sure you want to delete this character? This action cannot be undone.'
-        }
-        confirmText='Delete'
-        type='danger'
+      )}
+
+      <CharacterModals
+        showCharacterModal={showCharacterModal}
+        handleCloseCharacterModal={handleCloseCharacterModal}
+        handleSaveCharacter={handleSaveCharacter}
+        currentCharacter={currentCharacter}
+        isCollapsed={isCollapsed}
+        showDeleteConfirm={showDeleteConfirm}
+        setShowDeleteConfirm={setShowDeleteConfirm}
+        handleDeleteCharacter={handleDeleteCharacter}
+        characterToDelete={characterToDelete}
       />
     </div>
   )
