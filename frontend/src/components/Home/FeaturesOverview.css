@@ -1,0 +1,115 @@
+.features-overview-section {
+  padding: 6rem 2rem;
+  background-color: var(--section-bg-light);
+  text-align: center;
+}
+
+.features-overview-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+.features-overview-subtitle {
+  font-size: 1.25rem;
+  margin-bottom: 4rem;
+  color: var(--text-secondary);
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.features-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.feature-overview-card {
+  padding: 2rem;
+  border-radius: 12px;
+  background-color: white;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.feature-overview-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.feature-overview-icon {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  color: var(--primary-color);
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: rgba(112, 99, 241, 0.1);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.feature-overview-card h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+.feature-overview-card p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 992px) {
+  .features-overview-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  .features-overview-title {
+    font-size: 2rem;
+  }
+
+  .features-overview-subtitle {
+    font-size: 1.125rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .features-overview-section {
+    padding: 4rem 1.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .features-overview-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .features-overview-title {
+    font-size: 1.75rem;
+  }
+
+  .features-overview-subtitle {
+    font-size: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .feature-overview-card {
+    padding: 1.5rem;
+  }
+}
