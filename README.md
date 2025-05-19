@@ -69,11 +69,17 @@ Download your comics in multiple formats and share them easily on social media, 
 <!-- Development & Testing -->
 <img src="./readme/title6.svg"/>
 
-### Add Title Here
+### Code Test Cases
 
-| Services                                | Validation                            | Testing                               |
+| Feature Test                                | Integration Test                            | Unit Test                               |
 | --------------------------------------- | ------------------------------------- | ------------------------------------- |
-| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
+| ![Landing](./readme/demo/generate_comic_test.png) | ![fsdaf](./readme/demo/integration_test.png) | ![fsdaf](./readme/demo/unit_test.png) |
+
+
+
+| Local Tests Success                              | Pipeline Tests success                        |
+| --------------------------------------- | ------------------------------------- |
+| ![Landing](./readme/demo/testing_results_success.png) | ![fsdaf](./readme/demo/success_test_github_actions.png)|
 
 <br><br>
 
