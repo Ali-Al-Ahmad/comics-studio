@@ -22,9 +22,14 @@
 
 <img src="./readme/demo/comics_studio_erdiagram.png" style="border-radius: 10px;"/>
 
+
+### Flow Diagram
+
+<img src="./readme/demo/system_diagram.png"/>
+
 ### Component Diagram
 
-<img src="./readme/demo/ComponentDiagram.png"/>
+<img src="./readme/demo/component_interface_diagram.png"/>
 
 
 
