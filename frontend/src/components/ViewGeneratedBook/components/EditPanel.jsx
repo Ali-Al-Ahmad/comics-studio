@@ -57,7 +57,15 @@ const EditPanel = ({
             Regenerate Panel
           </button>
         </div>
-
+        <div className='edit-panel-caption'>
+          <h4>Panel Caption</h4>
+          <textarea
+            value={panel.caption || ''}
+            onChange={(e) => onCaptionChange(panelIndex, e.target.value)}
+            placeholder='Enter a caption for this panel...'
+            rows={3}
+          />
+        </div>
       </div>
     </div>
   )
