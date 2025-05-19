@@ -264,4 +264,30 @@ export const useDownloadComic = (dispatch) => {
   return { handleDownloadComic, handleDownloadPDF }
 }
 
+export const useShareComic = (comic, dispatch) => {
+  const shareComic = () => {
+    const url = window.location.href
+    navigator.clipboard.writeText(url)
 
+    if (dispatch) {
+      if (comic.is_public) {
+        dispatch(
+          showToast({
+            message: 'Comic link copied to clipboard!',
+            type: 'success',
+          })
+        )
+      } else {
+        dispatch(
+          showToast({
+            message:
+              'Comic link copied! Note: Only you can view this private comic.',
+            type: 'info',
+          })
+        )
+      }
+    }
+  }
+
+  return { shareComic }
+}
