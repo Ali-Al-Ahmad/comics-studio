@@ -24,6 +24,7 @@
   margin-right: 1rem;
   filter: brightness(0) invert(1);
   transition: transform 0.3s ease;
+  object-fit: fill;
 }
 
 .footer-logo img:hover {

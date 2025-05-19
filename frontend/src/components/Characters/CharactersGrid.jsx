@@ -4,7 +4,6 @@ import './CharactersGrid.css'
 
 const CharactersGrid = ({
   characters,
-  favoriteCharacters,
   handleEditCharacter,
   confirmDeleteCharacter,
   toggleFavorite,
@@ -41,10 +40,7 @@ const CharactersGrid = ({
               onEdit={handleEditCharacter}
               onDelete={() => confirmDeleteCharacter(character)}
               onFavorite={() => toggleFavorite(character.id)}
-              isFavorite={
-                character.is_favorite ||
-                favoriteCharacters.includes(character.id)
-              }
+              isFavorite={character.is_favorite === true}
             />
           </article>
         )
@@ -55,7 +51,6 @@ const CharactersGrid = ({
 
 CharactersGrid.propTypes = {
   characters: PropTypes.array.isRequired,
-  favoriteCharacters: PropTypes.array.isRequired,
   handleEditCharacter: PropTypes.func.isRequired,
   confirmDeleteCharacter: PropTypes.func.isRequired,
   toggleFavorite: PropTypes.func.isRequired,

@@ -33,29 +33,54 @@ const Navbar = () => {
           />
         </Link>
         <ul className={`navbar-links ${isMenuOpen ? 'active' : ''}`}>
+          {' '}
           <li>
             <Link
               to='/'
               onClick={() => {
                 window.scrollTo({ top: 0, behavior: 'smooth' })
+                setIsMenuOpen(false)
               }}
             >
               Home
             </Link>
           </li>
           <li>
-            <a href='#features-overview'>About</a>
+            <a
+              href='#features-overview'
+              onClick={() => setIsMenuOpen(false)}
+            >
+              About
+            </a>
           </li>
           <li>
-            <a href='#gallery'>Explore</a>
-          </li>
+            <a
+              href='#gallery'
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Explore
+            </a>{' '}
+          </li>{' '}
           <li>
-            <a href='#pricing'>Pricing</a>
+            <a
+              href='#pricing'
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Pricing
+            </a>
+          </li>
+          <li className='mobile-signin'>
+            <Link
+              to='/login'
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Sign In
+            </Link>
           </li>
         </ul>
         <Link
           to='/login'
-          className='nav-login-btn black-btn'
+          className='nav-login-btn black-btn desktop-only'
         >
           Sign In
         </Link>

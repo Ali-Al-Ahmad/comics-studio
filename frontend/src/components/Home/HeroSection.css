@@ -1,10 +1,11 @@
 .hero-section {
+  margin-top: 80px;
   padding-top: 8rem;
   padding-bottom: 5rem;
   background-color: var(--background-color);
   position: relative;
   overflow: hidden;
-  min-height: 85vh;
+  min-height: 92dvh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -109,8 +110,8 @@
 
 @media (max-width: 767px) {
   .hero-section {
-    padding-top: 7rem;
-    min-height: 70vh;
+    padding-top: 0rem;
+      min-height: 90dvh;
   }
 
   .hero-title {

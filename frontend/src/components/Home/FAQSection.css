@@ -76,9 +76,9 @@
 }
 
 .faq-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  gap: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
 }
 
 .faq-item {
@@ -88,11 +88,14 @@
   transition: all 0.3s ease;
   overflow: hidden;
   text-align: left;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .faq-item:hover {
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-  transform: translateY(-5px);
+  transform: translateY(-3px);
 }
 
 .faq-question {
@@ -154,7 +157,7 @@
   max-height: 0;
   overflow: hidden;
   opacity: 0;
-  transition: max-height 0.6s ease, opacity 0.6s ease, padding 0.6s ease;
+  transition: max-height 0.4s ease, opacity 0.5s ease, padding 0.4s ease;
 }
 
 .faq-item.active .faq-answer {
@@ -162,10 +165,10 @@
 }
 
 @media (max-width: 768px) {
-  .faq-grid {
-    grid-template-columns: 1fr;
+  .faq-section {
+    padding: 5rem 1.5rem;
   }
-
+  
   .faq-title {
     font-size: 2.3rem;
   }
@@ -176,5 +179,9 @@
 
   .faq-answer {
     font-size: 0.95rem;
+  }
+
+  .faq-item {
+    max-width: 100%;
   }
 }

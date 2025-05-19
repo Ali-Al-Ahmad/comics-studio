@@ -13,7 +13,6 @@
 
 .feature-container.reverse {
   flex-direction: row-reverse;
-  background-color: var(--section-bg-light);
 }
 
 .feature-text {
@@ -32,6 +31,7 @@
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
+  object-fit: fill;
 }
 
 .feature-image img:hover {

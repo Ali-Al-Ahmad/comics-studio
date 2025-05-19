@@ -11,7 +11,6 @@ export const useCharacters = () => {
   const [showCharacterModal, setShowCharacterModal] = useState(false)
   const [currentCharacter, setCurrentCharacter] = useState(null)
   const [activeFilter, setActiveFilter] = useState('all')
-  const [favoriteCharacters, setFavoriteCharacters] = useState([])
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false)
   const [characterToDelete, setCharacterToDelete] = useState(null)
   const dispatch = useDispatch()
@@ -39,14 +38,11 @@ export const useCharacters = () => {
     }
 
     if (activeFilter === 'favorites') {
-      results = results.filter(
-        (character) =>
-          character.is_favorite || favoriteCharacters.includes(character.id)
-      )
+      results = results.filter((character) => character.is_favorite === true)
     }
 
     return results
-  }, [characters, searchTerm, activeFilter, favoriteCharacters])
+  }, [characters, searchTerm, activeFilter])
 
   useEffect(() => {
     setFilteredCharacters(memoizedFilteredCharacters)
@@ -63,7 +59,6 @@ export const useCharacters = () => {
       container.classList.add('characters-grid-appear')
     }
   }, [activeFilter])
-
   const fetchCharacters = async () => {
     try {
       setLoading(true)
@@ -75,27 +70,12 @@ export const useCharacters = () => {
         apiCharactersData.length > 0 ? apiCharactersData : []
       setCharacters(finalCharacters)
       setFilteredCharacters(finalCharacters)
-      const apiFavorites = finalCharacters
-        .filter((character) => character.is_favorite)
-        .map((character) => character.id)
-
-      const savedFavorites = localStorage.getItem('favoriteCharacters')
-      const localFavorites = savedFavorites ? JSON.parse(savedFavorites) : []
-
-      const mergedFavorites = [...new Set([...apiFavorites, ...localFavorites])]
-
-      setFavoriteCharacters(mergedFavorites)
-      localStorage.setItem(
-        'favoriteCharacters',
-        JSON.stringify(mergedFavorites)
-      )
     } catch (error) {
       console.error('Failed to fetch characters:', error)
 
       dispatch(
         showToast({
-          message:
-            'Failed to load characters from API. Using mock data instead.',
+          message: 'Failed to load characters from API',
           type: 'warning',
         })
       )
@@ -261,7 +241,6 @@ export const useCharacters = () => {
     setCharacterToDelete(character)
     setShowDeleteConfirm(true)
   }
-
   const handleDeleteCharacter = async () => {
     if (!characterToDelete) return
 
@@ -270,17 +249,6 @@ export const useCharacters = () => {
 
       setCharacters((prev) =>
         prev.filter((char) => char.id !== characterToDelete.id)
-      )
-
-      setFavoriteCharacters((prev) =>
-        prev.filter((id) => id !== characterToDelete.id)
-      )
-
-      localStorage.setItem(
-        'favoriteCharacters',
-        JSON.stringify(
-          favoriteCharacters.filter((id) => id !== characterToDelete.id)
-        )
       )
 
       dispatch(
@@ -302,7 +270,6 @@ export const useCharacters = () => {
       setCharacterToDelete(null)
     }
   }
-
   const toggleFavorite = async (characterId) => {
     try {
       const characterToToggle = characters.find(
@@ -310,30 +277,8 @@ export const useCharacters = () => {
       )
       if (!characterToToggle) return
 
-      const isCurrentlyFavorite =
-        characterToToggle.is_favorite ||
-        favoriteCharacters.includes(characterToToggle.id)
-
+      const isCurrentlyFavorite = characterToToggle.is_favorite === true
       const newFavoriteStatus = !isCurrentlyFavorite
-
-      if (newFavoriteStatus) {
-        setFavoriteCharacters((prev) => [...prev, characterId])
-      } else {
-        setFavoriteCharacters((prev) => prev.filter((id) => id !== characterId))
-      }
-
-      await axiosInstance.put(`/characters/${characterId}/favorite`, {
-        is_favorite: newFavoriteStatus,
-      })
-
-      localStorage.setItem(
-        'favoriteCharacters',
-        JSON.stringify(
-          newFavoriteStatus
-            ? [...favoriteCharacters, characterId]
-            : favoriteCharacters.filter((id) => id !== characterId)
-        )
-      )
 
       setCharacters((prev) =>
         prev.map((char) =>
@@ -342,6 +287,10 @@ export const useCharacters = () => {
             : char
         )
       )
+
+      await axiosInstance.put(`/characters/${characterId}/favorite`, {
+        is_favorite: newFavoriteStatus,
+      })
 
       dispatch(
         showToast({
@@ -353,6 +302,15 @@ export const useCharacters = () => {
       )
     } catch (error) {
       console.error('Failed to update favorite status:', error)
+
+      setCharacters((prev) =>
+        prev.map((char) =>
+          char.id === characterId
+            ? { ...char, is_favorite: !char.is_favorite }
+            : char
+        )
+      )
+
       dispatch(
         showToast({
           message: 'Failed to update favorite status. Please try again.',
@@ -361,7 +319,6 @@ export const useCharacters = () => {
       )
     }
   }
-
   return {
     characters,
     filteredCharacters,
@@ -370,7 +327,6 @@ export const useCharacters = () => {
     showCharacterModal,
     currentCharacter,
     activeFilter,
-    favoriteCharacters,
     showDeleteConfirm,
     characterToDelete,
     handleSearch,

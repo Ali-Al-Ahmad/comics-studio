@@ -4,7 +4,7 @@
     justify-content: space-between;
   margin-bottom: 1.5rem;
   width: 100%;
-  padding: 0 0.25rem;
+  padding: 0;
   flex-wrap: nowrap;
     gap: 0.75rem;
     min-height: 48px;
@@ -20,7 +20,7 @@
 }
 
 .filter-btn {
-  padding: 0.6rem 1.2rem;
+  padding: 0.6rem 1.6rem;
   background-color: #f2f2f2;
   border: 1px solid var(--border-color);
   border-radius: 6px;
@@ -43,9 +43,13 @@
   min-width: 140px;
 }
 
+.filter-btn-icon {
+  margin-right: 4px;
+  vertical-align: middle;
+}
 .filter-btn-text {
   transition: opacity 0.3s ease, visibility 0.3s ease;
-  margin-left: 8px;
+  margin-left: 4px;
   vertical-align: middle;
 }
 

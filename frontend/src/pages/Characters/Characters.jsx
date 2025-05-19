@@ -19,7 +19,6 @@ const Characters = () => {
     showCharacterModal,
     currentCharacter,
     activeFilter,
-    favoriteCharacters,
     showDeleteConfirm,
     characterToDelete,
     handleSearch,
@@ -59,7 +58,6 @@ const Characters = () => {
           ) : (
             <CharactersGrid
               characters={filteredCharacters}
-              favoriteCharacters={favoriteCharacters}
               handleEditCharacter={handleEditCharacter}
               confirmDeleteCharacter={confirmDeleteCharacter}
               toggleFavorite={toggleFavorite}
