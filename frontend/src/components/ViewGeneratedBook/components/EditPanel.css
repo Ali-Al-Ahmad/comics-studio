@@ -58,6 +58,26 @@
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
 }
 
+.regenerate-panel-btn {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  font-weight: 500;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.regenerate-panel-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
 
 
 
