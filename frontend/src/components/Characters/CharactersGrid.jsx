@@ -1,9 +1,9 @@
 import CharacterCard from '../CharacterCard/CharacterCard'
+import PropTypes from 'prop-types'
 import './CharactersGrid.css'
 
 const CharactersGrid = ({
   characters,
-  favoriteCharacters,
   handleEditCharacter,
   confirmDeleteCharacter,
   toggleFavorite,
@@ -11,7 +11,7 @@ const CharactersGrid = ({
 }) => {
   return (
     <div className='characters-grid characters-grid-appear'>
-      {characters.map((character, index) => {
+      {characters.map((character) => {
         let imageUrl = character.image_url
 
         if (
@@ -26,18 +26,10 @@ const CharactersGrid = ({
           )}`
         }
 
-        const animationDelay = {
-          animationDelay: `${Math.min(index * 0.05, 0.5)}s`,
-          opacity: 0,
-          animation: 'fadeInGrid 0.3s forwards',
-        }
         return (
-          <div
+          <article
             key={character.id}
-            style={animationDelay}
             className='character-card-wrapper'
-            tabIndex={0}
-            role='article'
             aria-label={`Character: ${character.name}`}
           >
             <CharacterCard
@@ -48,16 +40,21 @@ const CharactersGrid = ({
               onEdit={handleEditCharacter}
               onDelete={() => confirmDeleteCharacter(character)}
               onFavorite={() => toggleFavorite(character.id)}
-              isFavorite={
-                character.is_favorite ||
-                favoriteCharacters.includes(character.id)
-              }
+              isFavorite={character.is_favorite === true}
             />
-          </div>
+          </article>
         )
       })}
     </div>
   )
+}
+
+CharactersGrid.propTypes = {
+  characters: PropTypes.array.isRequired,
+  handleEditCharacter: PropTypes.func.isRequired,
+  confirmDeleteCharacter: PropTypes.func.isRequired,
+  toggleFavorite: PropTypes.func.isRequired,
+  apiBaseUrl: PropTypes.string,
 }
 
 export default CharactersGrid

@@ -1,23 +1,12 @@
 .gallery-container {
   padding: 1rem;
-  background-color:white;
+  background-color: white;
   min-height: 100vh;
   box-sizing: border-box;
 }
 
 .gallery-header {
   margin-bottom: 2rem;
-  
-}
-
-.gallery-search-controls {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
 }
 
 .gallery-comics-grid {
@@ -29,6 +18,15 @@
   transition: max-width 0.3s ease;
   justify-items: center;
   animation: fade-in 0.4s ease-out;
+}
+
+.comic-card-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  transform: translateZ(0);
+  will-change: transform, opacity;
 }
 
 .comics-loading {
@@ -58,20 +56,62 @@
   margin-bottom: 1rem;
 }
 
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.comics-grid-appear {
+  animation: fadeInUp 0.5s forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.content-transitioning-out {
+  transition: all 0.3s ease-out;
+}
+
+.content-transitioning-in {
+  transition: all 0.3s ease-in;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .gallery-comics-grid,
+  .no-comics,
+  .comics-grid-appear {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
 @media screen and (max-width: 479px) {
   .gallery-container {
     padding: 0.75rem;
-  }
-  
-  .gallery-search-controls {
-    gap: 0.75rem;
   }
   
   .gallery-comics-grid {
     gap: 30px;
   }
 
-  .gallery-header{
+                .gallery-header {
     padding: 0 0.5rem;
   }
 }
@@ -84,10 +124,6 @@
 
 @media screen and (min-width: 768px) {
   .gallery-container {
-    padding: 1.5rem 2rem;
-  }
-  
-  .gallery-search-controls {
-    flex-direction: row;
+    padding: 1rem;
   }
 }

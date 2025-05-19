@@ -1,124 +1,28 @@
-import { useState, useEffect } from 'react'
 import './Gallery.css'
-import axiosInstance from '../../utils/axiosInstance'
 import Spinner from '../../components/Spinner/Spinner'
-import { useDispatch, useSelector } from 'react-redux'
-import { showToast } from '../../redux/slices/toastSlice'
 import GalleryHeader from '../../components/Gallery/GalleryHeader/GalleryHeader'
-import SearchBox from '../../components/Gallery/SearchBox/SearchBox'
+import GalleryControls from '../../components/Gallery/GalleryControls/GalleryControls'
 import ComicCard from '../../components/Gallery/ComicCard/ComicCard'
+import useGallery from '../../hooks/useGallery'
 
 const Gallery = () => {
-  const [comics, setComics] = useState([])
-  const [filteredComics, setFilteredComics] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [activeFilter, setActiveFilter] = useState('all')
-  const [searchTerm, setSearchTerm] = useState('')
-  const dispatch = useDispatch()
-  const { comicIds: recentlyViewedIds } = useSelector(
-    (state) => state.recentlyViewed
-  )
-
-  useEffect(() => {
-    const fetchComics = async () => {
-      try {
-        setLoading(true)
-
-        const response = await axiosInstance.get('/books/publicbooks')
-        const comicsData = response.data.data
-
-        setComics(comicsData)
-        setFilteredComics(comicsData)
-        setLoading(false)
-      } catch (error) {
-        console.error('Error fetching comics:', error)
-        dispatch(
-          showToast({
-            type: 'error',
-            message: 'Failed to load comics. Please try again later.',
-          })
-        )
-        setLoading(false)
-      }
-    }
-
-    fetchComics()
-  }, [dispatch])
-  useEffect(() => {
-    let results = comics
-
-    console.log(
-      'All comics:',
-      results.map((comic) => ({ id: comic.id, title: comic.title }))
-    )
-    console.log('Recently viewed IDs:', recentlyViewedIds)
-
-    if (activeFilter === 'recent') {
-      if (recentlyViewedIds && recentlyViewedIds.length > 0) {
-        results = results.filter((comic) => {
-          const comicId = Number(comic.id)
-          const isInRecentlyViewed = recentlyViewedIds.includes(comicId)
-          console.log(
-            `Comic ID ${comicId} (${comic.title}) is in recently viewed: ${isInRecentlyViewed}`
-          )
-          return isInRecentlyViewed
-        })
-        results.sort((a, b) => {
-          return (
-            recentlyViewedIds.indexOf(Number(a.id)) -
-            recentlyViewedIds.indexOf(Number(b.id))
-          )
-        })
-      } else {
-        results = []
-      }
-    }
-    if (searchTerm) {
-      const searchTermLower = searchTerm.toLowerCase().trim()
-
-      results = results.filter((comic) => {
-        const titleMatch = comic.title
-          ? comic.title.toLowerCase().includes(searchTermLower)
-          : false
-
-        const firstNameMatch = comic.user?.first_name
-          ? comic.user.first_name.toLowerCase().includes(searchTermLower)
-          : false
-
-        const lastNameMatch = comic.user?.last_name
-          ? comic.user.last_name.toLowerCase().includes(searchTermLower)
-          : false
-
-        const fullNameMatch =
-          comic.user?.first_name && comic.user?.last_name
-            ? `${comic.user.first_name} ${comic.user.last_name}`
-                .toLowerCase()
-                .includes(searchTermLower)
-            : false
-
-        return titleMatch || firstNameMatch || lastNameMatch || fullNameMatch
-      })
-    }
-
-    setFilteredComics(results)
-  }, [comics, activeFilter, searchTerm, recentlyViewedIds])
-
-  const handleFilterClick = (filter) => {
-    setActiveFilter(filter)
-  }
-  const handleSearch = (e) => {
-    const value = e.target.value
-    setSearchTerm(value)
-  }
+  const {
+    filteredComics,
+    loading,
+    activeFilter,
+    searchTerm,
+    handleFilterClick,
+    handleSearch,
+  } = useGallery()
   return (
     <div className={`gallery-container`}>
       <div className='gallery-header'>
+        {' '}
         <GalleryHeader
           activeFilter={activeFilter}
           handleFilterClick={handleFilterClick}
         />
-
-        <SearchBox
+        <GalleryControls
           searchTerm={searchTerm}
           handleSearch={handleSearch}
         />
@@ -130,8 +34,9 @@ const Gallery = () => {
         </div>
       ) : (
         <>
+          {' '}
           {filteredComics.length === 0 ? (
-            <div className='no-comics'>
+            <div className='no-comics comics-grid-appear'>
               <p>
                 {searchTerm
                   ? `No comics found matching "${searchTerm}". Try a different search term.`
@@ -139,12 +44,15 @@ const Gallery = () => {
               </p>
             </div>
           ) : (
-            <div className='gallery-comics-grid'>
+            <div className='gallery-comics-grid comics-grid-appear'>
               {filteredComics.map((comic) => (
-                <ComicCard
+                <article
                   key={comic.id}
-                  comic={comic}
-                />
+                  className='comic-card-wrapper'
+                  aria-label={`Comic: ${comic.title}`}
+                >
+                  <ComicCard comic={comic} />
+                </article>
               ))}
             </div>
           )}

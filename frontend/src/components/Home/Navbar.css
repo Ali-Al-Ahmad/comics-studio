@@ -33,6 +33,7 @@
   height: 100px;
   margin-right: 0.75rem;
   transform: scale(1.2);
+  object-fit: fill;
 }
 
 .navbar-links {
@@ -55,28 +56,25 @@
   text-decoration: none;
   font-size: 1rem;
   font-weight: 500;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, transform 0.2s ease, font-weight 0.3s ease;
   padding: 0.5rem 0;
   position: relative;
+  display: inline-block;
 }
 
 .navbar-links li a::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: 0;
-  left: 0;
-  background-color: var(--primary-color);
-  transition: width 0.3s ease;
+  display: none;
 }
 
 .navbar-links li a:hover {
   color: var(--primary-color);
+  font-weight: 600;
+    transform: translateY(-1px);
+    transition: color 0.3s ease, transform 0.2s ease, font-weight 0.3s ease;
 }
 
 .navbar-links li a:hover::after {
-  width: 100%;
+  width: 0;
 }
 
 .nav-login-btn {
@@ -99,6 +97,13 @@
   color: var(--text-color);
 }
 
+.mobile-signin {
+  display: none;
+}
+
+.desktop-only {
+  display: block;
+}
 .navbar-menu-toggle {
   display: none;
   background: none;
@@ -112,23 +117,26 @@
 
 @media (max-width: 1023px) {
   .navbar-links {
-    position: fixed;
-    top: 0;
-    left: 0;
+    position: absolute;
+      top: 100%;
     right: 0;
     width: 100%;
-    height: 100vh;
+    max-height: 0;
+      overflow: hidden;
     background-color: var(--background-color);
     flex-direction: column;
-    justify-content: center;
-    gap: 2rem;
-    transform: translateX(100%);
-    transition: transform 0.3s ease;
-    z-index: -1;
+    align-items: center;
+      gap: 0;
+      transition: all 0.3s ease;
+      z-index: 999;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+      opacity: 0;
   }
-
   .navbar-links.active {
-    transform: translateX(0);
+    max-height: 500px;
+      padding: 1rem 0;
+      gap: 0.25rem;
+      opacity: 1;
   }
 
   .navbar-menu-toggle {
@@ -140,19 +148,48 @@
     z-index: 1001;
   }
 
-  .nav-login-btn {
-    z-index: 1001;
-    padding: 0.5rem 1.25rem;
+        .mobile-signin {
+          display: block;
+        }
+    
+        .desktop-only {
+          display: none;
+        }
+        }
+    
+        @media (max-width: 1023px) {
+          .navbar-links li {
+            margin: 0.15rem 0;
+            width: 100%;
+            text-align: center;
+          }
+    
+          .navbar-links li a {
+            padding: 0.5rem 0;
+            display: block;
+            width: 100%;
+          }
+    
+          .navbar-links li a:hover {
+            transform: translateY(0);
+            background-color: rgba(0, 0, 0, 0.03);
+          }
+    
+          .mobile-signin a {
+            font-weight: 600;
   }
 }
 
 @media (max-width: 767px) {
+  .navbar {
+      padding: 0.5rem 0;
+    }
   .navbar-container {
     padding: 0 1rem;
   }
 
   .navbar-logo img {
-    height: 50px;
+    height: 65px;
     transform: scale(1);
   }
 }

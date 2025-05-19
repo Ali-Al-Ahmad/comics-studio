@@ -20,22 +20,86 @@
   border-color: var(--primary-color);
 }
 
-.comic-image {
+.comic-image-container {
+  position: relative;
   width: 100%;
   height: 0;
   padding-bottom: 100%;
-  position: relative;
   overflow: hidden;
 }
 
-.comic-image img {
+.comic-image-content {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: fill;
-  object-position: center top;
+  object-fit: cover;
+    transition: transform 0.4s ease;
+    will-change: transform;
+  }
+  
+  .comic-card-component:hover .comic-image-content {
+    transform: scale(1.03);
+  }
+  
+  .comic-overlay-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top,
+        rgba(51, 51, 51, 0.8) 0%,
+        rgba(51, 51, 51, 0.5) 60%,
+        transparent 100%);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    padding: 15px 10px 10px;
+    color: white;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+  }
+  
+  .comic-title {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+    font-family: "Poppins", sans-serif;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: white;
+  }
+  
+  .comic-card-actions {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+  }
+  
+  .comic-card-action-btn {
+    background-color: rgba(0, 0, 0, 0.3);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 0;
+  }
+  
+  .comic-card-action-btn:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+    transform: scale(1.1);
 }
 
 .comic-details {
@@ -45,16 +109,6 @@
   flex-direction: column;
   justify-content: space-between;
   background-color: #fff;
-}
-
-.comic-details h3 {
-  font-size: 0.95rem;
-  margin-bottom: 0.2rem;
-  color: var(--text-color);
-  font-weight: 600;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .comic-author {
@@ -93,42 +147,9 @@
   position: relative;
 }
 
-.comic-actions {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  z-index: 10;
-  opacity: 0;
-  transform: translateX(10px);
-  transition: opacity 0.2s ease, transform 0.2s ease;
-}
-
-.user-comic:hover .comic-actions {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.action-btn {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background-color: white;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  color: #555;
-  padding: 0;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  transition: all 0.2s ease;
-}
-
-.action-btn:hover {
-  transform: scale(1.1);
+.view-btn:hover {
+  background-color: #e8f4ff;
+  color: var(--primary-color);
 }
 
 .edit-btn:hover {
@@ -139,4 +160,25 @@
 .delete-btn:hover {
   background-color: #ffebee;
   color: #f44336;
+}
+
+@media (max-width: 768px) {
+  .comic-title {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .comic-overlay-bottom {
+    padding: 12px 8px 8px;
+  }
+
+    .comic-title {
+      font-size: 0.95rem;
+    }
+  
+    .comic-card-action-btn {
+      width: 30px;
+      height: 30px;
+    }
 }
