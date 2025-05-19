@@ -135,6 +135,31 @@ const ViewGeneratedBook = ({
   )
 }
 
-
+ViewGeneratedBook.propTypes = {
+  comic: PropTypes.shape({
+    prompt: PropTypes.string,
+    panels: PropTypes.arrayOf(
+      PropTypes.shape({
+        image: PropTypes.string,
+        caption: PropTypes.string,
+      })
+    ),
+    viewMode: PropTypes.oneOf(['grid', 'book']),
+    isEditing: PropTypes.bool,
+    currentEditPanel: PropTypes.number,
+    is_public: PropTypes.bool,
+    bookId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    user_id: PropTypes.number,
+    isUserOwnedBook: PropTypes.bool,
+  }).isRequired,
+  loading: PropTypes.bool.isRequired,
+  onChangeViewMode: PropTypes.func.isRequired,
+  onEditPanel: PropTypes.func.isRequired,
+  onRegeneratePanel: PropTypes.func.isRequired,
+  onCaptionChange: PropTypes.func.isRequired,
+  onPublishStatusChange: PropTypes.func,
+  dispatch: PropTypes.func,
+  viewOnly: PropTypes.bool,
+}
 
 export default ViewGeneratedBook
