@@ -1,8 +1,6 @@
 import jwt from 'jsonwebtoken'
 import ResponseTrait from '../Traits/ResponseTrait.js'
 
-console.log('process in authMidllewware:', process.env.PORT)
-
 export const authenticateToken = async (req, res, next) => {
   const authHeader = req.headers.authorization
 
@@ -34,7 +32,6 @@ export const authenticateToken = async (req, res, next) => {
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET)
     req.user = decoded
-    console.log('request by:', req.user)
 
     next()
   } catch (error) {

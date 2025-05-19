@@ -104,7 +104,6 @@ export default class ComicService extends Service {
       )
 
       const urls_images = output.map((buffer) => buffer.toString('base64'))
-      console.log('base64', urls_images)
 
       if (!urls_images || urls_images.length === 0) {
         throw new Error('No images were generated')
@@ -125,13 +124,11 @@ export default class ComicService extends Service {
         comics: savedComics,
       })
     } catch (error) {
-      console.log(error)
       return this.return(false, 'Error generating comic', error)
     }
   }
 
   static async _generateComicStoryContent(openai, user_prompt) {
-    console.log('user_prompt', user_prompt)
 
     const systemPrompt = comicGenerationPrompt
 
@@ -149,7 +146,6 @@ export default class ComicService extends Service {
 
     try {
       content = JSON.parse(contentString)
-      console.log('content', content)
 
       if (!content.prompt_array) {
         console.warn('Warning: Generated content is missing prompt_array')
@@ -174,12 +170,9 @@ export default class ComicService extends Service {
 
     if (given_image) {
       try {
-        console.log(`Processing image from: ${given_image}`)
-
         const isCharacterImage =
           character_image_path && given_image === character_image_path
         if (isCharacterImage) {
-          console.log(`Using character image for generation`)
         }
 
         const inputImageBuffer = await fs.readFile(given_image)
@@ -220,15 +213,6 @@ export default class ComicService extends Service {
     given_character_id
   ) {
     try {
-      if (character_image_path) {
-        console.log(
-          `Using character image for generation: ${character_image_path}`
-        )
-      } else if (given_character_id) {
-        console.log(`Using character ID for generation: ${given_character_id}`)
-      }
-
-      console.log(`Using comic style: ${comic_style || 'Comic book (default)'}`)
 
       const output = await replicate.run(
         'camenduru/story-diffusion:a43c7e0e4bce75ee98445b20b244240d1109e30a46bf7719958fd0a69ab29e8e',
@@ -262,7 +246,6 @@ export default class ComicService extends Service {
         throw new Error('Replicate API returned empty results')
       }
 
-      console.log('out', output)
       return output
     } catch (replicateError) {
       console.error('Error during Replicate API call:', replicateError)
@@ -282,12 +265,6 @@ export default class ComicService extends Service {
       const savedComics = []
       const characterId = given_character_id || null
 
-      if (characterId) {
-        console.log(`Using character ID: ${characterId} for the new book`)
-        if (character_image_path) {
-          console.log(`Character image path: ${character_image_path}`)
-        }
-      }
 
       const new_book = await Book.create({
         title: user_prompt.slice(0, 100),
@@ -297,8 +274,6 @@ export default class ComicService extends Service {
         created_at: new Date(),
         updated_at: new Date(),
       })
-
-      console.log(`Created new book with ID: ${new_book.id}`)
 
       for (let i = 0; i < urls_images.length - 1; i++) {
         const caption =
@@ -316,7 +291,6 @@ export default class ComicService extends Service {
         try {
           const newComic = await Comic.create(comicData)
           savedComics.push(newComic)
-          console.log(`Saved comic panel ${i + 1} with ID: ${newComic.id}`)
         } catch (saveError) {
           console.error(`Error saving comic panel ${i + 1}:`, saveError)
         }

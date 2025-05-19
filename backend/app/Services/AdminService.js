@@ -44,7 +44,6 @@ export default class AdminService extends Service {
 
       return this.return(true, 'Updated admin Data', admin)
     } catch (error) {
-      console.log(error)
       return this.return(false, 'Error updating admin', error)
     }
   }
