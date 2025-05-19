@@ -29,4 +29,18 @@
   color: #555;
 }
 
+@media screen and (max-width: 768px) {
+  .view-comic-container {
+    padding: 1.5rem;
+  }
+
+  .view-comic-container.sidebar-expanded,
+  .view-comic-container.sidebar-collapsed {
+    padding: 1.5rem;
+  }
+
+  .comic-prompt {
+    padding: 1rem;
+  }
+}
 
