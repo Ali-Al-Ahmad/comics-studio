@@ -55,3 +55,15 @@
     align-self: flex-start;
   }
 }
+
+@media screen and (max-width: 480px) {
+  .back-button {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  .credits-display {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+  }
+}
