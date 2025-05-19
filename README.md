@@ -54,15 +54,10 @@ Download your comics in multiple formats and share them easily on social media, 
 
 ### User Screens (Mobile)
 
-| Login screen                            | Register screen                       | Register screen                       |
+| Login screen                            | View Comic Screen                       | View Comic Book                |
 | --------------------------------------- | ------------------------------------- | ------------------------------------- |
-| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
+| ![Landing](./readme/demo/login_page.png) | ![fsdaf](./readme/demo/vieiw_Grid.png) | ![fsdaf](./readme/demo/best_reading.png) |
 
-### Admin Screens (Web)
-
-| Login screen                            | Register screen                       |
-| --------------------------------------- | ------------------------------------- |
-| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
 
 <br><br>
 
