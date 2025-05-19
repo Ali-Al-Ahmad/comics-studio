@@ -97,5 +97,19 @@ export const useComicBook = (bookId, dispatch) => {
     }
   }
 
+  useEffect(() => {
+    if (bookId) {
+      fetchComicBook()
+    }
+  }, [bookId])
 
+  return {
+    comic,
+    loading,
+    handleChangeViewMode,
+    handleEditPanel,
+    handleRegeneratePanel,
+    handleCaptionChange,
+    handlePublishStatusChange,
+  }
 }
