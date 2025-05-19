@@ -25,7 +25,31 @@ const ViewComicBook = () => {
       className={`view-comic-container ${
         isCollapsed ? 'sidebar-collapsed' : 'sidebar-expanded'
       }`}
-    ></div>
+    >
+      <ComicHeader
+        user={user}
+        onBack={() => window.history.back()}
+      />
+
+      {loading ? (
+        <LoadingState message='Loading comic book...' />
+      ) : comic.panels.length === 0 ? (
+        <div className='no-comic-found'>
+          <p>No comic book found with the provided ID.</p>
+        </div>
+      ) : (
+        <ComicContent
+          comic={comic}
+          loading={loading}
+          onChangeViewMode={handleChangeViewMode}
+          onEditPanel={handleEditPanel}
+          onRegeneratePanel={handleRegeneratePanel}
+          onCaptionChange={handleCaptionChange}
+          onPublishStatusChange={handlePublishStatusChange}
+          dispatch={dispatch}
+        />
+      )}
+    </div>
   )
 }
 
