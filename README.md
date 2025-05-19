@@ -105,7 +105,7 @@ Download your comics in multiple formats and share them easily on social media, 
 
 | Deployment Pipeline Sample	                 | GitHub Deployment Pipeline Success	                        | EC2 Instance docker deployed                       |
 | --------------------------------------- | ------------------------------------- | ------------------------------------- |
-| ![Landing](./readme/demo/production_pipeline.png) | ![fsdaf](./readme/demo/actions_success.png) | ![fsdaf](./readme/demo/runing_ec2_containers.png) |
+| ![Landing](./readme/demo/deploy_sample.png) | ![fsdaf](./readme/demo/actions_success.png) | ![fsdaf](./readme/demo/runing_ec2_containers.png) |
 
 | AWS project objects	                 | Deployed production website  |   
 | --------------------------------------- | ------------------------------------- |
