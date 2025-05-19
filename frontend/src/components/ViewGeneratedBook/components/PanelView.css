@@ -84,5 +84,53 @@
   transform: scale(1.1);
 }
 
+.panel-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 0.75rem;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.empty-panel {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #aaa;
+  background-color: #f9f9fb;
+}
+
+.empty-panel p {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.panels-book {
+  background-color: white;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow: hidden;
+  padding: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  min-height: 1000px;
+}
+
+.book-pages {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 10px !important;
+  row-gap: 1px;
+  width: 100%;
+  max-width: 800px;
+  padding: 25px 25px 10px 25px;
+}
+
 
 
