@@ -12,3 +12,10 @@
 .book-status-indicator svg {
   color: var(--primary-color);
 }
+
+@media screen and (max-width: 480px) {
+  .book-status-indicator {
+    padding: 0.3rem 0.7rem;
+    font-size: 0.8rem;
+  }
+}
