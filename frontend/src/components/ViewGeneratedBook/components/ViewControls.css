@@ -109,6 +109,53 @@
   transform: translateY(-3px);
 }
 
+.save-comic-btn:hover:not(:disabled) svg,
+.publish-btn:hover:not(:disabled) svg,
+.unpublish-btn:hover:not(:disabled) svg {
+  animation: pulse 1.5s infinite;
+}
+
+.save-comic-btn:hover:not(:disabled)::after,
+.publish-btn:hover:not(:disabled)::after,
+.unpublish-btn:hover:not(:disabled)::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right,
+      transparent 0%,
+      rgba(255, 255, 255, 0.2) 50%,
+      transparent 100%);
+  animation: shine 1.5s infinite;
+}
+
+.publish-btn {
+  background-color: #4caf50;
+  color: white;
+  box-shadow: 0 3px 10px rgba(76, 175, 80, 0.3);
+}
+
+.publish-btn:hover:not(:disabled),
+.publish-btn:focus:not(:disabled) {
+  background-color: #43a047;
+  box-shadow: 0 5px 12px rgba(76, 175, 80, 0.4);
+  transform: translateY(-2px);
+}
+
+.unpublish-btn {
+  background-color: #ff9800;
+  color: white;
+  box-shadow: 0 3px 10px rgba(255, 152, 0, 0.3);
+}
+
+.unpublish-btn:hover:not(:disabled),
+.unpublish-btn:focus:not(:disabled) {
+  background-color: #f57c00;
+  box-shadow: 0 5px 12px rgba(255, 152, 0, 0.4);
+  transform: translateY(-2px);
+}
 
 
 
