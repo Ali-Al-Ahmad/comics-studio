@@ -219,4 +219,37 @@
   opacity: 0;
 }
 
+@media (max-width: 768px) {
+  .panels-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+
+  .panels-book {
+    padding: 10px;
+  }
+
+  .book-pages {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    padding: 5px;
+  }
+
+  .book-page {
+    margin-bottom: 0;
+    aspect-ratio: 1;
+    border-width: 1px;
+  }
+
+  .book-page .panel-caption {
+    padding: 0.3rem 0.2rem;
+    font-size: 0.75rem;
+    max-height: 35px;
+  }
+
+  .book-page .panel-image-container {
+    top: 0px;
+    height: calc(100% - 25px);
+  }
+}
+
 
