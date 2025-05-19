@@ -1,0 +1,37 @@
+:root {
+  --primary-color: #7063f1;
+  --primary-color-light: #f5f7ff;
+  --primary-color-dark: #5046db;
+  --border-color: #e1e4f0;
+  --text-color: #333;
+}
+
+.hidden-html2canvas-container {
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+  z-index: -1;
+  opacity: 0;
+}
+
+.comic-panels-container {
+  margin-bottom: 2rem;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  min-height: 100dvh;
+}
+
+.comics-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 0;
+  color: #666;
+}
+
+.comics-loading p {
+  margin-top: 1rem;
+  font-size: 1rem;
+}
