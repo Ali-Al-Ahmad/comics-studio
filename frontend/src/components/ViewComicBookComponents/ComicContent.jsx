@@ -35,5 +35,15 @@ const ComicContent = ({
   )
 }
 
+ComicContent.propTypes = {
+  comic: PropTypes.object.isRequired,
+  loading: PropTypes.bool.isRequired,
+  onChangeViewMode: PropTypes.func.isRequired,
+  onEditPanel: PropTypes.func.isRequired,
+  onRegeneratePanel: PropTypes.func.isRequired,
+  onCaptionChange: PropTypes.func.isRequired,
+  onPublishStatusChange: PropTypes.func.isRequired,
+  dispatch: PropTypes.func.isRequired,
+}
 
 export default ComicContent
