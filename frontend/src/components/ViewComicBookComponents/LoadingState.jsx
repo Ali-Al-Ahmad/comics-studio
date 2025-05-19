@@ -11,4 +11,8 @@ const LoadingState = ({ message }) => {
   )
 }
 
+LoadingState.propTypes = {
+  message: PropTypes.string,
+}
+
 export default LoadingState
