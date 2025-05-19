@@ -1,7 +1,9 @@
 import { Icon } from '@iconify-icon/react'
 import './CharactersHeader.css'
+import PropTypes from 'prop-types'
+import CreditsDisplay from '../Common/CreditsDisplay/CreditsDisplay'
 
-const CharactersHeader = ({ activeFilter, handleFilterClick, credits }) => {
+const CharactersHeader = ({ activeFilter, handleFilterClick }) => {
   return (
     <div className='gallery-header-container'>
       <div className='filter-buttons'>
@@ -28,16 +30,18 @@ const CharactersHeader = ({ activeFilter, handleFilterClick, credits }) => {
             width='18'
             height='18'
             className='filter-btn-icon'
-          />
+          />{' '}
           <span className='filter-btn-text'>Favorites</span>
         </button>
       </div>
-
-      <div className='credits-display'>
-        <span className='credits-value'>{credits} Credits</span>
-      </div>
+      <CreditsDisplay />
     </div>
   )
+}
+
+CharactersHeader.propTypes = {
+  activeFilter: PropTypes.string.isRequired,
+  handleFilterClick: PropTypes.func.isRequired,
 }
 
 export default CharactersHeader

@@ -1,0 +1,16 @@
+.gallery-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+@media screen and (max-width: 576px) {
+  .gallery-controls {
+    gap: 0.75rem;
+  }
+}
