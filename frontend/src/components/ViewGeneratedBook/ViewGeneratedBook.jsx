@@ -109,7 +109,30 @@ const ViewGeneratedBook = ({
         return null
     }
   }
+  return (
+    <>
+      <ViewControls
+        comic={comic}
+        viewOnly={viewOnly}
+        loading={loading}
+        isPublished={isPublished}
+        publishLoading={publishLoading}
+        onChangeViewMode={onChangeViewMode}
+        onDownloadComic={() => {
+          const bookElement = document.querySelector('.panels-book')
+          handleDownloadComic(bookElement, comic)
+        }}
+        onDownloadPDF={() => {
+          const bookElement = document.querySelector('.panels-book')
+          handleDownloadPDF(bookElement, comic)
+        }}
+        onTogglePublish={togglePublishStatus}
+        onShareComic={shareComic}
+      />
 
+      <div className='comic-panels-container'>{renderPanels()}</div>
+    </>
+  )
 }
 
 
