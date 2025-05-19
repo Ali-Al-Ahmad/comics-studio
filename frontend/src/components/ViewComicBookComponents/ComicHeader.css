@@ -1,0 +1,10 @@
+.view-comic-header {
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.view-comic-navigation {
+  margin-bottom: 0;
+}
