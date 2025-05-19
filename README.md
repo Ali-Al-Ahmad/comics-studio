@@ -82,3 +82,9 @@ Download your comics in multiple formats and share them easily on social media, 
 | ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
 
 <br><br>
+
+<!-- License -->
+## License
+
+Comics Studio is available under the MIT License. See the [LICENSE](./LICENSE) file for more info.
+<br><br>
