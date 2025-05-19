@@ -119,5 +119,22 @@ const ViewControls = ({
   )
 }
 
+ViewControls.propTypes = {
+  comic: PropTypes.shape({
+    viewMode: PropTypes.string.isRequired,
+    panels: PropTypes.array.isRequired,
+    bookId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    is_public: PropTypes.bool,
+  }).isRequired,
+  viewOnly: PropTypes.bool,
+  loading: PropTypes.bool.isRequired,
+  isPublished: PropTypes.bool.isRequired,
+  publishLoading: PropTypes.bool.isRequired,
+  onChangeViewMode: PropTypes.func.isRequired,
+  onDownloadComic: PropTypes.func.isRequired,
+  onDownloadPDF: PropTypes.func.isRequired,
+  onTogglePublish: PropTypes.func.isRequired,
+  onShareComic: PropTypes.func.isRequired,
+}
 
 export default ViewControls
