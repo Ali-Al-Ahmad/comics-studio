@@ -44,3 +44,13 @@
   }
 }
 
+@media screen and (max-width: 480px) {
+  .view-comic-container {
+    padding: 1rem;
+  }
+
+  .view-comic-container.sidebar-expanded,
+  .view-comic-container.sidebar-collapsed {
+    padding: 1rem;
+  }
+}
