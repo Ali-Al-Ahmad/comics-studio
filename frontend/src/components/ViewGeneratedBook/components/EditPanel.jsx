@@ -71,6 +71,17 @@ const EditPanel = ({
   )
 }
 
-
+EditPanel.propTypes = {
+  panel: PropTypes.shape({
+    image: PropTypes.string,
+    caption: PropTypes.string,
+    prompt: PropTypes.string,
+  }).isRequired,
+  panelIndex: PropTypes.number.isRequired,
+  loading: PropTypes.bool.isRequired,
+  onCancelEdit: PropTypes.func.isRequired,
+  onRegeneratePanel: PropTypes.func.isRequired,
+  onCaptionChange: PropTypes.func.isRequired,
+}
 
 export default EditPanel
