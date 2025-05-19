@@ -1,0 +1,11 @@
+.view-comic-container {
+  padding: 2rem;
+  width: 100%;
+  transition: padding 0.3s ease-in-out;
+  max-width: 100%;
+}
+
+.view-comic-container.sidebar-expanded,
+.view-comic-container.sidebar-collapsed {
+  padding-left: 2rem;
+}
