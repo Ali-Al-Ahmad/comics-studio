@@ -15,4 +15,8 @@ const BookStatusIndicator = ({ isPublic }) => {
   )
 }
 
+BookStatusIndicator.propTypes = {
+  isPublic: PropTypes.bool.isRequired,
+}
+
 export default BookStatusIndicator
