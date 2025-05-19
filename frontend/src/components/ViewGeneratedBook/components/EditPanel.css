@@ -1,0 +1,28 @@
+
+.edit-panel-container {
+  background-color: white;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.edit-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.edit-panel-header h3 {
+  font-size: 1.2rem;
+  margin: 0;
+  color: var(--text-color);
+}
+
+
+
+
+
