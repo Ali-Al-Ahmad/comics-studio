@@ -42,7 +42,79 @@ const ViewControls = ({
           <span>Book</span>
         </button>
       </div>
-      
+      <div className='action-buttons'>
+        {comic.viewMode === 'book' && (
+          <>
+            <button
+              className='save-comic-btn image-btn'
+              onClick={onDownloadComic}
+              disabled={loading || comic.panels.every((panel) => !panel.image)}
+              title='Download as PNG image'
+            >
+              <Icon
+                icon='mdi:image'
+                width='20'
+                height='20'
+              />
+              Image
+            </button>
+            <button
+              className='save-comic-btn pdf-btn'
+              onClick={onDownloadPDF}
+              disabled={loading || comic.panels.every((panel) => !panel.image)}
+              title='Download as PDF document'
+            >
+              <Icon
+                icon='mdi:file-pdf-box'
+                width='20'
+                height='20'
+              />
+              PDF
+            </button>
+          </>
+        )}
+        {!viewOnly && comic.bookId && (
+          <button
+            className={`save-comic-btn ${
+              isPublished ? 'unpublish-btn' : 'publish-btn'
+            }`}
+            onClick={onTogglePublish}
+            disabled={publishLoading}
+            title={isPublished ? 'Make private' : 'Publish to gallery'}
+          >
+            <Icon
+              icon={isPublished ? 'mdi:eye-off' : 'mdi:eye'}
+              width='20'
+              height='20'
+            />
+            {publishLoading ? (
+              <Spinner size='small' />
+            ) : isPublished ? (
+              'Unpublish'
+            ) : (
+              'Publish'
+            )}
+          </button>
+        )}
+        {!viewOnly && (
+          <button
+            className='share-comic-btn'
+            onClick={onShareComic}
+            title={
+              comic.is_public
+                ? 'Share your public comic'
+                : 'Share your private comic (only you can view it)'
+            }
+          >
+            <Icon
+              icon='mdi:share-variant'
+              width='20'
+              height='20'
+            />
+            Share
+          </button>
+        )}
+      </div>
     </div>
   )
 }
