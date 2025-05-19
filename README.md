@@ -99,6 +99,10 @@ Download your comics in multiple formats and share them easily on social media, 
 | --------------------------------------- | ------------------------------------- | ------------------------------------- |
 | ![Landing](./readme/demo/production_pipeline.png) | ![fsdaf](./readme/demo/actions_success.png) | ![fsdaf](./readme/demo/runing_ec2_containers.png) |
 
+| AWS project objects	                 | Deployed production website  |   
+| --------------------------------------- | ------------------------------------- |
+| ![Landing](./readme/demo/aws_panel.png) | ![fsdaf](./readme/demo/deployed.png) |
+
 ### Deployment Diagram
 <img src="./readme/demo/DeploymentDiagram.png"/>
 
