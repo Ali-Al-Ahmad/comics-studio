@@ -28,7 +28,35 @@ const EditPanel = ({
         </button>
       </div>
       <div className='edit-panel-content'>
-
+        <div className='edit-panel-image'>
+          {panel.image ? (
+            <img
+              src={panel.image}
+              alt={`Panel ${panelIndex + 1}`}
+            />
+          ) : (
+            <div className='empty-panel'>
+              <Icon
+                icon='mdi:image'
+                width='48'
+                height='48'
+              />
+              <p>No Image Yet</p>
+            </div>
+          )}
+          <button
+            className='regenerate-panel-btn'
+            onClick={() => onRegeneratePanel(panelIndex)}
+            disabled={loading || !panel.prompt}
+          >
+            <Icon
+              icon='mdi:refresh'
+              width='20'
+              height='20'
+            />
+            Regenerate Panel
+          </button>
+        </div>
 
       </div>
     </div>
