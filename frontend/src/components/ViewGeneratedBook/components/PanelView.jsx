@@ -102,6 +102,18 @@ const PanelView = ({
   )
 }
 
-
+PanelView.propTypes = {
+  panel: PropTypes.shape({
+    image: PropTypes.string,
+    caption: PropTypes.string,
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  }).isRequired,
+  index: PropTypes.number.isRequired,
+  viewMode: PropTypes.oneOf(['grid', 'book']).isRequired,
+  loading: PropTypes.bool.isRequired,
+  viewOnly: PropTypes.bool,
+  onEditPanel: PropTypes.func.isRequired,
+  setRef: PropTypes.func.isRequired,
+}
 
 export default PanelView
