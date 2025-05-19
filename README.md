@@ -22,6 +22,11 @@
 
 <img src="./readme/demo/comics_studio_erdiagram.png" style="border-radius: 10px;"/>
 
+### Component Diagram
+
+<img src="./readme/demo/ComponentDiagram.png"/>
+
+
 
 <br><br>
 
@@ -39,6 +44,8 @@ Each scene bursts with emotion, movement, and rich comic-style detail.
 
 ### Download & Share Anywhere
 Download your comics in multiple formats and share them easily on social media, with friends, or anywhere you like.
+
+<img src="./readme/demo/Highlights.png"/>
 
 <br><br>
 
@@ -62,24 +69,43 @@ Download your comics in multiple formats and share them easily on social media, 
 <!-- Development & Testing -->
 <img src="./readme/title6.svg"/>
 
-### Add Title Here
+### Code Test Cases
 
-| Services                                | Validation                            | Testing                               |
+| Feature Test                                | Integration Test                            | Unit Test                               |
 | --------------------------------------- | ------------------------------------- | ------------------------------------- |
-| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
+| ![Landing](./readme/demo/generate_comic_test.png) | ![fsdaf](./readme/demo/integration_test.png) | ![fsdaf](./readme/demo/unit_test.png) |
+
+
+
+| Local Tests Success                              | Pipeline Tests success                        |
+| --------------------------------------- | ------------------------------------- |
+| ![Landing](./readme/demo/testing_results_success.png) | ![fsdaf](./readme/demo/success_test_github_actions.png)|
 
 <br><br>
 
-<!-- Deployment -->
+<!-- Ai-Powered-Section -->
 <img src="./readme/title7.svg"/>
 
-### Add Title Here
+### AI Services Integration OpenAI / ReplicateAI
 
-- Description here.
-
-| Postman API 1                           | Postman API 2                         | Postman API 3                         |
+| Comic generation prompt                          | OpenAi story generation                    | ReplicateAi image generation                     |
 | --------------------------------------- | ------------------------------------- | ------------------------------------- |
-| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
+| ![Landing](./readme/demo/user_prompt.png) | ![fsdaf](./readme/demo/open_ai_code.png) | ![fsdaf](./readme/demo/replicate_ai_code.png) |
+
+<br><br>
+
+
+<!-- Deployment -->
+<img src="./readme/title8.svg"/>
+
+### EC2 Docker containers deployment
+
+| Deployment Pipeline Sample	                 | GitHub Deployment Pipeline Success	                        | EC2 Instance docker deployed                       |
+| --------------------------------------- | ------------------------------------- | ------------------------------------- |
+| ![Landing](./readme/demo/production_pipeline.png) | ![fsdaf](./readme/demo/actions_success.png) | ![fsdaf](./readme/demo/runing_ec2_containers.png) |
+
+### Deployment Diagram
+<img src="./readme/demo/DeploymentDiagram.png"/>
 
 <br><br>
 
