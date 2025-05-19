@@ -2,15 +2,8 @@ import { User, Admin } from '../Models/index.js'
 import Service from './Service.js'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
-console.log('process in authServ:', process.env.PORT)
 
 const createToken = (data, isAdmin) => {
-  console.log(
-    'secret',
-    process.env.JWT_SECRET,
-    'expiration',
-    process.env.JWT_EXPIRATION
-  )
   return jwt.sign({ ...data, isAdmin }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRATION,
   })
