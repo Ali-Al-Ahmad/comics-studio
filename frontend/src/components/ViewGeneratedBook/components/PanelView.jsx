@@ -80,7 +80,24 @@ const PanelView = ({
           {panel.caption}
         </div>
       )}
-
+      <div className='panel-number'>{index + 1}</div>
+      {panel.image ? (
+        <div className='panel-image-container'>
+          <img
+            src={panel.image}
+            alt={`Panel ${index}`}
+          />
+        </div>
+      ) : (
+        <div className='empty-panel'>
+          <Icon
+            icon='mdi:image'
+            width='48'
+            height='48'
+          />
+          <p>{loading ? 'Generating...' : 'No Image Yet'}</p>
+        </div>
+      )}
     </div>
   )
 }
