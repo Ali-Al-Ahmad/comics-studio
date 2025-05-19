@@ -62,7 +62,24 @@ const PanelView = ({
       className='book-page'
       ref={(el) => setRef(index + 1, el)}
     >
-
+      {' '}
+      {panel.caption && (
+        <div
+          className='panel-caption'
+          onClick={() => !viewOnly && onEditPanel(index)}
+          onKeyDown={(e) => {
+            if (!viewOnly && (e.key === 'Enter' || e.key === ' ')) {
+              onEditPanel(index)
+              e.preventDefault()
+            }
+          }}
+          role={!viewOnly ? 'button' : undefined}
+          tabIndex={!viewOnly ? 0 : undefined}
+          style={{ cursor: viewOnly ? 'default' : 'pointer' }}
+        >
+          {panel.caption}
+        </div>
+      )}
 
     </div>
   )
