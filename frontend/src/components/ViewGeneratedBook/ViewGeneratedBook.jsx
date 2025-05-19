@@ -51,7 +51,24 @@ const ViewGeneratedBook = ({
         </div>
       )
     }
+
+    if (!viewOnly && comic.isEditing && comic.currentEditPanel !== null) {
+      const panel = comic.panels[comic.currentEditPanel]
+      return (
+        <EditPanel
+          panel={panel}
+          panelIndex={comic.currentEditPanel}
+          loading={loading}
+          onCancelEdit={() => onEditPanel(null)}
+          onRegeneratePanel={onRegeneratePanel}
+          onCaptionChange={onCaptionChange}
+        />
+      )
+    }
+
+  
   }
+
 }
 
 
