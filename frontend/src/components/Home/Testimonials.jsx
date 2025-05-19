@@ -44,8 +44,10 @@ const Testimonials = () => {
             className='testimonial-card'
             key={testimonial.id}
           >
-            <div className='testimonial-quote'>❝</div>
-            <p className='testimonial-text'>{testimonial.text}</p>
+            <div className='testimonial-content'>
+              <div className='testimonial-quote'>❝</div>
+              <p className='testimonial-text'>{testimonial.text}</p>
+            </div>
             <div className='testimonial-user'>
               <img
                 src={`https://ui-avatars.com/api/?name=${testimonial.author.replace(

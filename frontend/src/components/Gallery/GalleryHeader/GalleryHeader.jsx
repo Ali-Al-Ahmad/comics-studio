@@ -1,12 +1,9 @@
 import './GalleryHeader.css'
 import PropTypes from 'prop-types'
-import { useSelector } from 'react-redux'
 import { Icon } from '@iconify-icon/react'
+import CreditsDisplay from '../../Common/CreditsDisplay/CreditsDisplay'
 
 const GalleryHeader = ({ activeFilter, handleFilterClick }) => {
-  const user = useSelector((state) => state.user)
-  const credits = user?.credits || 0
-
   return (
     <div className='gallery-header-container'>
       <div className='filter-buttons'>
@@ -33,14 +30,11 @@ const GalleryHeader = ({ activeFilter, handleFilterClick }) => {
             width='18'
             height='18'
             className='filter-btn-icon'
-          />
+          />{' '}
           <span className='filter-btn-text'>Recently Viewed</span>
         </button>
       </div>
-
-      <div className='credits-display'>
-        <span className='credits-value'>{credits} Credits</span>
-      </div>
+      <CreditsDisplay />
     </div>
   )
 }

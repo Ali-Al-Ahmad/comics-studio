@@ -1,27 +1,26 @@
 .gallery-header-container {
-  display: grid;
-  grid-template-areas:
-    'credits'
-    'filters';
+  display: flex;
+    align-items: center;
+    justify-content: space-between;
   margin-bottom: 1.5rem;
-  gap: 1rem;
   width: 100%;
-  padding: 0 0.25rem;
+  padding: 0;
+  flex-wrap: nowrap;
+    gap: 0.75rem;
+    min-height: 48px;
+    overflow: visible;
 }
 
 .filter-buttons {
   display: flex;
   gap: 0.75rem;
-  flex-wrap: wrap;
-  grid-area: filters;
-  width: 100%;
-  margin-top: 0.25rem;
+  flex-wrap: nowrap;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .filter-btn {
-  padding: 0.6rem 1.2rem;
+  padding: 0.6rem 1.6rem;
   background-color: #f2f2f2;
   border: 1px solid var(--border-color);
   border-radius: 6px;
@@ -31,17 +30,26 @@
   color: #666;
   font-size: 0.95rem;
   flex: 1;
-  text-align: center;
+  display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 42px;
+    white-space: nowrap;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   position: relative;
   overflow: hidden;
   font-family: 'Poppins', sans-serif;
   letter-spacing: 0.3px;
+  min-width: 140px;
 }
 
+.filter-btn-icon {
+  margin-right: 4px;
+  vertical-align: middle;
+}
 .filter-btn-text {
   transition: opacity 0.3s ease, visibility 0.3s ease;
-  margin-left: 8px;
+  margin-left: 4px;
   vertical-align: middle;
 }
 
@@ -80,44 +88,24 @@
 }
 
 .filter-btn.active {
-  background-color: var(--primary-color);
+  background-color: #333;
   color: white;
-  border-color: var(--primary-color-hover);
-  box-shadow: 0 2px 6px rgba(112, 99, 241, 0.25);
+  border-color: #333;
+    box-shadow: 0 2px 6px rgba(51, 51, 51, 0.15);
+    font-weight: 600;
 }
 
 .credits-display {
-  display: flex;
-  align-items: center;
-  padding: 0.6rem 1.2rem;
-  background-color: var(--primary-color);
-  border-radius: 6px;
-  color: white;
-  grid-area: credits;
-  justify-self: end;
-  border: 1px solid var(--primary-color-hover);
-  box-shadow: 0 3px 8px rgba(112, 99, 241, 0.25);
-  position: relative;
-  overflow: hidden;
-  font-family: 'Poppins', sans-serif;
-}
-
-.credits-value {
-  font-size: 1rem;
-  font-weight: 500;
-  letter-spacing: 0.3px;
+  flex-shrink: 0;
 }
 
 @media screen and (min-width: 768px) {
   .gallery-header-container {
-    grid-template-areas: 'filters credits';
-    grid-template-columns: auto auto;
     align-items: center;
   }
 
   .filter-buttons {
-    width: auto;
-    justify-content: flex-start;
+    gap: 1rem;
   }
 
   .filter-btn {
@@ -133,6 +121,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    min-width: auto;
+      flex: 0 0 auto;
   }
   
   .filter-btn-text {
@@ -146,38 +136,76 @@
     margin-right: 0;
   }
   
-  .gallery-header-container {
-    grid-template-areas: 'filters credits';
-    grid-template-columns: 1fr auto;
+                .gallery-header-container {
     align-items: center;
   }
   
-  .filter-buttons {
-    justify-content: flex-start;
+        .filter-buttons {
     gap: 0.5rem;
-    flex-direction: row !important;
+    flex-direction: row;
     flex-wrap: nowrap;
   }
   
   .credits-display {
-    justify-self: flex-end;
+    margin-left: auto;
   }
 }
 
 @media screen and (max-width: 479px) {
   .filter-buttons {
     gap: 0.5rem;
-    flex-direction: row !important;
-    flex-wrap: nowrap;
   }
   
   .filter-btn {
     width: 36px;
     height: 36px;
-    padding: 0.45rem;
+    padding: 0.35rem;
     min-width: auto;
     flex: 0 0 auto !important;
   }
+                .filter-btn-icon {
+                  margin-right: 0;
+                  font-size: 20px;
+                }
+        
+                .filter-btn-icon svg {
+                  width: 20px !important;
+                  height: 20px !important;
+                }
+        
+                .filter-btn-text {
+                  display: none;
+                  opacity: 0;
+                  visibility: hidden;
+                  max-width: 0;
+                }
+        
+                .credits-display {
+                  padding: 0.5rem 0.8rem;
+                  font-size: 0.9rem;
+                  flex-shrink: 0;
+                }
+        
+                .gallery-header-container {
+                  padding: 0 0.2rem;
+                }
+                }
+        
+                @media screen and (max-width: 374px) {
+                  .filter-btn {
+                    width: 32px;
+                    height: 32px;
+                    padding: 0.25rem;
+                  }
+        
+                  .filter-btn-icon svg {
+                    width: 18px !important;
+                    height: 18px !important;
+                  }
+        
+                  .credits-display {
+                    padding: 0.4rem 0.7rem;
+                  }
 }
 
 @media screen and (min-width: 968px) {

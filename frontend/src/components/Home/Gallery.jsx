@@ -4,41 +4,34 @@ const Gallery = () => {
   const comicsRow1 = [
     {
       id: 'comic1',
-      image:
-        'https://cdn-uploads.huggingface.co/production/uploads/noauth/MKjLZDJumVcjrK0HcjKOc.jpeg',
+      image: '../../../src/assets/images/comic1.jpeg',
       caption: 'Captain America punching a giant octopus',
     },
     {
       id: 'comic2',
-      image:
-        'https://cdn-uploads.huggingface.co/production/uploads/noauth/PeK-MtQwvltH-OlnXtwwe.jpeg',
+      image: '../../../src/assets/images/comic2.jpeg',
       caption: 'Iron Man vs Monkey King',
     },
     {
       id: 'comic3',
-      image:
-        'https://cdn-uploads.huggingface.co/production/uploads/noauth/FhRd_Gast7omVXwtikfoq.jpeg',
+      image: '../../../src/assets/images/comic3.jpeg',
       caption: 'Batman as a computer hacker',
     },
   ]
-
   const comicsRow2 = [
     {
       id: 'comic4',
-      image:
-        'https://cdn-uploads.huggingface.co/production/uploads/noauth/N-Azz6mApVS3eMMSmTu-h.jpeg',
+      image: '../../../src/assets/images/comic4.jpeg',
       caption: 'Zeus fights Hades',
     },
     {
       id: 'comic5',
-      image:
-        'https://cdn-uploads.huggingface.co/production/uploads/noauth/tkLJQj5NnD4P9idfw03IS.jpeg',
+      image: '../../../src/assets/images/comic5.jpeg',
       caption: 'A llama discovering Paris',
     },
     {
       id: 'comic6',
-      image:
-        'https://cdn-uploads.huggingface.co/production/uploads/noauth/Bobl3XtiJcrrRLWmTJUGX.jpeg',
+      image: '../../../src/assets/images/comic6.jpeg',
       caption: 'Mystery City: Mark and Jane hide in a cave from a dinosaur',
     },
   ]
@@ -54,6 +47,7 @@ const Gallery = () => {
 
       <div className='comics-categories'>
         <div className='comics-grid'>
+          {' '}
           {comicsRow1.map((comic) => (
             <div
               className='comic-card'
@@ -62,7 +56,12 @@ const Gallery = () => {
               <img
                 src={comic.image}
                 alt={comic.caption}
-                className='comic-image'
+                className='gallery-comic-image'
+                onError={(e) => {
+                  console.error(`Failed to load image: ${comic.image}`)
+                  e.target.onerror = null
+                  e.target.src = '/csmainlogoplanet.png'
+                }}
               />
               <div className='comic-info'>
                 <p className='comic-caption'>{comic.caption}</p>
@@ -72,6 +71,7 @@ const Gallery = () => {
         </div>
 
         <div className='comics-grid'>
+          {' '}
           {comicsRow2.map((comic) => (
             <div
               className='comic-card'
@@ -80,7 +80,12 @@ const Gallery = () => {
               <img
                 src={comic.image}
                 alt={comic.caption}
-                className='comic-image'
+                className='gallery-comic-image'
+                onError={(e) => {
+                  console.error(`Failed to load image: ${comic.image}`)
+                  e.target.onerror = null
+                  e.target.src = '/csmainlogoplanet.png'
+                }}
               />
               <div className='comic-info'>
                 <p className='comic-caption'>{comic.caption}</p>

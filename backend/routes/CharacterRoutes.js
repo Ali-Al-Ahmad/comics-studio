@@ -44,4 +44,11 @@ router.delete(
   CharacterController.deleteCharacter
 )
 
+router.put(
+  '/:id/favorite',
+  CharacterByIdRequest,
+  validateRequest,
+  CharacterController.toggleFavorite
+)
+
 export default router

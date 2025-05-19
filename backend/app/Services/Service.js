@@ -1,4 +1,3 @@
-import bcrypt from 'bcrypt'
 import HashPasswordTrait from '../Traits/HashPasswordTrait.js'
 
 export default class Service {

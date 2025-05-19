@@ -6,7 +6,9 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  align-items: center;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-x: hidden;
 }
 
 .content-transitioning-in {
@@ -19,6 +21,10 @@
   transition: opacity 0.2s ease,
     transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
     filter 0.2s ease;
+}
+
+.characters-grid-appear {
+  animation: fadeInGrid 0.4s forwards;
 }
 
 @keyframes fadeInGrid {
@@ -34,20 +40,39 @@
   }
 }
 
-@media (max-width: 768px) {
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media screen and (max-width: 479px) {
   .characters-container {
     padding: 0.75rem;
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .characters-container,
-    .content-transitioning-out,
-    .content-transitioning-in {
-    transition: none !important;
+@media screen and (min-width: 576px) {
+  .characters-container {
+    padding: 1.2rem;
   }
 }
 
-.characters-grid-appear {
-  animation: fadeInGrid 0.4s forwards;
+@media screen and (min-width: 768px) {
+  .characters-container {
+    padding: 1.5rem 2rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .characters-container,
+  .content-transitioning-out,
+    .content-transitioning-in {
+    transition: none !important;
+  }
 }

@@ -1,0 +1,29 @@
+.credits-display {
+  background-color: var(--primary-color);
+  border: 1px solid var(--primary-color-hover);
+  border-radius: 6px;
+  padding: 0.7rem 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: white;
+  font-weight: 500;
+  box-shadow: 0 3px 8px rgba(112, 99, 241, 0.25);
+  flex-shrink: 0;
+}
+
+.credits-value {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.3px;
+}
+
+@media screen and (max-width: 479px) {
+  .credits-display {
+    padding: 0.5rem 1rem;
+  }
+
+  .credits-value {
+    font-size: 0.9rem;
+  }
+}
