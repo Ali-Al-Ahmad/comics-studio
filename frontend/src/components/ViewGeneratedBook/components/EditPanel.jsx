@@ -12,7 +12,29 @@ const EditPanel = ({
   onRegeneratePanel,
   onCaptionChange,
 }) => {
-  return <div className='edit-panel-container'></div>
+  return (
+    <div className='edit-panel-container'>
+      <div className='edit-panel-header'>
+        <h3>Editing Panel {panelIndex + 1}</h3>
+        <button
+          className='cancel-edit-btn'
+          onClick={onCancelEdit}
+        >
+          <Icon
+            icon='mdi:close'
+            width='20'
+            height='20'
+          />
+        </button>
+      </div>
+      <div className='edit-panel-content'>
+
+
+      </div>
+    </div>
+  )
 }
+
+
 
 export default EditPanel
