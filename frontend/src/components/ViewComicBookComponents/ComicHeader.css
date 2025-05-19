@@ -1,0 +1,69 @@
+.view-comic-header {
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.view-comic-navigation {
+  margin-bottom: 0;
+}
+
+.back-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #f9f9f9;
+  color: #333;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.back-button:hover {
+  background-color: #333;
+  color: white;
+  border-color: #333;
+}
+
+.credits-display {
+  display: flex;
+  align-items: center;
+  padding: 0.6rem 1.2rem;
+  background-color: var(--primary-color);
+  border-radius: 6px;
+  color: white;
+  justify-self: end;
+  border: 1px solid var(--primary-color-hover);
+  box-shadow: 0 3px 8px rgba(112, 99, 241, 0.25);
+  position: relative;
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+}
+
+@media screen and (max-width: 768px) {
+  .view-comic-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .credits-display {
+    align-self: flex-start;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .back-button {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  .credits-display {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+  }
+}

@@ -1,0 +1,24 @@
+.comic-loading,
+.no-comic-found {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  width: 100%;
+}
+
+.comic-loading p,
+.no-comic-found p {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  color: #666;
+}
+
+@media screen and (max-width: 480px) {
+
+  .comic-loading p,
+  .no-comic-found p {
+    font-size: 1rem;
+  }
+}

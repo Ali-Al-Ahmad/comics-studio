@@ -37,7 +37,6 @@ const ComicCard = ({
 
   const handleCardClick = () => {
     if (comic.id) {
-      console.log('Adding comic to recently viewed:', comic.id, comic.title)
       dispatch(addToRecentlyViewed(comic.id))
 
       navigate(`/comic/${comic.id}`)
