@@ -42,6 +42,18 @@ const ViewGeneratedBook = ({
   const setPanelRef = (index, element) => {
     panelRefs.current[index] = element
   }
+  const renderPanels = () => {
+    if (loading && comic.panels.every((panel) => !panel.image)) {
+      return (
+        <div className='comics-loading'>
+          <Spinner />
+          <p>Generating comic panels...</p>
+        </div>
+      )
+    }
+  }
 }
+
+
 
 export default ViewGeneratedBook
