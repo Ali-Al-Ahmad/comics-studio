@@ -306,3 +306,19 @@
   }
 }
 
+@media (max-width: 360px) {
+  .book-page .panel-caption {
+    padding: 0rem 0.02rem !important;
+    font-size: 0.25rem !important;
+    max-height: 5px !important;
+    line-height: 0.7 !important;
+    opacity: 0.7;
+    font-family: 'Arial Narrow', sans-serif !important;
+    letter-spacing: -0.04em !important;
+  }
+
+  .book-page .panel-image-container {
+    top: 3px !important;
+    height: calc(100% - 3px) !important;
+  }
+}
