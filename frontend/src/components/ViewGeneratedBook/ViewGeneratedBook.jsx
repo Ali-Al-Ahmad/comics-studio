@@ -66,7 +66,48 @@ const ViewGeneratedBook = ({
       )
     }
 
-  
+    switch (comic.viewMode) {
+      case 'grid':
+        return (
+          <div className='panels-grid'>
+            {comic.panels.map((panel, index) => (
+              <PanelView
+                key={panel.id || `panel-${index}`}
+                panel={panel}
+                index={index}
+                viewMode='grid'
+                loading={loading}
+                viewOnly={viewOnly}
+                onEditPanel={onEditPanel}
+                setRef={setPanelRef}
+              />
+            ))}
+          </div>
+        )
+
+      case 'book':
+        return (
+          <div className='panels-book'>
+            <div className='book-pages'>
+              {comic.panels.map((panel, index) => (
+                <PanelView
+                  key={panel.id || `panel-${index}`}
+                  panel={panel}
+                  index={index}
+                  viewMode='book'
+                  loading={loading}
+                  viewOnly={viewOnly}
+                  onEditPanel={onEditPanel}
+                  setRef={setPanelRef}
+                />
+              ))}
+            </div>
+          </div>
+        )
+
+      default:
+        return null
+    }
   }
 
 }
