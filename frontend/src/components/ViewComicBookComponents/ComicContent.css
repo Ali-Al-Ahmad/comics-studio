@@ -20,3 +20,14 @@
   margin: 0;
   font-weight: 600;
 }
+
+@media screen and (max-width: 768px) {
+  .view-comic-content {
+    gap: 1rem;
+  }
+
+  .book-header {
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+  }
+}
