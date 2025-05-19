@@ -13,7 +13,27 @@ const ComicContent = ({
   onPublishStatusChange,
   dispatch,
 }) => {
-  return <div className='view-comic-content'></div>
+  return (
+    <div className='view-comic-content'>
+      <div className='book-header'>
+        {comic.isUserOwnedBook && (
+          <BookStatusIndicator isPublic={comic.is_public} />
+        )}
+      </div>
+      <ViewGeneratedBook
+        comic={comic}
+        loading={loading}
+        onChangeViewMode={onChangeViewMode}
+        onEditPanel={onEditPanel}
+        onRegeneratePanel={onRegeneratePanel}
+        onCaptionChange={onCaptionChange}
+        onPublishStatusChange={onPublishStatusChange}
+        dispatch={dispatch}
+        viewOnly={!comic.isUserOwnedBook}
+      />
+    </div>
+  )
 }
+
 
 export default ComicContent
