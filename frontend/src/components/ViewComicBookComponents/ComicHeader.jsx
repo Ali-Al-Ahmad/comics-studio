@@ -27,5 +27,9 @@ const ComicHeader = ({ user, onBack }) => {
   )
 }
 
+ComicHeader.propTypes = {
+  user: PropTypes.object,
+  onBack: PropTypes.func.isRequired,
+}
 
 export default ComicHeader
