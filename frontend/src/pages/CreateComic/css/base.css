@@ -1,0 +1,25 @@
+:root {
+  --primary-color: #7063f1;
+  --primary-color-light: #f5f7ff;
+  --primary-color-dark: #5046db;
+  --border-color: #e1e4f0;
+  --text-color: #333;
+}
+
+.scroll-margin-adjustment {
+  scroll-margin-top: 2px;
+  scroll-behavior: smooth;
+}
+
+.create-comic-container {
+  padding: 1.5rem;
+  background-color: white;
+  min-height: calc(100vh - 60px);
+  width: 100%;
+  transition: all 0.3s ease;
+  overflow-y: auto;
+  margin: 0 auto;
+}
+
+
+
