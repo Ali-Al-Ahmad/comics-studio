@@ -9,10 +9,9 @@ export default class CharacterService extends Service {
       })
       return this.return(true, 'All characters', all_characters)
     } catch (error) {
-      return this.return(false, 'Error getting all characters', error)
+      this.handleError(error, 'Error getting all characters')
     }
   }
-
   static async byId(id) {
     try {
       const characterData = await Character.findByPk(id)
@@ -22,10 +21,9 @@ export default class CharacterService extends Service {
         characterData
       )
     } catch (error) {
-      return this.return(false, 'Error getting Character by ID', error)
+      this.handleError(error, 'Error getting Character by ID')
     }
   }
-
   static async add(req) {
     try {
       const newCharacter = await Character.create({
@@ -36,19 +34,17 @@ export default class CharacterService extends Service {
 
       return this.return(true, 'added Character data', newCharacter)
     } catch (error) {
-      return this.return(false, 'Error adding Character', error)
+      this.handleError(error, 'Error adding Character')
     }
   }
-
   static async delete(id) {
     try {
       await Character.destroy({ where: { id } })
       return this.return(true, 'Character deleted successfully')
     } catch (error) {
-      return this.return(false, 'Error deleting Character', error)
+      this.handleError(error, 'Error deleting Character')
     }
   }
-
   static async update(req) {
     try {
       const id = req.params?.id
@@ -64,7 +60,7 @@ export default class CharacterService extends Service {
 
       return this.return(true, 'Updated Character data', character)
     } catch (error) {
-      return this.return(false, 'Error updating Character', error)
+      this.handleError(error, 'Error updating Character')
     }
   }
   static async userCharacters(req) {
@@ -77,40 +73,41 @@ export default class CharacterService extends Service {
       })
       return this.return(true, 'All user characters', all_characters)
     } catch (error) {
-      return this.return(false, 'Error getting all user characters', error)
+      this.handleError(error, 'Error getting all user characters')
     }
   }
-  
   static async toggleFavorite(req) {
     try {
       const id = req.params?.id
       const { is_favorite } = req.body
-      
+
       const character = await Character.findOne({
-        where: { 
+        where: {
           id,
-          user_id: req.user.id 
-        }
+          user_id: req.user.id,
+        },
       })
-      
+
       if (!character) {
-        return this.return(false, 'Character not found or you do not have permission')
+        return this.return(
+          false,
+          'Character not found or you do not have permission'
+        )
       }
-      
-      await Character.update(
-        { is_favorite },
-        { where: { id } }
-      )
-      
+
+      await Character.update({ is_favorite }, { where: { id } })
+
       const updatedCharacter = await Character.findByPk(id)
-      
+
       return this.return(
-        true, 
-        is_favorite ? 'Character added to favorites' : 'Character removed from favorites',
+        true,
+        is_favorite
+          ? 'Character added to favorites'
+          : 'Character removed from favorites',
         updatedCharacter
       )
     } catch (error) {
-      return this.return(false, 'Error updating favorite status', error)
+      this.handleError(error, 'Error updating favorite status')
     }
   }
 }
