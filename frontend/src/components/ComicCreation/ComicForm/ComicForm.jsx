@@ -30,7 +30,13 @@ const ComicForm = ({ comic, loading, onPromptChange, onStyleChange }) => {
             </option>
           ))}
         </select>
-
+        <textarea
+          value={comic.prompt}
+          onChange={onPromptChange}
+          placeholder='Enter prompt here...'
+          disabled={loading || comic.isGenerating}
+          rows={1}
+        />{' '}
       </div>
     </div>
   )
