@@ -11,4 +11,24 @@
   min-height: 400px;
 }
 
+.character-selection-container h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.8rem;
+  color: var(--text-color);
+}
+
+.characters-list {
+  margin-bottom: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1rem;
+  background-color: #f9f9fd;
+  height: 320px !important;
+  overflow-y: auto !important;
+  min-height: 300px !important;
+  max-height: 320px !important;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
 
