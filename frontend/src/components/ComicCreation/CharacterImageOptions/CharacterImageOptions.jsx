@@ -26,7 +26,13 @@ const CharacterImageOptions = ({
 
   return (
     <div className='character-image-options-container'>
-
+      <CharacterSelector
+        characters={characters}
+        selectedCharacter={selectedCharacter}
+        onCharacterSelect={onCharacterSelect}
+        loading={loadingCharacters}
+        disabled={loading || isGenerating || !!uploadedImage}
+      />
 
     </div>
   )
