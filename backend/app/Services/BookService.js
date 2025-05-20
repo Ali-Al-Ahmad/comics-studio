@@ -9,19 +9,17 @@ export default class BookService extends Service {
       })
       return this.return(true, 'All comic books', all_books)
     } catch (error) {
-      return this.return(false, 'Error getting all comic books', error)
+      this.handleError(error, 'Error getting all comic books')
     }
   }
-
   static async byId(id) {
     try {
       const bookData = await Book.findByPk(id)
       return this.return(true, 'Book retrieved successfully', bookData)
     } catch (error) {
-      return this.return(false, 'Error getting Book by ID', error)
+      this.handleError(error, 'Error getting Book by ID')
     }
   }
-
   static async add(req) {
     try {
       const newBook = await Book.create({
@@ -32,19 +30,17 @@ export default class BookService extends Service {
 
       return this.return(true, 'added Book data', newBook)
     } catch (error) {
-      return this.return(false, 'Error adding Book', error)
+      this.handleError(error, 'Error adding Book')
     }
   }
-
   static async delete(id) {
     try {
       await Book.destroy({ where: { id } })
       return this.return(true, 'Book deleted successfully')
     } catch (error) {
-      return this.return(false, 'Error deleting Book', error)
+      this.handleError(error, 'Error deleting Book')
     }
   }
-
   static async update(req) {
     try {
       const id = req.params?.id
@@ -60,10 +56,9 @@ export default class BookService extends Service {
 
       return this.return(true, 'Updated book data', book)
     } catch (error) {
-      return this.return(false, 'Error updating book', error)
+      this.handleError(error, 'Error updating book')
     }
   }
-
   static async allPublicBooks() {
     try {
       const public_books = await Book.findAll({
@@ -79,7 +74,7 @@ export default class BookService extends Service {
       })
       return this.return(true, 'All public comic books', public_books)
     } catch (error) {
-      return this.return(false, 'Error getting all public comic books', error)
+      this.handleError(error, 'Error getting all public comic books')
     }
   }
   static async bookComics(book_id) {
@@ -108,7 +103,7 @@ export default class BookService extends Service {
         comics: book_comics,
       })
     } catch (error) {
-      return this.return(false, 'Error getting book comics', error)
+      this.handleError(error, 'Error getting book comics')
     }
   }
 }

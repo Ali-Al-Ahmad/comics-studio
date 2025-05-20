@@ -37,12 +37,14 @@ export default class AuthService extends Service {
         isAdmin
       )
 
-      return this.return(true, 'registered successfully', { user: savedUser,token })
+      return this.return(true, 'registered successfully', {
+        user: savedUser,
+        token,
+      })
     } catch (error) {
-      return this.return(false, 'Error registering', error)
+      this.handleError(error, 'Error registering')
     }
   }
-
   static async login(req, isAdmin = false) {
     try {
       const { password, email } = req.body
@@ -68,7 +70,7 @@ export default class AuthService extends Service {
 
       return this.return(true, 'Login successfully', { user, token })
     } catch (error) {
-      return this.return(false, 'Error login', error)
+      this.handleError(error, 'Error login')
     }
   }
 }
