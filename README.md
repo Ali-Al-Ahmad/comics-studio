@@ -83,14 +83,17 @@ Download your comics in multiple formats and share them easily on social media, 
 
 ### Services & Middlewares
 
-| Generate Comic Service                              | Saving Panels To Database                            | Authentication Middleware                           |
-| --------------------------------------- | ------------------------------------- | ------------------------------------- |
-| ![Landing](./readme/demo/generateComicService.png) | ![fsdaf](./readme/demo/saveGenerateComicToDbService.png) | ![fsdaf](./readme/demo/AuthMiddleware.png) |
+| Generate Comic Service       | Saving Panels To Data |
+| --------------------------------------- | ------------------------------------- |
+| ![Landing](./readme/demo/generateComicService.png) | ![fsdaf](./readme/demo/saveGenerateComicToDbService.png)|
 
+| Authentication Middleware   |   test   |
+| ------------------------------------- | ------------------------------------- |
+| ![fsdaf](./readme/demo/AuthMiddleware.png) | ![fsdaf](./readme/demo/test.png) |
 
 ### Code Test Cases
 
-| Feature Test                            | Unit Test                               |
+| Feature Test                            | Unit Test                              |
 | --------------------------------------- |  ------------------------------------- |
 | ![Landing](./readme/demo/generateComicTestLast.png) | ![fsdaf](./readme/demo/unit_test.png) |
 
