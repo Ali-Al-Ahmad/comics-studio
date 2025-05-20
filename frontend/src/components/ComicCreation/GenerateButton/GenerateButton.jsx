@@ -31,6 +31,11 @@ const GenerateButton = ({ loading, isGenerating, prompt, onGenerate }) => {
   )
 }
 
-
+GenerateButton.propTypes = {
+  loading: PropTypes.bool.isRequired,
+  isGenerating: PropTypes.bool.isRequired,
+  prompt: PropTypes.string.isRequired,
+  onGenerate: PropTypes.func.isRequired,
+}
 
 export default GenerateButton
