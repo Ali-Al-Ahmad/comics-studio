@@ -89,9 +89,9 @@ Download your comics in multiple formats and share them easily on social media, 
 
 ### Code Test Cases
 
-| Feature Test                                | Integration Test                            | Unit Test                               |
-| --------------------------------------- | ------------------------------------- | ------------------------------------- |
-| ![Landing](./readme/demo/generate_comic_test.png) | ![fsdaf](./readme/demo/integration_test.png) | ![fsdaf](./readme/demo/unit_test.png) |
+| Feature Test                            | Unit Test                               |
+| --------------------------------------- |  ------------------------------------- |
+| ![Landing](./readme/demo/generateComicTestLast.png) | ![fsdaf](./readme/demo/unit_test.png) |
 
 
 
