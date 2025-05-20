@@ -142,7 +142,7 @@ Download your comics in multiple formats and share them easily on social media, 
 | --------------------------------------- | ------------------------------------- |
 | ![Landing](./readme/demo/objects_s3.png) | ![fsdaf](./readme/demo/deployed.png) |
 
-### Deployment Diagrams
+### CI/CD Pipeline
 
 <img src="./readme/demo/ci-cd-pipeline-image.png"/>
 
