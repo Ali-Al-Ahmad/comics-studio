@@ -126,13 +126,13 @@ Download your comics in multiple formats and share them easily on social media, 
 
 ### EC2 Docker containers deployment
 
-| Deployment Pipeline Sample	                 | GitHub Deployment Pipeline Success	                        | EC2 Instance Docker Deployed                       |
-| --------------------------------------- | ------------------------------------- | ------------------------------------- |
-| ![Landing](./readme/demo/deploy_sample.png) | ![fsdaf](./readme/demo/actions_success.png) | ![fsdaf](./readme/demo/runing_ec2_containers.png) |
+  | GitHub Deployment Pipeline Success	                        | EC2 Instance Docker Deployed                       |
+ | ------------------------------------- | ------------------------------------- |
+|![fsdaf](./readme/demo/actions_success.png) | ![fsdaf](./readme/demo/runing_ec2_containers.png) |
 
 | AWS project objects	                 | Deployed production website  |   
 | --------------------------------------- | ------------------------------------- |
-| ![Landing](./readme/demo/aws_panel.png) | ![fsdaf](./readme/demo/deployed.png) |
+| ![Landing](./readme/demo/objects_s3.png) | ![fsdaf](./readme/demo/deployed.png) |
 
 ### Deployment Diagram
 <img src="./readme/demo/DeploymentDiagram.png"/>
