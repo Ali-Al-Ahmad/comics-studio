@@ -37,6 +37,19 @@ const CreateComic = () => {
   const [loadingCharacters, setLoadingCharacters] = useState(false)
 
   const [uploadedImage, setUploadedImage] = useState(null) 
+  useEffect(() => {
+    if (comic.panels.length === 0) {
+      const emptyPanels = Array(6)
+        .fill()
+        .map(() => ({
+          image: '',
+          caption: '',
+        }))
+      setComic((prev) => ({ ...prev, panels: emptyPanels }))
+    }
+
+    fetchUserCharacters()
+  }, [])
 
 
 
