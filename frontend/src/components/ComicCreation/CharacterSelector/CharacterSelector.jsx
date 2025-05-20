@@ -13,7 +13,26 @@ const CharacterSelector = ({
 }) => {
   const [characterSearchQuery, setCharacterSearchQuery] = useState('')
 
-  return <div className='character-selection-container'></div>
+  const filteredCharacters =
+    characterSearchQuery.trim() === ''
+      ? characters
+      : characters.filter((character) =>
+          character.name
+            .toLowerCase()
+            .includes(characterSearchQuery.toLowerCase())
+        )
+
+  const handleCharacterSearch = (e) => {
+    setCharacterSearchQuery(e.target.value)
+  }
+
+  return (
+    <div className='character-selection-container'>
+
+
+    </div>
+  )
 }
+
 
 export default CharacterSelector
