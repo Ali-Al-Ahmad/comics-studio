@@ -69,3 +69,27 @@
   box-shadow: 0 0 0 3px rgba(112, 99, 241, 0.15);
 }
 
+.prompt-input-row textarea {
+  width: 80%;
+  flex-grow: 1;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 1rem;
+  line-height: 1.5;
+  resize: none !important;
+  transition: all 0.2s ease;
+  font-family: 'Poppins', sans-serif;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03) inset;
+  height: 50px;
+  min-height: 50px;
+  max-height: 50px;
+  overflow-y: auto;
+}
+
+.prompt-input-row textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(112, 99, 241, 0.15);
+}
