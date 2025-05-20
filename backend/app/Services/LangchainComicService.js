@@ -62,7 +62,15 @@ export default class LangchainComicService extends Service {
         )
       }
 
-      
+      const replicate = new Replicate({
+        auth: process.env.REPLICATE_API_TOKEN,
+      })
+      const content = await this.generateComicStoryWithLangChain(user_prompt)
+
+      const encodedImage = await this._processAndEncodeImage(
+        given_image,
+        character_image_path
+      )
 
 
 
