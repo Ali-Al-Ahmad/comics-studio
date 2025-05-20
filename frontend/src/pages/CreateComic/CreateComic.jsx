@@ -59,7 +59,6 @@ const CreateComic = () => {
         setCharacters(response.data.data || [])
       }
     } catch (error) {
-      console.error('Error fetching characters:', error)
       dispatch(
         showToast({
           message: 'Failed to fetch characters',
@@ -124,12 +123,8 @@ const CreateComic = () => {
       if (selectedCharacter) {
         formData.append('given_character_id', selectedCharacter.id)
         formData.append('character_image_path', selectedCharacter.image_url)
-        console.log(
-          `Using character ${selectedCharacter.name} (ID: ${selectedCharacter.id}) for comic generation`
-        )
       } else if (uploadedImage) {
         formData.append('character_image', uploadedImage)
-        console.log('Using uploaded image for comic generation')
       }
 
       const response = await axiosInstance.post(
@@ -139,7 +134,6 @@ const CreateComic = () => {
 
       if (response.data.success) {
         const { book, comics } = response.data.data
-        console.log('comics', comics)
         const newPanels = comics.map((comic) => ({
           id: comic.id,
           image: comic.image_url,
