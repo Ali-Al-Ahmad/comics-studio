@@ -132,6 +132,33 @@
   justify-content: space-between;
 }
 
+.character-select-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  border-color: var(--primary-color-light);
+}
+
+.character-select-card.selected {
+  border: 2px solid var(--primary-color);
+  background-color: var(--primary-color-light);
+}
+
+.character-select-card img {
+  width: 75px;
+  height: 75px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+}
+
+.character-select-card p {
+  font-size: 0.9rem;
+  margin: 0;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
 
 
