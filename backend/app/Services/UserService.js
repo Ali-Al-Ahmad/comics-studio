@@ -8,29 +8,26 @@ export default class UserService extends Service {
       const all_users = await User.findAll({ order: [['id', 'DESC']] })
       return this.return(true, 'all users', all_users)
     } catch (error) {
-      return this.return(false, 'Error getting all users', error)
+      this.handleError(error, 'Error getting all users')
     }
   }
-
   static async byId(id) {
     try {
       const userData = await User.findByPk(id)
       return this.return(true, 'User retrieve successfuly', userData)
     } catch (error) {
-      return this.return(false, 'Error getting user by id', error)
+      this.handleError(error, 'Error getting user by id')
     }
   }
-
   static async delete(id) {
     try {
       await User.destroy({ where: { id } })
 
       return this.return(true, 'User deleted successfuly')
     } catch (error) {
-      return this.return(false, 'Error deleting', error)
+      this.handleError(error, 'Error deleting')
     }
   }
-
   static async update(req) {
     try {
       const id = req.params?.id
@@ -53,10 +50,9 @@ export default class UserService extends Service {
 
       return this.return(true, 'Updated user Data', user)
     } catch (error) {
-      this.return(false, 'Error updating user', error)
+      this.handleError(error, 'Error updating user')
     }
   }
-
   static async userAllBooks(req) {
     try {
       const all_books = await Book.findAll({
@@ -65,10 +61,9 @@ export default class UserService extends Service {
       })
       return this.return(true, 'All User books', all_books)
     } catch (error) {
-      return this.return(false, 'Error getting All User books', error)
+      this.handleError(error, 'Error getting All User books')
     }
   }
-
   static async changePassword(req) {
     try {
       const { current_password, new_password } = req.body
@@ -89,7 +84,7 @@ export default class UserService extends Service {
 
       return this.return(true, 'Password changed successfully')
     } catch (error) {
-      return this.return(false, 'Error changing the password', error)
+      this.handleError(error, 'Error changing the password')
     }
   }
 }
