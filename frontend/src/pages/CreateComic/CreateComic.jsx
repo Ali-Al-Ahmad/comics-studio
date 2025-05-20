@@ -187,6 +187,21 @@ const CreateComic = () => {
     }
   }
 
+  const handleRegeneratePanel = async (index) => {
+    console.log('Regenerating clicked ', index)
+  }
+
+  const startEditPanel = (index) => {
+    setComic((prev) => ({
+      ...prev,
+      isEditing: true,
+      currentEditPanel: index,
+    }))
+  }
+
+  const changeViewMode = (mode) => {
+    setComic((prev) => ({ ...prev, viewMode: mode }))
+  }
 
   return (
     <div
