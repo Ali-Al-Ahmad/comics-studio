@@ -143,11 +143,11 @@ Download your comics in multiple formats and share them easily on social media, 
 
 ### CI/CD Pipeline
 
-| Backend Build And Test                        | Frontend Build And Deploy    |
+| Backend Docker Image Build & Test          | Frontend Build And Deploy    |
  | ------------------------------------- | ------------------------------------- |
 |![fsdaf](./readme/demo/testing_ec2_pipline.png) | ![fsdaf](./readme/demo/buildFrontS3.png) |
 
-| Copy To Ec2 With Injected .env Passwords                 | Backend Ec2 Deploy  |   
+| Copy To EC2 With Injected .env Passwords                 | Backend EC2 Deploy  |   
 | --------------------------------------- | ------------------------------------- |
 | ![Landing](./readme/demo/copyToEc2_pipeline.png) | ![fsdaf](./readme/demo/buildonec2.png) |
 
