@@ -14,7 +14,16 @@ const ComicForm = ({ comic, loading, onPromptChange, onStyleChange }) => {
 
   return (
     <div className='prompt-input-container'>
+      <div className='prompt-input-row'>
+        <select
+          className='style-dropdown'
+          value={comic.style}
+          onChange={onStyleChange}
+          disabled={loading || comic.isGenerating}
+        >
 
+
+      </div>
     </div>
   )
 }
