@@ -122,5 +122,12 @@ const CharacterSelector = ({
   )
 }
 
+CharacterSelector.propTypes = {
+  characters: PropTypes.array.isRequired,
+  selectedCharacter: PropTypes.object,
+  onCharacterSelect: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
+  disabled: PropTypes.bool,
+}
 
 export default CharacterSelector
