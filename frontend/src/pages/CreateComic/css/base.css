@@ -66,3 +66,13 @@
   left: 100%;
 }
 
+.generate-btn:disabled {
+  background-color: #d1d1d1;
+  cursor: not-allowed;
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.generate-btn:disabled::before {
+  display: none;
+}
