@@ -47,6 +47,22 @@ const PromptSection = ({
   )
 }
 
-
+PromptSection.propTypes = {
+  comic: PropTypes.shape({
+    prompt: PropTypes.string.isRequired,
+    style: PropTypes.string.isRequired,
+    isGenerating: PropTypes.bool.isRequired,
+  }).isRequired,
+  loading: PropTypes.bool.isRequired,
+  characters: PropTypes.array.isRequired,
+  selectedCharacter: PropTypes.object,
+  loadingCharacters: PropTypes.bool.isRequired,
+  uploadedImage: PropTypes.object,
+  onPromptChange: PropTypes.func.isRequired,
+  onStyleChange: PropTypes.func.isRequired,
+  onCharacterSelect: PropTypes.func.isRequired,
+  setUploadedImage: PropTypes.func.isRequired,
+  onGenerate: PropTypes.func.isRequired,
+}
 
 export default PromptSection
