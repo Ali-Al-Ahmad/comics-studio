@@ -92,6 +92,28 @@ const CreateComic = () => {
     }
   }
 
+  const handleGenerate = async () => {
+    if (!comic.prompt.trim()) {
+      dispatch(
+        showToast({
+          message: 'Please enter a prompt to generate panels',
+          type: 'error',
+        })
+      )
+      return
+    }
+
+
+    try {
+   
+
+
+
+        
+    } catch (error) {
+      console.error('Error generating comic panels:', error)
+
+  }
 
 
   return (
