@@ -458,5 +458,44 @@
   pointer-events: none;
 }
 
+.comic-book-title {
+  text-align: center;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto 1rem;
+}
 
+.comic-book-title h2 {
+  font-family: 'Comic Sans MS', 'Bangers', cursive;
+  font-size: 2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #333;
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border: 3px solid #000;
+  position: relative;
+  margin: 0;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.comic-book-title h2::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(45deg,
+      rgba(255, 255, 0, 0.1),
+      rgba(255, 255, 0, 0.1) 10px,
+      rgba(255, 255, 255, 0.1) 10px,
+      rgba(255, 255, 255, 0.1) 20px);
+  z-index: -1;
+}
 
