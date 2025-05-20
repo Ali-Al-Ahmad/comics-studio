@@ -116,7 +116,7 @@ Download your comics in multiple formats and share them easily on social media, 
 
  | OpenAi Story Generation                    | ReplicateAi Image Generation  |
  | ------------------------------------- | ------------------------------------- |
- | ![fsdaf](./readme/demo/open_ai_code.png) | ![fsdaf](./readme/demo/replicate_ai_code.png) |
+ | ![fsdaf](./readme/demo/open_ai_code.png) | ![fsdaf](./readme/demo/ReplicateAiUse.png) |
 
 <br><br>
 
