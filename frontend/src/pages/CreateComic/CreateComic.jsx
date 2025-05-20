@@ -79,6 +79,18 @@ const CreateComic = () => {
     setComic((prev) => ({ ...prev, style: e.target.value }))
   }
 
+  const handleCaptionChange = (index, value) => {
+    const updatedPanels = [...comic.panels]
+    updatedPanels[index].caption = value
+    setComic((prev) => ({ ...prev, panels: updatedPanels }))
+  }
+
+  const handleCharacterSelect = (character) => {
+    setSelectedCharacter(character === selectedCharacter ? null : character)
+    if (character !== selectedCharacter && character !== null) {
+      setUploadedImage(null)
+    }
+  }
 
 
 
