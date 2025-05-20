@@ -71,8 +71,6 @@ const Profile = () => {
         )
       }
     } catch (error) {
-      console.error('Profile update error:', error)
-
       dispatch(
         showToast({
           type: 'error',
