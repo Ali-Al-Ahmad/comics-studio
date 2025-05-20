@@ -57,7 +57,7 @@ Download your comics in multiple formats and share them easily on social media, 
 <!-- Demo -->
 <img src="./readme/title5.svg"/>
 
-### User Screens (Mobile)
+### User Screens
 
 | Login screen                            | View Comic Screen                       | View Comic Book                |
 | --------------------------------------- | ------------------------------------- | ------------------------------------- |
@@ -73,7 +73,7 @@ Download your comics in multiple formats and share them easily on social media, 
 
 ### Services & Middlewares
 
-| Generate comic service                               | Saving panels to database                            | Authentication Middleware Test                               |
+| Generate Comic Service                              | Saving Panels To Database                            | Authentication Middleware                           |
 | --------------------------------------- | ------------------------------------- | ------------------------------------- |
 | ![Landing](./readme/demo/generateComicService.png) | ![fsdaf](./readme/demo/saveGenerateComicToDbService.png) | ![fsdaf](./readme/demo/AuthMiddleware.png) |
 
@@ -86,7 +86,7 @@ Download your comics in multiple formats and share them easily on social media, 
 
 
 
-| Local Tests Success                              | Pipeline Tests success                        |
+| Local Tests Success                              | Pipeline Tests Success                        |
 | --------------------------------------- | ------------------------------------- |
 | ![Landing](./readme/demo/testing_results_success.png) | ![fsdaf](./readme/demo/success_test_github_actions.png)|
 
@@ -97,7 +97,7 @@ Download your comics in multiple formats and share them easily on social media, 
 
 ### AI Services Integration OpenAI / ReplicateAI
 
-| Comic generation prompt                          | OpenAi story generation                    | ReplicateAi image generation                     |
+| Comic Generation Prompt                          | OpenAi Story Generation                    | ReplicateAi Image Generation                     |
 | --------------------------------------- | ------------------------------------- | ------------------------------------- |
 | ![Landing](./readme/demo/user_prompt.png) | ![fsdaf](./readme/demo/open_ai_code.png) | ![fsdaf](./readme/demo/replicate_ai_code.png) |
 
@@ -109,7 +109,7 @@ Download your comics in multiple formats and share them easily on social media, 
 
 ### EC2 Docker containers deployment
 
-| Deployment Pipeline Sample	                 | GitHub Deployment Pipeline Success	                        | EC2 Instance docker deployed                       |
+| Deployment Pipeline Sample	                 | GitHub Deployment Pipeline Success	                        | EC2 Instance Docker Deployed                       |
 | --------------------------------------- | ------------------------------------- | ------------------------------------- |
 | ![Landing](./readme/demo/deploy_sample.png) | ![fsdaf](./readme/demo/actions_success.png) | ![fsdaf](./readme/demo/runing_ec2_containers.png) |
 
