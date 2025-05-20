@@ -116,6 +116,14 @@ Download your comics in multiple formats and share them easily on social media, 
 <!-- Deployment -->
 <img src="./readme/title8.svg"/>
 
+### Deployment Overview 
+  - **Deployed on S3:** [http://fse-final-ali-ah.s3-website.eu-west-3.amazonaws.com/](http://fse-final-ali-ah.s3-website.eu-west-3.amazonaws.com/)
+  - Comics Studio deployed using **AWS EC2 instances**:
+  - **Staging:** `http://15.236.247.74`
+  - **Production:** `http://13.38.76.87`
+- The project is **containerized using Docker** to ensure consistency across all environments.
+- **CI/CD pipelines** are implemented via **GitHub Actions**, enabling automatic testing and deployment on every push to `staging` and `main`.
+
 ### EC2 Docker containers deployment
 
 | Deployment Pipeline Sample	                 | GitHub Deployment Pipeline Success	                        | EC2 Instance Docker Deployed                       |
