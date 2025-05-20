@@ -45,5 +45,21 @@ export default class LangchainComicService extends Service {
     }
   }
 
+  static async generateComicWithLangChain(req) {
+    try {
+      const {
+        user_prompt,
+        given_character_id,
+        character_image_path,
+        comic_style,
+      } = req.body
 
+
+
+
+      
+    } catch (error) {
+      this.handleError(error, 'Error generating comic with LangChain')
+    }
+  }
 }
