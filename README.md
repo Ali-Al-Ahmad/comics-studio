@@ -38,7 +38,7 @@
 <!-- Project Highlights -->
 <img src="./readme/title4.svg"/>
 
-### From Idea to Comic in Seconds
+<!-- ### From Idea to Comic in Seconds
 Turn any short idea into a full-blown, action-packed comic scene quickly.
 
 ### You’re the Star
@@ -48,7 +48,7 @@ Upload your photo and become the hero of your comic story.
 Each scene bursts with emotion, movement, and rich comic-style detail.
 
 ### Download & Share Anywhere
-Download your comics in multiple formats and share them easily on social media, with friends, or anywhere you like.
+Download your comics in multiple formats and share them easily on social media, with friends, or anywhere you like. -->
 
 <img src="./readme/demo/Highlights.png"/>
 
