@@ -12,6 +12,8 @@ const CreateComicHeader = ({ credits }) => {
   )
 }
 
-
+CreateComicHeader.propTypes = {
+  credits: PropTypes.number.isRequired,
+}
 
 export default CreateComicHeader
