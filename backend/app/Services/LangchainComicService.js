@@ -87,7 +87,14 @@ export default class LangchainComicService extends Service {
         throw new Error('No images were generated')
       }
 
-
+      const { new_book, savedComics } = await this._saveComicToDatabase(
+        req.user.id,
+        user_prompt,
+        content,
+        urls_images,
+        given_character_id,
+        character_image_path
+      )
 
       
     } catch (error) {
