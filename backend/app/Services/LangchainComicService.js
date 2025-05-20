@@ -37,7 +37,11 @@ export default class LangchainComicService extends Service {
       return content
     } catch (error) {
       console.error('Error generating comic story with LangChain:', error)
-
+      return {
+        prompt_array: user_prompt,
+        captions: [`Comic based on: ${user_prompt}`],
+        general_prompt: user_prompt,
+      }
     }
   }
 
