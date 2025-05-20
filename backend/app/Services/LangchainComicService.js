@@ -53,7 +53,16 @@ export default class LangchainComicService extends Service {
         character_image_path,
         comic_style,
       } = req.body
+      const given_image = req.file?.path || character_image_path
 
+      if (req.user?.credits && req.user.credits < 1) {
+        return this.return(
+          false,
+          "You don't have enough credits to generate a comic"
+        )
+      }
+
+      
 
 
 
