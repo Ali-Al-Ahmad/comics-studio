@@ -78,6 +78,7 @@ Download your comics in multiple formats and share them easily on social media, 
 <!-- Development & Testing -->
 <img src="./readme/title6.svg"/>
 
+### Postman API Testing
 - You can view the full API documentation in Postman [here](https://documenter.getpostman.com/view/30826163/2sB2qXmiVS).
 
 ### Services & Middlewares
