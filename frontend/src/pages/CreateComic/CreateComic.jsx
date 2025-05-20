@@ -103,6 +103,15 @@ const CreateComic = () => {
       return
     }
 
+    if (credits < 1) {
+      dispatch(
+        showToast({
+          message: 'Not enough credits to generate comic panels',
+          type: 'error',
+        })
+      )
+      return
+    }
 
     try {
    
