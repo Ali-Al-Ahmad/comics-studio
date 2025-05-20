@@ -146,7 +146,6 @@ Download your comics in multiple formats and share them easily on social media, 
 
 <img src="./readme/demo/ci-cd-pipeline-image.png"/>
 
-<img src="./readme/demo/DeploymentDiagram.png"/>
 
 <br><br>
 
