@@ -58,17 +58,11 @@ const ComicCard = ({
       onEdit(comic)
     }
   }
-
   const handleDeleteClick = (e) => {
     if (onDelete) {
       e.stopPropagation()
       onDelete(comic)
     }
-  }
-
-  const handleViewClick = (e) => {
-    e.stopPropagation()
-    handleCardClick()
   }
 
   const handleMouseEnter = () => {
@@ -101,21 +95,9 @@ const ComicCard = ({
         />
         <div className='comic-overlay-bottom'>
           <h3 className='comic-title'>{comic.title}</h3>
-        </div>
-
+        </div>{' '}
         {isUserComic && isHovered && (
           <div className='comic-card-actions'>
-            <button
-              className='comic-card-action-btn view-btn'
-              onClick={handleViewClick}
-              aria-label='View comic'
-            >
-              <Icon
-                icon='mdi:eye'
-                width='20'
-                height='20'
-              />
-            </button>
             {onEdit && (
               <button
                 className='comic-card-action-btn edit-btn'
