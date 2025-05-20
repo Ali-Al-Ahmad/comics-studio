@@ -128,7 +128,7 @@ Download your comics in multiple formats and share them easily on social media, 
 
   | GitHub Deployment Pipeline Success	                        | EC2 Instance Docker Deployed                       |
  | ------------------------------------- | ------------------------------------- |
-|![fsdaf](./readme/demo/actions_success.png) | ![fsdaf](./readme/demo/runing_ec2_containers.png) |
+|![fsdaf](./readme/demo/actions_success_1.png) | ![fsdaf](./readme/demo/runing_ec2_containers.png) |
 
 | AWS project objects	                 | Deployed production website  |   
 | --------------------------------------- | ------------------------------------- |
