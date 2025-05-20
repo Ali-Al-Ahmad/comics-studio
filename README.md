@@ -59,9 +59,9 @@ Download your comics in multiple formats and share them easily on social media, 
 
 ### User Screens
 
-| Login screen                            | View Comic Screen                       | View Comic Book                |
-| --------------------------------------- | ------------------------------------- | ------------------------------------- |
-| ![Landing](./readme/demo/login_page.png) | ![fsdaf](./readme/demo/vieiw_Grid.png) | ![fsdaf](./readme/demo/best_reading.png) |
+| Login screen                            | View Comic Screen                       |
+| --------------------------------------- | ------------------------------------- |
+| ![Landing](./readme/demo/login_page.png) | ![fsdaf](./readme/demo/vieiw_Grid.png)
 
 
 <br><br>
