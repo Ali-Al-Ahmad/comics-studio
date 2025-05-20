@@ -96,7 +96,11 @@ export default class LangchainComicService extends Service {
         character_image_path
       )
 
-      
+      return this.return(true, 'Generated comic data with LangChain', {
+        user_id: req.user.id,
+        book: new_book,
+        comics: savedComics,
+      })
     } catch (error) {
       this.handleError(error, 'Error generating comic with LangChain')
     }
