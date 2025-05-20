@@ -1,0 +1,14 @@
+.character-selection-container {
+  margin: 1rem 0;
+  padding-bottom: 1rem;
+  border-bottom: 1px dashed var(--border-color);
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  height: auto;
+  min-height: 400px;
+}
+
+
