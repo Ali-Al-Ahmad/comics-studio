@@ -114,7 +114,28 @@ const CreateComic = () => {
     }
 
     try {
-   
+      setLoading(true)
+      setComic((prev) => ({ ...prev, isGenerating: true }))
+
+      const formData = new FormData()
+      formData.append('user_prompt', comic.prompt)
+      formData.append('comic_style', comic.style)
+
+      if (selectedCharacter) {
+        formData.append('given_character_id', selectedCharacter.id)
+        formData.append('character_image_path', selectedCharacter.image_url)
+        console.log(
+          `Using character ${selectedCharacter.name} (ID: ${selectedCharacter.id}) for comic generation`
+        )
+      } else if (uploadedImage) {
+        formData.append('character_image', uploadedImage)
+        console.log('Using uploaded image for comic generation')
+      }
+
+      const response = await axiosInstance.post(
+        '/comics/generatecomic',
+        formData
+      )
 
 
 
