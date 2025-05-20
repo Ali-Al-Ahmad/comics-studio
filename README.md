@@ -147,7 +147,9 @@ Download your comics in multiple formats and share them easily on social media, 
  | ------------------------------------- | ------------------------------------- |
 |![fsdaf](./readme/demo/testing_ec2_pipline.png) | ![fsdaf](./readme/demo/buildFrontS3.png) |
 
-
+| Copy To Ec2 With Injected .env Passwords                 | Backend Ec2 Deploy  |   
+| --------------------------------------- | ------------------------------------- |
+| ![Landing](./readme/demo/copyToEc2_pipeline.png) | ![fsdaf](./readme/demo/buildonec2.png) |
 
 
 
