@@ -42,4 +42,15 @@ const CharacterImageOptions = ({
   )
 }
 
+CharacterImageOptions.propTypes = {
+  characters: PropTypes.array.isRequired,
+  selectedCharacter: PropTypes.object,
+  onCharacterSelect: PropTypes.func.isRequired,
+  loadingCharacters: PropTypes.bool.isRequired,
+  uploadedImage: PropTypes.object,
+  setUploadedImage: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
+  isGenerating: PropTypes.bool.isRequired,
+}
+
 export default CharacterImageOptions
