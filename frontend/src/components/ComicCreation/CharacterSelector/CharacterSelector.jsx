@@ -28,7 +28,23 @@ const CharacterSelector = ({
 
   return (
     <div className='character-selection-container'>
+      <h3>Use a character (optional):</h3>
+      <div className='character-search-box'>
+        <Icon
+          icon='mdi:magnify'
+          width='20'
+          height='20'
+        />
+        <input
+          type='text'
+          placeholder='Search characters...'
+          value={characterSearchQuery}
+          onChange={handleCharacterSearch}
+          disabled={disabled}
+        />
 
+      </div>
+      <div className='characters-list'>
 
     </div>
   )
