@@ -181,3 +181,17 @@
   margin-bottom: 1rem;
 }
 
+.clear-character-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.clear-character-btn:hover {
+  color: var(--text-color);
+}
