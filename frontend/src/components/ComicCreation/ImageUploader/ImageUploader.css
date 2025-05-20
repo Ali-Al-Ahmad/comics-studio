@@ -1,0 +1,16 @@
+.create-page-image-upload-container {
+  margin: 1rem 0;
+  padding-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.create-page-image-upload-container h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.8rem;
+  color: var(--text-color);
+}
+
+
+
