@@ -7,7 +7,20 @@ import Service from './Service.js'
 import Replicate from 'replicate'
 
 export default class LangchainComicService extends Service {
+  static async generateComicStoryWithLangChain(user_prompt) {
+    try {
+      const model = new ChatOpenAI({
+        modelName: 'gpt-4',
+        temperature: 0.7,
+      })
 
+ 
+     
+    } catch (error) {
+      console.error('Error generating comic story with LangChain:', error)
+
+    }
+  }
 
 
 }
