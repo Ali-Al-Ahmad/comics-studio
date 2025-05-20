@@ -11,7 +11,21 @@ const GenerateButton = ({ loading, isGenerating, prompt, onGenerate }) => {
         onClick={onGenerate}
         disabled={loading || isGenerating || !prompt.trim()}
       >
-
+        {loading || isGenerating ? (
+          <>
+            <Spinner size='small' />
+            Generating...
+          </>
+        ) : (
+          <>
+            <Icon
+              icon='mdi:magic-wand'
+              width='20'
+              height='20'
+            />
+            Generate Comic
+          </>
+        )}
       </button>
     </div>
   )
