@@ -71,6 +71,14 @@ const CreateComic = () => {
     }
   }
 
+  const handlePromptChange = (e) => {
+    setComic((prev) => ({ ...prev, prompt: e.target.value }))
+  }
+
+  const handleStyleChange = (e) => {
+    setComic((prev) => ({ ...prev, style: e.target.value }))
+  }
+
 
 
 
