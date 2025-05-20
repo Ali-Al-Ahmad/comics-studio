@@ -29,7 +29,7 @@
 
 ### Component Diagram
 
-<img src="./readme/demo/component_interface_diagram.png"/>
+<img src="./readme/demo/ComDiagramDone.png"/>
 
 
 
