@@ -68,9 +68,9 @@ Download your comics in multiple formats and share them easily on social media, 
 | --------------------------------------- | ------------------------------------- |
 | ![Landing](./readme/demo/landinggif.gif) | ![fsdaf](./readme/demo/create-video.gif)|
 
-| Creat Comic Screen                    |
-| ------------------------------------- |
-| ![Landing](./readme/demo/best_reading.png) |
+| Creat Comic Screen                    |   All Comics Screen                     |
+| ------------------------------------- |------------------------------------- |
+| ![Landing](./readme/demo/best_reading.png) |![fsdaf](./readme/demo/tablet.png)|
 
 
 <br><br>
