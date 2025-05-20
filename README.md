@@ -78,26 +78,30 @@ Download your comics in multiple formats and share them easily on social media, 
 <!-- Development & Testing -->
 <img src="./readme/title6.svg"/>
 
+### Postman API Testing
 - You can view the full API documentation in Postman [here](https://documenter.getpostman.com/view/30826163/2sB2qXmiVS).
 
 ### Services & Middlewares
 
-| Generate Comic Service                              | Saving Panels To Database                            | Authentication Middleware                           |
-| --------------------------------------- | ------------------------------------- | ------------------------------------- |
-| ![Landing](./readme/demo/generateComicService.png) | ![fsdaf](./readme/demo/saveGenerateComicToDbService.png) | ![fsdaf](./readme/demo/AuthMiddleware.png) |
+| Generate Comic Service       | Saving Panels To Data |
+| --------------------------------------- | ------------------------------------- |
+| ![Landing](./readme/demo/generateComicService.png) | ![fsdaf](./readme/demo/saveGenerateComicToDbService.png)|
 
+| Authentication Middleware   |   Sequelize Modal Validation   |
+| ------------------------------------- | ------------------------------------- |
+| ![fsdaf](./readme/demo/AuthMiddleware.png) | ![fsdaf](./readme/demo/ModalValidation.png) |
 
 ### Code Test Cases
 
-| Feature Test                                | Integration Test                            | Unit Test                               |
-| --------------------------------------- | ------------------------------------- | ------------------------------------- |
-| ![Landing](./readme/demo/generate_comic_test.png) | ![fsdaf](./readme/demo/integration_test.png) | ![fsdaf](./readme/demo/unit_test.png) |
+| Feature Test                            | Unit Test                              |
+| --------------------------------------- |  ------------------------------------- |
+| ![Landing](./readme/demo/generateComicTestLast.png) | ![fsdaf](./readme/demo/unit_test.png) |
 
 
 
 | Local Tests Success                              | Pipeline Tests Success                        |
 | --------------------------------------- | ------------------------------------- |
-| ![Landing](./readme/demo/testing_results_success.png) | ![fsdaf](./readme/demo/success_test_github_actions.png)|
+| ![Landing](./readme/demo/test_success_locally.png) | ![fsdaf](./readme/demo/github_tests_success.png)|
 
 <br><br>
 
@@ -116,15 +120,23 @@ Download your comics in multiple formats and share them easily on social media, 
 <!-- Deployment -->
 <img src="./readme/title8.svg"/>
 
+### Deployment Overview 
+  - **Deployed on S3:** [http://fse-final-ali-ah.s3-website.eu-west-3.amazonaws.com/](http://fse-final-ali-ah.s3-website.eu-west-3.amazonaws.com/)
+  - Comics Studio deployed using **AWS EC2 instances**:
+  - **Staging:** `http://15.236.247.74`
+  - **Production:** `http://13.38.76.87`
+- The project is **containerized using Docker** to ensure consistency across all environments.
+- **CI/CD pipelines** are implemented via **GitHub Actions**, enabling automatic testing and deployment on every push to `staging` and `main`.
+
 ### EC2 Docker containers deployment
 
-| Deployment Pipeline Sample	                 | GitHub Deployment Pipeline Success	                        | EC2 Instance Docker Deployed                       |
-| --------------------------------------- | ------------------------------------- | ------------------------------------- |
-| ![Landing](./readme/demo/deploy_sample.png) | ![fsdaf](./readme/demo/actions_success.png) | ![fsdaf](./readme/demo/runing_ec2_containers.png) |
+  | GitHub Deployment Pipeline Success	                        | EC2 Instance Docker Deployed                       |
+ | ------------------------------------- | ------------------------------------- |
+|![fsdaf](./readme/demo/actions_success_1.png) | ![fsdaf](./readme/demo/ec2_instance_containers_runing.png) |
 
 | AWS project objects	                 | Deployed production website  |   
 | --------------------------------------- | ------------------------------------- |
-| ![Landing](./readme/demo/aws_panel.png) | ![fsdaf](./readme/demo/deployed.png) |
+| ![Landing](./readme/demo/objects_s3.png) | ![fsdaf](./readme/demo/deployed.png) |
 
 ### Deployment Diagram
 <img src="./readme/demo/DeploymentDiagram.png"/>
