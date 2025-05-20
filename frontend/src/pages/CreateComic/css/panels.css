@@ -167,6 +167,29 @@
   width: 100%;
 }
 
+.comic-panel-strip {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #f9f9fd;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  height: 400px;
+  border: 2px solid var(--border-color);
+  width: 100%;
+}
+
+.comic-panel-strip:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(112, 99, 241, 0.2);
+  border-color: var(--primary-color-light);
+}
+
+.comic-panel-strip .panel-image-container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
 
 
 
