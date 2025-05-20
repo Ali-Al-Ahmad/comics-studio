@@ -155,3 +155,27 @@
   background-color: rgba(112, 99, 241, 0.2);
 }
 
+.character-search-box {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 0.5rem 0.8rem;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.character-search-box input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 0.3rem 0.5rem;
+  font-size: 0.95rem;
+  background: transparent;
+}
+
+.character-search-box svg {
+  color: #666;
+}
+
