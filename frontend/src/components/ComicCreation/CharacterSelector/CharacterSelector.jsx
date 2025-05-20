@@ -69,7 +69,39 @@ const CharacterSelector = ({
           <p className='no-characters'>No characters match your search.</p>
         ) : (
           <div className='character-cards'>
-          
+            {filteredCharacters.map((character) => (
+              <div
+                key={character.id}
+                className={`character-select-card ${
+                  selectedCharacter?.id === character.id ? 'selected' : ''
+                }`}
+                onClick={() => onCharacterSelect(character)}
+              >
+                <img
+                  src={`${import.meta.env.VITE_API_BASE_URL}/${
+                    character.image_url
+                  }`}
+                  alt={character.name}
+                  onError={(e) => {
+                    e.target.onerror = null
+                    e.target.src =
+                      'https://variety.com/wp-content/uploads/2023/07/radcliffe-harry-potter-2.jpg'
+                  }}
+                />
+                <p>{character.name}</p>
+                {selectedCharacter?.id === character.id && (
+                  <div className='character-selected-indicator'>
+                    <Icon
+                      icon='mdi:check-circle'
+                      width='24'
+                      height='24'
+                    />
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   )
