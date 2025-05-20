@@ -97,6 +97,31 @@
   padding: 1rem;
 }
 
+.comic-panel:hover .panel-overlay {
+  opacity: 1;
+}
+
+.edit-panel-btn {
+  background-color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease;
+}
+
+.edit-panel-btn:hover {
+  transform: scale(1.1);
+  background-color: var(--primary-color);
+  color: white;
+}
+
+
 
 
 
