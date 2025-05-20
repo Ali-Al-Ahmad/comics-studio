@@ -29,7 +29,7 @@
 
 ### Component Diagram
 
-<img src="./readme/demo/component_interface_diagram.png"/>
+<img src="./readme/demo/ComDiagramDone.png"/>
 
 
 
@@ -38,7 +38,7 @@
 <!-- Project Highlights -->
 <img src="./readme/title4.svg"/>
 
-### From Idea to Comic in Seconds
+<!-- ### From Idea to Comic in Seconds
 Turn any short idea into a full-blown, action-packed comic scene quickly.
 
 ### You’re the Star
@@ -48,7 +48,7 @@ Upload your photo and become the hero of your comic story.
 Each scene bursts with emotion, movement, and rich comic-style detail.
 
 ### Download & Share Anywhere
-Download your comics in multiple formats and share them easily on social media, with friends, or anywhere you like.
+Download your comics in multiple formats and share them easily on social media, with friends, or anywhere you like. -->
 
 <img src="./readme/demo/Highlights.png"/>
 
@@ -59,9 +59,9 @@ Download your comics in multiple formats and share them easily on social media, 
 
 ### User Screens
 
-| Login screen                            | View Comic Screen                       | View Comic Book                |
-| --------------------------------------- | ------------------------------------- | ------------------------------------- |
-| ![Landing](./readme/demo/login_page.png) | ![fsdaf](./readme/demo/vieiw_Grid.png) | ![fsdaf](./readme/demo/best_reading.png) |
+| Login screen                            | View Comic Screen                       |
+| --------------------------------------- | ------------------------------------- |
+| ![Landing](./readme/demo/login_page.png) | ![fsdaf](./readme/demo/vieiw_Grid.png)
 
 
 <br><br>
