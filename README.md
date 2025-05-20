@@ -63,6 +63,10 @@ Download your comics in multiple formats and share them easily on social media, 
 | --------------------------------------- | ------------------------------------- |
 | ![Landing](./readme/demo/login_page.png) | ![fsdaf](./readme/demo/vieiw_Grid.png)|
 
+| Profile screen                            |  Characters Screen                     |
+| --------------------------------------- | ------------------------------------- |
+| ![Landing](./readme/demo/profile_pg.png) | ![fsdaf](./readme/demo/vieiw_Grid.png)|
+
 
 | Landing screen                            | Creat Comic Screen                     |
 | --------------------------------------- | ------------------------------------- |
