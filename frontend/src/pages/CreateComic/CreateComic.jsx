@@ -224,7 +224,20 @@ const CreateComic = () => {
         setUploadedImage={setUploadedImage}
         onGenerate={handleGenerate}
       />
-
+      <div
+        ref={comicViewRef}
+        className='scroll-margin-adjustment'
+      >
+        <ViewGeneratedBook
+          comic={comic}
+          loading={loading}
+          onChangeViewMode={changeViewMode}
+          onEditPanel={startEditPanel}
+          onRegeneratePanel={handleRegeneratePanel}
+          onCaptionChange={handleCaptionChange}
+          dispatch={dispatch}
+        />
+      </div>
     </div>
   )
 }
