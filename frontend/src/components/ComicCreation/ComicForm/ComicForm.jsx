@@ -42,5 +42,15 @@ const ComicForm = ({ comic, loading, onPromptChange, onStyleChange }) => {
   )
 }
 
+ComicForm.propTypes = {
+  comic: PropTypes.shape({
+    prompt: PropTypes.string.isRequired,
+    style: PropTypes.string.isRequired,
+    isGenerating: PropTypes.bool.isRequired,
+  }).isRequired,
+  loading: PropTypes.bool.isRequired,
+  onPromptChange: PropTypes.func.isRequired,
+  onStyleChange: PropTypes.func.isRequired,
+}
 
 export default ComicForm
