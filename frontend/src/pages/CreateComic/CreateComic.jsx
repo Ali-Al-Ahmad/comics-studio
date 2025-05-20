@@ -137,7 +137,15 @@ const CreateComic = () => {
         formData
       )
 
-
+      if (response.data.success) {
+        const { book, comics } = response.data.data
+        console.log('comics', comics)
+        const newPanels = comics.map((comic) => ({
+          id: comic.id,
+          image: comic.image_url,
+          caption: comic.caption || '',
+          book_id: comic.book_id,
+        }))
 
         
     } catch (error) {
