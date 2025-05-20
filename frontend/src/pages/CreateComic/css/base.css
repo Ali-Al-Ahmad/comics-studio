@@ -56,3 +56,13 @@
   transition: left 0.6s ease;
 }
 
+.generate-btn:hover {
+  background-color: var(--primary-color-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(112, 99, 241, 0.3);
+}
+
+.generate-btn:hover::before {
+  left: 100%;
+}
+
