@@ -215,6 +215,33 @@
   transform: translateY(0);
 }
 
+.panels-book {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  background-color: #f9f9fd;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.panels-book::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #f9f9fd;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.5) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.5) 2px, transparent 2px);
+  background-size: 40px 40px;
+  z-index: -1;
+}
+
 
 
 
