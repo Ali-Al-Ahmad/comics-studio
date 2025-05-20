@@ -33,7 +33,11 @@ const CharacterImageOptions = ({
         loading={loadingCharacters}
         disabled={loading || isGenerating || !!uploadedImage}
       />
-
+      <ImageUploader
+        uploadedImage={uploadedImage}
+        setUploadedImage={handleImageUpload}
+        disabled={loading || isGenerating || !!selectedCharacter}
+      />{' '}
     </div>
   )
 }
