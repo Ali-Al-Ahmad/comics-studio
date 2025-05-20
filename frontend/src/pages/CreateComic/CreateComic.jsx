@@ -172,7 +172,19 @@ const CreateComic = () => {
           type: 'error',
         })
       )
-    } 
+    } finally {
+      setLoading(false)
+      setComic((prev) => ({ ...prev, isGenerating: false }))
+
+      setTimeout(() => {
+        if (comicViewRef.current) {
+          comicViewRef.current.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+          })
+        }
+      }, 500)
+    }
   }
 
 
