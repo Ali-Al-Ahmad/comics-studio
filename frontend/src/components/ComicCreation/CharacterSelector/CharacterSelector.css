@@ -17,6 +17,31 @@
   color: var(--text-color);
 }
 
+.character-search-box {
+  display: flex;
+  align-items: center;
+  background: white;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 0 0.75rem;
+  margin-bottom: 1rem;
+  height: 42px;
+  position: relative;
+}
+
+.character-search-box input {
+  flex-grow: 1;
+  border: none;
+  background: transparent;
+  height: 100%;
+  padding: 0 0.5rem;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.9rem;
+}
+
+.character-search-box input:focus {
+  outline: none;
+}
 
 
 
