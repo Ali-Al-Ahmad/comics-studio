@@ -14,7 +14,14 @@ const CharacterImageOptions = ({
   loading,
   isGenerating,
 }) => {
-
+  const handleImageUpload = useCallback(
+    (file) => {
+      if (selectedCharacter) {
+        onCharacterSelect(null)
+      }
+      setUploadedImage(file)
+    },
+    [selectedCharacter, onCharacterSelect, setUploadedImage]
   )
 
   return (
