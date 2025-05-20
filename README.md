@@ -63,6 +63,10 @@ Download your comics in multiple formats and share them easily on social media, 
 | --------------------------------------- | ------------------------------------- |
 | ![Landing](./readme/demo/login_page.png) | ![fsdaf](./readme/demo/vieiw_Grid.png)|
 
+| Profile screen                            |  Characters Screen                     |
+| --------------------------------------- | ------------------------------------- |
+| ![Landing](./readme/demo/profile_pg.png) | ![fsdaf](./readme/demo/characters_page.png)|
+
 
 | Landing screen                            | Creat Comic Screen                     |
 | --------------------------------------- | ------------------------------------- |
@@ -132,9 +136,7 @@ Download your comics in multiple formats and share them easily on social media, 
 - The project is **containerized using Docker** to ensure consistency across all environments.
 - **CI/CD pipelines** are implemented via **GitHub Actions**, enabling automatic testing and deployment on every push to `staging` and `main`.
 
-### EC2 Docker containers deployment
-
-  | GitHub Deployment Pipeline Success	                        | EC2 Instance Docker Deployed                       |
+| GitHub Deployment Pipeline Success	                        | EC2 Instance Docker Deployed                       |
  | ------------------------------------- | ------------------------------------- |
 |![fsdaf](./readme/demo/actions_success_1.png) | ![fsdaf](./readme/demo/ec2_instance_containers_runing.png) |
 
@@ -142,7 +144,18 @@ Download your comics in multiple formats and share them easily on social media, 
 | --------------------------------------- | ------------------------------------- |
 | ![Landing](./readme/demo/objects_s3.png) | ![fsdaf](./readme/demo/deployed.png) |
 
+
 ### CI/CD Pipeline
+
+| Backend Docker Image Build & Test          | Frontend Build And Deploy    |
+ | ------------------------------------- | ------------------------------------- |
+|![fsdaf](./readme/demo/testing_ec2_pipline.png) | ![fsdaf](./readme/demo/buildFrontS3.png) |
+
+| Copy To EC2 With Injected .env Passwords                 | Backend EC2 Deploy  |   
+| --------------------------------------- | ------------------------------------- |
+| ![Landing](./readme/demo/copyToEc2_pipeline.png) | ![fsdaf](./readme/demo/buildonec2.png) |
+
+
 
 <img src="./readme/demo/ci-cd-pipeline-image.png"/>
 
