@@ -82,6 +82,11 @@ export default class LangchainComicService extends Service {
         given_character_id
       )
 
+      const urls_images = output.map((buffer) => buffer.toString('base64'))
+      if (!urls_images || urls_images.length === 0) {
+        throw new Error('No images were generated')
+      }
+
 
 
       
