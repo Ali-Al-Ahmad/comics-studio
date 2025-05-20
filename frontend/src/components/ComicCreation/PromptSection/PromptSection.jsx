@@ -19,7 +19,12 @@ const PromptSection = ({
 }) => {
   return (
     <div className='prompt-section'>
-
+      <ComicForm
+        comic={comic}
+        loading={loading}
+        onPromptChange={onPromptChange}
+        onStyleChange={onStyleChange}
+      />
 
 
     </div>
