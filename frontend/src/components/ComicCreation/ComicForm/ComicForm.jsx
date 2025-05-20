@@ -21,7 +21,15 @@ const ComicForm = ({ comic, loading, onPromptChange, onStyleChange }) => {
           onChange={onStyleChange}
           disabled={loading || comic.isGenerating}
         >
-
+          {styles.map((style) => (
+            <option
+              key={style.value}
+              value={style.value}
+            >
+              {style.label}
+            </option>
+          ))}
+        </select>
 
       </div>
     </div>
