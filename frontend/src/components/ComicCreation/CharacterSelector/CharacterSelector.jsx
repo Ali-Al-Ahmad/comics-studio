@@ -103,6 +103,21 @@ const CharacterSelector = ({
           </div>
         )}
       </div>
+      {selectedCharacter && (
+        <div className='selected-character-info'>
+          Using character: <strong>{selectedCharacter.name}</strong>
+          <button
+            className='clear-character-btn'
+            onClick={() => onCharacterSelect(null)}
+          >
+            <Icon
+              icon='mdi:close'
+              width='16'
+              height='16'
+            />
+          </button>
+        </div>
+      )}
     </div>
   )
 }
