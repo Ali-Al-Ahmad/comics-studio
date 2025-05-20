@@ -26,6 +26,17 @@ const PromptSection = ({
         onStyleChange={onStyleChange}
       />
 
+      <CharacterImageOptions
+        characters={characters}
+        selectedCharacter={selectedCharacter}
+        onCharacterSelect={onCharacterSelect}
+        loadingCharacters={loadingCharacters}
+        uploadedImage={uploadedImage}
+        setUploadedImage={setUploadedImage}
+        loading={loading}
+        isGenerating={comic.isGenerating}
+      />
+
 
     </div>
   )
