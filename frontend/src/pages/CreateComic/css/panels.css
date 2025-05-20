@@ -273,6 +273,49 @@
   object-fit: cover;
 }
 
+.book-title-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem 1rem;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.7) 50%, rgba(0, 0, 0, 0) 100%);
+  color: white;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.book-title-overlay h3 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: 'Comic Sans MS', 'Bangers', cursive;
+}
+
+.book-cover-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #222;
+  color: #fff;
+}
+
+.book-cover-placeholder h3 {
+  margin-top: 1rem;
+  color: #fff;
+  font-size: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-family: 'Comic Sans MS', 'Bangers', cursive;
+}
+
+.book-cover-placeholder svg,
+.book-cover-placeholder .icon {
+  color: #fff;
+}
 
 
 
