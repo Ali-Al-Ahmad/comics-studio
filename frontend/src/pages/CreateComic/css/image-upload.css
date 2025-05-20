@@ -40,3 +40,43 @@
   box-sizing: border-box;
 }
 
+.cp-image-upload-placeholder {
+  border: 3px dashed var(--border-color);
+  border-radius: 12px;
+  padding: 3rem 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f9f9fd;
+  transition: all 0.3s ease;
+  height: 280px;
+  min-width: 0;
+}
+
+.cp-image-upload-placeholder:hover {
+  border-color: var(--primary-color);
+  background-color: rgba(112, 99, 241, 0.08);
+}
+
+.cp-image-upload-placeholder p {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--text-color);
+  font-size: 1.1rem;
+}
+
+.cp-image-upload-placeholder small {
+  color: #666;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+.cp-image-upload-placeholder svg {
+  color: var(--primary-color);
+  width: 64px;
+  height: 64px;
+}
+
