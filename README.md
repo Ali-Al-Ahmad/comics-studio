@@ -71,6 +71,12 @@ Download your comics in multiple formats and share them easily on social media, 
 
 - You can view the full API documentation in Postman [here](https://documenter.getpostman.com/view/30826163/2sB2qXmiVS).
 
+### Services & Middlewares
+
+| Generate comic service                               | Saving panels to database                            | Authentication Middleware Test                               |
+| --------------------------------------- | ------------------------------------- | ------------------------------------- |
+| ![Landing](./readme/demo/generateComicService.png) | ![fsdaf](./readme/demo/saveGenerateComicToDbService.png) | ![fsdaf](./readme/demo/AuthMiddleware.png) |
+
 
 ### Code Test Cases
 
