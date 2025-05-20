@@ -110,9 +110,13 @@ Download your comics in multiple formats and share them easily on social media, 
 
 ### AI Services Integration OpenAI / ReplicateAI
 
-| Comic Generation Prompt                          | OpenAi Story Generation                    | ReplicateAi Image Generation                     |
-| --------------------------------------- | ------------------------------------- | ------------------------------------- |
-| ![Landing](./readme/demo/SchemaGpt.png) | ![fsdaf](./readme/demo/open_ai_code.png) | ![fsdaf](./readme/demo/replicate_ai_code.png) |
+| Comic Generation Prompt Sample              |
+| --------------------------------------- |
+| ![Landing](./readme/demo/SchemaGpt.png) |
+
+ | OpenAi Story Generation                    | ReplicateAi Image Generation  |
+ | ------------------------------------- | ------------------------------------- |
+ | ![fsdaf](./readme/demo/open_ai_code.png) | ![fsdaf](./readme/demo/replicate_ai_code.png) |
 
 <br><br>
 
