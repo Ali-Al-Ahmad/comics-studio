@@ -56,7 +56,21 @@ const CharacterSelector = ({
         )}
       </div>
       <div className='characters-list'>
-
+        {loading ? (
+          <div className='characters-loading'>
+            <Spinner size='small' />
+            <p>Loading characters...</p>
+          </div>
+        ) : characters.length === 0 ? (
+          <p className='no-characters'>
+            No characters found. Create characters in the Characters section.
+          </p>
+        ) : filteredCharacters.length === 0 ? (
+          <p className='no-characters'>No characters match your search.</p>
+        ) : (
+          <div className='character-cards'>
+          
+      </div>
     </div>
   )
 }
