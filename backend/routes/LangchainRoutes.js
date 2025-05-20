@@ -17,7 +17,12 @@ const generateLangchainComic = async (req, res) => {
       result.data
     )
   } catch (error) {
-
+    return Controller.returnResponse(
+      res,
+      false,
+      'Error in LangChain Comic Generation',
+      error
+    )
   }
 }
 
