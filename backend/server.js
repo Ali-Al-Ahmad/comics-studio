@@ -31,7 +31,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(express.static('./'))
 
-app.use(logReuestBodyData)
+// app.use(logReuestBodyData)
 
 //routes api
 app.use('/api/v1/auth', authRoutes)
