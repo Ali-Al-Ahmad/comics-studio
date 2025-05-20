@@ -51,7 +51,25 @@ const CreateComic = () => {
     fetchUserCharacters()
   }, [])
 
-
+  const fetchUserCharacters = async () => {
+    try {
+      setLoadingCharacters(true)
+      const response = await axiosInstance.get('/characters/usercharacters')
+      if (response.data.success) {
+        setCharacters(response.data.data || [])
+      }
+    } catch (error) {
+      console.error('Error fetching characters:', error)
+      dispatch(
+        showToast({
+          message: 'Failed to fetch characters',
+          type: 'error',
+        })
+      )
+    } finally {
+      setLoadingCharacters(false)
+    }
+  }
 
 
 
