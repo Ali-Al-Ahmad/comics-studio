@@ -166,7 +166,13 @@ const CreateComic = () => {
       }
     } catch (error) {
       console.error('Error generating comic panels:', error)
-
+      dispatch(
+        showToast({
+          message: 'Failed to generate comic panels. Please try again.',
+          type: 'error',
+        })
+      )
+    } 
   }
 
 
