@@ -210,7 +210,20 @@ const CreateComic = () => {
       }`}
     >
       {' '}
-
+      <CreateComicHeader credits={credits} />
+      <PromptSection
+        comic={comic}
+        loading={loading}
+        characters={characters}
+        selectedCharacter={selectedCharacter}
+        loadingCharacters={loadingCharacters}
+        uploadedImage={uploadedImage}
+        onPromptChange={handlePromptChange}
+        onStyleChange={handleStyleChange}
+        onCharacterSelect={handleCharacterSelect}
+        setUploadedImage={setUploadedImage}
+        onGenerate={handleGenerate}
+      />
 
     </div>
   )
