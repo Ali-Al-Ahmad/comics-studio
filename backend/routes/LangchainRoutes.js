@@ -9,7 +9,18 @@ const router = express.Router()
 
 const generateLangchainComic = async (req, res) => {
   try {
-  } catch (error) {}
+    const result = await LangchainComicService.generateComicWithLangChain(req)
+    return Controller.returnResponse(
+      res,
+      result.success,
+      result.message,
+      result.data
+    )
+  } catch (error) {
+
+  }
 }
+
+
 
 export default router
