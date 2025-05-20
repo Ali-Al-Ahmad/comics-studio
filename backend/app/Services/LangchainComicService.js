@@ -72,6 +72,16 @@ export default class LangchainComicService extends Service {
         character_image_path
       )
 
+      const output = await this._generateComicPanels(
+        replicate,
+        content,
+        encodedImage,
+        given_image,
+        comic_style,
+        character_image_path,
+        given_character_id
+      )
+
 
 
       
