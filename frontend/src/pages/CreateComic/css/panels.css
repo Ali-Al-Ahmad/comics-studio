@@ -499,3 +499,50 @@
   z-index: -1;
 }
 
+.download-comic-btn {
+  margin: 1.5rem auto;
+  background-color: #e53935;
+  color: white;
+  border: 3px solid #900;
+  border-radius: 10px;
+  padding: 1rem 1.5rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  font-size: 1.1rem;
+  box-shadow: 0 6px 0 #900, 0 8px 15px rgba(0, 0, 0, 0.3);
+  max-width: 280px;
+  font-family: 'Comic Sans MS', cursive;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
+  transform: translateY(0);
+}
+
+.download-comic-btn:hover {
+  background-color: #f44336;
+  transform: translateY(-3px);
+  box-shadow: 0 9px 0 #900, 0 12px 20px rgba(0, 0, 0, 0.4);
+}
+
+.download-comic-btn:active {
+  transform: translateY(3px);
+  box-shadow: 0 3px 0 #900, 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.download-comic-btn::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
+  transform: rotate(45deg);
+  pointer-events: none;
+}
