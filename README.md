@@ -97,7 +97,7 @@ Download your comics in multiple formats and share them easily on social media, 
 
 | Local Tests Success                              | Pipeline Tests Success                        |
 | --------------------------------------- | ------------------------------------- |
-| ![Landing](./readme/demo/test_success_locally.png) | ![fsdaf](./readme/demo/success_test_github_actions.png)|
+| ![Landing](./readme/demo/test_success_locally.png) | ![fsdaf](./readme/demo/github_tests_success.png)|
 
 <br><br>
 
