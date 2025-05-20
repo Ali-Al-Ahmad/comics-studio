@@ -9,6 +9,19 @@
   overflow-x: hidden;
 }
 
+.prompt-input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.prompt-input-row {
+  display: flex;
+  align-items: stretch;
+  height: 50px;
+  width: 100%;
+  gap: 10px;
+}
 
 
 
