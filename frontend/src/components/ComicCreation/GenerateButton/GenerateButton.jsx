@@ -6,7 +6,13 @@ import './GenerateButton.css'
 const GenerateButton = ({ loading, isGenerating, prompt, onGenerate }) => {
   return (
     <div className='generate-btn-container'>
+      <button
+        className='generate-btn'
+        onClick={onGenerate}
+        disabled={loading || isGenerating || !prompt.trim()}
+      >
 
+      </button>
     </div>
   )
 }
