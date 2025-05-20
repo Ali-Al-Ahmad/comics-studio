@@ -37,7 +37,12 @@ const PromptSection = ({
         isGenerating={comic.isGenerating}
       />
 
-
+      <GenerateButton
+        loading={loading}
+        isGenerating={comic.isGenerating}
+        prompt={comic.prompt}
+        onGenerate={onGenerate}
+      />
     </div>
   )
 }
