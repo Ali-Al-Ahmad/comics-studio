@@ -15,7 +15,7 @@ export default class ComicService extends Service {
       })
       return this.return(true, 'All comics', all_comics)
     } catch (error) {
-      return this.return(false, 'Error getting all comics', error)
+      this.handleError(error, 'Error getting all comics')
     }
   }
 
@@ -24,7 +24,7 @@ export default class ComicService extends Service {
       const comicData = await Comic.findByPk(id)
       return this.return(true, 'Comic retrieved successfully', comicData)
     } catch (error) {
-      return this.return(false, 'Error getting Comic by ID', error)
+      this.handleError(error, 'Error getting Comic by ID')
     }
   }
 
@@ -34,7 +34,7 @@ export default class ComicService extends Service {
 
       return this.return(true, 'added Comic data', newComic)
     } catch (error) {
-      return this.return(false, 'Error adding Comic', error)
+      this.handleError(error, 'Error adding Comic')
     }
   }
 
@@ -43,10 +43,9 @@ export default class ComicService extends Service {
       await Comic.destroy({ where: { id } })
       return this.return(true, 'Comic deleted successfully')
     } catch (error) {
-      return this.return(false, 'Error deleting Comic', error)
+      this.handleError(error, 'Error deleting Comic')
     }
   }
-
   static async update(req) {
     try {
       const id = req.params?.id
@@ -57,10 +56,9 @@ export default class ComicService extends Service {
 
       return this.return(true, 'Updated comic data', comic)
     } catch (error) {
-      return this.return(false, 'Error updating comic', error)
+      this.handleError(error, 'Error updating comic')
     }
   }
-
   static async generateReplicateComics(req) {
     try {
       const {
@@ -108,7 +106,6 @@ export default class ComicService extends Service {
       if (!urls_images || urls_images.length === 0) {
         throw new Error('No images were generated')
       }
-
       const { new_book, savedComics } = await this._saveComicToDatabase(
         req.user.id,
         user_prompt,
@@ -124,12 +121,11 @@ export default class ComicService extends Service {
         comics: savedComics,
       })
     } catch (error) {
-      return this.return(false, 'Error generating comic', error)
+      this.handleError(error, 'Error generating comic')
     }
   }
 
   static async _generateComicStoryContent(openai, user_prompt) {
-
     const systemPrompt = comicGenerationPrompt
 
     const response = await openai.chat.completions.create({
@@ -213,7 +209,6 @@ export default class ComicService extends Service {
     given_character_id
   ) {
     try {
-
       const output = await replicate.run(
         'camenduru/story-diffusion:a43c7e0e4bce75ee98445b20b244240d1109e30a46bf7719958fd0a69ab29e8e',
         {
@@ -264,7 +259,6 @@ export default class ComicService extends Service {
     try {
       const savedComics = []
       const characterId = given_character_id || null
-
 
       const new_book = await Book.create({
         title: user_prompt.slice(0, 100),

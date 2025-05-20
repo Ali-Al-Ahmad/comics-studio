@@ -9,11 +9,16 @@ export default class Service {
     }
   }
 
+  static handleError(error, message) {
+    console.error(`Service error: ${message}`, error)
+    throw error
+  }
+
   static async hashPassword(password) {
     try {
       return await HashPasswordTrait.hashPassword(password)
     } catch (error) {
-      throw error
+      this.handleError(error, 'Error hashing password')
     }
   }
 }
