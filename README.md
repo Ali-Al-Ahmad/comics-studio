@@ -22,9 +22,14 @@
 
 <img src="./readme/demo/comics_studio_erdiagram.png" style="border-radius: 10px;"/>
 
+
+### Flow Diagram
+
+<img src="./readme/demo/system_diagram.png"/>
+
 ### Component Diagram
 
-<img src="./readme/demo/ComponentDiagram.png"/>
+<img src="./readme/demo/component_interface_diagram.png"/>
 
 
 
@@ -64,6 +69,15 @@ Download your comics in multiple formats and share them easily on social media, 
 <!-- Development & Testing -->
 <img src="./readme/title6.svg"/>
 
+- You can view the full API documentation in Postman [here](https://documenter.getpostman.com/view/30826163/2sB2qXmiVS).
+
+### Services & Middlewares
+
+| Generate comic service                               | Saving panels to database                            | Authentication Middleware Test                               |
+| --------------------------------------- | ------------------------------------- | ------------------------------------- |
+| ![Landing](./readme/demo/generateComicService.png) | ![fsdaf](./readme/demo/saveGenerateComicToDbService.png) | ![fsdaf](./readme/demo/AuthMiddleware.png) |
+
+
 ### Code Test Cases
 
 | Feature Test                                | Integration Test                            | Unit Test                               |
@@ -97,7 +111,7 @@ Download your comics in multiple formats and share them easily on social media, 
 
 | Deployment Pipeline Sample	                 | GitHub Deployment Pipeline Success	                        | EC2 Instance docker deployed                       |
 | --------------------------------------- | ------------------------------------- | ------------------------------------- |
-| ![Landing](./readme/demo/production_pipeline.png) | ![fsdaf](./readme/demo/actions_success.png) | ![fsdaf](./readme/demo/runing_ec2_containers.png) |
+| ![Landing](./readme/demo/deploy_sample.png) | ![fsdaf](./readme/demo/actions_success.png) | ![fsdaf](./readme/demo/runing_ec2_containers.png) |
 
 | AWS project objects	                 | Deployed production website  |   
 | --------------------------------------- | ------------------------------------- |
