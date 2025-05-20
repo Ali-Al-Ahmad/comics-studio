@@ -14,7 +14,16 @@ export default class LangchainComicService extends Service {
         temperature: 0.7,
       })
 
- 
+      const outputParser = new JsonOutputParser()
+
+      const promptTemplate = PromptTemplate.fromTemplate(`
+        ${comicGenerationPrompt}
+        
+        User Request: {user_prompt}
+      `)
+
+      const chain = RunnableSequence.from([promptTemplate, model, outputParser])
+
      
     } catch (error) {
       console.error('Error generating comic story with LangChain:', error)
