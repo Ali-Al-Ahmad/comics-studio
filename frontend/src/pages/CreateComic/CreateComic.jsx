@@ -147,7 +147,23 @@ const CreateComic = () => {
           book_id: comic.book_id,
         }))
 
-        
+        const generatedCaptions = comics.map((comic) => comic.caption)
+
+        setComic((prev) => ({
+          ...prev,
+          panels: newPanels,
+          captions: generatedCaptions,
+          bookId: book.id,
+          isGenerating: false,
+        }))
+
+        dispatch(
+          showToast({
+            message: 'Comic panels generated successfully!',
+            type: 'success',
+          })
+        )
+      }
     } catch (error) {
       console.error('Error generating comic panels:', error)
 
