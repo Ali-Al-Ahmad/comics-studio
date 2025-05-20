@@ -24,7 +24,17 @@ export default class LangchainComicService extends Service {
 
       const chain = RunnableSequence.from([promptTemplate, model, outputParser])
 
-     
+      const content = await chain.invoke({
+        user_prompt: user_prompt,
+      })
+      if (!content.prompt_array) {
+        console.warn('Warning: Generated content is missing prompt_array')
+      }
+      if (!content.captions || !Array.isArray(content.captions)) {
+        console.warn('Warning: Generated content has invalid captions')
+      }
+
+      return content
     } catch (error) {
       console.error('Error generating comic story with LangChain:', error)
 
