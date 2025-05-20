@@ -42,7 +42,18 @@ const CharacterSelector = ({
           onChange={handleCharacterSearch}
           disabled={disabled}
         />
-
+        {characterSearchQuery && (
+          <button
+            className='clear-search-btn'
+            onClick={() => setCharacterSearchQuery('')}
+          >
+            <Icon
+              icon='mdi:close'
+              width='16'
+              height='16'
+            />
+          </button>
+        )}
       </div>
       <div className='characters-list'>
 
