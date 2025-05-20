@@ -87,9 +87,9 @@ Download your comics in multiple formats and share them easily on social media, 
 | --------------------------------------- | ------------------------------------- |
 | ![Landing](./readme/demo/generateComicService.png) | ![fsdaf](./readme/demo/saveGenerateComicToDbService.png)|
 
-| Authentication Middleware   |   test   |
+| Authentication Middleware   |   Sequelize Modal Validation   |
 | ------------------------------------- | ------------------------------------- |
-| ![fsdaf](./readme/demo/AuthMiddleware.png) | ![fsdaf](./readme/demo/test.png) |
+| ![fsdaf](./readme/demo/AuthMiddleware.png) | ![fsdaf](./readme/demo/ModalValidation.png) |
 
 ### Code Test Cases
 
