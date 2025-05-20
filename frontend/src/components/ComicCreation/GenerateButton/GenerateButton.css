@@ -27,3 +27,15 @@
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
 }
 
+.generate-btn:hover:not(:disabled) {
+  background-color: var(--primary-color-dark);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(112, 99, 241, 0.3);
+}
+
+.generate-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
