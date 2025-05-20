@@ -22,4 +22,43 @@
   width: 100%;
 }
 
+.comic-panel {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #f9f9fd;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  aspect-ratio: 1;
+  border: 2px solid var(--border-color);
+}
+
+.comic-panel:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(112, 99, 241, 0.2);
+  border-color: var(--primary-color-light);
+}
+
+.panel-number {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #ff5252;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #fff;
+  z-index: 4;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
+  border: 2px solid #fff;
+  transform: rotate(-5deg);
+  text-shadow: 1px 1px 0 #000;
+}
+
+
 
