@@ -71,3 +71,33 @@
 .character-cards::-webkit-scrollbar {
   display: none;
 }
+
+.character-select-card {
+  width: 95px;
+  height: 125px;
+  border-radius: 8px;
+  padding: 0.5rem;
+  background-color: white;
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  text-align: center;
+  margin: 0.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.character-select-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  border-color: var(--primary-color-light);
+}
+
+.character-select-card.selected {
+  border: 2px solid var(--primary-color);
+  background-color: var(--primary-color-light);
+}
+
