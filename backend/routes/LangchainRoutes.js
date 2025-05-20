@@ -26,6 +26,12 @@ const generateLangchainComic = async (req, res) => {
   }
 }
 
-
+router.post(
+  '/generate',
+  upload.single('character_image'),
+  GenerateComicRequest,
+  validateRequest,
+  generateLangchainComic
+)
 
 export default router
