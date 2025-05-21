@@ -33,7 +33,7 @@ const ComicForm = ({ comic, loading, onPromptChange, onStyleChange }) => {
         <textarea
           value={comic.prompt}
           onChange={onPromptChange}
-          placeholder='Enter prompt here...'
+          placeholder='Enter prompt here example: A man walking in the park'
           disabled={loading || comic.isGenerating}
           rows={1}
         />{' '}
