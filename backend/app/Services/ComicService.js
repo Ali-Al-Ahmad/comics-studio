@@ -1,5 +1,5 @@
 import Service from './Service.js'
-import { Book, Comic } from '../Models/index.js'
+import { Book, Comic, User } from '../Models/index.js'
 import OpenAI from 'openai'
 import Replicate from 'replicate'
 import fs from 'fs/promises'
@@ -70,13 +70,14 @@ export default class ComicService extends Service {
 
       const given_image = req.file?.path || character_image_path
 
-      if (req.user?.credits && req.user.credits < 1) {
+      const user = await User.findByPk(req.user.id)
+
+      if (user?.credits && user.credits < 1) {
         return this.return(
           false,
           "You don't have enough credits to generate a comic"
         )
       }
-
       const openai = new OpenAI({
         apiKey: process.env.OPENAI_API_KEY,
       })
@@ -85,7 +86,6 @@ export default class ComicService extends Service {
       })
 
       const content = await this._generateComicStoryContent(openai, user_prompt)
-
       const encodedImage = await this._processAndEncodeImage(
         given_image,
         character_image_path
@@ -114,6 +114,13 @@ export default class ComicService extends Service {
         given_character_id,
         character_image_path
       )
+
+      await User.update(
+        { credits: user.credits - 1 },
+        { where: { id: req.user.id } }
+      )
+
+      const updatedUser = await User.findByPk(req.user.id)
 
       return this.return(true, 'Generated comic data', {
         user_id: req.user.id,
