@@ -1,6 +1,7 @@
-import { useState, useEffect, useRef } from 'react'
+﻿import { useState, useEffect, useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { showToast } from '../../redux/slices/toastSlice'
+import { updateProfile } from '../../redux/slices/userSlice'
 import axiosInstance from '../../utils/axiosInstance'
 import ViewGeneratedBook from '../../components/ViewGeneratedBook/ViewGeneratedBook'
 import {
@@ -36,7 +37,8 @@ const CreateComic = () => {
   const [selectedCharacter, setSelectedCharacter] = useState(null)
   const [loadingCharacters, setLoadingCharacters] = useState(false)
 
-  const [uploadedImage, setUploadedImage] = useState(null) 
+  const [uploadedImage, setUploadedImage] = useState(null)
+
   useEffect(() => {
     if (comic.panels.length === 0) {
       const emptyPanels = Array(6)
@@ -58,7 +60,8 @@ const CreateComic = () => {
       if (response.data.success) {
         setCharacters(response.data.data || [])
       }
-    } catch (error) {
+    } catch (err) {
+      console.error('Error fetching characters:', err)
       dispatch(
         showToast({
           message: 'Failed to fetch characters',
@@ -151,6 +154,8 @@ const CreateComic = () => {
           isGenerating: false,
         }))
 
+        dispatch(updateProfile({ credits: credits - 1 }))
+
         dispatch(
           showToast({
             message: 'Comic panels generated successfully!',
@@ -158,8 +163,8 @@ const CreateComic = () => {
           })
         )
       }
-    } catch (error) {
-      console.error('Error generating comic panels:', error)
+    } catch (err) {
+      console.error('Error generating comic panels:', err)
       dispatch(
         showToast({
           message: 'Failed to generate comic panels. Please try again.',
