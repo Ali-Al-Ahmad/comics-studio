@@ -67,7 +67,6 @@ export default class ComicService extends Service {
         character_image_path,
         comic_style,
       } = req.body
-
       const given_image = req.file?.path || character_image_path
 
       const user = await User.findByPk(req.user.id)
@@ -120,8 +119,6 @@ export default class ComicService extends Service {
         { where: { id: req.user.id } }
       )
 
-      const updatedUser = await User.findByPk(req.user.id)
-
       return this.return(true, 'Generated comic data', {
         user_id: req.user.id,
         book: new_book,
@@ -173,11 +170,6 @@ export default class ComicService extends Service {
 
     if (given_image) {
       try {
-        const isCharacterImage =
-          character_image_path && given_image === character_image_path
-        if (isCharacterImage) {
-        }
-
         const inputImageBuffer = await fs.readFile(given_image)
         const processedImageBuffer = await sharp(inputImageBuffer)
           .resize({
